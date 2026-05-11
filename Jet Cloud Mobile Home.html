@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jet Cloud Mobile — Business mobile without the second phone</title>
+    <link rel="stylesheet" href="colors_and_type.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-ui);
+            color: var(--fg-1);
+            line-height: var(--lh-normal);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: var(--border);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+            padding: 0 var(--sp-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--sp-7);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--sp-6);
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--fg-1);
+            font-weight: 500;
+            font-size: var(--fs-body);
+            transition: color var(--dur-base) var(--ease-out);
+        }
+        
+        .nav-links a:hover {
+            color: var(--red);
+        }
+        
+        .nav-cta {
+            background: var(--red);
+            color: var(--white);
+            padding: 0.625rem 1.5rem;
+            border-radius: var(--radius-0);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--dur-base) var(--ease-out);
+        }
+        
+        .nav-cta:hover {
+            background: var(--red-dark);
+            color: var(--white);
+            box-shadow: var(--shadow-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 72px;
+            background: var(--grad-hero);
+            color: var(--white);
+            padding: var(--sp-10) var(--sp-6) var(--sp-9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-8);
+            align-items: center;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .eyebrow {
+            font-family: var(--font-display);
+            font-size: var(--fs-small);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: var(--tr-ultra);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--sp-4);
+        }
+        
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h1);
+            font-weight: 700;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--tr-tight);
+            margin-bottom: var(--sp-5);
+        }
+        
+        .subheadline {
+            font-size: var(--fs-lead);
+            line-height: var(--lh-normal);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: var(--sp-6);
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: var(--sp-4);
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+            padding: var(--sp-4) var(--sp-6);
+            border-radius: var(--radius-0);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: var(--fs-lead);
+            transition: all var(--dur-base) var(--ease-out);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: var(--red-dark);
+            box-shadow: var(--shadow-red);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: var(--sp-4) var(--sp-6);
+            border-radius: var(--radius-0);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: var(--fs-lead);
+            transition: all var(--dur-base) var(--ease-out);
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Hero Animation Container */
+        .hero-animation {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #lottie-container {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--white);
+            padding: var(--sp-7) var(--sp-6);
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.02);
+        }
+        
+        .stats-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--sp-7);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: var(--sp-2);
+        }
+        
+        .stat-label {
+            font-size: var(--fs-body);
+            color: var(--fg-2);
+        }
+        
+        /* Logo Bar */
+        .logo-bar {
+            background: var(--ink-50);
+            padding: var(--sp-7) var(--sp-6);
+        }
+        
+        .logo-bar-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .logo-bar h3 {
+            font-family: var(--font-display);
+            font-size: var(--fs-small);
+            text-transform: uppercase;
+            letter-spacing: var(--tr-ultra);
+            color: var(--fg-2);
+            margin-bottom: var(--sp-6);
+            font-weight: 600;
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--sp-7);
+            opacity: 0.6;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: var(--sp-10) var(--sp-6);
+        }
+        
+        .section-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+        }
+        
+        .section-eyebrow {
+            font-family: var(--font-display);
+            font-size: var(--fs-small);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: var(--tr-ultra);
+            color: var(--red);
+            margin-bottom: var(--sp-4);
+            text-align: center;
+        }
+        
+        .section-headline {
+            font-family: var(--font-display);
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            line-height: var(--lh-tight);
+            letter-spacing: var(--tr-tight);
+            text-align: center;
+            margin-bottom: var(--sp-8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            background: var(--ink-50);
+        }
+        
+        .problem-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .problem-content h2 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            margin-bottom: var(--sp-5);
+        }
+        
+        .problem-content p {
+            font-size: var(--fs-lead);
+            color: var(--fg-2);
+            line-height: var(--lh-normal);
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--sp-6);
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: var(--sp-6);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-1);
+            border: var(--border);
+            transition: all var(--dur-base) var(--ease-out);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2);
+            border-color: rgba(237, 28, 36, 0.2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--grad-logo);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--sp-5);
+        }
+        
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h4);
+            font-weight: 600;
+            margin-bottom: var(--sp-3);
+        }
+        
+        .feature-card p {
+            color: var(--fg-2);
+            line-height: var(--lh-normal);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: var(--white);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--sp-7);
+        }
+        
+        .step {
+            position: relative;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--fs-h3);
+            font-weight: 700;
+            margin: 0 auto var(--sp-5);
+        }
+        
+        .step h3 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h5);
+            font-weight: 600;
+            margin-bottom: var(--sp-3);
+        }
+        
+        .step p {
+            color: var(--fg-2);
+            line-height: var(--lh-normal);
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--ink-50);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--sp-6);
+        }
+        
+        .testimonial {
+            background: var(--white);
+            padding: var(--sp-6);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-1);
+            border: var(--border);
+        }
+        
+        .quote {
+            font-size: var(--fs-body);
+            line-height: var(--lh-normal);
+            color: var(--fg-1);
+            margin-bottom: var(--sp-5);
+        }
+        
+        .attribution {
+            font-weight: 600;
+            color: var(--red);
+        }
+        
+        /* Pricing Summary */
+        .pricing-section {
+            background: var(--white);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--sp-6);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--ink-300);
+            border-radius: var(--radius-md);
+            padding: var(--sp-7);
+            text-align: center;
+            transition: all var(--dur-base) var(--ease-out);
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--red);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2);
+        }
+        
+        .pricing-card.popular {
+            border-color: var(--red);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: var(--radius-pill);
+            font-size: var(--fs-caption);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: var(--tr-wide);
+        }
+        
+        .plan-name {
+            font-family: var(--font-display);
+            font-size: var(--fs-h5);
+            font-weight: 600;
+            margin-bottom: var(--sp-4);
+        }
+        
+        .price {
+            font-family: var(--font-display);
+            font-size: var(--fs-display);
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: var(--sp-2);
+            line-height: 1;
+        }
+        
+        .price-period {
+            color: var(--fg-2);
+            font-size: var(--fs-body);
+            margin-bottom: var(--sp-5);
+        }
+        
+        .plan-description {
+            color: var(--fg-2);
+            line-height: var(--lh-normal);
+            font-size: var(--fs-body);
+        }
+        
+        /* Network Section */
+        .network-section {
+            background: var(--ink-900);
+            color: var(--white);
+        }
+        
+        .network-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .network-content h2 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            margin-bottom: var(--sp-5);
+        }
+        
+        .network-content p {
+            font-size: var(--fs-lead);
+            line-height: var(--lh-normal);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: var(--red);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            margin-bottom: var(--sp-4);
+        }
+        
+        .final-cta p {
+            font-size: var(--fs-lead);
+            margin-bottom: var(--sp-6);
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ink-900);
+            color: var(--white);
+            padding: var(--sp-7) var(--sp-6) var(--sp-6);
+        }
+        
+        .footer-container {
+            max-width: var(--container-marketing);
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--sp-6);
+            margin-bottom: var(--sp-6);
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: var(--fs-body);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: var(--fs-small);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: var(--sp-6);
+            }
+            
+            h1 {
+                font-size: var(--fs-h2);
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--sp-6);
+            }
+            
+            .hero-animation {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="assets/jet-logo-full-color.png" alt="Jet Interactive">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#" class="nav-cta">Get started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Animation -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="eyebrow">Australia's Largest Cloud Mobile Network</div>
+                <h1>A business mobile number on any smartphone.</h1>
+                <p class="subheadline">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no contracts, no hassle. From $15/month per user.</p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary">Get started</a>
+                    <a href="#" class="btn-secondary">Watch how it works</a>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div id="lottie-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Cloud Mobile users</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1.5M+</div>
+                <div class="stat-label">calls & SMS every month</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Since 2006</div>
+                <div class="stat-label">Operating since</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">No contracts, ever</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Bar -->
+    <div class="logo-bar">
+        <div class="logo-bar-container">
+            <h3>Trusted by Australian businesses including:</h3>
+            <div class="logos">
+                <span>ANZ</span>
+                <span>·</span>
+                <span>Commonwealth Bank</span>
+                <span>·</span>
+                <span>Foxtel</span>
+                <span>·</span>
+                <span>Rheem</span>
+                <span>·</span>
+                <span>Suncorp</span>
+                <span>·</span>
+                <span>Ford</span>
+                <span>·</span>
+                <span>Qantas</span>
+                <span>·</span>
+                <span>Westpac</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="section-container">
+            <div class="problem-content">
+                <h2>Still using your personal phone for business?</h2>
+                <p>If you or your staff are making business calls from personal mobile phones, you're losing visibility, control, and credibility. Jet Cloud Mobile fixes that — without asking anyone to carry a second device.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Overview -->
+    <section id="features">
+        <div class="section-container">
+            <div class="section-eyebrow">Features</div>
+            <h2 class="section-headline">Everything you'd expect from a business mobile. Nothing you don't need.</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3>No second handset</h3>
+                    <p>Business and personal numbers on one device. Switch between them seamlessly with our app.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Work from anywhere</h3>
+                    <p>Make and receive business calls from anywhere with internet. Perfect for remote teams.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M17 2.1l4 4-4 4"></path>
+                            <path d="M3 12.2v-2a4 4 0 0 1 4-4h12.8M7 21.9l-4-4 4-4"></path>
+                            <path d="M21 11.8v2a4 4 0 0 1-4 4H4.2"></path>
+                        </svg>
+                    </div>
+                    <h3>Multi-device</h3>
+                    <p>Use your business number across multiple devices simultaneously.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Call recording</h3>
+                    <p>Automatically record calls for training, compliance, and quality assurance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3>Reporting & visibility</h3>
+                    <p>See all calls and SMS activity in real-time. Export reports for analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h3>CRM integrations</h3>
+                    <p>Integrate with Salesforce and other CRMs to log calls automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <polyline points="17 11 19 13 23 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Retain numbers when staff leave</h3>
+                    <p>Business numbers stay with your company, not departing employees.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m5.2-14.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m14.2 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+                        </svg>
+                    </div>
+                    <h3>Remote control via Jet Portal</h3>
+                    <p>Manage all users, numbers, and settings from one central dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-container">
+            <div class="section-eyebrow">Setup</div>
+            <h2 class="section-headline">Live in 5 minutes.</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign up online</h3>
+                    <p>Choose your plan and pick your number (or port your existing one across).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Download the app</h3>
+                    <p>Available on iOS and Android. Install takes under a minute.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Invite your team</h3>
+                    <p>Add users, assign numbers, configure call routing from the Jet portal.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Start calling</h3>
+                    <p>Your team is live. Calls, SMS, recording, and reporting all running from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <h2 class="section-headline">What our customers say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="quote">"Thanks for setting up our business phones. My staff can finally work at home. Great service. Would highly recommend!"</p>
+                    <p class="attribution">— Deborah, CEO</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"We initially switched over to Jet based on cost. We however found their product and service to be excellent. The management platform is extremely powerful and gives us great control."</p>
+                    <p class="attribution">— Bilal, Managing Director</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"I'd been looking at Jet for a couple of months before taking the plunge. So glad I did! Jet Hub has made WFH so painless I can concentrate on getting my team's issues solved."</p>
+                    <p class="attribution">— Rosie, Operations Manager</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"Great work helping us move across from Telstra! Justin supported us every step of the way and we couldn't be more thankful."</p>
+                    <p class="attribution">— Brooke, Owner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Summary -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-container">
+            <h2 class="section-headline">Simple pricing. No contracts. No surprises.</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="plan-name">Pay Per Call</div>
+                    <div class="price">$15</div>
+                    <div class="price-period">per number / month</div>
+                    <p class="plan-description">Best for low-volume users or businesses wanting to get started at minimum cost.</p>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-name">Call Bundled</div>
+                    <div class="price">$35</div>
+                    <div class="price-period">per number / month</div>
+                    <p class="plan-description">Best for staff who make regular calls and want predictable monthly costs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Section -->
+    <section class="network-section">
+        <div class="section-container">
+            <div class="network-content">
+                <h2>Built on Australia's largest privately owned telco network.</h2>
+                <p>Running since 2006, Jet Interactive's network is purpose-built for Australian businesses. Not a reseller. Not offshore. Local infrastructure, local support, and the scale to back it up.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="section-container">
+            <h2>Ready to give your team a proper business mobile?</h2>
+            <p>Join over 50,000 Jet Cloud Mobile users across Australia. Set up in 5 minutes, no contracts, starting from $15/month.</p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="#" class="btn-primary">Get started</a>
+                <a href="#" class="btn-secondary">Talk to our team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <a href="#">Help Centre</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+            </div>
+            <p class="copyright">© 2026 Jet Interactive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load and play Lottie animation
+        const animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'assets/phone-dual-line.json'
+        });
+    </script>
+</body>
+</html>

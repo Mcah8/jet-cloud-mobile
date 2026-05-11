@@ -1,0 +1,181 @@
+/* =========================================================================
+   JET INTERACTIVE — Design Tokens
+   Colors + Type + Spacing + Radii + Shadows
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --red:            #ED1C24;   /* Primary red (CMYK 0-100-100-0) */
+  --red-dark:       #A71C20;   /* Dark red — hover/pressed + gradient partner */
+  --red-darker:     #7A1418;   /* For deep-red surfaces / footer accents */
+  --red-100:        #FDE7E8;   /* red tint — bg for subtle red states */
+  --red-50:         #FEF3F4;
+
+  --black:          #000000;
+  --white:          #FFFFFF;
+
+  /* ---------- NEUTRALS (system additions) ---------- */
+  --ink-950:        #050506;
+  --ink-900:        #0B0B0C;   /* body text on light */
+  --ink-800:        #1A1A1E;
+  --ink-700:        #2A2A2E;
+  --ink-600:        #4A4D55;
+  --ink-500:        #6B6E76;   /* secondary text */
+  --ink-400:        #9A9DA4;
+  --ink-300:        #C9CCD1;   /* default border */
+  --ink-200:        #E1E4E8;
+  --ink-100:        #EEF0F3;   /* subtle surface */
+  --ink-50:         #F7F8FA;   /* app bg */
+
+  /* ---------- SEMANTIC COLORS ---------- */
+  --fg-1:           var(--ink-900);  /* primary text */
+  --fg-2:           var(--ink-600);  /* secondary text */
+  --fg-3:           var(--ink-500);  /* tertiary / captions */
+  --fg-inverse:     var(--white);
+  --fg-brand:       var(--red);
+  --fg-link:        var(--red);
+
+  --bg-1:           var(--white);
+  --bg-2:           var(--ink-50);
+  --bg-3:           var(--ink-100);
+  --bg-inverse:     var(--ink-900);
+  --bg-brand:       var(--red);
+  --bg-brand-dark:  var(--red-dark);
+
+  --border:          1px solid var(--ink-300);
+  --border-subtle:   1px solid var(--ink-200);
+  --border-strong:   1px solid var(--ink-700);
+
+  /* ---------- STATUS / SUPPORT (portal-only) ---------- */
+  --success:        #0E8A4A;
+  --success-100:    #E3F4EA;
+  --warning:        #D97706;
+  --warning-100:    #FEF1DC;
+  --danger:         var(--red);
+  --danger-100:     var(--red-100);
+  --info:           #1D4FD8;
+  --info-100:       #E4EBFC;
+
+  /* ---------- BRAND GRADIENTS ---------- */
+  /* Logo gradient: Dark red (0%) → Red (100%) */
+  --grad-logo:      linear-gradient(90deg, var(--red-dark) 0%, var(--red) 100%);
+  /* Symbol gradient: Dark red (50%) → Red (55%), angle 7° — the sharp metal-fold */
+  --grad-symbol:    linear-gradient(97deg, var(--red-dark) 50%, var(--red) 55%);
+  /* Hero gradient — full surface */
+  --grad-hero:      linear-gradient(135deg, #7A1418 0%, var(--red-dark) 40%, var(--red) 100%);
+  /* Dark → red vignette for photo overlays */
+  --grad-overlay:   linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.7) 100%);
+
+  /* ---------- TYPOGRAPHY STACKS ---------- */
+  /* Primary brand face was Clio XS (not embeddable). Saira is the substitution. */
+  --font-display:   'Saira', 'Clio', 'Arial Narrow', system-ui, sans-serif;
+  --font-ui:        'Barlow', 'Clio', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- TYPE SCALE ---------- */
+  --fs-caption:     12px;
+  --fs-small:       14px;
+  --fs-body:        16px;   /* base */
+  --fs-lead:        18px;
+  --fs-h5:          20px;
+  --fs-h4:          24px;
+  --fs-h3:          32px;
+  --fs-h2:          44px;
+  --fs-h1:          64px;
+  --fs-display:     96px;
+
+  --lh-tight:       1.05;
+  --lh-snug:        1.2;
+  --lh-normal:      1.5;
+  --lh-loose:       1.7;
+
+  --tr-tight:       -0.02em;
+  --tr-snug:        -0.01em;
+  --tr-normal:      0;
+  --tr-wide:        0.06em;
+  --tr-ultra:       0.14em;  /* small-caps labels */
+
+  /* ---------- SPACING SCALE (8px base) ---------- */
+  --sp-0:   0;
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   24px;
+  --sp-6:   32px;
+  --sp-7:   48px;
+  --sp-8:   64px;
+  --sp-9:   96px;
+  --sp-10:  128px;
+
+  /* ---------- RADII ---------- */
+  --radius-0:       0;
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --radius-lg:      16px;
+  --radius-xl:      24px;
+  --radius-pill:    999px;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-0:       none;
+  --shadow-1:       0 1px 2px rgba(11,11,12,.06), 0 1px 3px rgba(11,11,12,.08);
+  --shadow-2:       0 4px 12px rgba(11,11,12,.08), 0 2px 4px rgba(11,11,12,.06);
+  --shadow-3:       0 20px 40px rgba(11,11,12,.14), 0 8px 16px rgba(11,11,12,.08);
+  --shadow-4:       0 32px 64px rgba(11,11,12,.18), 0 12px 24px rgba(11,11,12,.10);
+  --shadow-red:     0 8px 24px rgba(237,28,36,.24);
+  --shadow-inner:   inset 0 1px 0 rgba(255,255,255,.04), inset 0 -1px 0 rgba(0,0,0,.06);
+
+  /* ---------- MOTION ---------- */
+  --ease-out:       cubic-bezier(.2, .8, .2, 1);
+  --ease-in-out:    cubic-bezier(.4, 0, .2, 1);
+  --dur-fast:       80ms;
+  --dur-base:       120ms;
+  --dur-med:        200ms;
+  --dur-slow:       400ms;
+
+  /* ---------- LAYOUT ---------- */
+  --container-marketing: 1200px;
+  --container-portal:    1440px;
+  --header-h:            72px;
+}
+
+/* =========================================================================
+   BASE TYPE STYLES — apply to un-styled elements so content looks brand-right
+   without authoring per-element styles.
+   ========================================================================= */
+
+html { font-family: var(--font-ui); font-size: var(--fs-body); color: var(--fg-1); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body { margin: 0; background: var(--bg-1); line-height: var(--lh-normal); }
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; letter-spacing: var(--tr-tight); line-height: var(--lh-tight); margin: 0 0 var(--sp-4); color: var(--ink-900); }
+h1 { font-size: var(--fs-h1); letter-spacing: var(--tr-tight); }
+h2 { font-size: var(--fs-h2); letter-spacing: var(--tr-tight); }
+h3 { font-size: var(--fs-h3); letter-spacing: var(--tr-snug); font-weight: 600; }
+h4 { font-size: var(--fs-h4); letter-spacing: var(--tr-snug); font-weight: 600; }
+h5 { font-size: var(--fs-h5); letter-spacing: var(--tr-snug); font-weight: 600; line-height: var(--lh-snug); }
+h6 { font-size: var(--fs-small); letter-spacing: var(--tr-ultra); font-weight: 600; text-transform: uppercase; color: var(--fg-2); line-height: var(--lh-snug); }
+
+p  { margin: 0 0 var(--sp-4); color: var(--fg-1); }
+.lead, p.lead { font-size: var(--fs-lead); color: var(--fg-2); line-height: var(--lh-normal); }
+small, .small { font-size: var(--fs-small); color: var(--fg-2); }
+.caption { font-size: var(--fs-caption); color: var(--fg-3); letter-spacing: var(--tr-wide); }
+
+.eyebrow { font-family: var(--font-display); font-size: var(--fs-small); font-weight: 600; letter-spacing: var(--tr-ultra); text-transform: uppercase; color: var(--red); }
+
+a { color: var(--fg-link); text-decoration: none; transition: opacity var(--dur-base) var(--ease-out); }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+code, kbd, pre, samp { font-family: var(--font-mono); font-size: 0.95em; }
+
+::selection { background: var(--red); color: var(--white); }
+
+/* =========================================================================
+   UTILITY CLASSES — compact, opt-in, brand-correct
+   ========================================================================= */
+
+.jet-gradient-text  { background: var(--grad-logo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jet-surface-dark   { background: var(--ink-900); color: var(--white); }
+.jet-surface-red    { background: var(--red); color: var(--white); }
+.jet-surface-grad   { background: var(--grad-hero); color: var(--white); }
