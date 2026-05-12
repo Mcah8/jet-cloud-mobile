@@ -86,8 +86,24 @@
     .section__headline{font-family:var(--font-display);font-size:var(--fs-h2);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);text-align:center;max-width:800px;margin:0 auto var(--sp-8)}
     .section--dark .section__headline,.section--red .section__headline{color:var(--white)}
 
+    /* Quote calculator */
+    .quote-calc{background:var(--white);border:2px solid var(--ink-300);border-radius:var(--radius-lg);padding:var(--sp-7);text-align:center;display:flex;flex-direction:column;gap:var(--sp-4)}
+    .quote-calc__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--red)}
+    .quote-calc__question{font-size:var(--fs-lead);font-weight:600;color:var(--fg-1);line-height:var(--lh-snug)}
+    .quote-calc__input-row{display:flex;align-items:center;justify-content:center;gap:var(--sp-3)}
+    .quote-calc__stepper{width:44px;height:44px;border-radius:var(--radius-md);border:var(--border);background:var(--ink-50);color:var(--fg-1);font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-base),border-color var(--dur-base)}
+    .quote-calc__stepper:hover{background:var(--ink-100);border-color:var(--ink-400)}
+    .quote-calc__number{width:80px;text-align:center;font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;border:var(--border);border-radius:var(--radius-md);padding:var(--sp-2);color:var(--fg-1);-moz-appearance:textfield}
+    .quote-calc__number::-webkit-inner-spin-button,.quote-calc__number::-webkit-outer-spin-button{-webkit-appearance:none}
+    .quote-calc__total-row{display:flex;align-items:baseline;justify-content:center;gap:8px}
+    .quote-calc__total{font-family:var(--font-display);font-size:var(--fs-display);font-weight:700;color:var(--red);line-height:1}
+    .quote-calc__total-per{font-size:var(--fs-body);color:var(--fg-2)}
+    .quote-calc__breakdown{font-size:var(--fs-small);color:var(--fg-3);line-height:var(--lh-normal)}
+    .quote-calc__cta{display:block;background:var(--red);color:var(--white);padding:var(--sp-4);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);margin-top:var(--sp-2)}
+    .quote-calc__cta:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+
     /* Core plans */
-    .plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-6);max-width:760px;margin:0 auto var(--sp-10)}
+    .plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-6);max-width:900px;margin:0 auto var(--sp-8)}
     .plan-card{background:var(--white);border:2px solid var(--ink-300);border-radius:var(--radius-lg);padding:var(--sp-7);position:relative;transition:border-color var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out),box-shadow var(--dur-med) var(--ease-out)}
     .plan-card:hover{border-color:var(--red);transform:translateY(-4px);box-shadow:var(--shadow-2)}
     .plan-card--popular{border-color:var(--red)}
@@ -142,6 +158,8 @@
     .btn-dark:hover{background:var(--ink-800)}
     .btn-secondary{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
     .btn-secondary:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+    .btn-white{background:var(--white);color:var(--red);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:700;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
+    .btn-white:hover{background:var(--red-50);box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
     /* Footer */
     footer{background:var(--ink-900);padding:var(--sp-7) var(--sp-6) var(--sp-6)}
@@ -222,49 +240,41 @@
   <section class="section">
     <div class="section__inner">
       <div class="plans-grid">
-        <div class="plan-card plan-card--popular" style="max-width:480px;margin:0 auto">
-          <div class="plan-card__badge">Most Popular</div>
-          <div class="plan-card__name">Call Bundled</div>
-          <div class="plan-card__price">$35</div>
-          <div class="plan-card__per">per number / month</div>
-          <ul class="plan-card__features">
+
+        <div class="quote-calc">
+          <div class="quote-calc__eyebrow">Quick quote</div>
+          <div class="quote-calc__question">How many team members need a business number?</div>
+          <div class="quote-calc__input-row">
+            <button class="quote-calc__stepper" id="qcDecr" aria-label="Decrease">−</button>
+            <input class="quote-calc__number" type="number" id="qcUsers" value="5" min="1" max="500" aria-label="Number of users">
+            <button class="quote-calc__stepper" id="qcIncr" aria-label="Increase">+</button>
+          </div>
+          <div class="quote-calc__total-row">
+            <div class="quote-calc__total" id="qcTotal">$175</div>
+            <div class="quote-calc__total-per">/month est.</div>
+          </div>
+          <div class="quote-calc__breakdown" id="qcBreakdown">5 users × $35/month &nbsp;·&nbsp; 5,000 calls &amp; SMS included</div>
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="quote-calc__cta">Get started</a>
+          <p style="font-size:var(--fs-caption);color:var(--fg-3);margin-top:var(--sp-2)">Excess calls billed at 6c/min. All prices ex GST. No contract.</p>
+        </div>
+
+        <div class="plan-card plan-card--popular">
+          <div class="plan-card__badge">Call Bundled — $35/month</div>
+          <div class="plan-card__name">Everything you need</div>
+          <ul class="plan-card__features" style="margin-top:var(--sp-4)">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 Australian mobile number</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free softphone app (iOS &amp; Android)</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1,000 calls &amp; SMS included/month</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Call flow builder &amp; reporting</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Excess calls at 6c/min</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contract</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desk phone compatible</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Work from any smartphone</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Retain your number if you leave</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contract — cancel any time</li>
           </ul>
-          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-plan">Get started</a>
-          <p class="plan-card__note">Best for staff who make regular calls and want predictable monthly costs.</p>
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-plan" style="margin-top:auto">Get started</a>
         </div>
-      </div>
 
-      <!-- Compare table -->
-      <h2 style="font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;text-align:center;margin-bottom:var(--sp-6);letter-spacing:var(--tr-snug)">Plan comparison</h2>
-      <div style="overflow-x:auto">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th style="width:45%"></th>
-              <th><span class="plan-label">Pay Per Call</span><br><span class="plan-sub">$15/mo per number</span></th>
-              <th><span class="plan-label">Call Bundled</span><br><span class="plan-sub">$35/mo per number</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="col-feature">Australian mobile number</td><td>1 included</td><td>1 included</td></tr>
-            <tr><td class="col-feature">Softphone app (iOS &amp; Android)</td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
-            <tr><td class="col-feature">Included calls &amp; SMS</td><td>None — pay per use</td><td>1,000/month</td></tr>
-            <tr><td class="col-feature">Excess call rate</td><td>6c/min</td><td>6c/min</td></tr>
-            <tr><td class="col-feature">Excess SMS rate</td><td>10c each</td><td>10c each</td></tr>
-            <tr><td class="col-feature">Call flow builder &amp; reporting</td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
-            <tr><td class="col-feature">Desk phone compatible</td><td>Yes (sold separately)</td><td>Yes (sold separately)</td></tr>
-            <tr><td class="col-feature">Call recording</td><td>$10/mo add-on</td><td>$10/mo add-on</td></tr>
-            <tr><td class="col-feature">Contract</td><td>None</td><td>None</td></tr>
-          </tbody>
-        </table>
       </div>
-      <p style="text-align:center;margin-top:var(--sp-5);font-size:var(--fs-small);color:var(--fg-3)">Calls billed in 1-minute increments with a minimum 2-minute call. All prices ex GST.</p>
     </div>
   </section>
 
@@ -342,9 +352,9 @@
   <section class="section section--red final-cta">
     <div class="section__inner">
       <h2>Get started today.</h2>
-      <p>No setup cost. No contracts. From $15/month per user.</p>
+      <p>No setup cost. No contracts. From $35/month per user.</p>
       <div class="cta-group">
-        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-dark">Get started</a>
+        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-white">Get started</a>
         <a href="mailto:hello@jetinteractive.com.au" class="btn-secondary">Talk to our team</a>
       </div>
     </div>
@@ -375,6 +385,21 @@
     burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');drawer.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));drawer.setAttribute('aria-hidden',String(!o))});
     drawer.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('open');drawer.classList.remove('open');burger.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true')}));
 
+    (function() {
+      const input = document.getElementById('qcUsers');
+      const total = document.getElementById('qcTotal');
+      const breakdown = document.getElementById('qcBreakdown');
+      function update() {
+        const n = Math.max(1, Math.min(500, parseInt(input.value) || 1));
+        input.value = n;
+        total.textContent = '$' + (n * 35).toLocaleString();
+        breakdown.textContent = n + ' user' + (n === 1 ? '' : 's') + ' × $35/month  ·  ' + (n * 1000).toLocaleString() + ' calls & SMS included';
+      }
+      document.getElementById('qcIncr').addEventListener('click', () => { input.value = (parseInt(input.value) || 1) + 1; update(); });
+      document.getElementById('qcDecr').addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value) || 1) - 1); update(); });
+      input.addEventListener('input', update);
+      update();
+    })();
   </script>
 </body>
 </html>
