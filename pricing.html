@@ -201,15 +201,15 @@
   .nc-opt.sel .nc-radio{border-color:var(--red);background:var(--red);box-shadow:0 0 0 3px var(--red-100)}
   .nc-main{font-size:14px;font-weight:500;color:var(--ink-900);line-height:1.2}
   .nc-sub{font-size:11px;color:var(--ink-400);margin-top:1px}
-  .nc-summary{background:var(--ink-900);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+  .nc-summary{background:var(--red);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
   .nc-price-wrap{display:flex;flex-direction:column;gap:3px}
   .nc-price{font-family:var(--font-display);font-size:40px;font-weight:700;color:#fff;line-height:1}
   .nc-price span{font-size:16px;font-weight:400;color:rgba(255,255,255,.45)}
-  .nc-detail{font-size:13px;color:rgba(255,255,255,.55)}
+  .nc-detail{font-size:13px;color:rgba(255,255,255,.82)}
   .nc-actions{display:flex;gap:10px;flex-wrap:wrap}
   .nc-buy{background:var(--red);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap;transition:background 120ms}
   .nc-buy:hover{background:var(--red-dark)}
-  .nc-demo{border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.85);padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms}
+  .nc-demo{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms}
   .nc-demo:hover{border-color:rgba(255,255,255,.6);color:#fff}
   /* Features table */
   .feat-table{width:100%;border-collapse:collapse;font-size:var(--fs-body);margin-top:var(--sp-6)}
@@ -304,7 +304,7 @@
             <div class="nc-q">How many staff need a number?</div>
             <div class="nc-count">
               <button class="nc-btn" id="nc-dec">&#8722;</button>
-              <div class="nc-num" id="nc-num">5</div>
+              <div class="nc-num" id="nc-num">1</div>
               <button class="nc-btn" id="nc-inc">+</button>
             </div>
             <div class="nc-unit">users</div>
@@ -358,11 +358,11 @@
         <!-- Live summary -->
         <div class="nc-summary">
           <div class="nc-price-wrap">
-            <div class="nc-price" id="nc-price">A$175<span>/mo</span></div>
-            <div class="nc-detail" id="nc-detail">A$35.00 per user · 5 users · 5,000 calls &amp; SMS included · No lock-in contract</div>
+            <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
+            <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
           </div>
           <div class="nc-actions" id="nc-actions">
-            <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy" id="nc-buy">Buy now — A$175/mo</a>
+            <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy" id="nc-buy">Buy now — A$35/mo</a>
             <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
           </div>
         </div>
@@ -526,7 +526,7 @@
   </script>
   <script>
 (function(){
-  var users=5, numberType='new', callRange=null;
+  var users=1, numberType='new', callRange=null;
   function fmt(n){return n.toLocaleString('en-AU');}
   function update(){
     var monthly=users*35, allowance=users*1000;
