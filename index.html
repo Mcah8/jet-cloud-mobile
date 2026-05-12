@@ -126,7 +126,7 @@
     .nav__cta:hover { background: var(--red-dark) !important; box-shadow: var(--shadow-red); color: var(--white) !important; }
 
     /* dropdown */
-    .nav__dropdown { position: relative; }
+    .nav__dropdown { position: relative; padding-bottom: 14px; margin-bottom: -14px; }
     .nav__dropdown-toggle {
       display: flex; align-items: center; gap: 4px;
       cursor: pointer; background: none; border: none;
@@ -136,7 +136,7 @@
     }
     .nav__dropdown-toggle:hover { color: var(--red); }
     .nav__dropdown-toggle svg { transition: transform var(--dur-base) var(--ease-out); }
-    .nav__dropdown.open .nav__dropdown-toggle svg { transform: rotate(180deg); }
+    .nav__dropdown:hover .nav__dropdown-toggle svg { transform: rotate(180deg); }
     .nav__dropdown-menu {
       display: none; position: absolute;
       top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
@@ -145,7 +145,7 @@
       min-width: 220px; overflow: hidden;
       z-index: 300;
     }
-    .nav__dropdown.open .nav__dropdown-menu { display: block; }
+    .nav__dropdown:hover .nav__dropdown-menu { display: block; }
     .nav__dropdown-menu a {
       display: flex; align-items: center; gap: var(--sp-3);
       padding: var(--sp-4) var(--sp-5);
@@ -1228,11 +1228,6 @@
       drawer.setAttribute('aria-hidden', String(!open));
     });
 
-    document.querySelectorAll('.nav__dropdown').forEach(el => {
-      let closeTimer;
-      el.addEventListener('mouseenter', () => { clearTimeout(closeTimer); el.classList.add('open'); });
-      el.addEventListener('mouseleave', () => { closeTimer = setTimeout(() => el.classList.remove('open'), 200); });
-    });
 
     // Close drawer on nav link click
     drawer.querySelectorAll('a').forEach(link => {
