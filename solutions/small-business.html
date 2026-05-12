@@ -47,13 +47,13 @@
     .nav__links a:hover,.nav__links a.active{color:var(--red)}
     .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
     .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
-    .nav__dropdown{position:relative}
+    .nav__dropdown{position:relative;padding-bottom:14px;margin-bottom:-14px}
     .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
     .nav__dropdown-toggle:hover,.nav__dropdown-toggle.active{color:var(--red)}
     .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
-    .nav__dropdown.open .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
     .nav__dropdown-menu{display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
-    .nav__dropdown.open .nav__dropdown-menu{display:block}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
     .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
     .nav__dropdown-menu a:last-child{border-bottom:none}
     .nav__dropdown-menu a:hover,.nav__dropdown-menu a.active{background:var(--ink-50);color:var(--red)}
@@ -440,7 +440,7 @@
       burger.setAttribute('aria-expanded', open);
       drawer.setAttribute('aria-hidden', !open);
     });
-    document.querySelectorAll('.nav__dropdown').forEach(el=>{let t;el.addEventListener('mouseenter',()=>{clearTimeout(t);el.classList.add('open')});el.addEventListener('mouseleave',()=>{t=setTimeout(()=>el.classList.remove('open'),200)})});
+
   </script>
 </body>
 </html>
