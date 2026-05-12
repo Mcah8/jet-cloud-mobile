@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Jet Cloud Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-700:#2A2A2E;--ink-600:#4A4D55;
+      --ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-logo:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 100%);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-caption:12px;--fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;--fs-h1:64px;--fs-display:96px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;--tr-wide:0.06em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-0:0;--radius-sm:4px;--radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    ::selection{background:var(--red);color:var(--white)}
+
+    /* Nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover,.nav__links a.active{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__dropdown{position:relative}
+    .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-toggle:hover{color:var(--red)}
+    .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown-menu{display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
+    .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-menu a:last-child{border-bottom:none}
+    .nav__dropdown-menu a:hover{background:var(--ink-50);color:var(--red)}
+    .nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer-sub{padding-left:var(--sp-5)}
+    .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+
+    /* Page hero */
+    .page-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6);text-align:center}
+    .page-hero__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.75);margin-bottom:var(--sp-3)}
+    .page-hero h1{font-family:var(--font-display);font-size:var(--fs-h1);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
+    .page-hero p{font-size:var(--fs-lead);color:rgba(255,255,255,.85);max-width:600px;margin:0 auto}
+
+    /* Layout */
+    .section{padding:var(--sp-10) var(--sp-6)}
+    .section--alt{background:var(--ink-50)}
+    .section--dark{background:var(--ink-900);color:var(--white)}
+    .section--red{background:var(--red);color:var(--white)}
+    .section__inner{max-width:var(--max-w);margin:0 auto}
+    .section__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--red);margin-bottom:var(--sp-3);text-align:center}
+    .section__headline{font-family:var(--font-display);font-size:var(--fs-h2);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);text-align:center;max-width:800px;margin:0 auto var(--sp-8)}
+    .section--dark .section__headline,.section--red .section__headline{color:var(--white)}
+
+    /* Core plans */
+    .plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-6);max-width:760px;margin:0 auto var(--sp-10)}
+    .plan-card{background:var(--white);border:2px solid var(--ink-300);border-radius:var(--radius-lg);padding:var(--sp-7);position:relative;transition:border-color var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out),box-shadow var(--dur-med) var(--ease-out)}
+    .plan-card:hover{border-color:var(--red);transform:translateY(-4px);box-shadow:var(--shadow-2)}
+    .plan-card--popular{border-color:var(--red)}
+    .plan-card__badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);color:var(--white);padding:3px 16px;border-radius:var(--radius-pill);font-size:var(--fs-caption);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-wide);white-space:nowrap}
+    .plan-card__name{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:600;margin-bottom:var(--sp-4)}
+    .plan-card__price{font-family:var(--font-display);font-size:var(--fs-display);font-weight:700;color:var(--red);line-height:1;margin-bottom:var(--sp-2)}
+    .plan-card__per{color:var(--fg-2);font-size:var(--fs-body);margin-bottom:var(--sp-6)}
+    .plan-card__features{list-style:none;display:flex;flex-direction:column;gap:var(--sp-3);margin-bottom:var(--sp-6)}
+    .plan-card__features li{display:flex;align-items:flex-start;gap:var(--sp-3);font-size:var(--fs-body);color:var(--fg-1)}
+    .plan-card__features li svg{flex-shrink:0;margin-top:2px;color:var(--red)}
+    .plan-card__note{font-size:var(--fs-small);color:var(--fg-3);margin-top:var(--sp-2)}
+    .btn-plan{display:block;text-align:center;background:var(--red);color:var(--white);padding:var(--sp-4);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-body);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
+    .btn-plan:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .btn-plan--outline{background:var(--white);color:var(--red);border:2px solid var(--red)}
+    .btn-plan--outline:hover{background:var(--red-50)}
+
+    /* Compare table */
+    .compare-table{width:100%;border-collapse:collapse;font-size:var(--fs-body)}
+    .compare-table th{font-family:var(--font-display);font-weight:600;text-align:left;padding:var(--sp-4) var(--sp-5);background:var(--ink-50);border-bottom:2px solid var(--ink-200)}
+    .compare-table th:not(:first-child){text-align:center}
+    .compare-table td{padding:var(--sp-4) var(--sp-5);border-bottom:var(--border);vertical-align:middle}
+    .compare-table td:not(:first-child){text-align:center;font-weight:500}
+    .compare-table tr:last-child td{border-bottom:none}
+    .compare-table tr:hover td{background:var(--ink-50)}
+    .compare-table .col-feature{color:var(--fg-2);font-size:var(--fs-body)}
+    .check{color:var(--red)}
+    .plan-label{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;color:var(--red)}
+    .plan-sub{font-size:var(--fs-small);color:var(--fg-3);font-weight:400}
+
+    /* Add-ons */
+    .addons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-5)}
+    .addon-card{background:var(--white);border:var(--border);border-radius:var(--radius-md);padding:var(--sp-6);box-shadow:var(--shadow-1)}
+    .addon-card__name{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:600;margin-bottom:var(--sp-2)}
+    .addon-card__price{font-size:var(--fs-lead);font-weight:700;color:var(--red);margin-bottom:var(--sp-3)}
+    .addon-card p{font-size:var(--fs-body);color:var(--fg-2)}
+
+    /* FAQ */
+    .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+    .faq-item{border-bottom:var(--border)}
+    .faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:var(--sp-5) 0;cursor:pointer;font-weight:600;font-size:var(--fs-body);gap:var(--sp-4)}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary svg{flex-shrink:0;transition:transform var(--dur-base) var(--ease-out)}
+    .faq-item[open] summary svg{transform:rotate(180deg)}
+    .faq-item p{padding-bottom:var(--sp-5);color:var(--fg-2);line-height:var(--lh-normal)}
+
+    /* CTA */
+    .final-cta{text-align:center}
+    .final-cta h2{font-family:var(--font-display);font-size:var(--fs-h2);font-weight:700;letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
+    .final-cta p{font-size:var(--fs-lead);color:rgba(255,255,255,.9);margin-bottom:var(--sp-7)}
+    .cta-group{display:flex;gap:var(--sp-4);flex-wrap:wrap;justify-content:center}
+    .btn-dark{background:var(--ink-900);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
+    .btn-dark:hover{background:var(--ink-800)}
+    .btn-secondary{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
+    .btn-secondary:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+
+    /* Footer */
+    footer{background:var(--ink-900);padding:var(--sp-7) var(--sp-6) var(--sp-6)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto}
+    .footer__top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-7);flex-wrap:wrap;padding-bottom:var(--sp-6);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:var(--sp-6)}
+    .footer__brand{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__brand img{height:28px;width:auto}
+    .footer__brand p{color:rgba(255,255,255,.5);font-size:var(--fs-small);max-width:280px}
+    .footer__cols{display:flex;gap:var(--sp-8);flex-wrap:wrap}
+    .footer__col{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__col-label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.4);margin-bottom:var(--sp-1)}
+    .footer__col a{text-decoration:none;color:rgba(255,255,255,.7);font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-4)}
+    .footer__copy{color:rgba(255,255,255,.4);font-size:var(--fs-small)}
+    .footer__legal{display:flex;gap:var(--sp-5)}
+    .footer__legal a{color:rgba(255,255,255,.4);text-decoration:none;font-size:var(--fs-small)}
+    .footer__legal a:hover{color:rgba(255,255,255,.7)}
+
+    @media(max-width:900px){
+      .nav__links{display:none}.nav__burger{display:flex}
+      .page-hero h1{font-size:var(--fs-h2)}
+      .plans-grid{grid-template-columns:1fr;max-width:420px}
+      .section__headline{font-size:var(--fs-h3)}
+      .section{padding:var(--sp-8) var(--sp-5)}
+      .compare-table th,.compare-table td{padding:var(--sp-3) var(--sp-4);font-size:var(--fs-small)}
+    }
+    @media(max-width:560px){
+      .page-hero h1{font-size:var(--fs-h3)}
+      .cta-group{flex-direction:column}
+      .footer__top{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo"><img src="project/assets/jet-logo-full-color.png" alt="Jet Interactive"></a>
+      <ul class="nav__links" role="list">
+        <li><a href="/#features">Features</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle" aria-haspopup="true">Solutions<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="solutions/sales-teams.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Sales Teams</a>
+            <a href="solutions/international-staff.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>International Staff</a>
+            <a href="solutions/small-business.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Small Business</a>
+          </div>
+        </li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><div style="width:1px;height:20px;background:var(--ink-200)"></div></li>
+        <li><a href="/#get-started" class="nav__cta">Get started</a></li>
+      </ul>
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+      <a href="/#features">Features</a>
+      <span class="nav__drawer-section-label">Solutions</span>
+      <div class="nav__drawer-sub">
+        <a href="solutions/sales-teams.html">Sales Teams</a>
+        <a href="solutions/international-staff.html">International Staff</a>
+        <a href="solutions/small-business.html">Small Business</a>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#get-started" class="nav__cta">Get started</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p class="page-hero__eyebrow">Pricing</p>
+    <h1>Simple pricing. No contracts. No surprises.</h1>
+    <p>All prices are ex GST and in Australian dollars. No setup fees. Cancel or scale at any time.</p>
+  </div>
+
+  <!-- Core plans -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-card__name">Pay Per Call</div>
+          <div class="plan-card__price">$15</div>
+          <div class="plan-card__per">per number / month</div>
+          <ul class="plan-card__features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 Australian mobile number</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free softphone app (iOS &amp; Android)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Call flow builder &amp; reporting</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Calls billed at 6c/min</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SMS at 10c each</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contract</li>
+          </ul>
+          <a href="/#get-started" class="btn-plan btn-plan--outline">Get started</a>
+          <p class="plan-card__note">Best for low-volume users or businesses wanting to get started at minimum cost.</p>
+        </div>
+        <div class="plan-card plan-card--popular">
+          <div class="plan-card__badge">Most Popular</div>
+          <div class="plan-card__name">Call Bundled</div>
+          <div class="plan-card__price">$35</div>
+          <div class="plan-card__per">per number / month</div>
+          <ul class="plan-card__features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 Australian mobile number</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free softphone app (iOS &amp; Android)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1,000 calls &amp; SMS included/month</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Call flow builder &amp; reporting</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Excess calls at 6c/min</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contract</li>
+          </ul>
+          <a href="/#get-started" class="btn-plan">Get started</a>
+          <p class="plan-card__note">Best for staff who make regular calls and want predictable monthly costs.</p>
+        </div>
+      </div>
+
+      <!-- Compare table -->
+      <h2 style="font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;text-align:center;margin-bottom:var(--sp-6);letter-spacing:var(--tr-snug)">Plan comparison</h2>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="width:45%"></th>
+              <th><span class="plan-label">Pay Per Call</span><br><span class="plan-sub">$15/mo per number</span></th>
+              <th><span class="plan-label">Call Bundled</span><br><span class="plan-sub">$35/mo per number</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="col-feature">Australian mobile number</td><td>1 included</td><td>1 included</td></tr>
+            <tr><td class="col-feature">Softphone app (iOS &amp; Android)</td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+            <tr><td class="col-feature">Included calls &amp; SMS</td><td>None — pay per use</td><td>1,000/month</td></tr>
+            <tr><td class="col-feature">Excess call rate</td><td>6c/min</td><td>6c/min</td></tr>
+            <tr><td class="col-feature">Excess SMS rate</td><td>10c each</td><td>10c each</td></tr>
+            <tr><td class="col-feature">Call flow builder &amp; reporting</td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td><td><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+            <tr><td class="col-feature">Desk phone compatible</td><td>Yes (sold separately)</td><td>Yes (sold separately)</td></tr>
+            <tr><td class="col-feature">Call recording</td><td>$10/mo add-on</td><td>$10/mo add-on</td></tr>
+            <tr><td class="col-feature">Contract</td><td>None</td><td>None</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="text-align:center;margin-top:var(--sp-5);font-size:var(--fs-small);color:var(--fg-3)">Calls billed in 1-minute increments with a minimum 2-minute call. All prices ex GST.</p>
+    </div>
+  </section>
+
+  <!-- Add-ons -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <p class="section__eyebrow">Add-ons</p>
+      <h2 class="section__headline">Enhance your plan</h2>
+      <div class="addons-grid">
+        <div class="addon-card">
+          <div class="addon-card__name">Call Recording</div>
+          <div class="addon-card__price">$10/mo per number</div>
+          <p>All recordings stored securely in the Jet Hub portal. Instant playback and download.</p>
+        </div>
+        <div class="addon-card">
+          <div class="addon-card__name">IVR (Auto-attendant)</div>
+          <div class="addon-card__price">From $25/mo</div>
+          <p>Enhance routing with menu options. Direct callers to the right person or team automatically.</p>
+        </div>
+        <div class="addon-card">
+          <div class="addon-card__name">Call Queue</div>
+          <div class="addon-card__price">From $25/mo</div>
+          <p>Manage high call volumes more effectively. Keep callers on hold with custom messages.</p>
+        </div>
+        <div class="addon-card">
+          <div class="addon-card__name">Geographic Routing</div>
+          <div class="addon-card__price">From $55/mo</div>
+          <p>Route calls based on the caller's location. Ideal for businesses with multiple offices.</p>
+        </div>
+        <div class="addon-card">
+          <div class="addon-card__name">Postcode Routing</div>
+          <div class="addon-card__price">From $55/mo</div>
+          <p>Route calls by postcode entered in the IVR. Perfect for territory-based sales teams.</p>
+        </div>
+        <div class="addon-card">
+          <div class="addon-card__name">International Calls</div>
+          <div class="addon-card__price">As per price guide</div>
+          <p>Competitive rates to international destinations. Contact us for a tailored quote.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section__inner">
+      <p class="section__eyebrow">FAQ</p>
+      <h2 class="section__headline">Frequently asked questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Are there any setup fees? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <p>No. There are no setup fees on any plan. You pay only your monthly plan cost plus any add-ons you choose.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I change plans? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <p>Yes. You can switch between Pay Per Call and Call Bundled at any time from the Jet portal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if I go over my included calls? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <p>On the Call Bundled plan, excess calls to landlines and mobiles are charged at 6c/min. Excess SMS at 10c each.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is there a minimum contract? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <p>No. Jet Cloud Mobile is month to month with no lock-in contract. Cancel or scale at any time.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I port my existing number? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <p>Yes. Number porting is free. A $50 port-out fee applies if you later move your number to a different provider.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--red final-cta">
+    <div class="section__inner">
+      <h2>Get started today.</h2>
+      <p>No setup cost. No contracts. From $15/month per user.</p>
+      <div class="cta-group">
+        <a href="/#get-started" class="btn-dark">Get started</a>
+        <a href="mailto:hello@jetinteractive.com.au" class="btn-secondary">Talk to our team</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="project/assets/jet-logo-full-color.png" alt="Jet Interactive">
+          <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col"><span class="footer__col-label">Product</span><a href="/#features">Features</a><a href="pricing.html">Pricing</a><a href="/#how-it-works">How it works</a></div>
+          <div class="footer__col"><span class="footer__col-label">Solutions</span><a href="solutions/sales-teams.html">Sales Teams</a><a href="solutions/international-staff.html">International Staff</a><a href="solutions/small-business.html">Small Business</a></div>
+          <div class="footer__col"><span class="footer__col-label">Support</span><a href="#">Help Centre</a><a href="#">Contact</a><a href="#">Porting</a></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Jet Interactive Pty Ltd. All rights reserved. ABN 70 168 999 371.</p>
+        <div class="footer__legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">AUP</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger=document.getElementById('navBurger'),drawer=document.getElementById('navDrawer');
+    burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');drawer.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));drawer.setAttribute('aria-hidden',String(!o))});
+    drawer.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('open');drawer.classList.remove('open');burger.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true')}));
+  </script>
+</body>
+</html>
