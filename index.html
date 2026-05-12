@@ -208,10 +208,10 @@
       overflow: hidden;
     }
     .hero__inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--sp-8); align-items: center;
+      max-width: 780px; margin: 0 auto;
+      text-align: center;
     }
+    .hero__inner .cta-group { justify-content: center; }
     .hero__eyebrow {
       font-family: var(--font-display);
       font-size: var(--fs-small); font-weight: 600;
@@ -571,17 +571,6 @@
     .footer__legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: var(--fs-small); }
     .footer__legal a:hover { color: rgba(255,255,255,0.7); }
 
-    /* ── Hero visual ────────────────────────────────────────── */
-    .hero__visual { position:relative; display:flex; align-items:center; justify-content:center; }
-    .hero__video-wrap {
-      border-radius: var(--radius-lg); overflow: hidden;
-      box-shadow: var(--shadow-4);
-      max-height: 520px; display: flex; align-items: center; justify-content: center;
-    }
-    .hero__video-wrap video {
-      width: auto; max-height: 520px; max-width: 100%;
-      display: block;
-    }
     .cm-calc{background:#fff;border-radius:14px;padding:1.5rem;font-family:'Poppins',sans-serif;color:#1a1a1a;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.10);}
     .cm-calc .step-indicator{display:flex;gap:5px;margin-bottom:0.75rem;}
     .cm-calc .dot{width:7px;height:7px;border-radius:50%;background:#e0e0e0;}
@@ -626,7 +615,6 @@
       .hero__inner { grid-template-columns: 1fr; gap: var(--sp-6); }
       .hero { padding: var(--sp-8) var(--sp-5) var(--sp-7); }
       .hero h1 { font-size: var(--fs-h2); }
-      .hero__visual { height: 340px; order: -1; }
       #lottie-anim { max-width: 300px; }
 
       .stats-bar__inner { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
@@ -717,13 +705,6 @@
         <div class="cta-group">
           <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started</a>
           <a href="#how-it-works" class="btn-secondary">Watch how it works</a>
-        </div>
-      </div>
-      <div class="hero__visual">
-        <div class="hero__video-wrap">
-          <video autoplay muted loop playsinline>
-            <source src="portrait-red__buy-now.mp4" type="video/mp4">
-          </video>
         </div>
       </div>
     </div>
