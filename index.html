@@ -251,6 +251,7 @@
       text-decoration: none; font-size: var(--fs-lead);
       transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
       display: inline-block; white-space: nowrap;
+      cursor: pointer; font-family: var(--font-ui);
     }
     .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
 
@@ -1088,7 +1089,19 @@
 
     observer.observe(document.getElementById('statsBar'));
 
-    // Video modal
+  </script>
+
+  <!-- Video modal -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
+    <div class="video-modal__box">
+      <button class="video-modal__close" id="closeVideoModal" aria-label="Close video">&#x2715;</button>
+      <video id="heroVideo" controls preload="none">
+        <source src="landscape-red__get-a-quote.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
     const modal = document.getElementById('videoModal');
     const videoEl = document.getElementById('heroVideo');
     document.getElementById('openVideoModal').addEventListener('click', () => {
@@ -1104,15 +1117,5 @@
       videoEl.currentTime = 0;
     }
   </script>
-
-  <!-- Video modal -->
-  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
-    <div class="video-modal__box">
-      <button class="video-modal__close" id="closeVideoModal" aria-label="Close video">&#x2715;</button>
-      <video id="heroVideo" controls preload="none">
-        <source src="landscape-red__get-a-quote.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
 </body>
 </html>
