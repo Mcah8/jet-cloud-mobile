@@ -571,41 +571,6 @@
     .footer__legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: var(--fs-small); }
     .footer__legal a:hover { color: rgba(255,255,255,0.7); }
 
-    .cm-calc{background:#fff;border-radius:14px;padding:1.5rem;font-family:'Poppins',sans-serif;color:#1a1a1a;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.10);}
-    .cm-calc .step-indicator{display:flex;gap:5px;margin-bottom:0.75rem;}
-    .cm-calc .dot{width:7px;height:7px;border-radius:50%;background:#e0e0e0;}
-    .cm-calc .dot.active{background:#ed1c24;}
-    .cm-calc .q-label{font-size:11px;color:#999;margin-bottom:3px;}
-    .cm-calc .q-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:0.9rem;line-height:1.35;}
-    .cm-calc .opt{background:#fff;border:1.5px solid #e5e5e5;border-radius:8px;padding:0.6rem 0.75rem;cursor:pointer;color:#1a1a1a;font-size:12px;font-weight:500;text-align:left;transition:border-color 0.15s,background 0.15s;font-family:'Poppins',sans-serif;width:100%;}
-    .cm-calc .opt:hover{border-color:#ed1c24;background:#fff8f8;}
-    .cm-calc .opt.selected{background:#fff0f0!important;border-color:#ed1c24!important;color:#ed1c24!important;}
-    .cm-calc .opt-sub{font-size:10px;font-weight:400;color:#999;margin-top:1px;display:block;}
-    .cm-calc .opt.selected .opt-sub{color:#ed1c24;opacity:0.7;}
-    .cm-calc .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-    .cm-calc .num-wrap{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem;}
-    .cm-calc .num-btn{width:34px;height:34px;border-radius:7px;border:2px solid #ed1c24!important;background:#fff!important;color:#ed1c24!important;font-size:18px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;flex-shrink:0;}
-    .cm-calc .num-btn:hover{background:#fff0f0!important;}
-    .cm-calc .num-display{font-size:26px;font-weight:600;color:#1a1a1a;min-width:40px;text-align:center;}
-    .cm-calc .num-label{font-size:12px;color:#999;}
-    .cm-calc .action-btn{width:100%;padding:10px;background:#ed1c24!important;color:#fff!important;border:none!important;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:0.75rem;font-family:'Poppins',sans-serif;display:block;text-align:center;text-decoration:none;}
-    .cm-calc .action-btn:hover{background:#c8151b!important;}
-    .cm-calc .action-btn:disabled{opacity:0.35;cursor:default;}
-    .cm-calc .action-btn.outline{background:#fff!important;color:#ed1c24!important;border:2px solid #ed1c24!important;margin-top:8px;}
-    .cm-calc .action-btn.outline:hover{background:#fff0f0!important;}
-    .cm-calc .back-link{font-size:11px;color:#999;cursor:pointer;margin-top:8px;display:inline-block;background:none;border:none;font-family:'Poppins',sans-serif;}
-    .cm-calc .back-link:hover{color:#ed1c24;}
-    .cm-calc .divider{border:none;border-top:1px solid #f0f0f0;margin:0.75rem 0;}
-    .cm-calc .summary-price{font-size:30px;font-weight:700;color:#1a1a1a;line-height:1.1;}
-    .cm-calc .per-user{font-size:11px;color:#ed1c24;background:#fff0f0;border-radius:5px;padding:3px 8px;margin-top:4px;display:inline-block;font-weight:500;}
-    .cm-calc .inc-list{list-style:none;margin:0.5rem 0;}
-    .cm-calc .inc-list li{font-size:11px;color:#444;padding:4px 0;border-bottom:1px solid #f5f5f5;display:flex;align-items:flex-start;gap:6px;line-height:1.35;}
-    .cm-calc .inc-list li:last-child{border-bottom:none;}
-    .cm-calc .tick{width:13px;height:13px;flex-shrink:0;margin-top:1px;}
-    .cm-calc .notice{font-size:10px;color:#bbb;text-align:center;margin-top:8px;line-height:1.4;}
-    .cm-calc .ent-highlight{background:#fff8f8;border:1px solid #fdd;border-radius:7px;padding:0.5rem 0.75rem;margin:0.5rem 0;}
-    .cm-calc .inc-label{font-size:11px;color:#999;margin-bottom:2px;font-weight:500;}
-    .cm-calc .contract-note{font-size:10px;color:#999;margin-top:3px;}
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 900px) {
@@ -651,7 +616,7 @@
         <img src="project/assets/jet-logo-full-color.png" alt="Jet Interactive">
       </a>
       <ul class="nav__links" role="list">
-        <li><a href="#features">Features</a></li>
+        <li><a href="features.html">Features</a></li>
         <li class="nav__dropdown">
           <button class="nav__dropdown-toggle" aria-haspopup="true">
             Solutions
@@ -673,7 +638,7 @@
           </div>
         </li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><div style="width:1px;height:20px;background:var(--ink-200)"></div></li>
         <li><a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a></li>
       </ul>
@@ -682,7 +647,7 @@
       </button>
     </div>
     <div class="nav__drawer" id="navDrawer" aria-hidden="true">
-      <a href="#features">Features</a>
+      <a href="features.html">Features</a>
       <span class="nav__drawer-section-label">Solutions</span>
       <div class="nav__drawer-sub">
         <a href="solutions/sales-teams.html">Sales Teams</a>
@@ -690,7 +655,7 @@
         <a href="solutions/small-business.html">Small Business</a>
       </div>
       <a href="pricing.html">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="faq.html">FAQ</a>
       <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a>
     </div>
   </nav>
@@ -1064,139 +1029,6 @@
 
   <script>
     // Pricing calculator
-    (function(){
-      var state={step:1,users:5,numberType:null,callRange:null};
-      var callRanges=[
-        {id:'0-100',label:'0 – 100',sub:'calls & SMS/user/mo'},
-        {id:'100-500',label:'100 – 500',sub:'calls & SMS/user/mo'},
-        {id:'500-1000',label:'500 – 1,000',sub:'calls & SMS/user/mo'},
-        {id:'1000+',label:'1,000+',sub:'calls & SMS/user/mo'},
-      ];
-      var numberTypes=[
-        {id:'new',label:'New numbers',sub:'Fresh Australian mobile numbers'},
-        {id:'existing',label:'Existing numbers',sub:'Port your current numbers'},
-        {id:'both',label:'Both',sub:'Mix of new and ported'},
-      ];
-      function tick(){
-        return '<svg class="tick" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="6.5" fill="#ffeded"/><path d="M4 6.5l2 2 3.5-3.5" stroke="#ed1c24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      }
-      function dots(cur,tot){
-        var d='<div class="step-indicator">';
-        for(var i=0;i<tot;i++) d+='<div class="dot'+(i<cur?' active':'')+'"></div>';
-        return d+'</div>';
-      }
-      function renderStep1(){
-        return dots(1,4)+
-          '<div class="q-label">Step 1 of 3</div>'+
-          '<div class="q-title">How many staff need mobile numbers?</div>'+
-          '<div class="num-wrap">'+
-            '<button class="num-btn" id="cm-dec">&#8722;</button>'+
-            '<div class="num-display" id="cm-nd">'+state.users+'</div>'+
-            '<button class="num-btn" id="cm-inc">+</button>'+
-            '<span class="num-label">users</span>'+
-          '</div>'+
-          '<button class="action-btn" id="cm-n1">Continue</button>';
-      }
-      function renderStep2(){
-        var opts=numberTypes.map(function(t){
-          return '<button class="opt'+(state.numberType===t.id?' selected':'')+'" data-nt="'+t.id+'">'+t.label+'<span class="opt-sub">'+t.sub+'</span></button>';
-        }).join('');
-        return dots(2,4)+
-          '<div class="q-label">Step 2 of 3</div>'+
-          '<div class="q-title">New numbers, existing, or both?</div>'+
-          '<div class="opt-grid" style="grid-template-columns:1fr;">'+opts+'</div>'+
-          '<button class="action-btn" id="cm-n2"'+(state.numberType?'':' disabled')+'>Continue</button>'+
-          '<button class="back-link" id="cm-b2">&#8592; Back</button>';
-      }
-      function renderStep3(){
-        var opts=callRanges.map(function(r){
-          return '<button class="opt'+(state.callRange===r.id?' selected':'')+'" data-cr="'+r.id+'">'+r.label+'<span class="opt-sub">'+r.sub+'</span></button>';
-        }).join('');
-        return dots(3,4)+
-          '<div class="q-label">Step 3 of 3</div>'+
-          '<div class="q-title">Avg calls &amp; SMS per user per month?</div>'+
-          '<div class="opt-grid">'+opts+'</div>'+
-          '<button class="action-btn" id="cm-n3"'+(state.callRange?'':' disabled')+'>See my pricing</button>'+
-          '<button class="back-link" id="cm-b3">&#8592; Back</button>';
-      }
-      function renderSummaryStandard(){
-        var u=state.users,monthly=u*35,allowance=u*1000;
-        var demoOnly=state.numberType==='existing'||state.numberType==='both';
-        var btns=demoOnly
-          ? '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" class="action-btn" style="text-decoration:none;margin-top:0.6rem;">Book a demo</a>'
-          : '<a href="https://signup.jetinteractive.com.au/cloud-mobile" class="action-btn" style="text-decoration:none;margin-top:0.6rem;">Buy now — A$'+monthly.toLocaleString('en-AU')+'/mo</a>'+
-            '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" class="action-btn outline" style="text-decoration:none;">Book a demo</a>';
-        return dots(4,4)+
-          '<div class="q-label">Your estimated price</div>'+
-          '<div class="summary-price">A$'+monthly.toLocaleString('en-AU')+'<span style="font-size:14px;font-weight:400;color:#999">/mo</span></div>'+
-          '<div class="per-user">A$35.00 per user &nbsp;·&nbsp; '+u+' user'+(u>1?'s':'')+'</div>'+
-          '<div class="contract-note">No lock-in contract &nbsp;·&nbsp; Prices ex GST</div>'+
-          '<hr class="divider"/>'+
-          '<div class="inc-label">What\'s included</div>'+
-          '<ul class="inc-list">'+
-            '<li>'+tick()+' '+u+' Australian mobile number'+(u>1?'s':'')+'</li>'+
-            '<li>'+tick()+' Desktop &amp; mobile softphone apps</li>'+
-            '<li>'+tick()+' '+allowance.toLocaleString('en-AU')+' calls &amp; SMS/mo across '+u+' user'+(u>1?'s':'')+'</li>'+
-            '<li>'+tick()+' Voicemail, time routing &amp; greetings</li>'+
-            '<li>'+tick()+' Admin management dashboard</li>'+
-            '<li>'+tick()+' Full reporting on all calls &amp; SMS</li>'+
-            '<li>'+tick()+' Free call recording if required</li>'+
-          '</ul>'+
-          btns+
-          '<div class="notice">Prices in AUD, ex GST. No lock-in contract. Cancel anytime.</div>'+
-          '<button class="back-link" id="cm-b4">&#8592; Back</button>';
-      }
-      function renderSummaryEnterprise(){
-        var u=state.users,monthly=u*15;
-        return dots(4,4)+
-          '<div class="q-label">Your estimated price</div>'+
-          '<div class="summary-price">A$'+monthly.toLocaleString('en-AU')+'<span style="font-size:14px;font-weight:400;color:#999">/mo</span></div>'+
-          '<div class="per-user">A$15.00 per user &nbsp;·&nbsp; '+u+' user'+(u>1?'s':'')+'</div>'+
-          '<div class="contract-note">No lock-in contract &nbsp;·&nbsp; Prices ex GST</div>'+
-          '<div class="ent-highlight">'+
-            '<div style="font-size:10px;color:#999;margin-bottom:2px;">High-volume plan</div>'+
-            '<div style="font-size:11px;color:#ed1c24;font-weight:500;">$0.06/min calls &nbsp;·&nbsp; $0.10/SMS</div>'+
-          '</div>'+
-          '<hr class="divider"/>'+
-          '<div class="inc-label">What\'s included</div>'+
-          '<ul class="inc-list">'+
-            '<li>'+tick()+' '+u+' Australian mobile number'+(u>1?'s':'')+'</li>'+
-            '<li>'+tick()+' Desktop &amp; mobile softphone apps</li>'+
-            '<li>'+tick()+' Calls at $0.06/min, SMS at $0.10 each</li>'+
-            '<li>'+tick()+' Voicemail, time routing &amp; greetings</li>'+
-            '<li>'+tick()+' Admin management dashboard</li>'+
-            '<li>'+tick()+' Full reporting on all calls &amp; SMS</li>'+
-            '<li>'+tick()+' Free call recording if required</li>'+
-          '</ul>'+
-          '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" class="action-btn" style="text-decoration:none;margin-top:0.6rem;">Book a demo</a>'+
-          '<div class="notice">Prices in AUD, ex GST. No lock-in contract. Our team will tailor a plan for your volume.</div>'+
-          '<button class="back-link" id="cm-b4">&#8592; Back</button>';
-      }
-      function render(){
-        var app=document.getElementById('cm-app');
-        if(state.step===1) app.innerHTML=renderStep1();
-        else if(state.step===2) app.innerHTML=renderStep2();
-        else if(state.step===3) app.innerHTML=renderStep3();
-        else app.innerHTML=state.callRange==='1000+'?renderSummaryEnterprise():renderSummaryStandard();
-        bind();
-      }
-      function bind(){
-        var dec=document.getElementById('cm-dec'),inc=document.getElementById('cm-inc'),nd=document.getElementById('cm-nd');
-        if(dec) dec.onclick=function(){if(state.users>1){state.users--;nd.textContent=state.users;}};
-        if(inc) inc.onclick=function(){state.users++;nd.textContent=state.users;};
-        document.querySelectorAll('[data-nt]').forEach(function(b){b.onclick=function(){state.numberType=b.getAttribute('data-nt');render();};});
-        document.querySelectorAll('[data-cr]').forEach(function(b){b.onclick=function(){state.callRange=b.getAttribute('data-cr');render();};});
-        var n1=document.getElementById('cm-n1'),n2=document.getElementById('cm-n2'),n3=document.getElementById('cm-n3');
-        var b2=document.getElementById('cm-b2'),b3=document.getElementById('cm-b3'),b4=document.getElementById('cm-b4');
-        if(n1) n1.onclick=function(){state.step=2;render();};
-        if(n2) n2.onclick=function(){if(state.numberType){state.step=3;render();}};
-        if(n3) n3.onclick=function(){if(state.callRange){state.step=4;render();}};
-        if(b2) b2.onclick=function(){state.step=1;render();};
-        if(b3) b3.onclick=function(){state.step=2;render();};
-        if(b4) b4.onclick=function(){state.step=3;render();};
-      }
-      render();
-    })();
 
     // Mobile nav toggle
     const burger = document.getElementById('navBurger');
