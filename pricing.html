@@ -47,6 +47,8 @@
     .nav__links a:hover,.nav__links a.active{color:var(--red)}
     .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
     .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+.nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
     .nav__dropdown{position:relative}
     .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
     .nav__dropdown-toggle:hover{color:var(--red)}
@@ -232,8 +234,10 @@
         </li>
         <li><a href="pricing.html" class="active">Pricing</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tel:0488811729" class="nav__phone"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>0488 811 729</a></li>
         <li><div style="width:1px;height:20px;background:var(--ink-200)"></div></li>
-        <li><a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a></li>
+        <li><a href="tel:0488811729" class="nav__phone" style="padding:var(--sp-3) 0;border-bottom:var(--border);font-size:var(--fs-lead)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>0488 811 729</a>
+      <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a></li>
       </ul>
       <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
