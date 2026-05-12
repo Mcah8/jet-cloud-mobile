@@ -605,6 +605,14 @@
       .footer__top { flex-direction: column; }
       .footer__bottom { flex-direction: column; align-items: flex-start; }
     }
+
+    /* Video modal */
+    .video-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:var(--sp-5)}
+    .video-modal.open{display:flex}
+    .video-modal__box{position:relative;width:100%;max-width:900px;background:#000;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-3)}
+    .video-modal__close{position:absolute;top:var(--sp-3);right:var(--sp-3);z-index:10;background:rgba(0,0,0,.6);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;transition:background var(--dur-base)}
+    .video-modal__close:hover{background:rgba(0,0,0,.9)}
+    .video-modal video{width:100%;display:block;max-height:80vh}
   </style>
 </head>
 <body>
@@ -669,7 +677,7 @@
         <p class="hero__sub">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no contracts, no hassle. From $15/month per user.</p>
         <div class="cta-group">
           <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started</a>
-          <a href="#how-it-works" class="btn-secondary">Watch how it works</a>
+          <button class="btn-secondary" id="openVideoModal">Watch how it works</button>
         </div>
       </div>
     </div>
@@ -1079,6 +1087,32 @@
     }, { threshold: 0.3 });
 
     observer.observe(document.getElementById('statsBar'));
+
+    // Video modal
+    const modal = document.getElementById('videoModal');
+    const videoEl = document.getElementById('heroVideo');
+    document.getElementById('openVideoModal').addEventListener('click', () => {
+      modal.classList.add('open');
+      videoEl.play();
+    });
+    document.getElementById('closeVideoModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    function closeModal() {
+      modal.classList.remove('open');
+      videoEl.pause();
+      videoEl.currentTime = 0;
+    }
   </script>
+
+  <!-- Video modal -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
+    <div class="video-modal__box">
+      <button class="video-modal__close" id="closeVideoModal" aria-label="Close video">&#x2715;</button>
+      <video id="heroVideo" controls preload="none">
+        <source src="landscape-red__get-a-quote.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
 </body>
 </html>
