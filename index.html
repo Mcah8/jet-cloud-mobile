@@ -264,12 +264,12 @@
       display: inline-block; border: none; cursor: pointer; white-space: nowrap;
     }
     .btn-dark:hover { background: var(--ink-800); }
+    .btn-white { background: var(--white); color: var(--red); padding: var(--sp-4) var(--sp-6); border-radius: var(--radius-md); font-weight: 700; text-decoration: none; font-size: var(--fs-lead); transition: background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out); display: inline-block; white-space: nowrap; }
+    .btn-white:hover { background: var(--red-50); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
 
     .hero__visual {
-      position: relative; height: 520px;
       display: flex; align-items: center; justify-content: center;
     }
-    #lottie-anim { width: 100%; max-width: 440px; }
 
     /* ── Stats bar ──────────────────────────────────────────── */
     .stats-bar {
@@ -450,7 +450,7 @@
     /* ── Testimonials ───────────────────────────────────────── */
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--sp-5);
     }
     .testimonial {
@@ -499,6 +499,22 @@
     }
     .pricing-card__per { color: var(--fg-2); font-size: var(--fs-body); margin-bottom: var(--sp-5); }
     .pricing-card__desc { color: var(--fg-2); font-size: var(--fs-body); line-height: var(--lh-normal); }
+
+    /* Quote calculator */
+    .quote-calc{background:var(--white);border:2px solid var(--ink-300);border-radius:var(--radius-md);padding:var(--sp-7);text-align:center;display:flex;flex-direction:column;gap:var(--sp-4)}
+    .quote-calc__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--red)}
+    .quote-calc__question{font-size:var(--fs-body);font-weight:600;color:var(--fg-1);line-height:var(--lh-snug)}
+    .quote-calc__input-row{display:flex;align-items:center;justify-content:center;gap:var(--sp-3)}
+    .quote-calc__stepper{width:40px;height:40px;border-radius:var(--radius-md);border:var(--border);background:var(--ink-50);color:var(--fg-1);font-size:20px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-base),border-color var(--dur-base)}
+    .quote-calc__stepper:hover{background:var(--ink-100);border-color:var(--ink-400)}
+    .quote-calc__number{width:72px;text-align:center;font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;border:var(--border);border-radius:var(--radius-md);padding:var(--sp-2);color:var(--fg-1);-moz-appearance:textfield}
+    .quote-calc__number::-webkit-inner-spin-button,.quote-calc__number::-webkit-outer-spin-button{-webkit-appearance:none}
+    .quote-calc__total-row{display:flex;align-items:baseline;justify-content:center;gap:6px}
+    .quote-calc__total{font-family:var(--font-display);font-size:var(--fs-display);font-weight:700;color:var(--red);line-height:1}
+    .quote-calc__total-per{font-size:var(--fs-body);color:var(--fg-2)}
+    .quote-calc__breakdown{font-size:var(--fs-small);color:var(--fg-3);line-height:var(--lh-normal)}
+    .quote-calc__cta{display:block;background:var(--red);color:var(--white);padding:var(--sp-4);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-body);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);margin-top:var(--sp-2)}
+    .quote-calc__cta:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
 
     /* ── Network section ────────────────────────────────────── */
     .network { max-width: 860px; margin: 0 auto; text-align: center; }
@@ -549,7 +565,7 @@
       margin-bottom: var(--sp-6);
     }
     .footer__brand { display: flex; flex-direction: column; gap: var(--sp-3); }
-    .footer__brand img { height: 28px; width: auto; }
+    .footer__brand img { height: 28px; width: auto; max-width: 180px; object-fit: contain; }
     .footer__brand p { color: rgba(255,255,255,0.5); font-size: var(--fs-small); max-width: 280px; }
     .footer__cols { display: flex; gap: var(--sp-8); flex-wrap: wrap; }
     .footer__col { display: flex; flex-direction: column; gap: var(--sp-3); }
@@ -675,11 +691,14 @@
       <div class="hero__content">
         <p class="hero__eyebrow">Australia's Largest Cloud Mobile Network</p>
         <h1>A business mobile number on&nbsp;any smartphone.</h1>
-        <p class="hero__sub">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no contracts, no hassle. From $15/month per user.</p>
+        <p class="hero__sub">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no contracts, no hassle. From $35/month per user.</p>
         <div class="cta-group">
           <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started</a>
           <button class="btn-secondary" id="openVideoModal">Watch how it works</button>
         </div>
+      </div>
+      <div class="hero__visual">
+        <img src="hero-image.png" alt="Jet Cloud Mobile app on smartphone" style="width:100%;max-width:520px;border-radius:var(--radius-lg);display:block">
       </div>
     </div>
   </section>
@@ -910,12 +929,6 @@
           <p class="testimonial__author">— Rosie, Operations Manager</p>
         </div>
 
-        <div class="testimonial">
-          <div class="testimonial__stars" aria-label="5 stars">★★★★★</div>
-          <p class="testimonial__quote">"Great work helping us move across from Telstra! Justin supported us every step of the way and we couldn't be more thankful."</p>
-          <p class="testimonial__author">— Brooke, Owner</p>
-        </div>
-
       </div>
     </div>
   </section>
@@ -927,57 +940,34 @@
       <h2 class="section__headline">Simple pricing. No contracts. No surprises.</h2>
       <div class="pricing-grid">
 
-        <div class="pricing-card">
-          <div class="pricing-card__name">Pay Per Call</div>
-          <div class="pricing-card__price">$15</div>
-          <div class="pricing-card__per">per number / month</div>
-          <p class="pricing-card__desc">Best for low-volume users or businesses wanting to get started at minimum cost.</p>
+        <div class="quote-calc">
+          <div class="quote-calc__eyebrow">Quick quote</div>
+          <div class="quote-calc__question">How many team members need a business number?</div>
+          <div class="quote-calc__input-row">
+            <button class="quote-calc__stepper" id="qcDecr" aria-label="Decrease">−</button>
+            <input class="quote-calc__number" type="number" id="qcUsers" value="5" min="1" max="500" aria-label="Number of users">
+            <button class="quote-calc__stepper" id="qcIncr" aria-label="Increase">+</button>
+          </div>
+          <div class="quote-calc__total-row">
+            <div class="quote-calc__total" id="qcTotal">$175</div>
+            <div class="quote-calc__total-per">/month est.</div>
+          </div>
+          <div class="quote-calc__breakdown" id="qcBreakdown">5 users × $35/month &nbsp;·&nbsp; 5,000 calls &amp; SMS included</div>
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="quote-calc__cta">Get started</a>
         </div>
 
         <div class="pricing-card pricing-card--popular">
-          <div class="pricing-card__badge">Most Popular</div>
-          <div class="pricing-card__name">Call Bundled</div>
+          <div class="pricing-card__badge">Call Bundled Plan</div>
+          <div class="pricing-card__name">What's included</div>
           <div class="pricing-card__price">$35</div>
           <div class="pricing-card__per">per number / month</div>
-          <p class="pricing-card__desc">Best for staff who make regular calls and want predictable monthly costs.</p>
+          <p class="pricing-card__desc">1 Australian mobile number &nbsp;·&nbsp; Free softphone app &nbsp;·&nbsp; 1,000 calls &amp; SMS included &nbsp;·&nbsp; Call flow builder &amp; reporting &nbsp;·&nbsp; No contract</p>
         </div>
 
       </div>
       <p style="text-align:center;margin-top:var(--sp-6);color:var(--fg-2);font-size:var(--fs-body);">
-        <a href="#" style="color:var(--red);font-weight:600;">View full pricing details →</a>
+        <a href="pricing.html" style="color:var(--red);font-weight:600;">View full pricing details →</a>
       </p>
-    </div>
-  </section>
-
-  <!-- ── Network ───────────────────────────────────────────── -->
-  <section class="section section--dark">
-    <div class="section__inner">
-      <div class="network">
-        <h2>Built on Australia's largest privately owned telco network.</h2>
-        <p>Running since 2006, Jet Interactive's network is purpose-built for Australian businesses. Not a reseller. Not offshore. Local infrastructure, local support, and the scale to back it up.</p>
-        <div class="network__pills">
-          <div class="network__pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Australian-owned infrastructure
-          </div>
-          <div class="network__pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Local 24/7 support
-          </div>
-          <div class="network__pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Operating since 2006
-          </div>
-          <div class="network__pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Not a reseller
-          </div>
-          <div class="network__pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            99.99% uptime SLA
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -985,9 +975,9 @@
   <section class="section section--red final-cta" id="get-started">
     <div class="section__inner">
       <h2>Ready to give your team a proper business mobile?</h2>
-      <p>Join over 50,000 Jet Cloud Mobile users across Australia. Set up in 5 minutes, no contracts, starting from $15/month.</p>
+      <p>Join over 50,000 Jet Cloud Mobile users across Australia. Set up in 5 minutes, no contracts, starting from $35/month.</p>
       <div class="cta-group">
-        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-dark">Get started</a>
+        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-white">Get started</a>
         <a href="#" class="btn-secondary">Talk to our team</a>
       </div>
     </div>
@@ -1116,6 +1106,24 @@
       videoEl.pause();
       videoEl.currentTime = 0;
     }
+  </script>
+
+  <script>
+    (function() {
+      const input = document.getElementById('qcUsers');
+      const total = document.getElementById('qcTotal');
+      const breakdown = document.getElementById('qcBreakdown');
+      function update() {
+        const n = Math.max(1, Math.min(500, parseInt(input.value) || 1));
+        input.value = n;
+        total.textContent = '$' + (n * 35).toLocaleString();
+        breakdown.textContent = n + ' user' + (n === 1 ? '' : 's') + ' × $35/month  ·  ' + (n * 1000).toLocaleString() + ' calls & SMS included';
+      }
+      document.getElementById('qcIncr').addEventListener('click', () => { input.value = (parseInt(input.value) || 1) + 1; update(); });
+      document.getElementById('qcDecr').addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value) || 1) - 1); update(); });
+      input.addEventListener('input', update);
+      update();
+    })();
   </script>
 </body>
 </html>
