@@ -619,42 +619,42 @@
     .video-modal__close:hover{background:rgba(0,0,0,.9)}
     .video-modal video{width:100%;display:block;max-height:80vh}
 
-  /* Cloud Mobile Calculator */
-  .cm-calc{background:#fff;border-radius:14px;padding:1.5rem;font-family:'Poppins',sans-serif;color:#1a1a1a;max-width:360px;box-shadow:0 8px 32px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.10);}
-  .cm-calc .step-indicator{display:flex;gap:5px;margin-bottom:0.75rem;}
-  .cm-calc .dot{width:7px;height:7px;border-radius:50%;background:#e0e0e0;}
-  .cm-calc .dot.active{background:#ed1c24;}
-  .cm-calc .q-label{font-size:11px;color:#999;margin-bottom:3px;font-family:'Poppins',sans-serif;}
-  .cm-calc .q-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:0.9rem;line-height:1.35;font-family:'Poppins',sans-serif;}
-  .cm-calc .opt{background:#fff;border:1.5px solid #e5e5e5;border-radius:8px;padding:0.6rem 0.75rem;cursor:pointer;color:#1a1a1a;font-size:12px;font-weight:500;text-align:left;transition:border-color 0.15s,background 0.15s;font-family:'Poppins',sans-serif;width:100%;}
-  .cm-calc .opt:hover{border-color:#ed1c24;background:#fff8f8;}
-  .cm-calc .opt.selected{background:#fff0f0 !important;border-color:#ed1c24 !important;color:#ed1c24 !important;}
-  .cm-calc .opt-sub{font-size:10px;font-weight:400;color:#999;margin-top:1px;display:block;}
-  .cm-calc .opt.selected .opt-sub{color:#ed1c24;opacity:0.7;}
-  .cm-calc .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-  .cm-calc .num-wrap{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem;}
-  .cm-calc .num-btn{width:34px;height:34px;border-radius:7px;border:2px solid #ed1c24 !important;background:#fff !important;color:#ed1c24 !important;font-size:18px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;flex-shrink:0;}
-  .cm-calc .num-btn:hover{background:#fff0f0 !important;}
-  .cm-calc .num-display{font-size:26px;font-weight:600;color:#1a1a1a;min-width:40px;text-align:center;font-family:'Poppins',sans-serif;}
-  .cm-calc .num-label{font-size:12px;color:#999;font-family:'Poppins',sans-serif;}
-  .cm-calc .action-btn{width:100%;padding:10px;background:#ed1c24 !important;color:#fff !important;border:none !important;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:0.75rem;font-family:'Poppins',sans-serif;display:block;text-align:center;text-decoration:none;}
-  .cm-calc .action-btn:hover{background:#c8151b !important;}
-  .cm-calc .action-btn:disabled{opacity:0.35;cursor:default;}
-  .cm-calc .action-btn.outline{background:#fff !important;color:#ed1c24 !important;border:2px solid #ed1c24 !important;margin-top:8px;}
-  .cm-calc .action-btn.outline:hover{background:#fff0f0 !important;}
-  .cm-calc .back-link{font-size:11px;color:#999;cursor:pointer;margin-top:8px;display:inline-block;background:none;border:none;font-family:'Poppins',sans-serif;}
-  .cm-calc .back-link:hover{color:#ed1c24;}
-  .cm-calc .divider{border:none;border-top:1px solid #f0f0f0;margin:0.75rem 0;}
-  .cm-calc .summary-price{font-size:30px;font-weight:700;color:#1a1a1a;line-height:1.1;font-family:'Poppins',sans-serif;}
-  .cm-calc .per-user{font-size:11px;color:#ed1c24;background:#fff0f0;border-radius:5px;padding:3px 8px;margin-top:4px;display:inline-block;font-family:'Poppins',sans-serif;font-weight:500;}
-  .cm-calc .inc-list{list-style:none;margin:0.5rem 0;}
-  .cm-calc .inc-list li{font-size:11px;color:#444;padding:4px 0;border-bottom:1px solid #f5f5f5;display:flex;align-items:flex-start;gap:6px;line-height:1.35;font-family:'Poppins',sans-serif;}
-  .cm-calc .inc-list li:last-child{border-bottom:none;}
-  .cm-calc .tick{width:13px;height:13px;flex-shrink:0;margin-top:1px;}
-  .cm-calc .notice{font-size:10px;color:#bbb;text-align:center;margin-top:8px;line-height:1.4;font-family:'Poppins',sans-serif;}
-  .cm-calc .ent-highlight{background:#fff8f8;border:1px solid #fdd;border-radius:7px;padding:0.5rem 0.75rem;margin:0.5rem 0;}
-  .cm-calc .inc-label{font-size:11px;color:#999;margin-bottom:2px;font-weight:500;font-family:'Poppins',sans-serif;}
-  .cm-calc .contract-note{font-size:10px;color:#999;margin-top:3px;font-family:'Poppins',sans-serif;}
+  /* ── New Pricing Calculator ─────────────────────────────── */
+  .nc-card{background:#fff;border:1px solid var(--ink-200);border-radius:16px;box-shadow:0 8px 32px rgba(11,11,12,.1);overflow:hidden;max-width:960px;margin:0 auto}
+  .nc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--ink-100)}
+  .nc-col{padding:2rem 2rem 1.75rem;border-right:1px solid var(--ink-100)}
+  .nc-col:last-child{border-right:none}
+  .nc-step{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;font-family:var(--font-display)}
+  .nc-q{font-size:15px;font-weight:600;color:var(--ink-900);margin-bottom:1.25rem;line-height:1.35}
+  .nc-count{display:flex;align-items:center;gap:14px;margin-bottom:.5rem}
+  .nc-btn{width:40px;height:40px;border-radius:8px;border:1.5px solid var(--ink-300);background:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-600);transition:all 120ms;font-weight:500;flex-shrink:0}
+  .nc-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-50)}
+  .nc-num{font-size:40px;font-weight:700;min-width:56px;text-align:center;color:var(--ink-900);font-family:var(--font-display);line-height:1}
+  .nc-unit{font-size:13px;color:var(--ink-400)}
+  .nc-opts{display:flex;flex-direction:column;gap:8px}
+  .nc-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--ink-200);border-radius:9px;cursor:pointer;background:#fff;text-align:left;transition:all 120ms;width:100%}
+  .nc-opt:hover{border-color:var(--red-100);background:var(--red-50)}
+  .nc-opt.sel{border-color:var(--red);background:var(--red-50)}
+  .nc-radio{width:17px;height:17px;border-radius:50%;border:2px solid var(--ink-300);flex-shrink:0;transition:all 120ms}
+  .nc-opt.sel .nc-radio{border-color:var(--red);background:var(--red);box-shadow:0 0 0 3px var(--red-100)}
+  .nc-main{font-size:14px;font-weight:500;color:var(--ink-900);line-height:1.2}
+  .nc-sub{font-size:11px;color:var(--ink-400);margin-top:1px}
+  .nc-summary{background:var(--red);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+  .nc-price-wrap{display:flex;flex-direction:column;gap:3px}
+  .nc-price{font-family:var(--font-display);font-size:40px;font-weight:700;color:#fff;line-height:1}
+  .nc-price span{font-size:16px;font-weight:400;color:rgba(255,255,255,.65)}
+  .nc-detail{font-size:13px;color:rgba(255,255,255,.82)}
+  .nc-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .nc-buy{background:#fff;color:var(--red);padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap;transition:background 120ms}
+  .nc-buy:hover{background:var(--red-50)}
+  .nc-demo{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms}
+  .nc-demo:hover{border-color:#fff}
+  @media(max-width:760px){
+    .nc-grid{grid-template-columns:1fr}
+    .nc-col{border-right:none;border-bottom:1px solid var(--ink-100)}
+    .nc-col:last-child{border-bottom:none}
+    .nc-summary{flex-direction:column;align-items:flex-start}
+  }
   </style>
 </head>
 <body>
@@ -960,11 +960,72 @@
 
   <!-- ── Pricing ───────────────────────────────────────────── -->
   <section class="section section--alt" id="pricing">
-    <div class="section__inner">
+    <div class="section__inner" style="max-width:980px">
       <p class="section__eyebrow">Pricing</p>
       <h2 class="section__headline">Simple pricing. No contracts. No surprises.</h2>
-            <div style="display:flex;justify-content:center;padding:var(--sp-4) 0">
-        <div class="cm-calc" id="cm-app"></div>
+      <div class="nc-card">
+        <div class="nc-grid">
+          <div class="nc-col">
+            <div class="nc-step">Step 1</div>
+            <div class="nc-q">How many staff need a number?</div>
+            <div class="nc-count">
+              <button class="nc-btn" id="nc-dec">&#8722;</button>
+              <div class="nc-num" id="nc-num">1</div>
+              <button class="nc-btn" id="nc-inc">+</button>
+            </div>
+            <div class="nc-unit">users</div>
+          </div>
+          <div class="nc-col">
+            <div class="nc-step">Step 2</div>
+            <div class="nc-q">New numbers, existing, or both?</div>
+            <div class="nc-opts">
+              <button class="nc-opt sel" data-nt="new">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span>
+              </button>
+              <button class="nc-opt" data-nt="existing">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span>
+              </button>
+              <button class="nc-opt" data-nt="both">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="nc-col">
+            <div class="nc-step">Step 3</div>
+            <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
+            <div class="nc-opts">
+              <button class="nc-opt" data-cr="0-100">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span>
+              </button>
+              <button class="nc-opt" data-cr="100-500">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span>
+              </button>
+              <button class="nc-opt" data-cr="500-1000">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span>
+              </button>
+              <button class="nc-opt" data-cr="1000+">
+                <span class="nc-radio"></span>
+                <span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="nc-summary">
+          <div class="nc-price-wrap">
+            <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
+            <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
+          </div>
+          <div class="nc-actions" id="nc-actions">
+            <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$35/mo</a>
+            <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1107,117 +1168,44 @@
   </script>
   <script>
 (function(){
-  var state={step:1,users:5,numberType:null,callRange:null};
-  var callRanges=[
-    {id:'0-100',label:'0 – 100',sub:'calls & SMS/user/mo'},
-    {id:'100-500',label:'100 – 500',sub:'calls & SMS/user/mo'},
-    {id:'500-1000',label:'500 – 1,000',sub:'calls & SMS/user/mo'},
-    {id:'1000+',label:'1,000+',sub:'calls & SMS/user/mo'},
-  ];
-  var numberTypes=[
-    {id:'new',label:'New numbers',sub:'Fresh Australian mobile numbers'},
-    {id:'existing',label:'Existing numbers',sub:'Port your current numbers'},
-    {id:'both',label:'Both',sub:'Mix of new and ported'},
-  ];
-  function tick(){
-    return '<svg class="tick" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="6.5" fill="#ffeded"/><path d="M4 6.5l2 2 3.5-3.5" stroke="#ed1c24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var users=1, numberType='new', callRange=null;
+  function fmt(n){return n.toLocaleString('en-AU');}
+  function update(){
+    var monthly=users*35, allowance=users*1000;
+    var demoOnly=numberType==='existing'||numberType==='both';
+    document.getElementById('nc-num').textContent=users;
+    document.getElementById('nc-price').innerHTML='A$'+fmt(monthly)+'<span>/mo</span>';
+    var detail='A$35.00 per user · '+users+' user'+(users>1?'s':'')+' · '+fmt(allowance)+' calls & SMS included';
+    if(callRange==='1000+') detail+=' · Excess at 6¢/min';
+    detail+=' · No lock-in contract';
+    document.getElementById('nc-detail').textContent=detail;
+    var a=document.getElementById('nc-actions');
+    if(demoOnly){
+      a.innerHTML='<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-buy">Book a demo</a>';
+    } else {
+      a.innerHTML='<a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$'+fmt(monthly)+'/mo</a>'+
+        '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>';
+    }
   }
-  function dots(cur,tot){
-    var d='<div class="step-indicator">';
-    for(var i=0;i<tot;i++) d+='<div class="dot'+(i<cur?' active':'')+'"></div>';
-    return d+'</div>';
-  }
-  function renderStep1(){
-    return dots(1,4)+
-      '<div class="q-label">Step 1 of 3</div>'+
-      '<div class="q-title">How many staff need mobile numbers?</div>'+
-      '<div class="num-wrap">'+
-        '<button class="num-btn" id="cm-dec">&#8722;</button>'+
-        '<div class="num-display" id="cm-nd">'+state.users+'</div>'+
-        '<button class="num-btn" id="cm-inc">+</button>'+
-        '<span class="num-label">users</span>'+
-      '</div>'+
-      '<button class="action-btn" id="cm-n1">Continue</button>';
-  }
-  function renderStep2(){
-    var opts=numberTypes.map(function(t){
-      return '<button class="opt'+(state.numberType===t.id?' selected':'')+'" data-nt="'+t.id+'">'+t.label+'<span class="opt-sub">'+t.sub+'</span></button>';
-    }).join('');
-    return dots(2,4)+
-      '<div class="q-label">Step 2 of 3</div>'+
-      '<div class="q-title">New numbers, existing, or both?</div>'+
-      '<div class="opt-grid" style="grid-template-columns:1fr;">'+opts+'</div>'+
-      '<button class="action-btn" id="cm-n2"'+(state.numberType?'':' disabled')+'>Continue</button>'+
-      '<button class="back-link" id="cm-b2">&#8592; Back</button>';
-  }
-  function renderStep3(){
-    var opts=callRanges.map(function(r){
-      return '<button class="opt'+(state.callRange===r.id?' selected':'')+'" data-cr="'+r.id+'">'+r.label+'<span class="opt-sub">'+r.sub+'</span></button>';
-    }).join('');
-    return dots(3,4)+
-      '<div class="q-label">Step 3 of 3</div>'+
-      '<div class="q-title">Avg calls &amp; SMS per user per month?</div>'+
-      '<div class="opt-grid">'+opts+'</div>'+
-      '<button class="action-btn" id="cm-n3"'+(state.callRange?'':' disabled')+'>See my pricing</button>'+
-      '<button class="back-link" id="cm-b3">&#8592; Back</button>';
-  }
-  function renderSummary(isHighVol){
-    var u=state.users;
-    var monthly=u*35;
-    var allowance=u*1000;
-    var demoOnly=state.numberType==='existing'||state.numberType==='both';
-    var btns=demoOnly
-      ? '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" class="action-btn" style="text-decoration:none;margin-top:0.6rem;">Book a demo</a>'
-      : '<a href="https://signup.jetinteractive.com.au/cloud-mobile" class="action-btn" style="text-decoration:none;margin-top:0.6rem;">Buy now — A$'+monthly.toLocaleString('en-AU')+'/mo</a>'+
-        '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" class="action-btn outline" style="text-decoration:none;">Book a demo</a>';
-    var highVolNote=isHighVol
-      ? '<div class="ent-highlight"><div style="font-size:10px;color:#999;margin-bottom:2px;font-family:Poppins,sans-serif;">High-volume team</div><div style="font-size:11px;color:#ed1c24;font-weight:500;font-family:Poppins,sans-serif;">'+allowance.toLocaleString('en-AU')+' calls &amp; SMS included · Excess at 6¢/min</div></div>'
-      : '';
-    return dots(4,4)+
-      '<div class="q-label">Your estimated price</div>'+
-      '<div class="summary-price">A$'+monthly.toLocaleString('en-AU')+'<span style="font-size:14px;font-weight:400;color:#999">/mo</span></div>'+
-      '<div class="per-user">A$35.00 per user · '+u+' user'+(u>1?'s':'')+'</div>'+
-      '<div class="contract-note">No lock-in contract · Prices ex GST</div>'+
-      highVolNote+
-      '<hr class="divider"/>'+
-      '<div class="inc-label">What\'s included</div>'+
-      '<ul class="inc-list">'+
-        '<li>'+tick()+' '+u+' Australian mobile number'+(u>1?'s':'')+'</li>'+
-        '<li>'+tick()+' Desktop &amp; mobile softphone apps</li>'+
-        '<li>'+tick()+' '+allowance.toLocaleString('en-AU')+' calls &amp; SMS per month</li>'+
-        '<li>'+tick()+' Voicemail, time routing &amp; greetings</li>'+
-        '<li>'+tick()+' Admin management dashboard</li>'+
-        '<li>'+tick()+' Full reporting on all calls &amp; SMS</li>'+
-        '<li>'+tick()+' Free call recording if required</li>'+
-      '</ul>'+
-      btns+
-      '<div class="notice">Prices in AUD, ex GST. No lock-in contract. Cancel anytime.</div>'+
-      '<button class="back-link" id="cm-b4">&#8592; Back</button>';
-  }
-  function render(){
-    var app=document.getElementById('cm-app');
-    if(state.step===1) app.innerHTML=renderStep1();
-    else if(state.step===2) app.innerHTML=renderStep2();
-    else if(state.step===3) app.innerHTML=renderStep3();
-    else app.innerHTML=renderSummary(state.callRange==='1000+');
-    bind();
-  }
-  function bind(){
-    var dec=document.getElementById('cm-dec'),inc=document.getElementById('cm-inc'),nd=document.getElementById('cm-nd');
-    if(dec) dec.onclick=function(){if(state.users>1){state.users--;nd.textContent=state.users;}};
-    if(inc) inc.onclick=function(){state.users++;nd.textContent=state.users;};
-    document.querySelectorAll('[data-nt]').forEach(function(b){b.onclick=function(){state.numberType=b.getAttribute('data-nt');render();};});
-    document.querySelectorAll('[data-cr]').forEach(function(b){b.onclick=function(){state.callRange=b.getAttribute('data-cr');render();};});
-    var n1=document.getElementById('cm-n1'),n2=document.getElementById('cm-n2'),n3=document.getElementById('cm-n3');
-    var b2=document.getElementById('cm-b2'),b3=document.getElementById('cm-b3'),b4=document.getElementById('cm-b4');
-    if(n1) n1.onclick=function(){state.step=2;render();};
-    if(n2) n2.onclick=function(){if(state.numberType){state.step=3;render();}};
-    if(n3) n3.onclick=function(){if(state.callRange){state.step=4;render();}};
-    if(b2) b2.onclick=function(){state.step=1;render();};
-    if(b3) b3.onclick=function(){state.step=2;render();};
-    if(b4) b4.onclick=function(){state.step=3;render();};
-  }
-  render();
+  document.getElementById('nc-dec').onclick=function(){if(users>1){users--;update();}};
+  document.getElementById('nc-inc').onclick=function(){users++;update();};
+  document.querySelectorAll('[data-nt]').forEach(function(b){
+    b.onclick=function(){
+      document.querySelectorAll('[data-nt]').forEach(function(x){x.classList.remove('sel');});
+      b.classList.add('sel');
+      numberType=b.getAttribute('data-nt');
+      update();
+    };
+  });
+  document.querySelectorAll('[data-cr]').forEach(function(b){
+    b.onclick=function(){
+      document.querySelectorAll('[data-cr]').forEach(function(x){x.classList.remove('sel');});
+      b.classList.add('sel');
+      callRange=b.getAttribute('data-cr');
+      update();
+    };
+  });
+  update();
 })();
   </script>
 </body>
