@@ -208,10 +208,10 @@
       overflow: hidden;
     }
     .hero__inner {
-      max-width: 780px; margin: 0 auto;
-      text-align: center;
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sp-8); align-items: center;
     }
-    .hero__inner .cta-group { justify-content: center; }
     .hero__eyebrow {
       font-family: var(--font-display);
       font-size: var(--fs-small); font-weight: 600;
