@@ -123,7 +123,21 @@
     .testimonial-card cite{font-weight:600;color:var(--red);font-style:normal;font-size:var(--fs-small)}
 
     /* Pricing cards */
-    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);max-width:800px;margin:0 auto}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);max-width:900px;margin:0 auto}
+    .quote-calc{background:var(--white);border:2px solid var(--ink-200);border-radius:var(--radius-lg);padding:var(--sp-6);text-align:center;display:flex;flex-direction:column;gap:var(--sp-4)}
+    .quote-calc__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--red)}
+    .quote-calc__question{font-size:var(--fs-body);font-weight:600;color:var(--fg-1);line-height:1.3}
+    .quote-calc__input-row{display:flex;align-items:center;justify-content:center;gap:12px}
+    .quote-calc__stepper{width:40px;height:40px;border-radius:8px;border:1px solid var(--ink-300);background:var(--ink-50);color:var(--fg-1);font-size:20px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .quote-calc__stepper:hover{background:var(--ink-100)}
+    .quote-calc__number{width:72px;text-align:center;font-family:var(--font-display);font-size:24px;font-weight:700;border:1px solid var(--ink-300);border-radius:8px;padding:8px;color:var(--fg-1);-moz-appearance:textfield}
+    .quote-calc__number::-webkit-inner-spin-button,.quote-calc__number::-webkit-outer-spin-button{-webkit-appearance:none}
+    .quote-calc__total-row{display:flex;align-items:baseline;justify-content:center;gap:6px}
+    .quote-calc__total{font-family:var(--font-display);font-size:64px;font-weight:700;color:var(--red);line-height:1}
+    .quote-calc__total-per{font-size:16px;color:var(--fg-2)}
+    .quote-calc__breakdown{font-size:13px;color:var(--fg-3);line-height:1.5}
+    .quote-calc__cta{display:block;background:var(--red);color:var(--white);padding:16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:16px;transition:background 140ms;margin-top:8px}
+    .quote-calc__cta:hover{background:var(--red-dark)}
     .pricing-card{background:var(--white);border:2px solid var(--ink-200);border-radius:var(--radius-lg);padding:var(--sp-6);position:relative}
     .pricing-card--featured{border-color:var(--red)}
     .pricing-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:var(--white);font-size:var(--fs-caption);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:4px 14px;border-radius:var(--radius-pill)}
@@ -217,9 +231,9 @@
       <div>
         <p class="page-hero__eyebrow">Solutions for Small Business</p>
         <h1>A proper business phone setup — without the enterprise price tag.</h1>
-        <p>Give your business a dedicated phone number from just $15/month. Keep work and personal calls separate, look more professional, and stay in control — all without signing a contract.</p>
+        <p>Give your business a dedicated phone number from just $35/month. Keep work and personal calls separate, look more professional, and stay in control — all without signing a contract.</p>
         <div class="cta-group">
-          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started from $15/month</a>
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started from $35/month</a>
           <a href="../pricing.html" class="btn-secondary">See all plans</a>
         </div>
       </div>
@@ -273,8 +287,8 @@
           <div class="feature-card__icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.8 5.8l1.28-.87a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
-          <h3>Dedicated business number from $15</h3>
-          <p>A real Australian mobile number — separate from your personal phone — for as little as $15/month. No long-term contracts. Cancel any time.</p>
+          <h3>Dedicated business number from $35/month</h3>
+          <p>A real Australian mobile number — separate from your personal phone. 1,000 calls &amp; SMS included every month. No long-term contracts. Cancel any time.</p>
         </div>
 
         <div class="feature-card">
@@ -347,30 +361,32 @@
       <p class="section__eyebrow">Pricing</p>
       <h2 class="section__headline">Simple pricing for small business.</h2>
       <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Pay Per Call</h3>
-          <div class="price">$15</div>
-          <div class="price-detail">per number/month + calls at standard rates</div>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Australian mobile number</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>iOS and Android app</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Call history and reporting</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contracts</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Best for low-volume users</li>
-          </ul>
-          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-dark" style="display:block;text-align:center">Get started</a>
+        <div class="quote-calc">
+          <div class="quote-calc__eyebrow">Quick quote</div>
+          <div class="quote-calc__question">How many team members need a business number?</div>
+          <div class="quote-calc__input-row">
+            <button class="quote-calc__stepper" id="qcDecr" aria-label="Decrease">−</button>
+            <input class="quote-calc__number" type="number" id="qcUsers" value="3" min="1" max="500" aria-label="Number of users">
+            <button class="quote-calc__stepper" id="qcIncr" aria-label="Increase">+</button>
+          </div>
+          <div class="quote-calc__total-row">
+            <div class="quote-calc__total" id="qcTotal">$105</div>
+            <div class="quote-calc__total-per">/month est.</div>
+          </div>
+          <div class="quote-calc__breakdown" id="qcBreakdown">3 users × $35/month · 3,000 calls &amp; SMS included</div>
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="quote-calc__cta">Get started</a>
+          <p style="font-size:13px;color:var(--fg-3);margin-top:8px">No setup cost. No contracts. Cancel any time.</p>
         </div>
         <div class="pricing-card pricing-card--featured">
-          <div class="pricing-badge">Most popular</div>
-          <h3>Call Bundled</h3>
-          <div class="price">$35</div>
-          <div class="price-detail">per number/month — includes calls</div>
+          <div class="pricing-badge">Call Bundled Plan</div>
+          <h3>$35 <span style="font-size:var(--fs-body);font-weight:400;color:var(--fg-2)">/ number / month</span></h3>
+          <div class="price-detail" style="margin-bottom:var(--sp-4)">Everything included. No surprises.</div>
           <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pay Per Call</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Included call allowance</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Predictable monthly cost</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Best for regular callers</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Australian mobile number</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1,000 calls &amp; SMS included/month</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free iOS &amp; Android softphone app</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Call flow builder &amp; reporting</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No contract — cancel any time</li>
           </ul>
           <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center">Get started</a>
         </div>
@@ -383,7 +399,7 @@
   <section class="section section--red">
     <div class="section__inner final-cta">
       <h2>Give your business a proper phone number today.</h2>
-      <p>Join over 50,000 Australian businesses on Jet Cloud Mobile.<br>Set up in 5 minutes, from $15/month, no contracts.</p>
+      <p>Join over 50,000 Australian businesses on Jet Cloud Mobile.<br>Set up in 5 minutes, from $35/month, no contracts.</p>
       <div class="cta-group">
         <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-secondary">Get started</a>
         <a href="../#contact" style="color:rgba(255,255,255,.9);font-size:var(--fs-lead);font-weight:500;text-decoration:none;padding:var(--sp-4) var(--sp-6);display:inline-block">Talk to our team →</a>
@@ -441,6 +457,21 @@
       drawer.setAttribute('aria-hidden', !open);
     });
 
+    (function() {
+      const input = document.getElementById('qcUsers');
+      const total = document.getElementById('qcTotal');
+      const breakdown = document.getElementById('qcBreakdown');
+      function update() {
+        const n = Math.max(1, Math.min(500, parseInt(input.value) || 1));
+        input.value = n;
+        total.textContent = '$' + (n * 35).toLocaleString();
+        breakdown.textContent = n + ' user' + (n === 1 ? '' : 's') + ' × $35/month  ·  ' + (n * 1000).toLocaleString() + ' calls & SMS included';
+      }
+      document.getElementById('qcIncr').addEventListener('click', () => { input.value = (parseInt(input.value) || 1) + 1; update(); });
+      document.getElementById('qcDecr').addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value) || 1) - 1); update(); });
+      input.addEventListener('input', update);
+      update();
+    })();
   </script>
 </body>
 </html>
