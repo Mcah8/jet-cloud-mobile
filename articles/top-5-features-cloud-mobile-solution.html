@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 Features to Look for in a Cloud Mobile Solution — Jet Cloud Mobile</title>
+  <meta name="description" content="Not all cloud mobile services are equal. From call recording to number portability, here's what separates a professional solution from a consumer workaround.">
+  <link rel="icon" href="../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-logo:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 100%);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    ::selection{background:var(--red);color:var(--white)}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover,.nav__links a.active{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
+    .nav__dropdown{position:relative}
+    .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-toggle:hover,.nav__dropdown-toggle.active{color:var(--red)}
+    .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown-menu{display:none;position:absolute;top:100%;margin-top:1px;left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
+    .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-menu a:last-child{border-bottom:none}
+    .nav__dropdown-menu a:hover,.nav__dropdown-menu a.active{background:var(--ink-50);color:var(--red)}
+    .nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer-sub{padding-left:var(--sp-5)}
+    .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+
+    .article-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6) var(--sp-10)}
+    .article-hero__inner{max-width:760px;margin:0 auto}
+    .article-hero__back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.75);text-decoration:none;font-size:var(--fs-small);font-weight:500;margin-bottom:var(--sp-5);transition:color var(--dur-base) var(--ease-out)}
+    .article-hero__back:hover{color:var(--white)}
+    .article-hero__tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 12px;border-radius:var(--radius-pill);margin-bottom:var(--sp-4)}
+    .article-hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,var(--fs-h2));font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-5)}
+    .article-hero__meta{display:flex;align-items:center;gap:var(--sp-4);color:rgba(255,255,255,.75);font-size:var(--fs-small)}
+    .article-hero__meta span{display:flex;align-items:center;gap:6px}
+
+    .article-wrap{max-width:760px;margin:0 auto;padding:var(--sp-10) var(--sp-6)}
+    .article-body h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-8) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--red-100)}
+    .article-body h2:first-child{margin-top:0}
+    .article-body p{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5)}
+    .article-body ul,.article-body ol{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5);padding-left:var(--sp-6)}
+    .article-body li{margin-bottom:var(--sp-2)}
+    .article-body strong{color:var(--fg-1);font-weight:600}
+    .article-body a{color:var(--red);text-decoration:none;font-weight:500}
+    .article-body a:hover{text-decoration:underline}
+    .table-wrap{overflow-x:auto;margin-bottom:var(--sp-5)}
+    .table-wrap table{width:100%;border-collapse:collapse;font-size:var(--fs-body)}
+    .table-wrap th{background:var(--ink-900);color:var(--white);font-family:var(--font-display);font-weight:600;text-align:left;padding:var(--sp-3) var(--sp-4);white-space:nowrap}
+    .table-wrap td{padding:var(--sp-3) var(--sp-4);border-bottom:var(--border);color:var(--fg-2)}
+    .table-wrap tr:last-child td{font-weight:600;color:var(--fg-1);background:var(--red-50)}
+    .table-wrap tr:hover td{background:var(--ink-50)}
+    .table-wrap tr:last-child:hover td{background:var(--red-100)}
+
+    .article-cta{background:var(--grad-hero);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);text-align:center;margin-top:var(--sp-9)}
+    .article-cta h3{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;color:var(--white);margin-bottom:var(--sp-3)}
+    .article-cta p{color:rgba(255,255,255,.85);font-size:var(--fs-lead);margin-bottom:var(--sp-6)}
+    .article-cta .btn{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--red);font-weight:700;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);text-decoration:none;transition:all var(--dur-med) var(--ease-out)}
+    .article-cta .btn:hover{background:var(--red-50);box-shadow:var(--shadow-2)}
+
+    .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
+    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
+    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
+    .footer__phone:hover{color:var(--red)}
+    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
+    .footer__col ul{list-style:none}
+    .footer__col li{margin-bottom:var(--sp-2)}
+    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
+    .footer__legal{display:flex;gap:var(--sp-5)}
+    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
+    .footer__legal a:hover{color:var(--white)}
+
+    @media(max-width:1024px){
+      .footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}
+      .footer__brand{grid-column:1/-1}
+    }
+    @media(max-width:768px){
+      .nav__links,.nav__phone{display:none}
+      .nav__burger{display:flex}
+      .article-wrap{padding:var(--sp-7) var(--sp-5)}
+      .footer__inner{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px){
+      .footer__inner{grid-template-columns:1fr}
+      .article-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo"><img src="../project/assets/jet-logo-full-color.png" alt="Jet Interactive" width="1200" height="434"></a>
+      <a href="tel:0488811729" class="nav__phone"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>0488 811 729</a>
+      <ul class="nav__links">
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../solutions/sales-teams.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Sales Teams
+            </a>
+            <a href="../solutions/international-staff.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              International Staff
+            </a>
+            <a href="../solutions/small-business.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Small Business
+            </a>
+          </div>
+        </li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Industries <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../industries/automotive.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Automotive
+            </a>
+            <a href="../industries/real-estate.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Real Estate
+            </a>
+            <a href="../industries/finance.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Finance
+            </a>
+          </div>
+        </li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle active">Resources <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../faq.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              FAQ
+            </a>
+            <a href="../articles.html" class="active">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Articles
+            </a>
+            <a href="../downloads.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Downloads
+            </a>
+            <a href="../videos.html">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Videos
+            </a>
+          </div>
+        </li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__drawer" id="drawer">
+    <div class="nav__drawer-section-label">Solutions</div>
+    <div class="nav__drawer-sub">
+      <a href="../solutions/sales-teams.html">Sales Teams</a>
+      <a href="../solutions/international-staff.html">International Staff</a>
+      <a href="../solutions/small-business.html">Small Business</a>
+    </div>
+    <div class="nav__drawer-section-label">Industries</div>
+    <div class="nav__drawer-sub">
+      <a href="../industries/automotive.html">Automotive</a>
+      <a href="../industries/real-estate.html">Real Estate</a>
+      <a href="../industries/finance.html">Finance</a>
+    </div>
+    <a href="../pricing.html">Pricing</a>
+    <div class="nav__drawer-section-label">Resources</div>
+    <div class="nav__drawer-sub">
+      <a href="../faq.html">FAQ</a>
+      <a href="../articles.html">Articles</a>
+      <a href="../downloads.html">Downloads</a>
+      <a href="../videos.html">Videos</a>
+    </div>
+    <a href="../contact.html">Contact</a>
+    <a href="tel:0488811729" class="nav__phone" style="padding:var(--sp-3) 0;border-bottom:var(--border);font-size:var(--fs-lead)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>0488 811 729</a>
+    <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a>
+  </div>
+
+  <header class="article-hero">
+    <div class="article-hero__inner">
+      <a href="../articles.html" class="article-hero__back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Articles
+      </a>
+      <span class="article-hero__tag">Tips & Guides</span>
+      <h1>Top 5 Features to Look for in a Cloud Mobile Solution</h1>
+      <div class="article-hero__meta">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          6 min read
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          14 May 2025
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-wrap">
+    <div class="article-body">
+      <p>The market for cloud mobile apps has grown fast. There are consumer-grade options that give you a second number for $5 a month, and there are genuine business communications platforms built for professional use. The difference isn't always obvious from a pricing page.</p>
+      <p>If you're evaluating cloud mobile for your business, here are the five features that separate a solution worth deploying from one you'll outgrow in six months.</p>
+      <h2>1. Call Recording — With Compliance-Grade Storage</h2>
+      <p>Call recording is one of the most requested features in business communications, and one of the most inconsistently delivered.</p>
+      <p>A basic call recording feature records a call. A professional one does more:</p>
+      <ul>
+      <li><strong>Automatic recording</strong> — set it once for all calls, rather than triggering it manually on each call (where you'll inevitably forget)</li>
+      <li><strong>Secure, accessible storage</strong> — recordings should be stored in the cloud, accessible from any device, and retained for a configurable period</li>
+      <li><strong>Compliance considerations</strong> — in Australia, businesses in finance, insurance, legal, and healthcare have legal obligations around call records. The solution you choose should support those requirements, not complicate them</li>
+      </ul>
+      <p>Call recording is also invaluable outside compliance contexts: staff training, dispute resolution, capturing instructions from clients, and quality assurance all benefit from a reliable recording library.</p>
+      <p><strong>What to look for:</strong> Automatic recording, cloud-based storage, configurable retention, and clear documentation of how recordings are handled.</p>
+      <h2>2. Number Portability — Own Your Business Number</h2>
+      <p>Your business phone number has real commercial value. Customers have it saved. It appears on your website, your Google Business profile, your invoices, and your marketing. Changing it is a significant disruption.</p>
+      <p>Any cloud mobile solution worth considering should support full number portability — the ability to bring your existing number to the platform, and to take it with you if you ever leave.</p>
+      <p>This matters in two directions:</p>
+      <p><strong>Porting in:</strong> You should be able to move your current business number to the cloud mobile platform without changing what customers dial. A solution that only issues new numbers is forcing you to start from scratch.</p>
+      <p><strong>Porting out:</strong> Equally important — you should be able to take your number with you if you ever switch providers. Any provider that can't or won't support porting out is holding your number hostage.</p>
+      <p><strong>What to look for:</strong> Full inbound porting support for Australian numbers (geographic and mobile), clear process for porting out, and no lock-in clauses tied to the number itself.</p>
+      <h2>3. Business Hours and Call Routing — Real Control Over Availability</h2>
+      <p>One of the most practical reasons to use cloud mobile is the ability to define when your business is "open" for calls — and have the system handle everything else automatically.</p>
+      <p>This goes well beyond a simple on/off switch. A professional solution should offer:</p>
+      <ul>
+      <li><strong>Configurable business hours</strong> — set different hours for different days, handle public holidays</li>
+      <li><strong>Out-of-hours routing</strong> — send calls to voicemail, redirect to an on-call number, or play a custom message when the business is closed</li>
+      <li><strong>Call forwarding rules</strong> — route calls to specific team members based on availability, time of day, or caller</li>
+      <li><strong>Simultaneous ring or hunt groups</strong> — for teams where you want the first available person to answer</li>
+      </ul>
+      <p>For sole traders, even the basic version of this — "after 6pm, go to voicemail" — is transformative for work-life balance. For growing teams, more sophisticated routing reduces missed calls and improves response times.</p>
+      <p><strong>What to look for:</strong> Granular hours configuration, multiple routing options for out-of-hours calls, and the ability to adjust settings from the app without contacting support.</p>
+      <h2>4. CRM and System Integration — Connect Calls to Your Business Data</h2>
+      <p>A cloud mobile solution that operates in isolation from the rest of your business tools is a missed opportunity.</p>
+      <p>When your phone calls integrate with your CRM, you gain visibility that simply isn't possible with standard mobile:</p>
+      <ul>
+      <li>Inbound calls are automatically matched to existing contact records</li>
+      <li>Call duration, outcomes, and recordings are logged against the customer</li>
+      <li>Missed calls trigger follow-up tasks automatically</li>
+      <li>Teams get a shared view of customer communication history</li>
+      </ul>
+      <p>This is particularly valuable for sales teams, where every interaction with a prospect should be tracked, and for service businesses where customer call history informs every subsequent conversation.</p>
+      <p>Beyond CRM, look for integration with tools like helpdesk platforms, call analytics dashboards, and reporting systems. The more your call data connects with your operational systems, the more useful it becomes.</p>
+      <p><strong>What to look for:</strong> Native integration with major CRM platforms (HubSpot, Salesforce, etc.), call logging automation, and open webhook or API support for custom integrations.</p>
+      <h2>5. Multi-User Management — Built for Teams, Not Just Individuals</h2>
+      <p>Some cloud mobile apps are designed for a single user who wants a second number. Others are built for businesses that need to manage multiple users, multiple numbers, and consistent policies across a team.</p>
+      <p>If you have more than one person in your business making or receiving calls, you need the latter. Key capabilities include:</p>
+      <ul>
+      <li><strong>Centralised admin</strong> — add or remove users, assign numbers, and manage settings from a single admin panel</li>
+      <li><strong>Shared visibility</strong> — managers should be able to see call activity across the team, not just their own calls</li>
+      <li><strong>Consistent policies</strong> — call recording, business hours, and voicemail settings should be configurable at the account level, not just per user</li>
+      <li><strong>Scalable pricing</strong> — a per-seat model that grows with your team without requiring manual re-contracting</li>
+      </ul>
+      <p>This is where many consumer-grade apps fall short. They work fine for one person, but they're not designed to be administered at a business level.</p>
+      <p><strong>What to look for:</strong> A proper admin console, team-level reporting, role-based access control, and a pricing model that makes sense as you add users.</p>
+      <h2>How Jet Cloud Mobile Measures Up</h2>
+      <p>Jet Cloud Mobile is built specifically for Australian businesses, with all five of these capabilities included as standard:</p>
+      <ul>
+      <li>Automatic call recording with compliant cloud storage</li>
+      <li>Full number portability for Australian geographic and mobile numbers</li>
+      <li>Configurable business hours with flexible routing options</li>
+      <li>Integration with leading CRM platforms including HubSpot and Salesforce</li>
+      <li>Multi-user admin with centralised management and team-level reporting</li>
+      </ul>
+      <p>Not all cloud mobile services are equal. If you're evaluating your options, these are the questions worth asking before you commit.</p>
+      <p><a href="../pricing.html">Compare plans and features →</a></p>
+    </div>
+
+    <div class="article-cta">
+      <h3>See all features and pricing</h3>
+      <p>Not all cloud mobile services are equal. From call recording to number portability, here's what separates a professional solution from a consumer workaround.</p>
+      <a href="../pricing.html" class="btn">Compare plans &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="../project/assets/jet-logo-full-color.png" alt="Jet Interactive" height="28" style="margin-bottom:var(--sp-3)">
+        <p>Dedicated business mobile numbers for Australian SMEs. Professional call management, one device.</p>
+        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      </div>
+      <div class="footer__col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="../solutions/sales-teams.html">Sales Teams</a></li>
+          <li><a href="../solutions/international-staff.html">International Staff</a></li>
+          <li><a href="../solutions/small-business.html">Small Business</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="../industries/automotive.html">Automotive</a></li>
+          <li><a href="../industries/real-estate.html">Real Estate</a></li>
+          <li><a href="../industries/finance.html">Finance</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="../faq.html">FAQ</a></li>
+          <li><a href="../articles.html">Articles</a></li>
+          <li><a href="../downloads.html">Downloads</a></li>
+          <li><a href="../videos.html">Videos</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2025 Jet Interactive. All rights reserved.</span>
+      <div class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
