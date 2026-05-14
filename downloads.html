@@ -84,16 +84,19 @@
     .section__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--red);margin-bottom:var(--sp-3)}
     .section__headline{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);margin-bottom:var(--sp-7)}
 
-    .downloads-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5)}
-    .dl-card{background:var(--white);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-4);transition:box-shadow var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out)}
-    .dl-card:hover{box-shadow:var(--shadow-2);transform:translateY(-2px)}
-    .dl-card__icon{width:52px;height:52px;background:var(--red-50);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .dl-card__icon svg{color:var(--red)}
-    .dl-card__type{display:inline-flex;align-items:center;gap:4px;background:var(--ink-100);color:var(--fg-3);font-size:var(--fs-caption);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 8px;border-radius:var(--radius-pill);width:fit-content}
-    .dl-card__title{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1)}
-    .dl-card__desc{font-size:var(--fs-body);color:var(--fg-2);line-height:var(--lh-normal);flex:1}
-    .dl-card__btn{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--red);color:var(--white);padding:var(--sp-3) var(--sp-5);border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-body);text-decoration:none;margin-top:auto;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
-    .dl-card__btn:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5);max-width:960px;margin:0 auto}
+    .app-card{background:var(--white);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-5);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--sp-4);transition:box-shadow var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out)}
+    .app-card:hover{box-shadow:var(--shadow-3);transform:translateY(-3px)}
+    .app-card__icon{width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .app-card__icon--ios{background:#000}
+    .app-card__icon--android{background:#3DDC84}
+    .app-card__icon--mac{background:#000}
+    .app-card__icon--windows{background:#0078D4}
+    .app-card__platform{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--fg-3)}
+    .app-card__title{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1)}
+    .app-card__desc{font-size:var(--fs-body);color:var(--fg-2);line-height:var(--lh-normal);flex:1}
+    .app-card__btn{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--fg-1);color:var(--white);padding:var(--sp-3) var(--sp-5);border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-body);text-decoration:none;width:100%;justify-content:center;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
+    .app-card__btn:hover{background:var(--ink-800);box-shadow:var(--shadow-2)}
 
     .cta-group{display:flex;gap:var(--sp-4);flex-wrap:wrap;justify-content:center}
     .btn-secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);display:inline-block;white-space:nowrap}
@@ -119,8 +122,8 @@
     .footer__legal a{color:rgba(255,255,255,.4);text-decoration:none;font-size:var(--fs-small)}
     .footer__legal a:hover{color:rgba(255,255,255,.7)}
 
-    @media(max-width:900px){.nav__links{display:none}.nav__burger{display:flex}.section{padding:var(--sp-8) var(--sp-5)}.downloads-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.downloads-grid{grid-template-columns:1fr}.page-hero{padding:var(--sp-8) var(--sp-5)}.cta-group{flex-direction:column}.footer__top{flex-direction:column}}
+    @media(max-width:900px){.nav__links{display:none}.nav__burger{display:flex}.section{padding:var(--sp-8) var(--sp-5)}.app-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.app-grid{grid-template-columns:1fr}.page-hero{padding:var(--sp-8) var(--sp-5)}.cta-group{flex-direction:column}.footer__top{flex-direction:column}}
   </style>
 </head>
 <body>
@@ -236,90 +239,64 @@
   </nav>
 
   <section class="page-hero">
-    <p class="page-hero__eyebrow">Resources</p>
-    <h1>Guides and resources to get you started</h1>
-    <p>Download product brochures, setup guides, and helpful templates for your business.</p>
+    <p class="page-hero__eyebrow">Downloads</p>
+    <h1>Download the Jet Cloud Mobile app</h1>
+    <p>One app, any device. Take your business number with you on iOS, Android, Mac, or Windows.</p>
   </section>
 
   <section class="section">
     <div class="section__inner">
-      <div class="downloads-grid">
+      <div class="app-grid">
 
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="app-card">
+          <div class="app-card__icon app-card__icon--ios">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           </div>
-          <span class="dl-card__type">PDF · 2.1 MB</span>
-          <h2 class="dl-card__title">Product Brochure</h2>
-          <p class="dl-card__desc">A concise overview of Jet Cloud Mobile's features, pricing, and benefits. Perfect for sharing with your team or management.</p>
-          <a href="#" class="dl-card__btn">
+          <span class="app-card__platform">Mobile</span>
+          <h2 class="app-card__title">iPhone &amp; iPad</h2>
+          <p class="app-card__desc">iOS 15 or later. Download from the App Store and sign in with your Jet account.</p>
+          <a href="#" class="app-card__btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
+            App Store
           </a>
         </div>
 
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="app-card">
+          <div class="app-card__icon app-card__icon--android">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M17.523 15.341A4.5 4.5 0 0 0 19 12a4.5 4.5 0 0 0-1.477-3.341M6.477 8.659A4.5 4.5 0 0 0 5 12a4.5 4.5 0 0 0 1.477 3.341M8 5.5l1 1.732M16 5.5l-1 1.732M9.5 19h5M12 4a4.5 4.5 0 0 1 4.5 4.5v6a4.5 4.5 0 0 1-9 0v-6A4.5 4.5 0 0 1 12 4zM10 9.5h.01M14 9.5h.01"/></svg>
           </div>
-          <span class="dl-card__type">PDF · 1.4 MB</span>
-          <h2 class="dl-card__title">Getting Started Guide</h2>
-          <p class="dl-card__desc">Step-by-step instructions for setting up your business mobile number, adding team members, and configuring call routing.</p>
-          <a href="#" class="dl-card__btn">
+          <span class="app-card__platform">Mobile</span>
+          <h2 class="app-card__title">Android</h2>
+          <p class="app-card__desc">Android 8.0 or later. Available on Google Play for all Android phones and tablets.</p>
+          <a href="#" class="app-card__btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
+            Google Play
           </a>
         </div>
 
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="app-card">
+          <div class="app-card__icon app-card__icon--mac">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           </div>
-          <span class="dl-card__type">PDF · 3.2 MB</span>
-          <h2 class="dl-card__title">IT Setup &amp; Admin Guide</h2>
-          <p class="dl-card__desc">Technical documentation for IT teams covering network requirements, MDM integration, and enterprise account management.</p>
-          <a href="#" class="dl-card__btn">
+          <span class="app-card__platform">Desktop</span>
+          <h2 class="app-card__title">Mac</h2>
+          <p class="app-card__desc">macOS 12 or later. Native app for Apple Silicon and Intel Macs. Download from the Mac App Store.</p>
+          <a href="#" class="app-card__btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
+            Mac App Store
           </a>
         </div>
 
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        <div class="app-card">
+          <div class="app-card__icon app-card__icon--windows">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M3 5.557L10.425 4.5v7.044H3V5.557zM11.276 4.37L21 3v8.544h-9.724V4.37zM3 12.4h7.425V19.5L3 18.443V12.4zM11.276 12.4H21V21l-9.724-1.37V12.4z"/></svg>
           </div>
-          <span class="dl-card__type">XLSX · 48 KB</span>
-          <h2 class="dl-card__title">Pricing Calculator</h2>
-          <p class="dl-card__desc">Editable spreadsheet to model costs for your team size, compare plans, and build a business case for cloud mobile.</p>
-          <a href="#" class="dl-card__btn">
+          <span class="app-card__platform">Desktop</span>
+          <h2 class="app-card__title">Windows</h2>
+          <p class="app-card__desc">Windows 10 or later. Download the installer and sign in with your Jet account to get started.</p>
+          <a href="#" class="app-card__btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
-          </a>
-        </div>
-
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <span class="dl-card__type">PDF · 890 KB</span>
-          <h2 class="dl-card__title">Compliance Checklist</h2>
-          <p class="dl-card__desc">A checklist for finance and legal teams covering call recording obligations, data retention requirements, and ACMA compliance.</p>
-          <a href="#" class="dl-card__btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
-          </a>
-        </div>
-
-        <div class="dl-card">
-          <div class="dl-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          <span class="dl-card__type">PDF · 1.8 MB</span>
-          <h2 class="dl-card__title">Cloud Mobile vs. Company Phones</h2>
-          <p class="dl-card__desc">A detailed comparison guide showing total cost of ownership, features, and flexibility differences between traditional devices and cloud mobile.</p>
-          <a href="#" class="dl-card__btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
+            Download .exe
           </a>
         </div>
 
@@ -329,11 +306,11 @@
 
   <section class="section section--red">
     <div class="section__inner final-cta">
-      <h2>Need something else?</h2>
-      <p>Our team can provide custom materials for your procurement or evaluation process.</p>
+      <h2>Don't have an account yet?</h2>
+      <p>Sign up for a free trial and have your business number live in minutes.</p>
       <div class="cta-group">
-        <a href="contact.html" class="btn-secondary">Talk to our team</a>
-        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" style="color:rgba(255,255,255,.9);font-size:var(--fs-lead);font-weight:500;text-decoration:none;padding:var(--sp-4) var(--sp-6);display:inline-block">Get started free →</a>
+        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-secondary">Get started free</a>
+        <a href="contact.html" style="color:rgba(255,255,255,.9);font-size:var(--fs-lead);font-weight:500;text-decoration:none;padding:var(--sp-4) var(--sp-6);display:inline-block">Talk to our team →</a>
       </div>
     </div>
   </section>
