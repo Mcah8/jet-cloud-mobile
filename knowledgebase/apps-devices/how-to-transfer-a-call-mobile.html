@@ -111,6 +111,7 @@
     .support-form__submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:all var(--dur-med) var(--ease-out)}
     .support-form__submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
     .support-form__submit:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
+    .support-form__hint{font-size:12px;color:var(--fg-3);margin-top:4px}
     .support-form__error{color:#c0392b;font-size:var(--fs-small);font-weight:500;padding:var(--sp-3) var(--sp-4);background:#fdecea;border-radius:var(--radius-md);border:1px solid #f5c6c6;display:none}
     .support-form__success{text-align:center;padding:var(--sp-7) 0;display:none}
     .support-form__success svg{color:var(--red);margin:0 auto var(--sp-4)}
@@ -356,16 +357,18 @@
       sfForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = sfForm.querySelector('button[type="submit"]');
-        const name = sfForm.sf_name ? sfForm.sf_name.value.trim() : document.getElementById('sf-name').value.trim();
-        const email = document.getElementById('sf-email').value.trim();
-        const phone = document.getElementById('sf-phone').value.trim();
-        const company = document.getElementById('sf-company').value.trim();
-        const topic = document.getElementById('sf-topic').value;
+
+        const name    = document.getElementById('sf-name').value.trim();
+        const email   = document.getElementById('sf-email').value.trim();
+        const account = document.getElementById('sf-account').value.trim();
+        const phone   = document.getElementById('sf-phone').value.trim();
+        const reason  = document.getElementById('sf-reason').value;
+        const subject = document.getElementById('sf-subject').value.trim();
         const message = document.getElementById('sf-message').value.trim();
 
         sfError.style.display = 'none';
 
-        if (!name || !email || !topic || !message) {
+        if (!name || !email || !phone || !reason || !subject || !message) {
           sfError.textContent = 'Please fill in all required fields.';
           sfError.style.display = 'block';
           return;
@@ -376,14 +379,15 @@
           return;
         }
 
-        const bodyLines = [];
-        if (phone) bodyLines.push('Phone: ' + phone);
-        if (company) bodyLines.push('Company: ' + company);
-        if (bodyLines.length) bodyLines.push('');
-        bodyLines.push(message);
-
         btn.disabled = true;
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Sending…';
+
+        const customFields = [
+          { id: 900010486406, value: reason },
+          { id: 900011984406, value: phone },
+          { id: 900011971946, value: name }
+        ];
+        if (account) customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
 
         try {
           const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
@@ -391,9 +395,10 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               request: {
-                subject: '[' + topic + '] ' + name,
-                comment: { body: bodyLines.join('\n') },
-                requester: { name, email }
+                requester: { name, email },
+                subject,
+                comment: { body: message },
+                custom_fields: customFields
               }
             })
           });
@@ -402,9 +407,11 @@
             sfForm.style.display = 'none';
             sfSuccess.style.display = 'block';
           } else {
-            throw new Error('status ' + res.status);
+            const detail = await res.text();
+            throw new Error(res.status + ': ' + detail.slice(0, 120));
           }
         } catch (err) {
+          console.error('Zendesk error:', err);
           sfError.textContent = 'Something went wrong. Please try again or call us on 0488 811 729.';
           sfError.style.display = 'block';
           btn.disabled = false;
