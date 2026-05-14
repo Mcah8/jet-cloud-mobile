@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcah8.github.io/jet-cloud-mobile/sitemap.xml
