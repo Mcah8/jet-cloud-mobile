@@ -127,6 +127,28 @@
 
     @media(max-width:900px){.nav__links{display:none}.nav__burger{display:flex}.kb-grid{grid-template-columns:repeat(2,1fr)}.kb-section{padding:var(--sp-8) var(--sp-5)}}
     @media(max-width:600px){.kb-grid{grid-template-columns:1fr}.kb-hero{padding:var(--sp-8) var(--sp-5) var(--sp-9)}.kb-hero h1{font-size:var(--fs-h3)}.kb-support{flex-direction:column}.footer__top{flex-direction:column}}
+
+    .sf-panel{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-5)}
+    .sf-panel__header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--sp-6)}
+    .sf-panel__header h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-1)}
+    .sf-panel__header p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:0}
+    .sf-panel__close{background:none;border:none;cursor:pointer;color:var(--fg-3);padding:var(--sp-1);line-height:1;flex-shrink:0}
+    .sf-panel__close:hover{color:var(--fg-1)}
+    .support-form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+    .support-form__field{display:flex;flex-direction:column;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+    .support-form__field label{font-size:var(--fs-sm);font-weight:600;color:var(--fg-1)}
+    .support-form__field input,.support-form__field select,.support-form__field textarea{border:var(--border);border-radius:var(--radius);padding:var(--sp-3) var(--sp-4);font-size:var(--fs-body);font-family:var(--font-ui);color:var(--fg-1);background:var(--white);outline:none;transition:border-color var(--dur-base) var(--ease-out)}
+    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red)}
+    .support-form__field textarea{min-height:120px;resize:vertical}
+    .support-form__hint{font-size:12px;color:var(--fg-3);margin-top:4px}
+    .support-form__error{display:none;background:#fff0f0;border:1px solid var(--red);border-radius:var(--radius);padding:var(--sp-3) var(--sp-4);color:var(--red);font-size:var(--fs-sm);margin-bottom:var(--sp-4)}
+    .support-form__submit{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--red);color:#fff;border:none;border-radius:var(--radius);padding:var(--sp-3) var(--sp-6);font-size:var(--fs-body);font-weight:600;cursor:pointer;transition:background var(--dur-base) var(--ease-out)}
+    .support-form__submit:hover{background:var(--red-dark)}
+    .support-form__submit:disabled{opacity:.6;cursor:not-allowed}
+    .support-form__success{display:none;text-align:center;padding:var(--sp-8) 0;color:var(--fg-2)}
+    .support-form__success svg{color:var(--red);margin-bottom:var(--sp-4)}
+    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);color:var(--fg-1);margin-bottom:var(--sp-2)}
+    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -290,15 +312,81 @@
           <p>Our support team is here to help. Submit a ticket or start a live chat.</p>
         </div>
         <div class="kb-support__actions">
-          <a href="https://support.jetinteractive.com.au" target="_blank" rel="noopener" class="btn-primary">
+          <button type="button" class="btn-primary" id="sf-open">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             Contact support
-          </a>
+          </button>
           <a href="contact.html" class="btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
             Call us
           </a>
         </div>
+      </div>
+
+      <div class="sf-panel" id="sf-panel" style="display:none">
+        <div class="sf-panel__header">
+          <div>
+            <h3>Contact support</h3>
+            <p>Fill in the form below and we'll get back to you shortly.</p>
+          </div>
+          <button type="button" class="sf-panel__close" id="sf-close" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="support-form__success" id="sf-success" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+          <h4>Message sent!</h4>
+          <p>Thanks for reaching out. A member of our team will be in touch soon.</p>
+        </div>
+        <form class="support-form" id="sf-form" novalidate>
+          <div class="support-form__row">
+            <div class="support-form__field">
+              <label for="sf-name">Name <span style="color:var(--red)">*</span></label>
+              <input type="text" id="sf-name" placeholder="Your name" required>
+            </div>
+            <div class="support-form__field">
+              <label for="sf-email">Email <span style="color:var(--red)">*</span></label>
+              <input type="email" id="sf-email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="support-form__row">
+            <div class="support-form__field">
+              <label for="sf-account">Account Number <span style="color:var(--fg-3);font-weight:400">(optional)</span></label>
+              <input type="number" id="sf-account" placeholder="4-digit account number">
+              <span class="support-form__hint">Found in the top right of Jet Hub or on your invoice.</span>
+            </div>
+            <div class="support-form__field">
+              <label for="sf-phone">Contact Number <span style="color:var(--red)">*</span></label>
+              <input type="tel" id="sf-phone" placeholder="04XX XXX XXX" required>
+            </div>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-reason">What Is Your Enquiry Regarding? <span style="color:var(--red)">*</span></label>
+            <select id="sf-reason" required>
+              <option value="">Select...</option>
+              <option value="new_service">Order A New Service</option>
+              <option value="modify_a_service">Modify A Service</option>
+              <option value="report_a_problem">Report an Issue</option>
+              <option value="enquire_about_reports">Enquire About Reports</option>
+              <option value="enquire_about_billing">Enquire About Billing or Accounts</option>
+              <option value="cancel_a_service">Cancel A Service</option>
+              <option value="call_tracking___integrations">Call Tracking &amp; Integrations</option>
+            </select>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-subject">Subject <span style="color:var(--red)">*</span></label>
+            <input type="text" id="sf-subject" placeholder="Brief summary of your request" required>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-message">Description <span style="color:var(--red)">*</span></label>
+            <textarea id="sf-message" placeholder="Please enter the details of your request. A member of our support staff will respond as soon as possible." required></textarea>
+          </div>
+          <div class="support-form__error" id="sf-error"></div>
+          <button type="submit" class="support-form__submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send message
+          </button>
+        </form>
       </div>
 
     </div>
@@ -355,6 +443,65 @@
         const text = card.textContent.toLowerCase();
         card.style.display = text.includes(q) ? '' : 'none';
       });
+    });
+
+    // Support form toggle
+    const sfOpen  = document.getElementById('sf-open');
+    const sfClose = document.getElementById('sf-close');
+    const sfPanel = document.getElementById('sf-panel');
+    sfOpen.addEventListener('click', () => { sfPanel.style.display = 'block'; sfOpen.style.display = 'none'; sfPanel.scrollIntoView({behavior:'smooth',block:'start'}); });
+    sfClose.addEventListener('click', () => { sfPanel.style.display = 'none'; sfOpen.style.display = ''; });
+
+    // Support form submit
+    const sfForm    = document.getElementById('sf-form');
+    const sfSuccess = document.getElementById('sf-success');
+    const sfError   = document.getElementById('sf-error');
+    sfForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = sfForm.querySelector('button[type="submit"]');
+      const name    = document.getElementById('sf-name').value.trim();
+      const email   = document.getElementById('sf-email').value.trim();
+      const account = document.getElementById('sf-account').value.trim();
+      const phone   = document.getElementById('sf-phone').value.trim();
+      const reason  = document.getElementById('sf-reason').value;
+      const subject = document.getElementById('sf-subject').value.trim();
+      const message = document.getElementById('sf-message').value.trim();
+      sfError.style.display = 'none';
+      if (!name || !email || !phone || !reason || !subject || !message) {
+        sfError.textContent = 'Please fill in all required fields.';
+        sfError.style.display = 'block'; return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        sfError.textContent = 'Please enter a valid email address.';
+        sfError.style.display = 'block'; return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Sending…';
+      const customFields = [
+        { id: 900010486406, value: reason },
+        { id: 900011984406, value: phone },
+        { id: 900011971946, value: name }
+      ];
+      if (account) customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
+      try {
+        const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields } })
+        });
+        if (res.ok || res.status === 201) {
+          sfForm.style.display = 'none'; sfSuccess.style.display = 'block';
+        } else {
+          const detail = await res.text();
+          throw new Error(res.status + ': ' + detail.slice(0, 120));
+        }
+      } catch (err) {
+        console.error('Zendesk error:', err);
+        sfError.textContent = 'Something went wrong. Please try again or call us on 0488 811 729.';
+        sfError.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
+      }
     });
   </script>
 </body>
