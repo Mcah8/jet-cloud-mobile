@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/pricing.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/contact.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/faq.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Solutions -->
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/solutions/sales-teams.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/solutions/international-staff.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/solutions/small-business.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Industries -->
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/industries/automotive.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/industries/real-estate.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/industries/finance.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Resources -->
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/downloads.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/videos.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/why-smes-need-dedicated-business-mobile-number.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/how-to-separate-work-and-personal-calls-on-existing-mobile.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/top-5-features-cloud-mobile-solution.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/call-recording-compliance-australia.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/cloud-mobile-real-estate-agents.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcah8.github.io/jet-cloud-mobile/articles/true-cost-company-phones-vs-cloud-mobile.html</loc>
+    <lastmod>2025-05-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
