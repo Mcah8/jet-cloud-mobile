@@ -192,20 +192,11 @@
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
-  // ── Inject trigger button into nav ─────────────────────────────────────────
+  // ── Wire trigger button ────────────────────────────────────────────────────
   function injectTrigger() {
-    const nav = document.querySelector('.nav__inner');
-    if (!nav || document.getElementById('gs-trigger')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'gs-trigger';
-    btn.setAttribute('aria-label', 'Search');
-    btn.title = 'Search (/)';
-    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`;
-
-    // Insert before the burger (direct child of nav__inner)
-    const burger = nav.querySelector('.nav__burger');
-    nav.insertBefore(btn, burger || null);
+    // Button is pre-rendered in HTML; just wire the click handler
+    const btn = document.getElementById('gs-trigger');
+    if (!btn) return;
     btn.addEventListener('click', openSearch);
   }
 
