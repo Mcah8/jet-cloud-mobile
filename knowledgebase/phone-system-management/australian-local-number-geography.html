@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Australian Local Number Geography — Jet Cloud Mobile Knowledgebase</title>
+  <meta name="description" content="Australian Local Number Geography. Step-by-step guide from the Jet Cloud Mobile knowledgebase.">
+  <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-logo:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 100%);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto;border-radius:var(--radius-md);box-shadow:var(--shadow-2);margin:var(--sp-5) 0}
+    ::selection{background:var(--red);color:var(--white)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover,.nav__links a.active{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
+    .nav__dropdown{position:relative}
+    .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-toggle:hover,.nav__dropdown-toggle.active{color:var(--red)}
+    .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown-menu{display:none;position:absolute;top:100%;margin-top:1px;left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
+    .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-menu a:last-child{border-bottom:none}
+    .nav__dropdown-menu a:hover,.nav__dropdown-menu a.active{background:var(--ink-50);color:var(--red)}
+    .nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer-sub{padding-left:var(--sp-5)}
+    .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+    .kb-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6) var(--sp-10)}
+    .kb-hero__inner{max-width:760px;margin:0 auto}
+    .kb-hero__breadcrumb{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:var(--fs-small);font-weight:500;margin-bottom:var(--sp-5)}
+    .kb-hero__breadcrumb a{color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+    .kb-hero__breadcrumb a:hover{color:var(--white)}
+    .kb-hero__breadcrumb svg{flex-shrink:0}
+    .kb-hero__tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 12px;border-radius:var(--radius-pill);margin-bottom:var(--sp-4)}
+    .kb-hero h1{font-family:var(--font-display);font-size:clamp(24px,4vw,40px);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-tight);color:var(--white)}
+    .article-wrap{max-width:760px;margin:0 auto;padding:var(--sp-10) var(--sp-6)}
+    .article-body h1{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-9) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--ink-200)}
+    .article-body h1:first-child{margin-top:0}
+    .article-body h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-8) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--red-100)}
+    .article-body h2:first-child{margin-top:0}
+    .article-body h3{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;color:var(--fg-1);margin:var(--sp-6) 0 var(--sp-3)}
+    .article-body p{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5)}
+    .article-body ul,.article-body ol{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5);padding-left:var(--sp-6)}
+    .article-body li{margin-bottom:var(--sp-2)}
+    .article-body li ul,.article-body li ol{margin-top:var(--sp-2);margin-bottom:0}
+    .article-body strong{color:var(--fg-1);font-weight:600}
+    .article-body code{background:var(--ink-100);border-radius:4px;padding:2px 6px;font-family:monospace;font-size:0.9em;color:var(--fg-1)}
+    .article-body table{width:100%;border-collapse:collapse;margin-bottom:var(--sp-6);font-size:var(--fs-body)}
+    .article-body th{background:var(--ink-100);font-weight:600;text-align:left;padding:var(--sp-3) var(--sp-4);border:var(--border)}
+    .article-body td{padding:var(--sp-3) var(--sp-4);border:var(--border);color:var(--fg-2)}
+    .article-body tr:nth-child(even) td{background:var(--ink-50)}
+    .article-body a{color:var(--red);text-decoration:none;font-weight:500}
+    .article-body a:hover{text-decoration:underline}
+    .article-body blockquote{border-left:4px solid var(--red);padding:var(--sp-4) var(--sp-5);background:var(--red-50);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:var(--sp-6) 0}
+    .article-body blockquote p{margin-bottom:0;color:var(--fg-1)}
+    .article-body hr{border:none;border-top:var(--border);margin:var(--sp-8) 0}
+    .kb-help{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-9)}
+    .kb-help h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-2)}
+    .kb-help>p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:var(--sp-6)}
+    .support-form{display:flex;flex-direction:column;gap:var(--sp-4)}
+    .support-form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+    .support-form__field{display:flex;flex-direction:column;gap:6px}
+    .support-form__field label{font-size:var(--fs-small);font-weight:600;color:var(--fg-1)}
+    .support-form__field input,.support-form__field select,.support-form__field textarea{font-family:var(--font-ui);font-size:var(--fs-body);color:var(--fg-1);background:var(--white);border:var(--border);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);outline:none;width:100%}
+    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,28,36,.12)}
+    .support-form__field textarea{resize:vertical;min-height:120px;line-height:var(--lh-normal)}
+    .support-form__field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .support-form__submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:all var(--dur-med) var(--ease-out)}
+    .support-form__submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .support-form__submit:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
+    .support-form__error{color:#c0392b;font-size:var(--fs-small);font-weight:500;padding:var(--sp-3) var(--sp-4);background:#fdecea;border-radius:var(--radius-md);border:1px solid #f5c6c6;display:none}
+    .support-form__success{text-align:center;padding:var(--sp-7) 0;display:none}
+    .support-form__success svg{color:var(--red);margin:0 auto var(--sp-4)}
+    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-3)}
+    .support-form__success p{color:var(--fg-2);font-size:var(--fs-lead)}
+    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.support-form__submit{width:100%;justify-content:center}}
+    .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
+    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
+    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
+    .footer__phone:hover{color:var(--red)}
+    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
+    .footer__col ul{list-style:none}
+    .footer__col li{margin-bottom:var(--sp-2)}
+    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
+    .footer__legal{display:flex;gap:var(--sp-5)}
+    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
+    .footer__legal a:hover{color:var(--white)}
+    @media(max-width:1024px){.footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}.footer__brand{grid-column:1/-1}}
+    @media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.article-wrap{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../../index.html"><img src="../../project/assets/jet-logo-dark.svg" alt="Jet Interactive"></a>
+      <ul class="nav__links">
+        <li><a href="../../index.html">Home</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../../solutions/small-business.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Small Business</a>
+            <a href="../../solutions/sales-teams.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Sales Teams</a>
+            <a href="../../solutions/international-staff.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>International Staff</a>
+          </div>
+        </li>
+        <li><a href="../../pricing.html">Pricing</a></li>
+        <li><a href="../../knowledgebase.html" class="active">Knowledgebase</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+      </ul>
+      <a href="tel:0488811729" class="nav__phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.4l.42.52z"/></svg>0488 811 729</a>
+      <a href="../../contact.html" class="nav__cta">Contact Support</a>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="nav__drawer">
+    <a href="../../index.html">Home</a>
+    <div class="nav__dropdown-section">
+      <div class="nav__drawer-section-label">Solutions</div>
+      <div class="nav__drawer-sub">
+        <a href="../../solutions/small-business.html">Small Business</a>
+        <a href="../../solutions/sales-teams.html">Sales Teams</a>
+        <a href="../../solutions/international-staff.html">International Staff</a>
+      </div>
+    </div>
+    <a href="../../pricing.html">Pricing</a>
+    <a href="../../knowledgebase.html" class="active">Knowledgebase</a>
+    <a href="../../contact.html">Contact</a>
+    <a href="../../contact.html" class="nav__cta">Contact Support</a>
+  </div>
+
+  <section class="kb-hero">
+    <div class="kb-hero__inner">
+      <div class="kb-hero__breadcrumb">
+        <a href="../../knowledgebase.html">Knowledgebase</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href="../../knowledgebase/phone-system-management.html">Phone System Management</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Australian Local Number Geography</span>
+      </div>
+      <div class="kb-hero__tag">Phone System Management</div>
+      <h1>Australian Local Number Geography</h1>
+    </div>
+  </section>
+
+  <div class="article-wrap">
+    <div class="article-body">
+      <section id="h.p_63yb82dSusom" class="yaqOZd qeLZfd">
+<div class="mYVXT">
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_nXN7uOM9usoj" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd mGzaTb baZpAe">
+<p id="h.p_ei-I9Nd6uuiZ" class="CDt4Ke zfr3Q">Geographical areas in Australia are identified by the first 2-3 digits of the local number, which relate to the locality of specific Charging Districts within the major states and territories of Australia.</p>
+<p class="CDt4Ke zfr3Q">Please see below for a full list of local number areas and prefixes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="h.p_yNZ5xBZzZNS2" class="yaqOZd">
+<p> </p>
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_ORs7LwnSZNSy" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd baZpAe">
+<p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4427929408537#:~:text=WEST%20REGION%20(08)-,CENTRAL%20EAST%20REGION%20(02),-02%2033%20Gosford" target="_self">CENTRAL EAST REGION (02)</a></p>
+<p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4427929408537#:~:text=02%209%20Sydney-,SOUTH%2DEAST%20REGION%20(03),-03%2032%20Geelong" target="_self">SOUTH-EAST REGION (03)</a></p>
+<p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4427929408537#:~:text=03%209%20Melbourne-,NORTH%2DEAST%20REGION%20(07),-07%202%20Brisbane" target="_self" rel="undefined">NORTH-EAST REGION (07)</a></p>
+<p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4427929408537#:~:text=%5Bgeo%202%5D-,CENTRAL%20AND%20WEST%20REGION%20(08),-08%2025%20Riverland" target="_self">CENTRAL AND WEST REGION (08)</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="h.p_dH_MM0ehYFJw" class="yaqOZd">
+<div class="IFuOkc"> </div>
+<div class="mYVXT">
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_iQTlfKdeYFJy" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd mGzaTb baZpAe">
+<div id="h.p_p9JSI1lKYFKG" class="GV3q8e aP9Z7e"> </div>
+<h2 class="CjVfdc">CENTRAL EAST REGION (02)</h2>
+<ul class="n8H08c UVNKR">
+<li id="h.p_gAFcst7NYFKH" class="TYR86d zfr3Q">02 33 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGosford%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG41UXWJYvx_SNEgDTgLH1f95OnHg" target="_blank" rel="noopener noreferrer">Gosford</a>, Central Coast <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_hJsl1HVbYFKH" class="TYR86d zfr3Q">02 37 Armidale, Tamworth, Northern Tablelands <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_CPhLoIXBYFKH" class="TYR86d zfr3Q">02 38 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBowral%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHw-p_yEjKtrebDk53Z5PE4fMF0lQ" target="_blank" rel="noopener noreferrer">Bowral</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCrookwell%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFlybHii_JX9E6i83ZLRRzXy5wxVA" target="_blank" rel="noopener noreferrer">Crookwell</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGoulburn%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE-8EqxPrydebY8FL2muWBN1VGP9w" target="_blank" rel="noopener noreferrer">Goulburn</a>, Marulan <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_B4aXBRtTYFKH" class="TYR86d zfr3Q">02 39 Griffith, Wagga Wagga, Riverina <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_Grv3uGPhYFKI" class="TYR86d zfr3Q">02 40 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNewcastle%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGyUhHv04EsjMpJeLGo-dpcVTL5PA" target="_blank" rel="noopener noreferrer">Newcastle</a>, Lower Hunter <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_vQJKlh69YFKI" class="TYR86d zfr3Q">02 41 Newcastle, Lower Hunter <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_A2Lo2TJpYFKI" class="TYR86d zfr3Q">02 42 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWollongong&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKk1WUvHoK3sW-yfUMezzB7cpP7A" target="_blank" rel="noopener noreferrer">Wollongong</a>
+</li>
+<li id="h.p_34WPGKzmYFKI" class="TYR86d zfr3Q">02 43 Gosford, Central Coast</li>
+<li id="h.p__KksGik_YFKI" class="TYR86d zfr3Q">02 44 Batemans Bay, Moruya, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNowra%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGkOWHeWpGa-QpdVRcoMwp5vVAkSQ" target="_blank" rel="noopener noreferrer">Nowra</a>
+</li>
+<li id="h.p_a1cAkX8uYFKI" class="TYR86d zfr3Q">02 45 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWindsor%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH3e2FvGD79xIYbsLXdExrwjK9_jQ" target="_blank" rel="noopener noreferrer">Windsor</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRichmond%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGeuKxMZzN-ewu4ZdbqJl3Znur5-Q" target="_blank" rel="noopener noreferrer">Richmond</a>
+</li>
+<li id="h.p_PLHfQ3_3YFKJ" class="TYR86d zfr3Q">02 46 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCampbelltown%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEyjNZqwiCy_x62H2NPTfxaEqXZAA" target="_blank" rel="noopener noreferrer">Campbelltown</a>
+</li>
+<li id="h.p_Xjvyd112YFKJ" class="TYR86d zfr3Q">02 47 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPenrith%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGgtFD5haS2Rlor4xUR4NglMUsR_Q" target="_blank" rel="noopener noreferrer">Penrith</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBlue_Mountains_%28Australia%29&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFSWSBT6Y29fS6juFW7sOXhlOPEbw" target="_blank" rel="noopener noreferrer">Blue Mountains</a>
+</li>
+<li id="h.p_9pe5XD4-YFKJ" class="TYR86d zfr3Q">02 48 Bowral, Crookwell, Goulburn, Marulan</li>
+<li id="h.p_m4z2GYNHYFKJ" class="TYR86d zfr3Q">02 49 Newcastle, Lower Hunter</li>
+<li id="h.p_8QgXU5GuYFKK" class="TYR86d zfr3Q">02 50 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAlbury%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGrF39taiPKsxjf3_HZvdSu3vATpg" target="_blank" rel="noopener noreferrer">Albury</a>, Corryong, Wodonga <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_BzizyQvWYFKK" class="TYR86d zfr3Q">02 51 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCanberra&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF9qHAgdKzuEETa5U0Nm83TFSkINQ" target="_blank" rel="noopener noreferrer">Canberra</a>, Queanbeyan, Yass <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_hpq4xHUvYFKK" class="TYR86d zfr3Q">02 52 Canberra, Queanbeyan, Yass <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_BcJLef_jYFKK" class="TYR86d zfr3Q">02 53 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBathurst%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFIWzqWKvgHbSGTOcShTtEj3zeKcA" target="_blank" rel="noopener noreferrer">Bathurst</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FOrange%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEl1mO2J0wlt_Wtq2ate3nwK4Sxng" target="_blank" rel="noopener noreferrer">Orange</a>. <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_JQg5lB-GYFKL" class="TYR86d zfr3Q">02 54 Bega, Merimbula, Tathra, Cooma <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_18c1dh01YFKL" class="TYR86d zfr3Q">02 55 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKempsey%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH_raeka63h9cdAMBwA9o0mQHScJQ" target="_blank" rel="noopener noreferrer">Kempsey</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTaree%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHCi4RRkTFE7yFYM050zN4U5UVQJw" target="_blank" rel="noopener noreferrer">Taree</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLord_Howe_Island&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHs8J7nt2C1lm1dgSGUJGcThs5Y9Q" target="_blank" rel="noopener noreferrer">Lord Howe Island</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMuswellbrook&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGYP5gWDsIADh6Iast1fXmy8SEf5w" target="_blank" rel="noopener noreferrer">Muswellbrook</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_Df_K4pQHYFKL" class="TYR86d zfr3Q">02 56 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMurwillumbah&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFF-hDNFakSAqpYhaNkYDOlH7hKGg" target="_blank" rel="noopener noreferrer">Murwillumbah</a>, Grafton, Lismore <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_NHmq9RceYFKM" class="TYR86d zfr3Q">02 57 Armidale, Tamworth, Northern Tablelands <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_ayGswzW7YFKM" class="TYR86d zfr3Q">02 58 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBourke%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF0BvwS2FlvPX14Wf-BpVB3Z9S9Gw" target="_blank" rel="noopener noreferrer">Bourke</a>, Dubbo, Far West. <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_i63_S6APYFKM" class="TYR86d zfr3Q">02 59 Griffith, Wagga Wagga, Riverina <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_Zft2_3aBYFKN" class="TYR86d zfr3Q">02 60 Albury, Corryong, Wodonga</li>
+<li id="h.p_8W_wkjCQYFKN" class="TYR86d zfr3Q">02 61 Canberra, Queanbeyan, Yass <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_iAE9joynYFKN" class="TYR86d zfr3Q">02 62 Canberra, Queanbeyan, Yass</li>
+<li id="h.p_XSN5cVaTYFKN" class="TYR86d zfr3Q">02 63 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBathurst%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFIWzqWKvgHbSGTOcShTtEj3zeKcA" target="_blank" rel="noopener noreferrer">Bathurst</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FOrange%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEl1mO2J0wlt_Wtq2ate3nwK4Sxng" target="_blank" rel="noopener noreferrer">Orange</a>, Cowra</li>
+<li id="h.p_DuuGjT6jYFKO" class="TYR86d zfr3Q">02 64 Bega, Merimbula, Tathra, Cooma</li>
+<li id="h.p_akhfv308YFKO" class="TYR86d zfr3Q">02 65 Port Macquarie, Kempsey, Taree, Lord Howe Island, Muswellbrook.</li>
+<li id="h.p_clgmvmK2YFKO" class="TYR86d zfr3Q">02 66 Coffs Harbour, Grafton, Lismore</li>
+<li id="h.p_zBzsjuyTYFKO" class="TYR86d zfr3Q">02 67 Armidale, Glen Innes, Gunnedah, Inverell, Moree, Narrabri, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTamworth%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGN_h7YTvk4CV6PAKb6_3hXdy_tZw" target="_blank" rel="noopener noreferrer">Tamworth</a>
+</li>
+<li id="h.p_JKU4F2wRYFKO" class="TYR86d zfr3Q">02 68 Bourke, Dubbo, Far West</li>
+<li id="h.p_kSkokW8rYFKO" class="TYR86d zfr3Q">02 69 Griffith, Wagga Wagga, Riverina</li>
+<li id="h.p_kfDNvAyQYFKP" class="TYR86d zfr3Q">02 7 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSydney&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG_tLIM3MkOj6ZZblYVYuMPmsay7w" target="_blank" rel="noopener noreferrer">Sydney</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a><a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_19O-deZPYFKP" class="TYR86d zfr3Q">02 8 Sydney <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_N7ItM8drYFKP" class="TYR86d zfr3Q">02 9 Sydney</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="h.p_8TmYpVB7XaOO" class="yaqOZd">
+<div class="IFuOkc"> </div>
+<div class="mYVXT">
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_vGdM2MSgXaOQ" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd mGzaTb baZpAe">
+<div id="h.p_FQiDf6ELXaPF" class="GV3q8e aP9Z7e"> </div>
+<div class="PPhIP rviiZ">
+<div class="U26fgb mUbCce fKz7Od LRAOtb Znu9nd M9Bg4d" aria-describedby="h.p_FQiDf6ELXaPF_l" aria-label="Copy heading link" aria-disabled="false" data-tooltip="Copy heading link" aria-hidden="true" data-tooltip-position="top" data-tooltip-vertical-offset="12" data-tooltip-horizontal-offset="0">
+<div class="VTBa7b MbhUzd"> </div>
+</div>
+</div>
+<h2 class="CjVfdc">SOUTH-EAST REGION (03)</h2>
+<ul class="n8H08c UVNKR">
+<li id="h.p_JsdhhOYQXaPT" class="TYR86d zfr3Q">03 32 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGeelong&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4fwazM5dKxl_puAAv3oNTNGJS3A" target="_blank" rel="noopener noreferrer">Geelong</a>, Colac <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_zyR6yuxnXaPT" class="TYR86d zfr3Q">03 33 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBallarat&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGy4DyVFwktIiRWtCdVrJSYbLXS9w" target="_blank" rel="noopener noreferrer">Ballarat</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_pG7J6EKsXaPT" class="TYR86d zfr3Q">03 34 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBendigo&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH14sEuksSQzGJVJkfNKh8kctCpNw" target="_blank" rel="noopener noreferrer">Bendigo</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_qYA1NfN2XaPU" class="TYR86d zfr3Q">03 40 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMildura&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFVt5YlyWgAnGIj3ddNs_jEzjGeBg" target="_blank" rel="noopener noreferrer">Mildura</a>, Balranald <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_6Lyt6FXCXaPU" class="TYR86d zfr3Q">03 41 Traralgon, Bairnsdale <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_LhSfLXFCXaPU" class="TYR86d zfr3Q">03 42 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGeelong&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4fwazM5dKxl_puAAv3oNTNGJS3A" target="_blank" rel="noopener noreferrer">Geelong</a>, Colac <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_JwLO4RLmXaPU" class="TYR86d zfr3Q">03 43 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBallarat&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGy4DyVFwktIiRWtCdVrJSYbLXS9w" target="_blank" rel="noopener noreferrer">Ballarat</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_DU92QgdoXaPV" class="TYR86d zfr3Q">03 44 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBendigo&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH14sEuksSQzGJVJkfNKh8kctCpNw" target="_blank" rel="noopener noreferrer">Bendigo</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_MM7wWVL9XaPV" class="TYR86d zfr3Q">03 45 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWarrnambool&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEJBnzO7UppkeBOWr3jMM5q6DlilQ" target="_blank" rel="noopener noreferrer">Warrnambool</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_Z8uzhcRDXaPV" class="TYR86d zfr3Q">03 47 Wangaratta <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_hUj_h-zBXaPV" class="TYR86d zfr3Q">03 48 Deniliquin, Numurkah, Shepparton <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_TZMFWzVPXaPW" class="TYR86d zfr3Q">03 49 Mornington <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_58VAJzB3XaPW" class="TYR86d zfr3Q">03 50 Mildura, Balranald</li>
+<li id="h.p_whX75GJ2XaPW" class="TYR86d zfr3Q">03 51 Traralgon, Bairnsdale</li>
+<li id="h.p_np7UdLcbXaPX" class="TYR86d zfr3Q">03 52 Colac, Geelong</li>
+<li id="h.p_7WoglcYvXaPZ" class="TYR86d zfr3Q">03 53 Ballarat</li>
+<li id="h.p_8EJNBx1IXaPZ" class="TYR86d zfr3Q">03 54 Bendigo</li>
+<li id="h.p_buF4jt_7XaPZ" class="TYR86d zfr3Q">03 55 Warrnambool, Casterton, Portland <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_PIdQGIpTXaPZ" class="TYR86d zfr3Q">03 56 Foster, Warragul, Drouin</li>
+<li id="h.p_cttMV_G_XaPa" class="TYR86d zfr3Q">03 57 Wangaratta</li>
+<li id="h.p_uDNHkbYGXaPa" class="TYR86d zfr3Q">03 58 Deniliquin, Shepparton</li>
+<li id="h.p_eeEbU-nUXaPa" class="TYR86d zfr3Q">03 59 Mornington, Pakenham, Rosebud, Warburton, Yarra Ranges</li>
+<li id="h.p_2ZgfrQfDXaPb" class="TYR86d zfr3Q">03 61 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHobart&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHqGbMd5UBBSTQfZG6hFdWcDvaC9A" target="_blank" rel="noopener noreferrer">Hobart</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_4JFlrdEuXaPb" class="TYR86d zfr3Q">03 62 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHobart&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHqGbMd5UBBSTQfZG6hFdWcDvaC9A" target="_blank" rel="noopener noreferrer">Hobart</a>
+</li>
+<li id="h.p_vX6HebYnXaPb" class="TYR86d zfr3Q">03 63 Launceston</li>
+<li id="h.p_1qrZKxuVXaPc" class="TYR86d zfr3Q">03 64 Devonport, Burnie, Queenstown</li>
+<li id="h.p_7emFNMW1XaPd" class="TYR86d zfr3Q">03 65 Devonport, Burnie, Queenstown <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_beeSnM25XaPd" class="TYR86d zfr3Q">03 67 Launceston <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_VeIC0CtmXaPd" class="TYR86d zfr3Q">03 7 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMelbourne&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE21tl1UOyuyamRSI7QvmHtk_-UXA" target="_blank" rel="noopener noreferrer">Melbourne</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a><a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_bkX3-aIvXaPd" class="TYR86d zfr3Q">03 8 Melbourne <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_qGIOnKNTXaPd" class="TYR86d zfr3Q">03 9 Melbourne</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="h.p_v3MfgOwfXiPs" class="yaqOZd">
+<div class="IFuOkc"> </div>
+<div class="mYVXT">
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_MYVRLwMgXiPt" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd mGzaTb baZpAe">
+<div id="h.p_H0QiyBx2XiQA" class="GV3q8e aP9Z7e"> </div>
+<div class="PPhIP rviiZ">
+<div class="U26fgb mUbCce fKz7Od LRAOtb Znu9nd M9Bg4d" aria-describedby="h.p_H0QiyBx2XiQA_l" aria-label="Copy heading link" aria-disabled="false" data-tooltip="Copy heading link" aria-hidden="true" data-tooltip-position="top" data-tooltip-vertical-offset="12" data-tooltip-horizontal-offset="0">
+<div class="VTBa7b MbhUzd"> </div>
+</div>
+</div>
+<h2 class="CjVfdc">NORTH-EAST REGION (07)</h2>
+<ul class="n8H08c UVNKR">
+<li id="h.p_W7SWbvkKXiQJ" class="TYR86d zfr3Q">07 2 Brisbane, Bribie Island <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_NdQzaL7wXiQJ" class="TYR86d zfr3Q">07 3 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBrisbane&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHe85NNC164fpHjlCCIj7N1uIfIQg" target="_blank" rel="noopener noreferrer">Brisbane</a>, Bribie Island</li>
+<li id="h.p_FAwCVt8tXiQJ" class="TYR86d zfr3Q">07 40 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCairns&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHZJwDJ7dSMM70phS0h9Xmcmhig1A" target="_blank" rel="noopener noreferrer">Cairns</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFar_North_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE5kCXAsqkGAcD2EclZ2VGP0XydyA" target="_blank" rel="noopener noreferrer">Far North Queensland</a>
+</li>
+<li id="h.p_QZTdcTAhXiQJ" class="TYR86d zfr3Q">07 41 Bundaberg, Kingaroy</li>
+<li id="h.p_PXWPD3liXiQJ" class="TYR86d zfr3Q">07 42 Cairns <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_qkpUYLxFXiQJ" class="TYR86d zfr3Q">07 43 Bundaberg, Kingaroy <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_yRScz47TXiQJ" class="TYR86d zfr3Q">07 44 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTownsville&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHJ3QImARk6VcFIRYyi-Z3MRuuA7g" target="_blank" rel="noopener noreferrer">Townsville</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNorth_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG3ctTHUK1-q297kPu4wNayFNbY0Q" target="_blank" rel="noopener noreferrer">North Queensland</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_8hEA500-XiQJ" class="TYR86d zfr3Q">07 45 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FToowoomba&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHG4nruwgSKs74pLmcaJvZya82dDA" target="_blank" rel="noopener noreferrer">Toowoomba</a>, Roma, south-west <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_GY3k-NLaXiQJ" class="TYR86d zfr3Q">07 46 Toowoomba, Roma, South West</li>
+<li id="h.p_79Z9d7XCXiQJ" class="TYR86d zfr3Q">07 47 Townsville, North Queensland</li>
+<li id="h.p_nBg3EgvkXiQJ" class="TYR86d zfr3Q">07 48 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRockhampton&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEn47zyRVSJRX7MNPj-8Ih9e6LN0g" target="_blank" rel="noopener noreferrer">Rockhampton</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMackay%2C_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG4hUsXjjJWXJOpZfhlQXPv_kc2Pw" target="_blank" rel="noopener noreferrer">Mackay</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_rbcG3obXXiQJ" class="TYR86d zfr3Q">07 49 Rockhampton, Mackay, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGladstone%2C_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGJ8ZbmwRed7mKP1eeaBgBnRojaCA" target="_blank" rel="noopener noreferrer">Gladstone</a>
+</li>
+<li id="h.p_3jrz6l8oXiQJ" class="TYR86d zfr3Q">07 52 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSunshine_Coast%2C_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHoU5uH5myRHBKRn0dCBpAEbUlR2A" target="_blank" rel="noopener noreferrer">Sunshine Coast</a>, Esk, Nambour, Gatton, Caboolture <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_rJky0RqKXiQJ" class="TYR86d zfr3Q">07 53 Sunshine Coast, Esk, Nambour, Gatton, Caboolture <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_gaSyFNqOXiQK" class="TYR86d zfr3Q">07 54 Sunshine Coast, Esk, Nambour, Gatton, Caboolture</li>
+<li id="h.p_WkWCdwo1XiQK" class="TYR86d zfr3Q">07 55 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGold_Coast%2C_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE5JSGxQNmAk6kv0bsv5B7Rx4JSVg" target="_blank" rel="noopener noreferrer">Gold Coast</a>, Beaudesert <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_wo1rK1G8XiQK" class="TYR86d zfr3Q">07 56 Gold Coast, Beaudesert <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_mOK_PgdfXiQK" class="TYR86d zfr3Q">07 57 Gold Coast, Beaudesert <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_N_F82oCsXiQK" class="TYR86d zfr3Q">07 70 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCairns&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHZJwDJ7dSMM70phS0h9Xmcmhig1A" target="_blank" rel="noopener noreferrer">Cairns</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFar_North_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE5kCXAsqkGAcD2EclZ2VGP0XydyA" target="_blank" rel="noopener noreferrer">Far North Queensland</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_rWokAnsoXiQK" class="TYR86d zfr3Q">07 75 Inglewood, Toowoomba <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_S3JoKVZMXiQK" class="TYR86d zfr3Q">07 76 Inglewood, Toowoomba <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_Hq09ya2LXiQK" class="TYR86d zfr3Q">07 77 Townsville, North Queensland <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_rl8KufxSXiQK" class="TYR86d zfr3Q">07 79 Rockhampton, Mackay, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGladstone%2C_Queensland&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGJ8ZbmwRed7mKP1eeaBgBnRojaCA" target="_blank" rel="noopener noreferrer">Gladstone</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="h.p_pg9pinlqXhPk" class="yaqOZd">
+<div class="IFuOkc"> </div>
+<div class="mYVXT">
+<div class="LS81yb VICjCf" tabindex="-1">
+<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
+<div class="JNdkSc-SmKAyb">
+<div class="">
+<div class="oKdM2c Kzv0Me">
+<div id="h.p_-fy0i31MXhPl" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
+<div class="jXK9ad-SmKAyb">
+<div class="tyJCtd mGzaTb baZpAe">
+<div id="h.p_EBQIBr_5XhP6" class="GV3q8e aP9Z7e"> </div>
+<div class="PPhIP rviiZ">
+<div class="U26fgb mUbCce fKz7Od LRAOtb Znu9nd M9Bg4d" aria-describedby="h.p_EBQIBr_5XhP6_l" aria-label="Copy heading link" aria-disabled="false" data-tooltip="Copy heading link" aria-hidden="true" data-tooltip-position="top" data-tooltip-vertical-offset="12" data-tooltip-horizontal-offset="0">
+<div class="VTBa7b MbhUzd"> </div>
+</div>
+</div>
+<h2 class="CjVfdc">CENTRAL AND WEST REGION (08)</h2>
+<ul class="n8H08c UVNKR">
+<li id="h.p_qBEe-TDDXhQM" class="TYR86d zfr3Q">08 25 Riverland, Murraylands <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_qdxwTDl-XhQM" class="TYR86d zfr3Q">08 26 Ceduna <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_VJcRvNAbXhQM" class="TYR86d zfr3Q">08 51 Port Hedland <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_-TpW5kloXhQM" class="TYR86d zfr3Q">08 52 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPerth%2C_Western_Australia&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGcczYgwqvzaDni3p2ZFVfRpceKvQ" target="_blank" rel="noopener noreferrer">Perth</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_4kG5sCqNXhQM" class="TYR86d zfr3Q">08 53 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_IW3vMp9WXhQM" class="TYR86d zfr3Q">08 54 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_VGhuMi-5XhQM" class="TYR86d zfr3Q">08 55 Bullsbrook East, Northam, Pinjarra (Mandurah) <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_nU048RHzXhQM" class="TYR86d zfr3Q">08 58 Albany <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_T-Nv7zd_XhQM" class="TYR86d zfr3Q">08 60 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKalgoorlie&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGPsD-Wqjj8Iy1EP2ryMnmVgCXusw" target="_blank" rel="noopener noreferrer">Kalgoorlie</a>, Merredin, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGoldfields-Esperance&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHUYoNn-JS1oEFrkCIPpK327Jh6jQ" target="_blank" rel="noopener noreferrer">Goldfields-Esperance</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_O7DbRNGiXhQM" class="TYR86d zfr3Q">08 61 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_AsuBGr2pXhQN" class="TYR86d zfr3Q">08 62 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_ky2eu2wEXhQN" class="TYR86d zfr3Q">08 63 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_e78qFZV1XhQN" class="TYR86d zfr3Q">08 64 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_9-zJyjZLXhQN" class="TYR86d zfr3Q">08 65 Perth <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_jCfQE6VeXhQN" class="TYR86d zfr3Q">08 66 Moora <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_WhtnHuJBXhQN" class="TYR86d zfr3Q">08 67 Bridgetown, Bunbury <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_goXH4dpJXhQN" class="TYR86d zfr3Q">08 68 Albany <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_qVF7nWq1XhQN" class="TYR86d zfr3Q">08 69 Geraldton <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2012-4&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFxjNfXJY5tOWocoZMDcBWdTARiqg" target="_blank" rel="noopener noreferrer">[geo 2]</a>
+</li>
+<li id="h.p_0HIjC5L8XhQN" class="TYR86d zfr3Q">08 70 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAdelaide&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFaZluv6sQPwLZAwmx_vU4DPXpHHQ" target="_blank" rel="noopener noreferrer">Adelaide</a> <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a><a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-fiction-7&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6kkLYGxeXbAjiceVWXzWtZQC8Rw" target="_blank" rel="noopener noreferrer">[geo 4]</a>
+</li>
+<li id="h.p_BmoQrB5CXhQN" class="TYR86d zfr3Q">08 71 Adelaide <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_Dml0IVyCXhQN" class="TYR86d zfr3Q">08 72 Adelaide <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_qdM_YZS_XhQN" class="TYR86d zfr3Q">08 73 Adelaide <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_TxfZYycQXhQN" class="TYR86d zfr3Q">08 74 Adelaide <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_OtlCMYqIXhQN" class="TYR86d zfr3Q">08 75 Riverland, Murraylands <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_R69610LRXhQN" class="TYR86d zfr3Q">08 76 Ceduna <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_IL2vlP9BXhQN" class="TYR86d zfr3Q">08 77 South East <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_N-cxMWO8XhQO" class="TYR86d zfr3Q">08 78 Mid North <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new2008-3&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHo4NdKXzxOHyawhBPis5Yo1HeUkg" target="_blank" rel="noopener noreferrer">[geo 1]</a>
+</li>
+<li id="h.p_ykQnnYOwXhQO" class="TYR86d zfr3Q">08 79 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNorthern_Territory&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEXtEyDhHi41MNilX7xE1GFo1T3Tg" target="_blank" rel="noopener noreferrer">Northern Territory</a> (<a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAlice_Springs&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE-V3SWniPWDW6X_FZZ56VolroI1w" target="_blank" rel="noopener noreferrer">Alice Springs</a>, <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDarwin%2C_Northern_Territory&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE8qjHs-GihymGU6B2jQaayxCP0fA" target="_blank" rel="noopener noreferrer">Darwin</a>) <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_N3m18YBmXhQO" class="TYR86d zfr3Q">08 80 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBroken_Hill%2C_New_South_Wales&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHdBP7qy1QWFvBz8TKRpXdEPm6x1Q" target="_blank" rel="noopener noreferrer">Broken Hill</a>
+</li>
+<li id="h.p_v7iB3cyiXhQO" class="TYR86d zfr3Q">08 81 Adelaide <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Australia%23cite_note-new-5&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGT8g40g4zeSbqY0CIqExsnXv_Tzw" target="_blank" rel="noopener noreferrer">[geo 3]</a>
+</li>
+<li id="h.p_gGzg7gvVXhQO" class="TYR86d zfr3Q">08 82 Adelaide</li>
+<li id="h.p_i6wwAAgyXhQO" class="TYR86d zfr3Q">08 83 Adelaide</li>
+<li id="h.p_8gwGmptuXhQO" class="TYR86d zfr3Q">08 84 Adelaide</li>
+<li id="h.p__W4Gc2JxXhQO" class="TYR86d zfr3Q">08 85 Riverland, Murraylands</li>
+<li id="h.p_RE5zDpkkXhQO" class="TYR86d zfr3Q">08 86 Ceduna</li>
+<li id="h.p_8AM_76LLXhQO" class="TYR86d zfr3Q">08 87 South East</li>
+<li id="h.p_Jc8XPAp9XhQO" class="TYR86d zfr3Q">08 88 Mid North</li>
+<li id="h.p_I0SPjIG1XhQO" class="TYR86d zfr3Q">08 89 Northern Territory (Alice Springs, Darwin)</li>
+<li id="h.p_fg7QzxDYXhQP" class="TYR86d zfr3Q">08 90 Kalgoorlie</li>
+<li id="h.p_9L2UlhI3XhQP" class="TYR86d zfr3Q">08 91 Derby [inc. <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_the_Cocos_%28Keeling%29_Islands&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHhGco7iIQ2-FaMSVLr1NNcx1T-Ew" target="_blank" rel="noopener noreferrer">Cocos/Keeling</a> &amp; <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FTelephone_numbers_in_Christmas_Island&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGWpmWEyzAqe_vnFtq2qnxr9r2SeQ" target="_blank" rel="noopener noreferrer">Christmas Islands</a>.]</li>
+<li id="h.p_aChhC-8yXhQP" class="TYR86d zfr3Q">08 92 <a class="dhtgD aw5Odc" href="https://www.google.com/url?q=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPerth%2C_Western_Australia&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGcczYgwqvzaDni3p2ZFVfRpceKvQ" target="_blank" rel="noopener noreferrer">Perth</a>
+</li>
+<li id="h.p__LipsWbGXhQP" class="TYR86d zfr3Q">08 93 Perth</li>
+<li id="h.p_RWDPuuwzXhQP" class="TYR86d zfr3Q">08 94 Perth</li>
+<li id="h.p_Gd-w_TgLXhQP" class="TYR86d zfr3Q">08 95 Bullsbrook East, Northam, Pinjarra (Mandurah)</li>
+<li id="h.p_Wj_Q0VmPXhQP" class="TYR86d zfr3Q">08 96 Moora</li>
+<li id="h.p_eTzPHKkXXhQP" class="TYR86d zfr3Q">08 97 Bunbury, Busselton, Bridgetown, Collie</li>
+<li id="h.p_2zRS-STxXhQP" class="TYR86d zfr3Q">08 98 Albany</li>
+<li id="h.p_6mIQ0wRUXhQP" class="TYR86d zfr3Q">08 99 Geraldton</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+    </div>
+
+    <div class="kb-help" id="kb-help">
+      <div class="kb-help__cta" id="kb-help-cta">
+        <div>
+          <h3>Still need help?</h3>
+          <p>Our support team is ready to assist you.</p>
+        </div>
+        <button class="kb-help__btn" onclick="document.getElementById('kb-help-cta').style.display='none';document.getElementById('kb-help-form').style.display='block'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Support
+        </button>
+      </div>
+      <div id="kb-help-form" style="display:none">
+        <div class="kb-help__form-header">
+          <div><h3>Contact Support</h3><p>We'll get back to you as soon as possible.</p></div>
+          <button class="kb-help__close" onclick="document.getElementById('kb-help-cta').style.display='flex';document.getElementById('kb-help-form').style.display='none'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <form class="support-form" id="support-form">
+          <div class="support-form__row">
+            <div class="support-form__field"><label for="sf-name">Full name</label><input type="text" id="sf-name" required placeholder="Jane Smith"></div>
+            <div class="support-form__field"><label for="sf-email">Email address</label><input type="email" id="sf-email" required placeholder="jane@company.com.au"></div>
+          </div>
+          <div class="support-form__field"><label for="sf-subject">Subject</label><input type="text" id="sf-subject" required placeholder="Brief description of your issue"></div>
+          <div class="support-form__field"><label for="sf-message">Message</label><textarea id="sf-message" required placeholder="Please describe your issue in detail..."></textarea></div>
+          <div class="support-form__error" id="sf-error"></div>
+          <button type="submit" class="support-form__submit" id="sf-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <div class="support-form__success" id="sf-success">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h4>Message sent!</h4>
+            <p>Thanks for reaching out. We'll be in touch shortly.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="../../project/assets/jet-logo-light.svg" alt="Jet Interactive" style="height:28px;margin-bottom:16px">
+        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      </div>
+      <div class="footer__col"><h4>Product</h4><ul><li><a href="../../index.html">Jet Cloud Mobile</a></li><li><a href="../../pricing.html">Pricing</a></li><li><a href="../../downloads.html">Downloads</a></li></ul></div>
+      <div class="footer__col"><h4>Solutions</h4><ul><li><a href="../../solutions/small-business.html">Small Business</a></li><li><a href="../../solutions/sales-teams.html">Sales Teams</a></li><li><a href="../../solutions/international-staff.html">International Staff</a></li></ul></div>
+      <div class="footer__col"><h4>Support</h4><ul><li><a href="../../knowledgebase.html">Knowledgebase</a></li><li><a href="../../contact.html">Contact Us</a></li><li><a href="../../faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4>Company</h4><ul><li><a href="https://jetinteractive.com.au" target="_blank">Jet Interactive</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Jet Interactive. All rights reserved.</span>
+      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('.nav__burger');
+    const drawer = document.querySelector('.nav__drawer');
+    burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+
+    const form = document.getElementById('support-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('sf-submit');
+        const err = document.getElementById('sf-error');
+        btn.disabled = true; btn.textContent = 'Sending…'; err.style.display = 'none';
+        try {
+          const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({request:{subject:document.getElementById('sf-subject').value,comment:{body:document.getElementById('sf-message').value},requester:{name:document.getElementById('sf-name').value,email:document.getElementById('sf-email').value}}})
+          });
+          if (!res.ok) throw new Error();
+          document.getElementById('sf-success').style.display = 'block';
+          form.style.display = 'none';
+        } catch { err.textContent = 'Something went wrong. Please call us on 0488 811 729.'; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; }
+      });
+    }
+  </script>
+  <script src="../../project/assets/chat.js" defer></script>
+</body>
+</html>
