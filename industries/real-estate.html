@@ -7,8 +7,8 @@
   <link rel="icon" href="../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
@@ -21,6 +21,8 @@
       --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
       --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
       --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --font-mono:'JetBrains Mono',ui-monospace,monospace;
+      --grad-symbol:linear-gradient(135deg,#ED1C24,#A71C20);
       --fs-caption:12px;--fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;--fs-h1:64px;
       --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
       --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
@@ -71,23 +73,150 @@
     .nav__drawer-sub{padding-left:var(--sp-5)}
     .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
     .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
-    .page-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-10) var(--sp-6)}
-    .page-hero__inner{max-width:var(--max-w);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-8);align-items:center}
-    .page-hero__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.75);margin-bottom:var(--sp-3)}
-    .page-hero h1{font-family:var(--font-display);font-size:var(--fs-h2);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
-    .page-hero p{font-size:var(--fs-lead);color:rgba(255,255,255,.85);margin-bottom:var(--sp-6)}
+    /* --- hero band --- */
+    .page-hero{margin-top:var(--nav-h);position:relative;min-height:820px;padding:120px 0 140px;background:radial-gradient(120% 80% at 80% 10%,rgba(237,28,36,.55) 0%,transparent 60%),radial-gradient(80% 60% at 20% 90%,rgba(122,20,24,.85) 0%,transparent 65%),linear-gradient(135deg,#5e0f12 0%,#8e1418 35%,#c41a20 75%,#ed1c24 100%);color:var(--white);overflow:hidden;isolation:isolate}
+    .page-hero::before{content:"";position:absolute;inset:0;background-image:url("../project/assets/jet-symbol-solid.png");background-size:560px;background-position:right -160px top -120px;background-repeat:no-repeat;opacity:.06;mix-blend-mode:screen;z-index:0;pointer-events:none}
+    .page-hero::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");opacity:.4;mix-blend-mode:overlay;pointer-events:none;z-index:0}
+    .page-hero__inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:center}
+    .page-hero__eyebrow{font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.92);margin-bottom:32px;opacity:0;animation:heroFadeUp .7s .1s cubic-bezier(.2,.8,.2,1) forwards}
+    .page-hero h1{font-family:var(--font-display);font-size:74px;font-weight:700;line-height:1.0;letter-spacing:-.015em;margin:0 0 28px;text-wrap:balance;opacity:0;animation:heroFadeUp .8s .2s cubic-bezier(.2,.8,.2,1) forwards}
+    .page-hero p{font-size:18px;line-height:1.55;color:rgba(255,255,255,.86);max-width:520px;margin:0 0 40px;opacity:0;animation:heroFadeUp .7s .35s cubic-bezier(.2,.8,.2,1) forwards}
+    .page-hero .cta-group{opacity:0;animation:heroFadeUp .6s .5s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes heroFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     .cta-group{display:flex;gap:var(--sp-4);flex-wrap:wrap}
-    .btn-primary{background:var(--red);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
-    .btn-primary:hover{background:var(--red-dark);box-shadow:var(--shadow-red);transform:translateY(-1px)}
-    .btn-secondary{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
-    .btn-secondary:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+    .btn-primary{background:var(--white);color:var(--red);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    .btn-primary:hover{background:var(--ink-50);box-shadow:0 12px 30px rgba(0,0,0,.24);transform:translateY(-1px)}
+    .btn-secondary{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
+    .btn-secondary:hover{background:rgba(255,255,255,.14)}
     .btn-dark{background:var(--ink-900);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
     .btn-dark:hover{background:var(--ink-800)}
-    .hero-graphic{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-4)}
-    .hero-metric{display:flex;align-items:center;gap:var(--sp-4);background:rgba(255,255,255,.06);border-radius:var(--radius-md);padding:var(--sp-4)}
-    .hero-metric__icon{width:40px;height:40px;background:rgba(237,28,36,.3);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .hero-metric__val{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--white)}
-    .hero-metric__label{font-size:var(--fs-small);color:rgba(255,255,255,.65)}
+    /* --- composition --- */
+    .composition{position:relative;width:100%;aspect-ratio:12/10;perspective:1800px}
+    .composition::before{content:"";position:absolute;inset:0;background:radial-gradient(48% 55% at 55% 50%,rgba(255,200,200,.22) 0%,transparent 70%);filter:blur(8px);z-index:0}
+    /* phone */
+    .re-phone{position:absolute;left:50%;top:50%;width:300px;height:610px;transform-style:preserve-3d;border-radius:42px;background:linear-gradient(180deg,#1a1a1e 0%,#050506 100%);padding:10px;box-shadow:0 40px 80px rgba(0,0,0,.55),0 12px 30px rgba(0,0,0,.4),inset 0 0 0 1.5px rgba(255,255,255,.08),inset 0 0 0 3px rgba(0,0,0,.6);z-index:2;opacity:0;transform:translate(-50%,-50%) rotateY(-10deg) rotateX(5deg) rotateZ(-2deg) scale(.94);animation:rePhoneIn 1s .2s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes rePhoneIn{to{opacity:1;transform:translate(-50%,-50%) rotateY(-10deg) rotateX(5deg) rotateZ(-2deg) scale(1)}}
+    .re-phone::before{content:"";position:absolute;left:-2px;top:80px;bottom:80px;width:2px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.4),transparent);border-radius:2px}
+    .re-screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(110% 60% at 50% 0%,rgba(237,28,36,.16) 0%,transparent 65%),linear-gradient(180deg,#0b0b0c 0%,#1a0608 100%);color:var(--white);font-family:var(--font-ui)}
+    .re-notch{position:absolute;left:50%;top:6px;transform:translateX(-50%);width:90px;height:26px;background:#050506;border-radius:14px;z-index:3}
+    .re-status{display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-size:12px;font-weight:600;color:rgba(255,255,255,.95)}
+    .re-status .right{display:flex;gap:6px;align-items:center}
+    .re-call-head{padding:8px 22px 0;display:flex;justify-content:space-between;align-items:center}
+    .re-call-head .brand{display:flex;align-items:center;gap:8px}
+    .re-glyph{width:16px;height:16px;border-radius:4px;background:var(--grad-symbol);transform:rotate(7deg)}
+    .re-brand-name{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+    .re-biz-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;background:rgba(237,28,36,.18);border:1px solid rgba(237,28,36,.4);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ffb3b6;font-family:var(--font-display)}
+    .re-biz-dot{width:5px;height:5px;border-radius:50%;background:#26d97a;box-shadow:0 0 4px #26d97a;animation:reDotBlink 1.6s infinite}
+    @keyframes reDotBlink{0%,100%{opacity:1}50%{opacity:.4}}
+    .re-incoming{text-align:center;font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:600;font-family:var(--font-display);margin-top:14px}
+    .re-ring-wrap{position:relative;width:118px;height:118px;margin:14px auto 8px;display:flex;align-items:center;justify-content:center}
+    .re-ring-wrap .r{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(237,28,36,.45);opacity:0;animation:reRingPulse 2.2s infinite}
+    .re-ring-wrap .r:nth-child(2){animation-delay:.55s}
+    .re-ring-wrap .r:nth-child(3){animation-delay:1.1s}
+    @keyframes reRingPulse{0%{transform:scale(.7);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+    .re-avatar{width:96px;height:96px;border-radius:50%;position:relative;z-index:2;background:linear-gradient(135deg,#ED1C24 0%,#A71C20 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:34px;letter-spacing:.02em;box-shadow:0 10px 28px rgba(237,28,36,.45),inset 0 1px 0 rgba(255,255,255,.2)}
+    .re-caller-name{text-align:center;font-family:var(--font-display);font-weight:600;font-size:20px;margin-top:4px;letter-spacing:-.005em}
+    .re-caller-num{text-align:center;font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.55);margin-top:2px;letter-spacing:.02em}
+    .re-ctx{margin:16px 14px 0;padding:12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(4px);opacity:0;transform:translateY(6px);animation:reCtxIn .6s 2s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCtxIn{to{opacity:1;transform:translateY(0)}}
+    .re-crm-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;background:rgba(38,217,122,.12);border:1px solid rgba(38,217,122,.4);color:#a8f0c5;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-display);margin-bottom:8px}
+    .re-crm-pill svg{width:9px;height:9px}
+    .re-ctx-row{display:flex;align-items:center;gap:8px;font-size:11px;padding:4px 0;border-top:1px solid rgba(255,255,255,.05)}
+    .re-ctx-row:first-of-type{border-top:0;padding-top:0}
+    .re-ctx-ic{width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);flex-shrink:0}
+    .re-ctx-ic svg{width:11px;height:11px}
+    .re-ctx-k{color:rgba(255,255,255,.55);font-size:10px}
+    .re-ctx-v{flex:1;color:#fff;font-weight:500;text-align:right;font-size:11px;font-family:var(--font-mono);letter-spacing:-.01em}
+    .re-ctx-v.addr{font-family:var(--font-ui);font-weight:600}
+    .re-ctx-v.price{color:#69e29a;font-weight:600}
+    .re-actions{margin-top:auto;display:flex;justify-content:space-around;align-items:center;padding:16px 22px 28px}
+    .re-ca{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.7);font-weight:500}
+    .re-ca .ico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 16px rgba(0,0,0,.3)}
+    .re-ca.decline .ico{background:#ED1C24;color:#fff;box-shadow:0 8px 18px rgba(237,28,36,.55)}
+    .re-ca.accept .ico{background:#26d97a;color:#fff;box-shadow:0 8px 18px rgba(38,217,122,.5);animation:reAcceptPulse 2.2s infinite}
+    @keyframes reAcceptPulse{0%,100%{box-shadow:0 8px 18px rgba(38,217,122,.5),0 0 0 0 rgba(38,217,122,.5)}50%{box-shadow:0 8px 18px rgba(38,217,122,.5),0 0 0 10px rgba(38,217,122,0)}}
+    .re-ca.forward .ico{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff}
+    /* satellite cards */
+    .re-card{position:absolute;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-radius:14px;color:var(--white);box-shadow:0 24px 50px rgba(0,0,0,.32),0 4px 12px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.12);z-index:3;opacity:0}
+    .re-card .ck-label{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600;font-family:var(--font-display);display:flex;align-items:center;gap:6px}
+    .re-card .ck-label .lr{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red)}
+    /* listing */
+    .re-card-listing{top:2%;right:-15%;width:255px;padding:0;overflow:hidden;transform:translate(36px,-22px) rotate(2.5deg) scale(.92);animation:reCardIn1 .9s .5s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCardIn1{to{opacity:1;transform:translate(0,0) rotate(2.5deg) scale(1)}}
+    .re-listing-photo{position:relative;height:120px;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.55) 100%),linear-gradient(165deg,#fce7c4 0%,#f5a684 35%,#d96b54 100%);overflow:hidden}
+    .re-listing-photo svg{position:absolute;inset:0;width:100%;height:100%}
+    .re-listing-badge{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);color:#fff;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-display)}
+    .re-listing-badge .lr{width:5px;height:5px;border-radius:50%;background:#26d97a;animation:reDotBlink 1.6s infinite}
+    .re-listing-body{padding:12px 14px 14px}
+    .re-listing-body .price{font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff;line-height:1.1;letter-spacing:-.005em}
+    .re-listing-body .addr{font-size:11px;color:rgba(255,255,255,.65);margin-top:3px}
+    .re-listing-feats{display:flex;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:10.5px;color:rgba(255,255,255,.85);font-family:var(--font-mono);font-weight:500}
+    .re-listing-feats .f{display:inline-flex;align-items:center;gap:4px}
+    .re-listing-feats svg{width:11px;height:11px;color:rgba(255,255,255,.55)}
+    .re-listing-enq{margin-top:10px;display:flex;align-items:center;gap:6px;font-size:10px;color:#ffb3b6;font-weight:500}
+    .re-listing-enq svg{width:11px;height:11px}
+    /* inspections */
+    .re-card-inspections{top:4%;left:-10%;width:240px;padding:14px 16px;transform:translate(-32px,-20px) rotate(-3deg) scale(.92);animation:reCardIn2 .9s .65s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCardIn2{to{opacity:1;transform:translate(0,0) rotate(-3deg) scale(1)}}
+    .re-card-inspections .ck-label{margin-bottom:10px}
+    .re-ins-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .re-ins-row:first-of-type{border-top:0}
+    .re-ins-time{width:46px;height:34px;border-radius:7px;flex-shrink:0;background:linear-gradient(180deg,rgba(237,28,36,.18),rgba(237,28,36,.06));border:1px solid rgba(237,28,36,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+    .re-ins-time .h{font-family:var(--font-display);font-weight:700;font-size:14px;color:#fff;letter-spacing:-.01em}
+    .re-ins-time .ap{font-size:7.5px;color:rgba(255,255,255,.55);margin-top:1px;letter-spacing:.06em;font-weight:600}
+    .re-ins-row .body{flex:1;min-width:0}
+    .re-ins-row .addr{font-size:11px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.005em}
+    .re-ins-row .sub{font-size:9.5px;color:rgba(255,255,255,.55);margin-top:1px}
+    /* calls by listing */
+    .re-card-bylisting{top:46%;right:-14%;width:230px;padding:14px 16px;transform:translate(36px,8px) rotate(-2deg) scale(.92);animation:reCardIn3 .9s .85s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCardIn3{to{opacity:1;transform:translate(0,0) rotate(-2deg) scale(1)}}
+    .re-card-bylisting .ck-label{margin-bottom:10px}
+    .re-ll-row{display:grid;grid-template-columns:1fr 60px 22px;gap:8px;align-items:center;padding:5px 0}
+    .re-ll-row .nm{font-size:11px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.005em}
+    .re-ll-row .nm .pin{color:#ffb3b6;font-family:var(--font-mono);font-size:9.5px;margin-right:4px}
+    .re-ll-row .bar{height:5px;border-radius:3px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+    .re-ll-row .bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);background:linear-gradient(90deg,#fff,#ffb3b6);border-radius:3px;animation:reBarW 1s 1.3s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes reBarW{from{width:0}}
+    .re-ll-row .vl{font-family:var(--font-mono);font-size:10.5px;color:rgba(255,255,255,.85);text-align:right;font-weight:500}
+    /* retention */
+    .re-card-retention{bottom:8%;left:-8%;width:265px;padding:14px 16px;transform:translate(-30px,18px) rotate(-2deg) scale(.92);animation:reCardIn4 .9s 1.05s cubic-bezier(.2,.8,.2,1) forwards;display:flex;gap:12px;align-items:center}
+    @keyframes reCardIn4{to{opacity:1;transform:translate(0,0) rotate(-2deg) scale(1)}}
+    .re-ret-ic{width:48px;height:48px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,#ED1C24,#A71C20);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(237,28,36,.4)}
+    .re-ret-ic svg{width:22px;height:22px}
+    .re-card-retention .body{flex:1;min-width:0}
+    .re-card-retention .ck-label{margin-bottom:4px}
+    .re-card-retention .title{font-family:var(--font-display);font-weight:700;font-size:13px;line-height:1.2}
+    .re-card-retention .sub{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.35}
+    /* agents */
+    .re-card-agents{top:48%;left:-12%;width:215px;padding:14px 16px;transform:translate(-36px,8px) rotate(2deg) scale(.92);animation:reCardIn5 .9s .95s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCardIn5{to{opacity:1;transform:translate(0,0) rotate(2deg) scale(1)}}
+    .re-card-agents .ck-label{margin-bottom:10px}
+    .re-agent-stack{display:flex;align-items:center;margin-bottom:10px}
+    .re-agent-stack .a{width:30px;height:30px;border-radius:50%;border:2px solid rgba(20,5,7,.9);margin-left:-8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:10px;color:#fff}
+    .re-agent-stack .a:first-child{margin-left:0}
+    .re-agent-stack .a1{background:linear-gradient(135deg,#ED1C24,#A71C20)}
+    .re-agent-stack .a2{background:linear-gradient(135deg,#4A4D55,#2A2A2E)}
+    .re-agent-stack .a3{background:linear-gradient(135deg,#69e29a,#0E8A4A)}
+    .re-agent-stack .a4{background:linear-gradient(135deg,#fff,#ffd2d4);color:var(--red-dark)}
+    .re-agent-stack .more{width:30px;height:30px;border-radius:50%;margin-left:-8px;background:rgba(255,255,255,.12);border:2px solid rgba(20,5,7,.9);font-family:var(--font-mono);font-size:9.5px;font-weight:600;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85)}
+    .re-card-agents .sub{font-size:10.5px;color:rgba(255,255,255,.6);line-height:1.35}
+    /* calls today */
+    .re-card-today{bottom:5%;right:-12%;width:230px;padding:14px 16px;transform:translate(36px,20px) rotate(3deg) scale(.92);animation:reCardIn6 .9s 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes reCardIn6{to{opacity:1;transform:translate(0,0) rotate(3deg) scale(1)}}
+    .re-card-today .ck-label{margin-bottom:8px}
+    .re-card-today .ck-label .lr{background:#26d97a;animation:reLivePulse 1.4s infinite;box-shadow:0 0 6px #26d97a}
+    @keyframes reLivePulse{0%{box-shadow:0 0 0 0 rgba(38,217,122,.6),0 0 6px #26d97a}70%{box-shadow:0 0 0 6px rgba(38,217,122,0),0 0 6px #26d97a}100%{box-shadow:0 0 0 0 rgba(38,217,122,0),0 0 6px #26d97a}}
+    .re-card-today .row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+    .re-card-today .big{font-family:var(--font-display);font-weight:700;font-size:36px;letter-spacing:-.02em;line-height:1;background:linear-gradient(180deg,#fff,#ffb3b6);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+    .re-card-today .delta{font-family:var(--font-mono);font-size:11px;color:#69e29a;font-weight:600}
+    .re-card-today .sub{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:2px;line-height:1.35}
+    .re-mini-row{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;color:rgba(255,255,255,.55)}
+    .re-mini-row .pip{width:5px;height:5px;border-radius:50%;background:#26d97a;animation:reDotBlink 1.6s infinite}
+    .re-mini-row .live-count{font-family:var(--font-mono);color:rgba(255,255,255,.85);font-weight:500;margin-left:auto}
+    @media(prefers-reduced-motion:reduce){
+      .re-phone,.re-card,.re-ctx{animation-duration:.01ms!important;animation-iteration-count:1!important;opacity:1!important}
+      .page-hero__eyebrow,.page-hero h1,.page-hero p,.page-hero .cta-group{animation-duration:.01ms!important;animation-iteration-count:1!important;opacity:1!important}
+    }
     .section{padding:var(--sp-10) var(--sp-6)}
     .section--alt{background:var(--ink-50)}
     .section--red{background:var(--red);color:var(--white)}
@@ -139,16 +268,20 @@
     .footer__legal{display:flex;gap:var(--sp-5)}
     .footer__legal a{color:rgba(255,255,255,.4);text-decoration:none;font-size:var(--fs-small)}
     .footer__legal a:hover{color:rgba(255,255,255,.7)}
+    @media(max-width:1200px){
+      .page-hero h1{font-size:54px}
+      .page-hero__inner{grid-template-columns:1fr;gap:64px}
+      .composition{max-width:620px;margin:0 auto}
+    }
     @media(max-width:900px){
       .nav__links{display:none}.nav__burger{display:flex}
-      .page-hero__inner{grid-template-columns:1fr}
-      .page-hero h1{font-size:var(--fs-h3)}
-      .hero-graphic{display:none}
+      .composition{display:none}
       .section__headline{font-size:var(--fs-h3)}
       .section{padding:var(--sp-8) var(--sp-5)}
     }
     @media(max-width:560px){
-      .page-hero{padding:var(--sp-8) var(--sp-5)}
+      .page-hero{padding:80px 0 100px}
+      .page-hero__inner{padding:0 24px}
       .cta-group{flex-direction:column}
       .footer__top{flex-direction:column}
     }
@@ -290,39 +423,173 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="mailto:hello@jetinteractive.com.au" class="btn-secondary">Talk to our team</a>
         </div>
       </div>
-      <div class="hero-graphic" style="gap:1.25rem;padding:1.5rem">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="color:rgba(255,255,255,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-family:var(--font-display)">Agency</span>
-          <span style="color:rgba(255,255,255,.6);font-size:11px">All agents active</span>
-        </div>
-        <div style="display:flex;justify-content:center;padding:.25rem 0">
-          <svg width="110" height="122" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="15" y="34" width="90" height="89" rx="3" stroke="rgba(255,255,255,.85)" stroke-width="2.5" fill="rgba(255,255,255,.07)"/>
-            <path d="M10 35 L60 7 L110 35" stroke="rgba(255,255,255,.85)" stroke-width="2.5" fill="rgba(255,255,255,.07)" stroke-linejoin="round"/>
-            <rect x="23" y="50" width="22" height="16" rx="2" fill="rgba(255,255,255,.18)"/>
-            <rect x="75" y="50" width="22" height="16" rx="2" fill="rgba(255,255,255,.18)"/>
-            <rect x="49" y="50" width="22" height="16" rx="2" fill="rgba(237,28,36,.35)"/>
-            <rect x="23" y="78" width="22" height="16" rx="2" fill="rgba(255,255,255,.1)"/>
-            <rect x="75" y="78" width="22" height="16" rx="2" fill="rgba(255,255,255,.1)"/>
-            <rect x="49" y="78" width="22" height="16" rx="2" fill="rgba(255,255,255,.06)"/>
-            <rect x="44" y="107" width="32" height="16" rx="2" stroke="rgba(255,255,255,.55)" stroke-width="1.5" fill="rgba(255,255,255,.06)"/>
-            <line x1="5" y1="123" x2="115" y2="123" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:8px">
-            <span style="width:7px;height:7px;background:#4ade80;border-radius:50%;flex-shrink:0;box-shadow:0 0 5px #4ade80"></span>
-            <div><div style="color:#fff;font-size:13px;font-weight:600">James R.</div><div style="color:rgba(255,255,255,.45);font-size:11px">On a call</div></div>
+
+      <!-- composition -->
+      <div class="composition" aria-label="Jet Cloud Mobile incoming buyer call with live CRM context, alongside featured property, inspections, and agency-retention highlights">
+
+        <!-- phone -->
+        <div class="re-phone">
+          <div class="re-screen">
+            <div class="re-notch"></div>
+            <div class="re-status">
+              <span>9:41</span>
+              <span class="right">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="6" width="2" height="4" rx=".5"/><rect x="4" y="4" width="2" height="6" rx=".5"/><rect x="8" y="2" width="2" height="8" rx=".5"/><rect x="12" y="0" width="2" height="10" rx=".5"/></svg>
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1"><rect x=".5" y=".5" width="16" height="9" rx="2"/><rect x="2" y="2" width="11" height="6" rx="1" fill="currentColor"/><rect x="17" y="3" width="2" height="4" rx=".5" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="re-call-head">
+              <div class="brand"><span class="re-glyph"></span><span class="re-brand-name">Jet Mobile</span></div>
+              <span class="re-biz-chip"><span class="re-biz-dot"></span>Business</span>
+            </div>
+            <div class="re-incoming">Incoming · vendor enquiry</div>
+            <div class="re-ring-wrap">
+              <span class="r"></span><span class="r"></span><span class="r"></span>
+              <div class="re-avatar">JW</div>
+            </div>
+            <div class="re-caller-name">James Whitford</div>
+            <div class="re-caller-num">+61 401 555 0193</div>
+            <div class="re-ctx">
+              <span class="re-crm-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Matched · Salesforce
+              </span>
+              <div class="re-ctx-row">
+                <div class="re-ctx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+                <span class="re-ctx-k">Last viewed</span>
+                <span class="re-ctx-v addr">42 Beach Rd, Bondi</span>
+              </div>
+              <div class="re-ctx-row">
+                <div class="re-ctx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+                <span class="re-ctx-k">Inspection</span>
+                <span class="re-ctx-v">Sat 11:00 am</span>
+              </div>
+              <div class="re-ctx-row">
+                <div class="re-ctx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                <span class="re-ctx-k">Pre-approval</span>
+                <span class="re-ctx-v price">$1.4M · cash</span>
+              </div>
+            </div>
+            <div class="re-actions">
+              <div class="re-ca decline">
+                <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l2.02-1.27a2 2 0 012.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0122 16.92z" transform="rotate(135 12 12)"/></svg></div>
+                <span>Decline</span>
+              </div>
+              <div class="re-ca forward">
+                <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 014-4h12"/></svg></div>
+                <span>Forward</span>
+              </div>
+              <div class="re-ca accept">
+                <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l2.02-1.27a2 2 0 012.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0122 16.92z"/></svg></div>
+                <span>Answer</span>
+              </div>
+            </div>
           </div>
-          <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:8px">
-            <span style="width:7px;height:7px;background:#4ade80;border-radius:50%;flex-shrink:0;box-shadow:0 0 5px #4ade80"></span>
-            <div><div style="color:#fff;font-size:13px;font-weight:600">Sarah M.</div><div style="color:rgba(255,255,255,.45);font-size:11px">Available</div></div>
+        </div>
+
+        <!-- top-right: featured listing -->
+        <div class="re-card re-card-listing">
+          <div class="re-listing-photo">
+            <svg viewBox="0 0 270 120" preserveAspectRatio="xMidYMid slice">
+              <line x1="0" y1="92" x2="270" y2="92" stroke="rgba(0,0,0,.18)" stroke-width="1"/>
+              <circle cx="80" cy="56" r="22" fill="rgba(255,235,196,.55)"/>
+              <g fill="rgba(0,0,0,.32)">
+                <path d="M150 92 L150 64 L182 44 L214 64 L214 92 Z"/>
+                <rect x="190" y="74" width="14" height="18"/>
+              </g>
+              <g fill="rgba(0,0,0,.55)">
+                <path d="M30 92 L30 60 L78 32 L126 60 L126 92 Z"/>
+                <rect x="100" y="40" width="8" height="14"/>
+                <rect x="68" y="68" width="14" height="24" fill="#ED1C24"/>
+                <rect x="42" y="68" width="14" height="14" fill="rgba(255,255,255,.4)"/>
+                <rect x="90" y="68" width="14" height="14" fill="rgba(255,255,255,.4)"/>
+              </g>
+              <rect x="0" y="92" width="270" height="28" fill="rgba(0,0,0,.18)"/>
+            </svg>
+            <div class="re-listing-badge"><span class="lr"></span>Live · 14 enquiries</div>
+          </div>
+          <div class="re-listing-body">
+            <div class="price">$1,250,000 – $1,350,000</div>
+            <div class="addr">42 Beach Rd, Bondi NSW 2026</div>
+            <div class="re-listing-feats">
+              <span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M22 4v16M2 8h20M2 16h20M6 12h4M14 12h4"/></svg>3</span>
+              <span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12V6a2 2 0 012-2h2v4"/><rect x="4" y="12" width="16" height="6" rx="1"/><path d="M6 18v2M18 18v2"/></svg>2</span>
+              <span class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.5-4.5A2 2 0 018.4 7h7.2a2 2 0 011.9 1.5L19 13M5 13h14v5H5z"/><circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/></svg>1</span>
+              <span class="f" style="margin-left:auto;color:#ffb3b6;font-weight:600">450m²</span>
+            </div>
+            <div class="re-listing-enq">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l2.02-1.27a2 2 0 012.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0122 16.92z"/></svg>
+              James W. calling now
+            </div>
           </div>
         </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between">
-          <span style="color:rgba(255,255,255,.6);font-size:12px">Numbers stay when agents move on</span>
-          <span style="color:#4ade80;font-size:15px;font-weight:700">✓</span>
+
+        <!-- top-left: inspections -->
+        <div class="re-card re-card-inspections">
+          <div class="ck-label"><span class="lr"></span>Today's inspections</div>
+          <div class="re-ins-row">
+            <div class="re-ins-time"><span class="h">11</span><span class="ap">AM</span></div>
+            <div class="body"><div class="addr">42 Beach Rd, Bondi</div><div class="sub">Daniel R. · 14 booked</div></div>
+          </div>
+          <div class="re-ins-row">
+            <div class="re-ins-time"><span class="h">1</span><span class="ap">PM</span></div>
+            <div class="body"><div class="addr">8/19 Curlewis St, Bondi</div><div class="sub">Sasha K. · 6 booked</div></div>
+          </div>
+          <div class="re-ins-row">
+            <div class="re-ins-time"><span class="h">3</span><span class="ap">PM</span></div>
+            <div class="body"><div class="addr">112 Wairoa Ave, Nth Bondi</div><div class="sub">Mark T. · 9 booked</div></div>
+          </div>
         </div>
+
+        <!-- mid-left: agents -->
+        <div class="re-card re-card-agents">
+          <div class="ck-label">Active agents</div>
+          <div class="re-agent-stack">
+            <div class="a a1">DR</div>
+            <div class="a a2">SK</div>
+            <div class="a a3">MT</div>
+            <div class="a a4">LP</div>
+            <div class="more">+11</div>
+          </div>
+          <div class="sub">15 agents · Bondi to Tamarama, one pool</div>
+        </div>
+
+        <!-- mid-right: calls by listing -->
+        <div class="re-card re-card-bylisting">
+          <div class="ck-label">Calls · by listing</div>
+          <div class="re-ll-row"><span class="nm"><span class="pin">●</span>42 Beach Rd</span><span class="bar" style="--w:92%"></span><span class="vl">38</span></div>
+          <div class="re-ll-row"><span class="nm"><span class="pin">●</span>112 Wairoa Ave</span><span class="bar" style="--w:68%"></span><span class="vl">24</span></div>
+          <div class="re-ll-row"><span class="nm"><span class="pin">●</span>8/19 Curlewis</span><span class="bar" style="--w:48%"></span><span class="vl">17</span></div>
+          <div class="re-ll-row"><span class="nm"><span class="pin">●</span>3 Sandridge</span><span class="bar" style="--w:32%"></span><span class="vl">11</span></div>
+        </div>
+
+        <!-- bottom-left: retention -->
+        <div class="re-card re-card-retention">
+          <div class="re-ret-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/><circle cx="12" cy="15" r="2.4"/></svg>
+          </div>
+          <div class="body">
+            <div class="ck-label">Agency retention</div>
+            <div class="title">Numbers stay with the agency</div>
+            <div class="sub">When an agent moves on, clients keep reaching the team</div>
+          </div>
+        </div>
+
+        <!-- bottom-right: calls today -->
+        <div class="re-card re-card-today">
+          <div class="ck-label"><span class="lr"></span>Calls · today</div>
+          <div class="row1">
+            <span class="big" data-re-target="184">0</span>
+            <span class="delta">▲ 22%</span>
+          </div>
+          <div class="sub">Across 15 agents · 9 listings</div>
+          <div class="re-mini-row">
+            <span class="pip"></span>
+            <span>On calls now</span>
+            <span class="live-count" data-re-target="6">0</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -469,5 +736,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     drawer.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{burger.classList.remove('open');drawer.classList.remove('open');burger.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true')}));
   </script>
   <script src="../project/assets/global-search.js" defer></script>
+  <script>
+    (function(){
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const startDelay = 1500, duration = 1400;
+      document.querySelectorAll('[data-re-target]').forEach(el => {
+        const target = parseInt(el.dataset.reTarget, 10);
+        if (isNaN(target)) return;
+        if (reduced){ el.textContent = target.toLocaleString(); return; }
+        const t0 = performance.now() + startDelay;
+        function frame(now){
+          if (now < t0){ requestAnimationFrame(frame); return; }
+          const t = Math.min(1, (now - t0) / duration);
+          el.textContent = Math.floor((1 - Math.pow(1 - t, 3)) * target).toLocaleString();
+          if (t < 1) requestAnimationFrame(frame);
+          else el.textContent = target.toLocaleString();
+        }
+        requestAnimationFrame(frame);
+      });
+      const liveEl = document.querySelector('.re-mini-row .live-count');
+      if (liveEl && !reduced){
+        setTimeout(() => {
+          setInterval(() => {
+            const cur = parseInt(liveEl.textContent, 10) || 6;
+            liveEl.textContent = Math.max(3, Math.min(9, cur + (Math.random() < .5 ? -1 : 1)));
+          }, 3200);
+        }, 3500);
+      }
+    })();
+  </script>
 </body>
 </html>
