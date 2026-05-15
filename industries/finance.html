@@ -141,16 +141,224 @@
     .footer__legal a:hover{color:rgba(255,255,255,.7)}
     @media(max-width:900px){
       .nav__links{display:none}.nav__burger{display:flex}
-      .page-hero__inner{grid-template-columns:1fr}
-      .page-hero h1{font-size:var(--fs-h3)}
-      .hero-graphic{display:none}
       .section__headline{font-size:var(--fs-h3)}
       .section{padding:var(--sp-8) var(--sp-5)}
     }
     @media(max-width:560px){
-      .page-hero{padding:var(--sp-8) var(--sp-5)}
       .cta-group{flex-direction:column}
       .footer__top{flex-direction:column}
+    }
+
+    /* ── Finance Hero ───────────────────────────────────────────────────── */
+    --font-mono: 'SF Mono','Fira Code','Fira Mono','Roboto Mono',monospace;
+    .finance-hero{
+      margin-top:var(--nav-h);
+      position:relative;
+      width:100%;
+      min-height:760px;
+      padding:120px 0 140px;
+      background:
+        radial-gradient(120% 80% at 80% 10%, rgba(237,28,36,.55) 0%, transparent 60%),
+        radial-gradient(80% 60% at 20% 90%, rgba(122,20,24,.85) 0%, transparent 65%),
+        linear-gradient(135deg, #5e0f12 0%, #8e1418 35%, #c41a20 75%, #ed1c24 100%);
+      overflow:hidden;
+      isolation:isolate;
+      color:#fff;
+    }
+    .finance-hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:url("../project/assets/jet-symbol-solid.png");
+      background-size:480px;
+      background-position:right -120px top -80px;
+      background-repeat:no-repeat;
+      opacity:.06;
+      mix-blend-mode:screen;
+      z-index:0;
+      pointer-events:none;
+    }
+    .finance-hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity:.4;mix-blend-mode:overlay;pointer-events:none;z-index:0;
+    }
+    .finance-hero .fh-wrap{
+      position:relative;z-index:1;
+      max-width:1240px;margin:0 auto;padding:0 32px;
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+      gap:64px;align-items:center;
+    }
+    .finance-hero .fh-eyebrow{
+      font-family:var(--font-display);font-weight:600;font-size:14px;
+      letter-spacing:.18em;text-transform:uppercase;
+      color:rgba(255,255,255,.92);margin-bottom:28px;
+    }
+    .finance-hero h1{
+      font-family:var(--font-display);font-weight:700;font-size:56px;
+      line-height:1.05;letter-spacing:-.01em;margin:0 0 24px;
+      color:#fff;text-wrap:balance;
+    }
+    .finance-hero .fh-lede{
+      font-size:18px;line-height:1.55;color:rgba(255,255,255,.86);
+      max-width:520px;margin:0 0 36px;
+    }
+    .finance-hero .fh-ctas{display:flex;gap:14px;flex-wrap:wrap}
+    .finance-hero .fh-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:54px;padding:0 26px;
+      font-family:var(--font-ui);font-weight:600;font-size:16px;
+      border-radius:4px;border:0;cursor:pointer;text-decoration:none;
+      transition:transform 80ms ease-out,box-shadow 120ms ease-out;
+    }
+    .finance-hero .fh-btn-primary{background:#fff;color:var(--red);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    .finance-hero .fh-btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(0,0,0,.24)}
+    .finance-hero .fh-btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+    .finance-hero .fh-btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+    /* composition */
+    .fh-composition{
+      position:relative;width:100%;aspect-ratio:11/9;perspective:1800px;
+    }
+    .fh-composition::before{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(50% 55% at 55% 50%, rgba(255,200,200,.22) 0%, transparent 70%);
+      filter:blur(8px);z-index:0;
+    }
+    .fh-phone{
+      position:absolute;left:50%;top:50%;
+      width:300px;height:610px;
+      transform:translate(-50%,-50%) rotateY(-14deg) rotateX(6deg) rotateZ(-3deg);
+      transform-style:preserve-3d;
+      border-radius:42px;
+      background:linear-gradient(180deg,#1a1a1e 0%,#050506 100%);
+      padding:10px;
+      box-shadow:0 40px 80px rgba(0,0,0,.55),0 12px 30px rgba(0,0,0,.4),inset 0 0 0 1.5px rgba(255,255,255,.08),inset 0 0 0 3px rgba(0,0,0,.6);
+      z-index:2;
+    }
+    .fh-phone::before{
+      content:"";position:absolute;left:-2px;top:80px;bottom:80px;width:2px;
+      background:linear-gradient(180deg,transparent,rgba(255,255,255,.4),transparent);
+      border-radius:2px;
+    }
+    .fh-screen{
+      position:relative;width:100%;height:100%;border-radius:34px;
+      background:linear-gradient(180deg,#0b0b0c 0%,#1a0608 100%);
+      overflow:hidden;color:#fff;
+      font-family:var(--font-ui);display:flex;flex-direction:column;
+    }
+    .fh-status{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 26px 6px;font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.95);
+    }
+    .fh-status .right{display:flex;gap:6px;align-items:center}
+    .fh-notch{position:absolute;left:50%;top:6px;transform:translateX(-50%);width:90px;height:26px;background:#050506;border-radius:14px;z-index:2}
+    .fh-app-head{padding:14px 22px 8px;display:flex;justify-content:space-between;align-items:center}
+    .fh-app-head .biz{display:flex;flex-direction:column;gap:2px}
+    .fh-app-head .label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
+    .fh-app-head .num{font-family:'SF Mono','Fira Code',monospace;font-size:14px;color:#fff;font-weight:500}
+    .fh-rec-pill{
+      display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;
+      background:rgba(237,28,36,.16);border:1px solid rgba(237,28,36,.5);
+      font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ffb3b6;
+    }
+    .fh-rec-pill .dot{width:6px;height:6px;border-radius:50%;background:#ED1C24;box-shadow:0 0 0 0 rgba(237,28,36,.6);animation:fh-pulse 1.6s infinite}
+    @keyframes fh-pulse{0%{box-shadow:0 0 0 0 rgba(237,28,36,.55)}70%{box-shadow:0 0 0 8px rgba(237,28,36,0)}100%{box-shadow:0 0 0 0 rgba(237,28,36,0)}}
+    .fh-caller{margin:14px 22px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+    .fh-avatar{
+      width:104px;height:104px;border-radius:50%;
+      background:linear-gradient(135deg,#fff 0%,#ffe2e3 100%);
+      color:#A71C20;display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-weight:700;font-size:38px;letter-spacing:.02em;
+      box-shadow:0 0 0 6px rgba(255,255,255,.06),0 0 0 12px rgba(255,255,255,.03);
+      position:relative;
+    }
+    .fh-avatar .ring{
+      position:absolute;inset:-14px;border-radius:50%;
+      border:1.5px dashed rgba(255,255,255,.18);
+      animation:fh-rot 16s linear infinite;
+    }
+    @keyframes fh-rot{to{transform:rotate(360deg)}}
+    .fh-caller .name{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:.01em}
+    .fh-caller .meta{font-size:12px;color:rgba(255,255,255,.6);margin-top:-8px}
+    .fh-timer{font-family:'SF Mono','Fira Code',monospace;font-size:14px;color:rgba(255,255,255,.85);letter-spacing:.05em;margin-top:2px}
+    .fh-wave{display:flex;align-items:center;justify-content:center;gap:3px;height:42px;margin:8px 22px 0}
+    .fh-wave span{display:block;width:2.5px;border-radius:2px;background:linear-gradient(180deg,#fff 0%,#ff8a8d 100%);animation:fh-bar 1s ease-in-out infinite}
+    @keyframes fh-bar{0%,100%{height:30%}50%{height:90%}}
+    .fh-wave span:nth-child(1){animation-delay:.0s;height:30%}.fh-wave span:nth-child(2){animation-delay:.08s;height:60%}
+    .fh-wave span:nth-child(3){animation-delay:.16s;height:45%}.fh-wave span:nth-child(4){animation-delay:.24s;height:80%}
+    .fh-wave span:nth-child(5){animation-delay:.32s;height:55%}.fh-wave span:nth-child(6){animation-delay:.4s;height:75%}
+    .fh-wave span:nth-child(7){animation-delay:.48s;height:35%}.fh-wave span:nth-child(8){animation-delay:.56s;height:90%}
+    .fh-wave span:nth-child(9){animation-delay:.64s;height:50%}.fh-wave span:nth-child(10){animation-delay:.72s;height:70%}
+    .fh-wave span:nth-child(11){animation-delay:.8s;height:40%}.fh-wave span:nth-child(12){animation-delay:.88s;height:65%}
+    .fh-wave span:nth-child(13){animation-delay:.96s;height:80%}.fh-wave span:nth-child(14){animation-delay:.04s;height:45%}
+    .fh-wave span:nth-child(15){animation-delay:.12s;height:60%}.fh-wave span:nth-child(16){animation-delay:.2s;height:35%}
+    .fh-wave span:nth-child(17){animation-delay:.28s;height:78%}.fh-wave span:nth-child(18){animation-delay:.36s;height:42%}
+    .fh-wave span:nth-child(19){animation-delay:.44s;height:62%}.fh-wave span:nth-child(20){animation-delay:.52s;height:50%}
+    .fh-wave span:nth-child(21){animation-delay:.6s;height:80%}.fh-wave span:nth-child(22){animation-delay:.68s;height:40%}
+    .fh-wave span:nth-child(23){animation-delay:.76s;height:70%}.fh-wave span:nth-child(24){animation-delay:.84s;height:55%}
+    .fh-live-line{
+      margin:14px 22px 0;font-size:11px;line-height:1.45;color:rgba(255,255,255,.7);
+      padding:10px 12px;border-radius:10px;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+    }
+    .fh-live-line .speaker{color:#ffb3b6;font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+    .fh-actions{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:18px 28px 28px}
+    .fh-action{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.7);font-weight:500}
+    .fh-action .ico{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+    .fh-action.end .ico{background:#ED1C24;border-color:transparent;box-shadow:0 8px 18px rgba(237,28,36,.45)}
+    .fh-card{
+      position:absolute;
+      background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+      border-radius:14px;color:#fff;
+      box-shadow:0 24px 50px rgba(0,0,0,.32),0 4px 12px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.12);
+      z-index:3;
+    }
+    .fh-card .ck-label{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600;font-family:var(--font-display)}
+    .fh-card-compliance{top:4%;right:-2%;width:230px;padding:16px 18px;transform:rotate(2.5deg)}
+    .fh-card-compliance .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .fh-card-compliance .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:rgba(14,138,74,.22);border:1px solid rgba(14,138,74,.55);font-size:10px;font-weight:700;letter-spacing:.04em;color:#69e29a}
+    .fh-card-compliance .badge .gd{width:6px;height:6px;border-radius:50%;background:#26d97a;box-shadow:0 0 6px #26d97a}
+    .fh-card-compliance .stat{display:flex;align-items:baseline;gap:8px}
+    .fh-card-compliance .stat .n{font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;letter-spacing:-.01em}
+    .fh-card-compliance .stat .u{font-size:11px;color:rgba(255,255,255,.65)}
+    .fh-card-compliance .sub{font-size:11px;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.45}
+    .fh-card-transcript{top:44%;right:-12%;width:264px;padding:14px 16px;transform:rotate(-2deg)}
+    .fh-card-transcript .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .fh-card-transcript .head .ai{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.75)}
+    .fh-card-transcript .head .ai svg{width:11px;height:11px}
+    .fh-transcript-line{font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.85);margin-bottom:8px}
+    .fh-transcript-line.q{color:rgba(255,255,255,.6)}
+    .fh-transcript-line mark{background:rgba(255,179,182,.25);color:#ffd2d4;padding:0 3px;border-radius:3px}
+    .fh-search-bar{
+      margin-top:8px;display:flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:8px;
+      background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);
+      font-size:11px;color:rgba(255,255,255,.55);
+    }
+    .fh-search-bar svg{width:11px;height:11px;flex-shrink:0}
+    .fh-search-bar .cursor{width:1px;height:11px;background:rgba(255,255,255,.7);animation:fh-blink 1s steps(1) infinite}
+    @keyframes fh-blink{50%{opacity:0}}
+    .fh-card-crm{bottom:6%;left:-3%;width:260px;padding:14px 16px;transform:rotate(-3deg)}
+    .fh-card-crm .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .fh-crm-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .fh-crm-row:first-of-type{border-top:0}
+    .fh-crm-row .ic{width:28px;height:28px;border-radius:8px;background:rgba(237,28,36,.22);border:1px solid rgba(237,28,36,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .fh-crm-row .ic svg{width:13px;height:13px;color:#ffb3b6}
+    .fh-crm-row .body{flex:1;min-width:0}
+    .fh-crm-row .t{font-size:11px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fh-crm-row .s{font-size:10px;color:rgba(255,255,255,.55);margin-top:1px}
+    .fh-crm-row .meta{font-family:'SF Mono','Fira Code',monospace;font-size:10px;color:rgba(255,255,255,.55)}
+    @media(max-width:1100px){
+      .finance-hero h1{font-size:44px}
+      .finance-hero .fh-wrap{grid-template-columns:1fr;gap:48px}
+      .fh-composition{max-width:560px;margin:0 auto}
+    }
+    @media(max-width:560px){
+      .finance-hero{padding:80px 0 100px}
+      .finance-hero h1{font-size:34px}
+      .fh-composition{display:none}
     }
   </style>
 <!-- Google Tag Manager -->
@@ -279,48 +487,123 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
   <!-- Hero -->
-  <div class="page-hero">
-    <div class="page-hero__inner">
-      <div>
-        <p class="page-hero__eyebrow">Jet Cloud Mobile for Finance</p>
+  <section class="finance-hero" aria-label="Finance hero">
+    <div class="fh-wrap">
+      <!-- LEFT: copy -->
+      <div class="fh-copy">
+        <div class="fh-eyebrow">Jet Cloud Mobile for Finance</div>
         <h1>Business mobile communications built for compliance, visibility, and client trust.</h1>
-        <p>From mortgage brokers to financial advisers and lending teams, Jet Cloud Mobile gives finance professionals a dedicated business number, call recording for compliance, and full visibility over client communications — all from the phone they already carry.</p>
-        <div class="cta-group">
-          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-primary">Get started</a>
-          <a href="mailto:hello@jetinteractive.com.au" class="btn-secondary">Talk to our team</a>
+        <p class="fh-lede">From mortgage brokers to financial advisers and lending teams, Jet Cloud Mobile gives finance professionals a dedicated business number, call recording for compliance, and full visibility over client communications — all from the phone they already carry.</p>
+        <div class="fh-ctas">
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="fh-btn fh-btn-primary">Get started</a>
+          <a href="mailto:hello@jetinteractive.com.au" class="fh-btn fh-btn-ghost">Talk to our team</a>
         </div>
       </div>
-      <div class="hero-graphic" style="gap:1.25rem;padding:1.5rem">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="color:rgba(255,255,255,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-family:var(--font-display)">Compliance</span>
-          <span style="background:rgba(74,222,128,.15);color:#4ade80;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">● Compliant</span>
-        </div>
-        <div style="display:flex;justify-content:center;padding:.25rem 0">
-          <svg width="100" height="108" viewBox="0 0 120 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60 8 L110 30 L110 78 C110 108 60 122 60 122 C60 122 10 108 10 78 L10 30 Z" stroke="rgba(255,255,255,.85)" stroke-width="2.5" fill="rgba(255,255,255,.07)"/>
-            <path d="M60 8 L110 30 L110 78 C110 108 60 122 60 122" stroke="rgba(255,255,255,.12)" stroke-width="18" fill="none"/>
-            <polyline points="38,72 54,88 84,52" stroke="rgba(255,255,255,.95)" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div style="background:rgba(255,255,255,.08);border-radius:9px;padding:10px 14px;display:flex;align-items:center;gap:10px">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            <span style="color:rgba(255,255,255,.8);font-size:13px;flex:1">Client call — recorded</span>
-            <span style="color:rgba(255,255,255,.4);font-size:11px">2m 14s</span>
+
+      <!-- RIGHT: hero composition -->
+      <div class="fh-composition" aria-label="Jet Cloud Mobile app recording a client call, with live compliance and transcript indicators">
+
+        <!-- PHONE -->
+        <div class="fh-phone">
+          <div class="fh-screen">
+            <div class="fh-notch"></div>
+            <div class="fh-status">
+              <span>9:41</span>
+              <span class="right">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="6" width="2" height="4" rx=".5"/><rect x="4" y="4" width="2" height="6" rx=".5"/><rect x="8" y="2" width="2" height="8" rx=".5"/><rect x="12" y="0" width="2" height="10" rx=".5"/></svg>
+                <svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1"><rect x=".5" y=".5" width="16" height="9" rx="2"/><rect x="2" y="2" width="11" height="6" rx="1" fill="currentColor"/><rect x="17" y="3" width="2" height="4" rx=".5" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="fh-app-head">
+              <div class="biz">
+                <span class="label">Business line</span>
+                <span class="num">02 9000 1300</span>
+              </div>
+              <span class="fh-rec-pill"><span class="dot"></span>Rec</span>
+            </div>
+            <div class="fh-caller">
+              <div class="fh-avatar">SC<span class="ring"></span></div>
+              <div>
+                <div class="name">Sarah Chen</div>
+                <div class="meta">Mortgage application · client</div>
+              </div>
+              <div class="fh-timer">02:14</div>
+            </div>
+            <div class="fh-wave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="fh-live-line">
+              <span class="speaker">Live transcript</span>
+              "…happy to lock in the fixed rate for three years if that suits the application."
+            </div>
+            <div class="fh-actions">
+              <div class="fh-action">
+                <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg></div>
+                <span>Speaker</span>
+              </div>
+              <div class="fh-action end">
+                <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l2.02-1.27a2 2 0 012.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0122 16.92z" transform="rotate(135 12 12)"/></svg></div>
+                <span>End call</span>
+              </div>
+              <div class="fh-action">
+                <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="1.5"/><circle cx="6" cy="11" r="1.5"/><circle cx="18" cy="11" r="1.5"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
+                <span>Keypad</span>
+              </div>
+            </div>
           </div>
-          <div style="background:rgba(255,255,255,.08);border-radius:9px;padding:10px 14px;display:flex;align-items:center;gap:10px">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            <span style="color:rgba(255,255,255,.8);font-size:13px;flex:1">Advice call — recorded</span>
-            <span style="color:rgba(255,255,255,.4);font-size:11px">8m 47s</span>
+        </div>
+
+        <!-- CARD: Compliance -->
+        <div class="fh-card fh-card-compliance">
+          <div class="row">
+            <span class="ck-label">Compliance</span>
+            <span class="badge"><span class="gd"></span>Verified</span>
+          </div>
+          <div class="stat"><span class="n">100%</span><span class="u">calls recorded<br>this quarter</span></div>
+          <div class="sub">Stored securely · 7-year retention</div>
+        </div>
+
+        <!-- CARD: Transcript -->
+        <div class="fh-card fh-card-transcript">
+          <div class="head">
+            <span class="ck-label">AI transcript</span>
+            <span class="ai">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              Auto
+            </span>
+          </div>
+          <p class="fh-transcript-line q"><strong style="color:rgba(255,255,255,.8)">Client:</strong> What's the fixed rate looking like at the moment?</p>
+          <p class="fh-transcript-line"><strong style="color:rgba(255,255,255,.95)">Adviser:</strong> Three-year fixed sits at <mark>5.89%</mark> — competitive on a 80% LVR.</p>
+          <div class="fh-search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            Search across 1,284 calls<span class="cursor"></span>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:6px;padding:0 2px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span style="color:rgba(255,255,255,.4);font-size:12px">AI transcription — fully searchable</span>
+
+        <!-- CARD: CRM Log -->
+        <div class="fh-card fh-card-crm">
+          <div class="head">
+            <span class="ck-label">Logged to CRM</span>
+            <span style="font-size:10px;color:rgba(255,255,255,.55)">Salesforce · auto</span>
+          </div>
+          <div class="fh-crm-row">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l2.02-1.27a2 2 0 012.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0122 16.92z"/></svg></div>
+            <div class="body"><div class="t">Sarah Chen — Mortgage app.</div><div class="s">Call · attached to opportunity #4821</div></div>
+            <div class="meta">2m 14s</div>
+          </div>
+          <div class="fh-crm-row">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="body"><div class="t">David Park — Refinance enq.</div><div class="s">SMS · pre-qual sent</div></div>
+            <div class="meta">12m</div>
+          </div>
         </div>
+
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Problem -->
   <section class="section section--alt">
