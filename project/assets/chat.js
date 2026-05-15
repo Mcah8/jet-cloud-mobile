@@ -6,8 +6,8 @@
 
   // ── State ───────────────────────────────────────────────────────────────────
   const history = [];
-  let isOpen = false;
-  let isTyping = false;
+  let isOpen    = false;
+  let isTyping  = false;
 
   // ── CSS ─────────────────────────────────────────────────────────────────────
   const css = `
@@ -311,6 +311,7 @@
         <button class="jc-quick-btn">Transfer a call</button>
         <button class="jc-quick-btn">Send an SMS</button>
         <button class="jc-quick-btn">Set up voicemail</button>
+        <button class="jc-quick-btn">Talk to a human</button>
       </div>
 
       <div id="jc-error-bar">Something went wrong. Please try again or call us on 0488 811 729.</div>
@@ -340,7 +341,14 @@
     isOpen = true;
     panel.classList.add('open');
     input.focus();
-    if (messages.children.length === 0) addBotMessage("Hi! I'm Jet's virtual support assistant. I can help with the Jet Phone app, calling features, SMS, voicemail, and more. What can I help you with today?");
+    if (messages.children.length === 0) {
+      addBotMessage(
+        "Hi! I'm Jet's virtual support assistant. I can help with the Jet Phone app, calling features, SMS, voicemail, and more.\n\n" +
+        "Prefer to talk to a person? Call us on <a href=\"tel:0488811729\" style=\"color:#ED1C24;text-decoration:underline\">0488 811 729</a> or just ask me to raise a support ticket.\n\n" +
+        "What can I help you with today?",
+        true
+      );
+    }
   }
 
   function closePanel() {
@@ -352,14 +360,15 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
-  function addBotMessage(text) {
+  function addBotMessage(text, allowHtml) {
     const el = document.createElement('div');
     el.className = 'jc-msg jc-msg--bot';
+    const content = allowHtml ? text.replace(/\n/g, '<br>') : escapeHtml(text);
     el.innerHTML = `
       <div class="jc-msg__avatar">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
-      <div class="jc-msg__bubble">${escapeHtml(text)}</div>
+      <div class="jc-msg__bubble">${content}</div>
     `;
     messages.appendChild(el);
     scrollBottom();
@@ -412,7 +421,6 @@
     text = text.trim();
     if (!text || isTyping) return;
 
-    // Hide quick replies after first message
     if (quick.style.display !== 'none') quick.style.display = 'none';
 
     errorBar.style.display = 'none';
@@ -435,7 +443,7 @@
       if (!res.ok) throw new Error('HTTP ' + res.status);
 
       const data = await res.json();
-      const reply = data?.content?.[0]?.text || "I'm sorry, I couldn't process that. Please call us on 0488 811 729 or use the Contact Support button.";
+      const reply = data?.content?.[0]?.text || "I'm sorry, I couldn't process that. Please call us on 0488 811 729.";
 
       removeTyping();
       addBotMessage(reply);
@@ -471,14 +479,12 @@
     qb.addEventListener('click', () => sendMessage(qb.textContent));
   });
 
-  // Close on backdrop click
   document.addEventListener('click', (e) => {
     if (isOpen && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
       closePanel();
     }
   });
 
-  // Show badge after a short delay to draw attention on first visit
   setTimeout(() => {
     if (!isOpen) document.getElementById('jc-badge').style.display = 'block';
   }, 3000);
