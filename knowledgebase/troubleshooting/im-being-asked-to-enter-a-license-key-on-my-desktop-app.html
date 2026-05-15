@@ -203,45 +203,7 @@
 <p>Please <a href="https://www.jetinteractive.com.au/downloads/" target="_self">visit the downloads page</a> on our website to download the latest version for your device, and this message will no longer display.</p>
     </div>
 
-    <div class="kb-help" id="kb-help">
-      <div class="kb-help__cta" id="kb-help-cta">
-        <div>
-          <h3>Still need help?</h3>
-          <p>Our support team is ready to assist you.</p>
-        </div>
-        <button class="kb-help__btn" onclick="document.getElementById('kb-help-cta').style.display='none';document.getElementById('kb-help-form').style.display='block'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Contact Support
-        </button>
-      </div>
-      <div id="kb-help-form" style="display:none">
-        <div class="kb-help__form-header">
-          <div><h3>Contact Support</h3><p>We'll get back to you as soon as possible.</p></div>
-          <button class="kb-help__close" onclick="document.getElementById('kb-help-cta').style.display='flex';document.getElementById('kb-help-form').style.display='none'">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <form class="support-form" id="support-form">
-          <div class="support-form__row">
-            <div class="support-form__field"><label for="sf-name">Full name</label><input type="text" id="sf-name" required placeholder="Jane Smith"></div>
-            <div class="support-form__field"><label for="sf-email">Email address</label><input type="email" id="sf-email" required placeholder="jane@company.com.au"></div>
-          </div>
-          <div class="support-form__field"><label for="sf-subject">Subject</label><input type="text" id="sf-subject" required placeholder="Brief description of your issue"></div>
-          <div class="support-form__field"><label for="sf-message">Message</label><textarea id="sf-message" required placeholder="Please describe your issue in detail..."></textarea></div>
-          <div class="support-form__error" id="sf-error"></div>
-          <button type="submit" class="support-form__submit" id="sf-submit">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Send Message
-          </button>
-          <div class="support-form__success" id="sf-success">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h4>Message sent!</h4>
-            <p>Thanks for reaching out. We'll be in touch shortly.</p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    <div class="kb-help"></div>
 
   <footer class="footer">
     <div class="footer__inner">
@@ -286,5 +248,7 @@
     }
   </script>
   <script src="../../project/assets/chat.js" defer></script>
+  <script src="../../project/assets/ticket-form.js" defer></script>
+  <script src="../../project/assets/global-search.js" defer></script>
 </body>
 </html>
