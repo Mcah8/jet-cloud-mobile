@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing &amp; Account Management — Jet Cloud Mobile Knowledgebase</title>
+  <meta name="description" content="Invoices, payments, account settings and user management.">
+  <link rel="icon" href="../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>:root{--red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;--black:#000;--white:#fff;--ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;--fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);--border:1px solid var(--ink-300);--grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);--font-display:'Saira','Arial Narrow',system-ui,sans-serif;--font-ui:'Barlow',system-ui,-apple-system,sans-serif;--fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;--lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;--tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;--radius-md:8px;--radius-lg:16px;--radius-pill:999px;--shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);--shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);--shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);--shadow-red:0 8px 24px rgba(237,28,36,.28);--ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);--dur-base:140ms;--dur-med:220ms;--max-w:1200px;--nav-h:72px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+img{display:block;max-width:100%}
+::selection{background:var(--red);color:var(--white)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+.nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+.nav__logo img{height:32px;width:auto}
+.nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+.nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+.nav__links a:hover,.nav__links a.active{color:var(--red)}
+.nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+.nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+.nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+.nav__phone:hover{color:var(--red)}
+.nav__dropdown{position:relative}
+.nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+.nav__dropdown-toggle:hover{color:var(--red)}
+.nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+.nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+.nav__dropdown-menu{display:none;position:absolute;top:100%;margin-top:1px;left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+.nav__dropdown:hover .nav__dropdown-menu{display:block}
+.nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+.nav__dropdown-menu a:last-child{border-bottom:none}
+.nav__dropdown-menu a:hover{background:var(--ink-50);color:var(--red)}
+.nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+.nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+.nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+.nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav__burger.open span:nth-child(2){opacity:0}
+.nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+.nav__drawer.open{display:flex}
+.nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+.nav__drawer-sub{padding-left:var(--sp-5)}
+.nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+.nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+.kb-hero{margin-top:var(--nav-h);background:var(--grad-hero);padding:var(--sp-9) var(--sp-6) var(--sp-10);text-align:center}
+.kb-hero__inner{max-width:700px;margin:0 auto}
+.kb-hero__breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.7);font-size:var(--fs-small);font-weight:500;margin-bottom:var(--sp-5)}
+.kb-hero__breadcrumb a{color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base)}
+.kb-hero__breadcrumb a:hover{color:var(--white)}
+.kb-hero__breadcrumb svg{flex-shrink:0}
+.kb-hero__tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 12px;border-radius:var(--radius-pill);margin-bottom:var(--sp-4)}
+.kb-hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,48px);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
+.kb-hero p{font-size:var(--fs-lead);color:rgba(255,255,255,.8);max-width:560px;margin:0 auto}
+.kb-section{padding:var(--sp-9) var(--sp-6)}
+.kb-section__inner{max-width:800px;margin:0 auto}
+.kb-articles{display:flex;flex-direction:column;gap:0;border:var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-1)}
+.kb-article-item{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-5) var(--sp-6);text-decoration:none;color:var(--fg-1);border-bottom:var(--border);background:var(--white);transition:background var(--dur-base) var(--ease-out)}
+.kb-article-item:last-child{border-bottom:none}
+.kb-article-item:hover{background:var(--ink-50)}
+.kb-article-item__left{display:flex;align-items:flex-start;gap:var(--sp-4);flex:1;min-width:0}
+.kb-article-item__icon{width:36px;height:36px;border-radius:var(--radius-md);background:var(--red-50);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.kb-article-item__title{font-weight:600;font-size:var(--fs-body);color:var(--fg-1);margin-bottom:4px}
+.kb-article-item:hover .kb-article-item__title{color:var(--red)}
+.kb-article-item__desc{font-size:var(--fs-small);color:var(--fg-3);line-height:1.4}
+.kb-article-item__arrow{color:var(--ink-300);flex-shrink:0;margin-left:var(--sp-4)}
+.kb-article-item:hover .kb-article-item__arrow{color:var(--red)}
+.footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
+.footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
+.footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
+.footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
+.footer__phone:hover{color:var(--red)}
+.footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
+.footer__col ul{list-style:none}
+.footer__col li{margin-bottom:var(--sp-2)}
+.footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base)}
+.footer__col a:hover{color:var(--white)}
+.footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+.footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
+.footer__legal{display:flex;gap:var(--sp-5)}
+.footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
+.footer__legal a:hover{color:var(--white)}
+@media(max-width:1024px){.footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}.footer__brand{grid-column:1/-1}}
+@media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.kb-section{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-article-item{padding:var(--sp-4) var(--sp-5)}}</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../index.html"><img src="../project/assets/jet-logo-dark.svg" alt="Jet Interactive"></a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../solutions/small-business.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Small Business</a>
+            <a href="../solutions/sales-teams.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Sales Teams</a>
+            <a href="../solutions/international-staff.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>International Staff</a>
+          </div>
+        </li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="../knowledgebase.html" class="active">Knowledgebase</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <a href="tel:0488811729" class="nav__phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.4l.42.52z"/></svg>0488 811 729</a>
+      <a href="../contact.html" class="nav__cta">Contact Support</a>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__drawer">
+    <a href="../index.html">Home</a>
+    <div class="nav__drawer-section-label">Solutions</div>
+    <div class="nav__drawer-sub">
+      <a href="../solutions/small-business.html">Small Business</a>
+      <a href="../solutions/sales-teams.html">Sales Teams</a>
+      <a href="../solutions/international-staff.html">International Staff</a>
+    </div>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../knowledgebase.html" class="active">Knowledgebase</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../contact.html" class="nav__cta">Contact Support</a>
+  </div>
+  <section class="kb-hero">
+    <div class="kb-hero__inner">
+      <div class="kb-hero__breadcrumb">
+        <a href="../knowledgebase.html">Knowledgebase</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span style="color:rgba(255,255,255,.9)">Billing &amp; Account Management</span>
+      </div>
+      <div class="kb-hero__tag"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> 20 articles</div>
+      <h1>Billing &amp; Account Management</h1>
+      <p>Invoices, payments, account settings and user management.</p>
+    </div>
+  </section>
+  <section class="kb-section">
+    <div class="kb-section__inner">
+      <div class="kb-articles">
+      <a href="billing-account-management/how-to-update-billing-contacts.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to update billing contacts</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/understanding-your-jet-invoice.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Understanding your Jet Invoice</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/adding-and-managing-jet-hub-users.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Adding and Managing Jet Hub Users</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/using-the-account-manager.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Using the Account Manager</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/managing-invoices-payments.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Managing Invoices &amp; Payments</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-process-a-refund.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to process a refund </div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/user-preferences.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">User Preferences</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/make-a-payment.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Make A Payment</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-process-an-account-cancellation.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to process an account cancellation</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-use-the-jet-hub-portal-menu.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to use the Jet Hub portal &amp; menu</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/manage-payment-methods.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Manage Payment Methods</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-process-a-change-of-ownership.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to process a change of ownership</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/my-account-has-been-suspended.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">My account has been suspended</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-upload-manual-payments.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to upload manual payments</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/i-need-to-change-the-ownership-of-my-account.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">I need to change the ownership of my account</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/multi-factor-authentication-codes-with-jet.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Multi-factor Authentication codes with Jet</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-suspend-and-close-an-overdue-account.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to suspend and close an overdue account</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/cancelling-your-jet-account.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Cancelling your Jet account</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/how-to-manually-create-a-one-off-charge.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">How to manually create a one-off charge</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="billing-account-management/payment-stuck-in-processing-status.html" class="kb-article-item">
+        <div class="kb-article-item__left">
+          <div class="kb-article-item__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="kb-article-item__title">Payment stuck in "Processing" status</div></div>
+        </div>
+        <svg class="kb-article-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="../project/assets/jet-logo-light.svg" alt="Jet Interactive" style="height:28px;margin-bottom:16px">
+        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      </div>
+      <div class="footer__col"><h4>Support</h4><ul><li><a href="../knowledgebase.html">Knowledgebase</a></li><li><a href="../contact.html">Contact Us</a></li><li><a href="../faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4>Solutions</h4><ul><li><a href="../solutions/small-business.html">Small Business</a></li><li><a href="../solutions/sales-teams.html">Sales Teams</a></li><li><a href="../solutions/international-staff.html">International Staff</a></li></ul></div>
+      <div class="footer__col"><h4>Company</h4><ul><li><a href="https://jetinteractive.com.au" target="_blank">Jet Interactive</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../downloads.html">Downloads</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Jet Interactive. All rights reserved.</span>
+      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+  <script>
+    const burger = document.querySelector('.nav__burger');
+    const drawer = document.querySelector('.nav__drawer');
+    if (burger) burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+  </script>
+  <script src="../project/assets/chat.js" defer></script>
+</body>
+</html>
