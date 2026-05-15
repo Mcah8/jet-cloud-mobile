@@ -2,7 +2,7 @@
   'use strict';
 
   // ── Config ──────────────────────────────────────────────────────────────────
-  const WORKER_URL = 'https://jet-chat.YOURSUBDOMAIN.workers.dev';
+  const WORKER_URL = 'https://livechat.matthew-cahill.workers.dev';
 
   // ── State ───────────────────────────────────────────────────────────────────
   const history = [];
