@@ -411,5 +411,6 @@
     burger.addEventListener('click',()=>{const o=burger.classList.toggle('open');drawer.classList.toggle('open',o);burger.setAttribute('aria-expanded',String(o));drawer.setAttribute('aria-hidden',String(!o))});
     document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')})});
   </script>
+  <script src="project/assets/global-search.js" defer></script>
 </body>
 </html>
