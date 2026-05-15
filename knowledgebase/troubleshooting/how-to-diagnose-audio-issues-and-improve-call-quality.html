@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to diagnose audio issues and improve call quality — Jet Cloud Mobile Knowledgebase</title>
+  <meta name="description" content="How to diagnose audio issues and improve call quality. Step-by-step guide from the Jet Cloud Mobile knowledgebase.">
+  <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-logo:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 100%);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto;border-radius:var(--radius-md);box-shadow:var(--shadow-2);margin:var(--sp-5) 0}
+    ::selection{background:var(--red);color:var(--white)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover,.nav__links a.active{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
+    .nav__dropdown{position:relative}
+    .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-toggle:hover,.nav__dropdown-toggle.active{color:var(--red)}
+    .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown-menu{display:none;position:absolute;top:100%;margin-top:1px;left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
+    .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-menu a:last-child{border-bottom:none}
+    .nav__dropdown-menu a:hover,.nav__dropdown-menu a.active{background:var(--ink-50);color:var(--red)}
+    .nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer-sub{padding-left:var(--sp-5)}
+    .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+    .kb-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6) var(--sp-10)}
+    .kb-hero__inner{max-width:760px;margin:0 auto}
+    .kb-hero__breadcrumb{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:var(--fs-small);font-weight:500;margin-bottom:var(--sp-5)}
+    .kb-hero__breadcrumb a{color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+    .kb-hero__breadcrumb a:hover{color:var(--white)}
+    .kb-hero__breadcrumb svg{flex-shrink:0}
+    .kb-hero__tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 12px;border-radius:var(--radius-pill);margin-bottom:var(--sp-4)}
+    .kb-hero h1{font-family:var(--font-display);font-size:clamp(24px,4vw,40px);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-tight);color:var(--white)}
+    .article-wrap{max-width:760px;margin:0 auto;padding:var(--sp-10) var(--sp-6)}
+    .article-body h1{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-9) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--ink-200)}
+    .article-body h1:first-child{margin-top:0}
+    .article-body h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-8) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--red-100)}
+    .article-body h2:first-child{margin-top:0}
+    .article-body h3{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;color:var(--fg-1);margin:var(--sp-6) 0 var(--sp-3)}
+    .article-body p{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5)}
+    .article-body ul,.article-body ol{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5);padding-left:var(--sp-6)}
+    .article-body li{margin-bottom:var(--sp-2)}
+    .article-body li ul,.article-body li ol{margin-top:var(--sp-2);margin-bottom:0}
+    .article-body strong{color:var(--fg-1);font-weight:600}
+    .article-body code{background:var(--ink-100);border-radius:4px;padding:2px 6px;font-family:monospace;font-size:0.9em;color:var(--fg-1)}
+    .article-body table{width:100%;border-collapse:collapse;margin-bottom:var(--sp-6);font-size:var(--fs-body)}
+    .article-body th{background:var(--ink-100);font-weight:600;text-align:left;padding:var(--sp-3) var(--sp-4);border:var(--border)}
+    .article-body td{padding:var(--sp-3) var(--sp-4);border:var(--border);color:var(--fg-2)}
+    .article-body tr:nth-child(even) td{background:var(--ink-50)}
+    .article-body a{color:var(--red);text-decoration:none;font-weight:500}
+    .article-body a:hover{text-decoration:underline}
+    .article-body blockquote{border-left:4px solid var(--red);padding:var(--sp-4) var(--sp-5);background:var(--red-50);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:var(--sp-6) 0}
+    .article-body blockquote p{margin-bottom:0;color:var(--fg-1)}
+    .article-body hr{border:none;border-top:var(--border);margin:var(--sp-8) 0}
+    .kb-help{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-9)}
+    .kb-help h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-2)}
+    .kb-help>p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:var(--sp-6)}
+    .support-form{display:flex;flex-direction:column;gap:var(--sp-4)}
+    .support-form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+    .support-form__field{display:flex;flex-direction:column;gap:6px}
+    .support-form__field label{font-size:var(--fs-small);font-weight:600;color:var(--fg-1)}
+    .support-form__field input,.support-form__field select,.support-form__field textarea{font-family:var(--font-ui);font-size:var(--fs-body);color:var(--fg-1);background:var(--white);border:var(--border);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);outline:none;width:100%}
+    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,28,36,.12)}
+    .support-form__field textarea{resize:vertical;min-height:120px;line-height:var(--lh-normal)}
+    .support-form__field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .support-form__submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:all var(--dur-med) var(--ease-out)}
+    .support-form__submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .support-form__submit:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
+    .support-form__error{color:#c0392b;font-size:var(--fs-small);font-weight:500;padding:var(--sp-3) var(--sp-4);background:#fdecea;border-radius:var(--radius-md);border:1px solid #f5c6c6;display:none}
+    .support-form__success{text-align:center;padding:var(--sp-7) 0;display:none}
+    .support-form__success svg{color:var(--red);margin:0 auto var(--sp-4)}
+    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-3)}
+    .support-form__success p{color:var(--fg-2);font-size:var(--fs-lead)}
+    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.support-form__submit{width:100%;justify-content:center}}
+    .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
+    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
+    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
+    .footer__phone:hover{color:var(--red)}
+    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
+    .footer__col ul{list-style:none}
+    .footer__col li{margin-bottom:var(--sp-2)}
+    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
+    .footer__legal{display:flex;gap:var(--sp-5)}
+    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
+    .footer__legal a:hover{color:var(--white)}
+    @media(max-width:1024px){.footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}.footer__brand{grid-column:1/-1}}
+    @media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.article-wrap{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../../index.html"><img src="../../project/assets/jet-logo-dark.svg" alt="Jet Interactive"></a>
+      <ul class="nav__links">
+        <li><a href="../../index.html">Home</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../../solutions/small-business.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Small Business</a>
+            <a href="../../solutions/sales-teams.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Sales Teams</a>
+            <a href="../../solutions/international-staff.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>International Staff</a>
+          </div>
+        </li>
+        <li><a href="../../pricing.html">Pricing</a></li>
+        <li><a href="../../knowledgebase.html" class="active">Knowledgebase</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+      </ul>
+      <a href="tel:0488811729" class="nav__phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.4l.42.52z"/></svg>0488 811 729</a>
+      <a href="../../contact.html" class="nav__cta">Contact Support</a>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="nav__drawer">
+    <a href="../../index.html">Home</a>
+    <div class="nav__dropdown-section">
+      <div class="nav__drawer-section-label">Solutions</div>
+      <div class="nav__drawer-sub">
+        <a href="../../solutions/small-business.html">Small Business</a>
+        <a href="../../solutions/sales-teams.html">Sales Teams</a>
+        <a href="../../solutions/international-staff.html">International Staff</a>
+      </div>
+    </div>
+    <a href="../../pricing.html">Pricing</a>
+    <a href="../../knowledgebase.html" class="active">Knowledgebase</a>
+    <a href="../../contact.html">Contact</a>
+    <a href="../../contact.html" class="nav__cta">Contact Support</a>
+  </div>
+
+  <section class="kb-hero">
+    <div class="kb-hero__inner">
+      <div class="kb-hero__breadcrumb">
+        <a href="../../knowledgebase.html">Knowledgebase</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href="../../knowledgebase/troubleshooting.html">Troubleshooting</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>How to diagnose audio issues and improve call quality</span>
+      </div>
+      <div class="kb-hero__tag">Troubleshooting</div>
+      <h1>How to diagnose audio issues and improve call quality</h1>
+    </div>
+  </section>
+
+  <div class="article-wrap">
+    <div class="article-body">
+      <p>This article will run through the steps required to diagnose any issues with your Jet apps or your network connectivity.</p>
+<ul>
+<li><a href="#h_01GD9YK8F2A34A6GJT457F1AQJ" target="_self">How do our calls work?</a></li>
+<li><a href="#h_01GD9YKYGQS5MESGAS7BVKDQGN" target="_self">Accessing your call quality report</a></li>
+<li><a href="#h_01GD9Z0PF8WENM6P0PPAZS3Z9Q" target="_self">Understanding your report</a></li>
+<li><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681" target="_blank" rel="noopener noreferrer">Improving your Network or Router Setup</a></li>
+</ul>
+<div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div>
+<h2 id="h_01GD9YK8F2A34A6GJT457F1AQJ">How do our calls work?</h2>
+<p>Phone calls made via your Jet Interactive Services are placed over your internet connection using a type of traffic called VoIP, which stands for Voice over Internet Protocol. A VoIP system works by taking your analogue voice signals, converting them into digital signals, and then sending them as data over your internet connection.</p>
+<p><strong>This means the most common reason for your Jet Phones or Hardware to not be connecting is due to Network connectivity issues.</strong> If your internet connection is not strong enough or not configured to support this type of traffic, you can occasionally experience call quality or app connectivity issues.</p>
+<p>Jet provides a range of reports on <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4409825980569" target="_self">Device Quality &amp; Network reports</a> that you can use to check the frequency of issues on your services.</p>
+<p>There are also some features custom-built into your Jet Phone app to help diagnose and detect these issues, and there are certain router settings and permissions that you can modify yourself, or speak to your technical contact or Internet Service Provider to modify on your behalf.  </p>
+<p> </p>
+<p> </p>
+<h2 id="h_01GD9YKYGQS5MESGAS7BVKDQGN">Accessing your call quality report</h2>
+<p>On mobile devices running iOS or Android, the Call Statistics report can be accessed through the Advanced Settings menu on the mobile application.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/4410126248217/diag_advanced.png" alt="diag_advanced.png" width="285" height="507">   <img style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;" src="https://support.jetinteractive.com.au/hc/article_attachments/4410113725209/diad_stats.png" alt="diad_stats.png" width="285" height="507"></p>
+<p>Once you have loaded the report, take a screenshot straight away. This report will be wiped and replaced when the next call is taken on this device.</p>
+<p> </p>
+<p>On the desktop versions of our apps (Mac &amp; Windows), this report is available by using your menu to navigate to Help &gt; Troubleshooting &gt; Audio. </p>
+<p><img src="https://support.jetinteractive.com.au/hc/article_attachments/10631611327513/Screen_Shot_2022-09-15_at_10.55.28_am.png" alt="Screen_Shot_2022-09-15_at_10.55.28_am.png" width="397" height="303"></p>
+<p>Again, you need to screenshot this report ASAP -- either mid-call or directly after. Subsequent calls will overwrite this with new call information.</p>
+<p> </p>
+<p> </p>
+<h2 id="h_01GD9Z0PF8WENM6P0PPAZS3Z9Q">Understanding your report</h2>
+<p>That's a lot of technical jargon in the report, so let's break each term down for you in more detail.</p>
+<p>Each of these results has different methods to solve, so please follow the information at the bottom of each section to view the steps to resolve.</p>
+<p>Here are the key things to look for in your report:</p>
+<ul>
+<li><a href="#h_01GD9V94E7J6HX4RF6DHAVPNFR" target="_self">Codec</a></li>
+<li><a href="#h_01GD9V9FTDE9QYPJ03EH5ABP5X" target="_self">Packets &amp; Packet Loss</a></li>
+<li><a href="#h_01GD9V9MNBV56XYE5RZNQMRV1E" target="_self">Jitter</a></li>
+<li><a href="#h_01GD9V9SMPKQ3V25SZGAZRA20F" target="_self">Round Trip and Latency</a></li>
+<li>
+<a href="#h_01GD9Z7BEZ9X4G03Y3Y9GZVF51" target="_self">Bandwidth (Throughput)</a><br> </li>
+</ul>
+<h3 id="h_01GD9V94E7J6HX4RF6DHAVPNFR"><strong>Codec</strong></h3>
+<p>Codecs are device programs or drivers that encode and decode audio signals to be able to pass the signal through telephone lines or over the internet. For voice calls, they are used to translate the sound of your voice into a digital signal, and then produce it on the other end for the other party to hear.<br><br>The most common audio codec used is called G.711 (also called PCMA) or its higher quality brother G722. These codecs are not compressed, meaning they may use up more of your bandwidth connection than other codecs, but this guarantees a higher quality (HD) voice call than most other codecs. When using this codec, the Throughput in your Call Statistics report should sit between 80-95kbps.<br>Other less common codecs include G.729 (some compression, designed for slower internet connections) or G.723.1 (highly compressed to save bandwidth, but sacrifices call quality). <br><br>Your codec will automatically adjust to the best quality available based on your bandwidth. <strong>If your codec is not G.711, PCMA or G722</strong>, please <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681-Improving-your-Network-or-Router-Setup#:~:text=Phone%20Diagnostic%20Report.-,Speed%20Guide,-Different%20activities%20online" target="_blank" rel="noopener noreferrer">view our speed guide</a> for the minimum download speeds you should be aiming for to get the best quality call and consider upgrading your network connection speed.<br> </p>
+<h3 id="h_01GD9V9FTDE9QYPJ03EH5ABP5X"><strong>Packets &amp; Packet Loss</strong></h3>
+<p>When a call is made, the signal gets recorded and then split into thousands of tiny pieces, known as packets. Packets are usually encrypted and are very small in size to provide easier and fast data transfers between endpoints. Packets are all sent individually and reassembled on the other end to complete your audio signal.</p>
+<p>For a 5-minute call, this is about 15,000 packets being sent.</p>
+<p>When packets get Lost, it means that some of the data went missing along the way and was unable to be delivered. You can see the percentage of Lost data in your Call Statistics report.<br><strong>Packet loss is usually due to network congestion or insufficient bandwidth.</strong> Please <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681-Improving-your-Network-or-Router-Setup#:~:text=Phone%20Diagnostic%20Report.-,Speed%20Guide,-Different%20activities%20online" target="_blank" rel="noopener noreferrer">view our speed guide</a> for the minimum download speeds you should be aiming for to get the best quality call and consider upgrading your network connection speed or making changes to your <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681#:~:text=resolve%20your%20problem.-,Bandwidth%20Control,-Bandwidth%20Control%2C%20also" target="_blank" rel="noopener noreferrer">bandwidth control</a> to ensure VOIP traffic is prioritised.</p>
+<h3 id="h_01GD9V9MNBV56XYE5RZNQMRV1E">
+<br><strong>Jitter</strong>
+</h3>
+<p>Sometimes when passing data from point to point at such high speeds, not all the data will be sent and received at the exact same time. This is called Jitter and refers to the variation in milliseconds between these packet delays. This is the main reason for poor audio quality in a call, usually in the form of choppy sound. <br><strong>Jitter should be as low as possible, ideally below 5ms.</strong> If your Jitter is very high, please <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681-Improving-your-Network-or-Router-Setup#:~:text=Phone%20Diagnostic%20Report.-,Speed%20Guide,-Different%20activities%20online" target="_blank" rel="noopener noreferrer">view our speed guide</a> for the minimum download speeds you should be aiming for to get the best quality call and consider upgrading your network connection speed or making changes to your <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681#:~:text=resolve%20your%20problem.-,Bandwidth%20Control,-Bandwidth%20Control%2C%20also" target="_blank" rel="noopener noreferrer">bandwidth control</a> to ensure VOIP traffic is prioritised.</p>
+<p>Our system also has an adaptive feature called a Jitter Buffer. This feature will identify if the call has impacted quality due to patchy or low quality internet, and the system will actively work to improve the call quality.</p>
+<p>This feature can take some time to kick in (usually resolves within 10-15 seconds), and if you are finding your call is crackly for the first few seconds and then improves, this is thanks to the jitter buffer feature. Please follow the links above to check your bandwidth allocation and check your speed guide to improve, and note that poor reception in your area could also be a factor.</p>
+<p> </p>
+<h3 id="h_01GD9V9SMPKQ3V25SZGAZRA20F"><strong>Round Trip and Latency</strong></h3>
+<p>Round Trip is the time in milliseconds that it takes for the sound to travel between the two ends of a call. You may sometimes see this referred to as latency by other service providers, and a high latency is indicative of a delay in transmitting sounds.<br>The lower the Round Trip or Latency, the better - ideally this should be under 25 milliseconds. Most of the time, latency and extended RTT result from network congestion, which also contributes to jitter (above).</p>
+<p><strong>If you have high RTT, </strong>please <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681-Improving-your-Network-or-Router-Setup#:~:text=Phone%20Diagnostic%20Report.-,Speed%20Guide,-Different%20activities%20online" target="_blank" rel="noopener noreferrer">view our speed guide</a> for the minimum download speeds you should be aiming for to get the best quality call and consider upgrading your network connection speed or making changes to your <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681#:~:text=resolve%20your%20problem.-,Bandwidth%20Control,-Bandwidth%20Control%2C%20also" target="_blank" rel="noopener noreferrer">bandwidth control</a> to ensure VOIP traffic is prioritised.</p>
+<p><em>Please note - using our VoIP services when located outside Australia can lead to higher RTT than expected. If the steps above are unsuccessful in improving this, we recommend talking to your ISP for more information on how to improve this issue specifically from your country of origin. You can also consider investing in hardware that will support your unique needs for your location, although Jet cannot provide further guidance here, and we recommend speaking to a network provider or IT support in your location for specialised advice.</em></p>
+<p> </p>
+<h3 id="h_01GD9Z7BEZ9X4G03Y3Y9GZVF51"><strong>Bandwidth (Throughput)</strong></h3>
+<p>Your upload/Download speed (known as bandwidth) is the maximum throughput of your Internet network.<br>Bandwidth greatly affects all the components of your voice call. Bandwidth congestion is the main cause of packet loss and compromised call quality, as well as "dead" lines and one way audio. In this case, the higher your bandwidth, the better. </p>
+<p>If your bandwidth is under 80kbps, please <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681-Improving-your-Network-or-Router-Setup#:~:text=Phone%20Diagnostic%20Report.-,Speed%20Guide,-Different%20activities%20online" target="_blank" rel="noopener noreferrer">view our speed guide</a> for the minimum download speeds you should be aiming for to get the best quality call and consider upgrading your network connection speed.</p>
+<p> </p>
+<p>For more information on improving your Network setup, please view our detailed information here: <a href="https://support.jetinteractive.com.au/hc/en-us/articles/4405815590681" target="_blank" rel="noopener noreferrer">Improving your Network or Router Setup</a></p>
+    </div>
+
+    <div class="kb-help" id="kb-help">
+      <div class="kb-help__cta" id="kb-help-cta">
+        <div>
+          <h3>Still need help?</h3>
+          <p>Our support team is ready to assist you.</p>
+        </div>
+        <button class="kb-help__btn" onclick="document.getElementById('kb-help-cta').style.display='none';document.getElementById('kb-help-form').style.display='block'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Support
+        </button>
+      </div>
+      <div id="kb-help-form" style="display:none">
+        <div class="kb-help__form-header">
+          <div><h3>Contact Support</h3><p>We'll get back to you as soon as possible.</p></div>
+          <button class="kb-help__close" onclick="document.getElementById('kb-help-cta').style.display='flex';document.getElementById('kb-help-form').style.display='none'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <form class="support-form" id="support-form">
+          <div class="support-form__row">
+            <div class="support-form__field"><label for="sf-name">Full name</label><input type="text" id="sf-name" required placeholder="Jane Smith"></div>
+            <div class="support-form__field"><label for="sf-email">Email address</label><input type="email" id="sf-email" required placeholder="jane@company.com.au"></div>
+          </div>
+          <div class="support-form__field"><label for="sf-subject">Subject</label><input type="text" id="sf-subject" required placeholder="Brief description of your issue"></div>
+          <div class="support-form__field"><label for="sf-message">Message</label><textarea id="sf-message" required placeholder="Please describe your issue in detail..."></textarea></div>
+          <div class="support-form__error" id="sf-error"></div>
+          <button type="submit" class="support-form__submit" id="sf-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <div class="support-form__success" id="sf-success">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h4>Message sent!</h4>
+            <p>Thanks for reaching out. We'll be in touch shortly.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="../../project/assets/jet-logo-light.svg" alt="Jet Interactive" style="height:28px;margin-bottom:16px">
+        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      </div>
+      <div class="footer__col"><h4>Product</h4><ul><li><a href="../../index.html">Jet Cloud Mobile</a></li><li><a href="../../pricing.html">Pricing</a></li><li><a href="../../downloads.html">Downloads</a></li></ul></div>
+      <div class="footer__col"><h4>Solutions</h4><ul><li><a href="../../solutions/small-business.html">Small Business</a></li><li><a href="../../solutions/sales-teams.html">Sales Teams</a></li><li><a href="../../solutions/international-staff.html">International Staff</a></li></ul></div>
+      <div class="footer__col"><h4>Support</h4><ul><li><a href="../../knowledgebase.html">Knowledgebase</a></li><li><a href="../../contact.html">Contact Us</a></li><li><a href="../../faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4>Company</h4><ul><li><a href="https://jetinteractive.com.au" target="_blank">Jet Interactive</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Jet Interactive. All rights reserved.</span>
+      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('.nav__burger');
+    const drawer = document.querySelector('.nav__drawer');
+    burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+
+    const form = document.getElementById('support-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('sf-submit');
+        const err = document.getElementById('sf-error');
+        btn.disabled = true; btn.textContent = 'Sending…'; err.style.display = 'none';
+        try {
+          const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({request:{subject:document.getElementById('sf-subject').value,comment:{body:document.getElementById('sf-message').value},requester:{name:document.getElementById('sf-name').value,email:document.getElementById('sf-email').value}}})
+          });
+          if (!res.ok) throw new Error();
+          document.getElementById('sf-success').style.display = 'block';
+          form.style.display = 'none';
+        } catch { err.textContent = 'Something went wrong. Please call us on 0488 811 729.'; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; }
+      });
+    }
+  </script>
+  <script src="../../project/assets/chat.js" defer></script>
+</body>
+</html>
