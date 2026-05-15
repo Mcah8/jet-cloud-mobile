@@ -200,45 +200,7 @@
       <p>The Jet Phone app for computers &amp; smartphone phone along with networking hardware have some requirements to ensure a smooth experience. Devices that do not meet these requirements may still run the app but performance may vary significantly and we cannot ensure a smooth experience.</p><p><a href="#h_01KKG3E158MEY8JW52Q9K2Y4PV">iPhone</a></p><p><a href="#h_01KKG3FFMD59Y5CYQ87N287JBZ">Android</a></p><p><a href="#h_01KKG3QTB8HE67Y5WD5Z4JN2YH">Windows</a></p><p><a href="#h_01KKG3T8AQAH32CKHTAW88RKPQ">Mac</a></p><p><a href="#h_01KKG3Y4X3VZWXQW0MG9NJ6XMF">Network</a></p><p> </p><h2 id="h_01KKG3E158MEY8JW52Q9K2Y4PV">iPhone</h2><p><strong>Update</strong>: iOS 26</p><p><strong>Model</strong>: iPhone 11 or newer</p><h2 id="h_01KKG3FFMD59Y5CYQ87N287JBZ">Android</h2><p><strong>Update</strong>: Android 16<br>Example Models: Samsung Galaxy S26, Nothing Phone (3), Google Pixel 10, OnePlus 15</p><h4 id="h_01KKG4624DD2HD15S25JJJ024E">Device specifications:</h4><p><strong>CPU</strong>:  Snapdragon 8 (and variations of this)</p><p><strong>RAM</strong>: 8GB</p><p><strong>Storage</strong>: 128GB</p><p>In our testing of android devices, lower end phones with specifications under these tend to have troubles maintaining not only our services but other modern apps as well. We are happy to work with you to resolve issues your device or app is facing but certain issues cannot be solved without better hardware.<br> </p><h4 id="h_01KKJ5NJZVBCT28GJ4X1JARMFQ">Known Problem Devices:</h4><p>Oppo</p><p>Motorola </p><p>HMD</p><p>TCL</p><p> </p><p> </p><h2 id="h_01KKG3QTB8HE67Y5WD5Z4JN2YH">Windows</h2><p><strong>Update</strong>: Windows 11 with 2025 updates installed</p><h4 id="h_01KKG45YV4HEZJ1EM0MCD7Y9VN">Device specifications:</h4><p><strong>CPU</strong>: Must meet the requirements of TPM 2.0. Most Devices made past the year 2020 will support this standard. </p><p><strong>RAM</strong>: 8GB</p><p><strong>Storage</strong>: 128GB (or more)</p><h2 id="h_01KKG3T8AQAH32CKHTAW88RKPQ">Mac</h2><p><strong>Update</strong>: macOS 15, Sequoia</p><p><strong>Model</strong>: Any devices newer than 2020, including both Laptops and Desktop style devices such as Macbook and iMac</p><h2 id="h_01KKG3Y4X3VZWXQW0MG9NJ6XMF"> </h2><p> </p>
     </div>
 
-    <div class="kb-help" id="kb-help">
-      <div class="kb-help__cta" id="kb-help-cta">
-        <div>
-          <h3>Still need help?</h3>
-          <p>Our support team is ready to assist you.</p>
-        </div>
-        <button class="kb-help__btn" onclick="document.getElementById('kb-help-cta').style.display='none';document.getElementById('kb-help-form').style.display='block'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Contact Support
-        </button>
-      </div>
-      <div id="kb-help-form" style="display:none">
-        <div class="kb-help__form-header">
-          <div><h3>Contact Support</h3><p>We'll get back to you as soon as possible.</p></div>
-          <button class="kb-help__close" onclick="document.getElementById('kb-help-cta').style.display='flex';document.getElementById('kb-help-form').style.display='none'">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <form class="support-form" id="support-form">
-          <div class="support-form__row">
-            <div class="support-form__field"><label for="sf-name">Full name</label><input type="text" id="sf-name" required placeholder="Jane Smith"></div>
-            <div class="support-form__field"><label for="sf-email">Email address</label><input type="email" id="sf-email" required placeholder="jane@company.com.au"></div>
-          </div>
-          <div class="support-form__field"><label for="sf-subject">Subject</label><input type="text" id="sf-subject" required placeholder="Brief description of your issue"></div>
-          <div class="support-form__field"><label for="sf-message">Message</label><textarea id="sf-message" required placeholder="Please describe your issue in detail..."></textarea></div>
-          <div class="support-form__error" id="sf-error"></div>
-          <button type="submit" class="support-form__submit" id="sf-submit">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Send Message
-          </button>
-          <div class="support-form__success" id="sf-success">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h4>Message sent!</h4>
-            <p>Thanks for reaching out. We'll be in touch shortly.</p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    <div class="kb-help"></div>
 
   <footer class="footer">
     <div class="footer__inner">
@@ -283,5 +245,7 @@
     }
   </script>
   <script src="../../project/assets/chat.js" defer></script>
+  <script src="../../project/assets/ticket-form.js" defer></script>
+  <script src="../../project/assets/global-search.js" defer></script>
 </body>
 </html>
