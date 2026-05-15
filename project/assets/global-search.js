@@ -192,13 +192,18 @@
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
-  // ── Wire trigger button ────────────────────────────────────────────────────
+  // ── Wire trigger buttons ───────────────────────────────────────────────────
   function injectTrigger() {
-    // Button is pre-rendered in HTML; just wire the click handler
-    const btn = document.getElementById('gs-trigger');
-    if (!btn) return;
-    btn.addEventListener('click', openSearch);
+    // Desktop button is pre-rendered inside nav__links; mobile button is before burger
+    document.querySelectorAll('#gs-trigger, #gs-trigger-mob').forEach(btn => {
+      if (btn) btn.addEventListener('click', openSearch);
+    });
   }
+
+  // Show mobile button at ≤900px, hide at wider viewports
+  const mobCss = document.createElement('style');
+  mobCss.textContent = '@media(max-width:900px){#gs-trigger{display:none!important}#gs-trigger-mob{display:flex!important}}';
+  document.head.appendChild(mobCss);
 
   // ── Build overlay HTML ─────────────────────────────────────────────────────
   const overlay = document.createElement('div');
