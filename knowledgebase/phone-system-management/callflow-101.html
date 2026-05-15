@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callflow 101 — Jet Cloud Mobile Knowledgebase</title>
+  <meta name="description" content="Callflow 101. Step-by-step guide from the Jet Cloud Mobile knowledgebase.">
+  <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-logo:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 100%);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto;border-radius:var(--radius-md);box-shadow:var(--shadow-2);margin:var(--sp-5) 0}
+    ::selection{background:var(--red);color:var(--white)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover,.nav__links a.active{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
+    .nav__dropdown{position:relative}
+    .nav__dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);font-family:var(--font-ui);padding:0;transition:color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-toggle:hover,.nav__dropdown-toggle.active{color:var(--red)}
+    .nav__dropdown-toggle svg{transition:transform var(--dur-base) var(--ease-out)}
+    .nav__dropdown:hover .nav__dropdown-toggle svg{transform:rotate(180deg)}
+    .nav__dropdown-menu{display:none;position:absolute;top:100%;margin-top:1px;left:50%;transform:translateX(-50%);background:var(--white);border:var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-3);min-width:220px;overflow:hidden;z-index:300}
+    .nav__dropdown:hover .nav__dropdown-menu{display:block}
+    .nav__dropdown-menu a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);text-decoration:none;color:var(--fg-1);font-size:var(--fs-body);font-weight:500;border-bottom:var(--border);transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+    .nav__dropdown-menu a:last-child{border-bottom:none}
+    .nav__dropdown-menu a:hover,.nav__dropdown-menu a.active{background:var(--ink-50);color:var(--red)}
+    .nav__dropdown-menu a svg{flex-shrink:0;color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a,.nav__drawer-section-label{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer-sub{padding-left:var(--sp-5)}
+    .nav__drawer-sub a{font-size:var(--fs-body);color:var(--fg-2);font-weight:400}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+    .kb-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6) var(--sp-10)}
+    .kb-hero__inner{max-width:760px;margin:0 auto}
+    .kb-hero__breadcrumb{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:var(--fs-small);font-weight:500;margin-bottom:var(--sp-5)}
+    .kb-hero__breadcrumb a{color:rgba(255,255,255,.7);text-decoration:none;transition:color var(--dur-base) var(--ease-out)}
+    .kb-hero__breadcrumb a:hover{color:var(--white)}
+    .kb-hero__breadcrumb svg{flex-shrink:0}
+    .kb-hero__tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:3px 12px;border-radius:var(--radius-pill);margin-bottom:var(--sp-4)}
+    .kb-hero h1{font-family:var(--font-display);font-size:clamp(24px,4vw,40px);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-tight);color:var(--white)}
+    .article-wrap{max-width:760px;margin:0 auto;padding:var(--sp-10) var(--sp-6)}
+    .article-body h1{font-family:var(--font-display);font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-9) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--ink-200)}
+    .article-body h1:first-child{margin-top:0}
+    .article-body h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;line-height:var(--lh-snug);letter-spacing:var(--tr-snug);color:var(--fg-1);margin:var(--sp-8) 0 var(--sp-4);padding-bottom:var(--sp-3);border-bottom:2px solid var(--red-100)}
+    .article-body h2:first-child{margin-top:0}
+    .article-body h3{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;color:var(--fg-1);margin:var(--sp-6) 0 var(--sp-3)}
+    .article-body p{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5)}
+    .article-body ul,.article-body ol{font-size:var(--fs-lead);color:var(--fg-2);line-height:1.75;margin-bottom:var(--sp-5);padding-left:var(--sp-6)}
+    .article-body li{margin-bottom:var(--sp-2)}
+    .article-body li ul,.article-body li ol{margin-top:var(--sp-2);margin-bottom:0}
+    .article-body strong{color:var(--fg-1);font-weight:600}
+    .article-body code{background:var(--ink-100);border-radius:4px;padding:2px 6px;font-family:monospace;font-size:0.9em;color:var(--fg-1)}
+    .article-body table{width:100%;border-collapse:collapse;margin-bottom:var(--sp-6);font-size:var(--fs-body)}
+    .article-body th{background:var(--ink-100);font-weight:600;text-align:left;padding:var(--sp-3) var(--sp-4);border:var(--border)}
+    .article-body td{padding:var(--sp-3) var(--sp-4);border:var(--border);color:var(--fg-2)}
+    .article-body tr:nth-child(even) td{background:var(--ink-50)}
+    .article-body a{color:var(--red);text-decoration:none;font-weight:500}
+    .article-body a:hover{text-decoration:underline}
+    .article-body blockquote{border-left:4px solid var(--red);padding:var(--sp-4) var(--sp-5);background:var(--red-50);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:var(--sp-6) 0}
+    .article-body blockquote p{margin-bottom:0;color:var(--fg-1)}
+    .article-body hr{border:none;border-top:var(--border);margin:var(--sp-8) 0}
+    .kb-help{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-9)}
+    .kb-help h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-2)}
+    .kb-help>p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:var(--sp-6)}
+    .support-form{display:flex;flex-direction:column;gap:var(--sp-4)}
+    .support-form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+    .support-form__field{display:flex;flex-direction:column;gap:6px}
+    .support-form__field label{font-size:var(--fs-small);font-weight:600;color:var(--fg-1)}
+    .support-form__field input,.support-form__field select,.support-form__field textarea{font-family:var(--font-ui);font-size:var(--fs-body);color:var(--fg-1);background:var(--white);border:var(--border);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);outline:none;width:100%}
+    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,28,36,.12)}
+    .support-form__field textarea{resize:vertical;min-height:120px;line-height:var(--lh-normal)}
+    .support-form__field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .support-form__submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:all var(--dur-med) var(--ease-out)}
+    .support-form__submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .support-form__submit:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
+    .support-form__error{color:#c0392b;font-size:var(--fs-small);font-weight:500;padding:var(--sp-3) var(--sp-4);background:#fdecea;border-radius:var(--radius-md);border:1px solid #f5c6c6;display:none}
+    .support-form__success{text-align:center;padding:var(--sp-7) 0;display:none}
+    .support-form__success svg{color:var(--red);margin:0 auto var(--sp-4)}
+    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-3)}
+    .support-form__success p{color:var(--fg-2);font-size:var(--fs-lead)}
+    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.support-form__submit{width:100%;justify-content:center}}
+    .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
+    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
+    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
+    .footer__phone:hover{color:var(--red)}
+    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
+    .footer__col ul{list-style:none}
+    .footer__col li{margin-bottom:var(--sp-2)}
+    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
+    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
+    .footer__legal{display:flex;gap:var(--sp-5)}
+    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
+    .footer__legal a:hover{color:var(--white)}
+    @media(max-width:1024px){.footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}.footer__brand{grid-column:1/-1}}
+    @media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.article-wrap{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="../../index.html"><img src="../../project/assets/jet-logo-dark.svg" alt="Jet Interactive"></a>
+      <ul class="nav__links">
+        <li><a href="../../index.html">Home</a></li>
+        <li class="nav__dropdown">
+          <button class="nav__dropdown-toggle">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="../../solutions/small-business.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Small Business</a>
+            <a href="../../solutions/sales-teams.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Sales Teams</a>
+            <a href="../../solutions/international-staff.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>International Staff</a>
+          </div>
+        </li>
+        <li><a href="../../pricing.html">Pricing</a></li>
+        <li><a href="../../knowledgebase.html" class="active">Knowledgebase</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+      </ul>
+      <a href="tel:0488811729" class="nav__phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.4l.42.52z"/></svg>0488 811 729</a>
+      <a href="../../contact.html" class="nav__cta">Contact Support</a>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="nav__drawer">
+    <a href="../../index.html">Home</a>
+    <div class="nav__dropdown-section">
+      <div class="nav__drawer-section-label">Solutions</div>
+      <div class="nav__drawer-sub">
+        <a href="../../solutions/small-business.html">Small Business</a>
+        <a href="../../solutions/sales-teams.html">Sales Teams</a>
+        <a href="../../solutions/international-staff.html">International Staff</a>
+      </div>
+    </div>
+    <a href="../../pricing.html">Pricing</a>
+    <a href="../../knowledgebase.html" class="active">Knowledgebase</a>
+    <a href="../../contact.html">Contact</a>
+    <a href="../../contact.html" class="nav__cta">Contact Support</a>
+  </div>
+
+  <section class="kb-hero">
+    <div class="kb-hero__inner">
+      <div class="kb-hero__breadcrumb">
+        <a href="../../knowledgebase.html">Knowledgebase</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href="../../knowledgebase/phone-system-management.html">Phone System Management</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Callflow 101</span>
+      </div>
+      <div class="kb-hero__tag">Phone System Management</div>
+      <h1>Callflow 101</h1>
+    </div>
+  </section>
+
+  <div class="article-wrap">
+    <div class="article-body">
+      <p><span style="font-weight: 400;">A </span><em><span style="font-weight: 400;"><strong>Callflow</strong></span></em><span style="font-weight: 400;"> is where you will configure what happens when one of your phone numbers receives an inbound call or SMS. </span><span style="font-weight: 400;">You can have a callflow for a single number, or a callflow designed for many services.</span></p><p>In this article we will cover:</p><ul>
+<li data-list-item-id="e1f32519864a5fcca2217149f13c32754"><a href="#h_01FYN6N65VSSS397RAHRWCH8MH" target="_self">Callflow Statuses</a></li>
+<li data-list-item-id="eedf6e8eec2e499fee8e1de013f9d873e"><a href="#h_01FYN6MJ5MQW9RXQ8BX6W5VAPF" target="_self">Glossary of Callflow Terminology </a></li>
+<li data-list-item-id="ed2dd526c774fc06f2d407d18f00e92b3">
+<a href="#h_01FYQM43J3QNXRJFNKGSYT261X" target="_self">Widget Overview</a><ul>
+<li data-list-item-id="ead9729d79565591af874ac3991cfdc7d"><a href="#h_01FYQMBQBSDD63JG4GBV3M8EEP" target="_self">Dial</a></li>
+<li data-list-item-id="e9acad8699a3d0d40f5cfe923d9a17f1d"><a href="#h_01FYQMBY6R7XQKFEZZ9064SJZF" target="_self">Greetings</a></li>
+<li data-list-item-id="e8ee1d3f741badabc973a9b29c0aec226"><a href="#h_01FYQMD477RSVC46NQN62XX9AY" target="_self">Hang Up</a></li>
+<li data-list-item-id="e0c661cdd87686cb8217f8b61da8bec68"><a href="#h_01FYQMDCPXRM6AF9JJNFKZV506" target="_self">IVR Menu</a></li>
+<li data-list-item-id="e8396765fa28dd3e72e8e450e9ae82ff6"><a href="#h_01FYQMDN631RS6XSPSM8VX5H3H" target="_self">Voice Mail</a></li>
+<li data-list-item-id="e7177eca81038c8f700333ece9eeeb9f2"><a href="#h_01FYQMDWY51EY9A846DY8T1GMQ" target="_self">Email</a></li>
+<li data-list-item-id="e809dbb01b54535a7ac3e7834784d42e4"><a href="#h_01FYQMEAF79BXZ5R5F1XF26W68" target="_self">Time Routing</a></li>
+<li data-list-item-id="e764ab0d799fada95d95f74b93b084eb1"><a href="#h_01FYQMEKNP068YTN3ZSZZYRTWE" target="_self">SMS</a></li>
+<li data-list-item-id="e4286109c9ffd5652a5cd3c0ffe6cff03"><a href="#h_01FYQMFBSWYV8THQWWZMNY4344" target="_self">Queues </a></li>
+<li data-list-item-id="e2a98cb6dce2f483b11de516e5119e039"><a href="#h_01FYQMFNGAH9WRKCDS3DGDRGBX" target="_self">Geo Routing</a></li>
+<li data-list-item-id="e52aecdf10fff37d444453ab7b9a0f39b"><a href="#h_01FYQMFYK039DQ39994674RSTY" target="_self">Post Code</a></li>
+<li data-list-item-id="eedfd5ffff7c6b4f0e526573080cecf49"><a href="#h_01GRQCZCY4FTA2CHPA0SADV0TD" target="_self">Jump</a></li>
+</ul>
+</li>
+<li data-list-item-id="e0164effc69cceac9e8937b43bf9c1f99">Using callflows with Phone Numbers</li>
+</ul><p> </p><h2 id="h_01KAYRTA69CEKW42555N7WAF2G">Direct vs Business Callflows</h2><p>Callflows come in two major types, Direct and Business. You can switch between these types with the tabs on the callflows page:<br><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659139481" width="1104" height="392"><br>In this screenshot we can see that the current shown Callflows are Direct.<br><br><strong>Direct callflows</strong> are fairly straightforward and offer a direct service of number &gt; phone user.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659146393" width="836" height="804"></p><p>Direct Callflows can be edited it with a few features such as voicemails, call recording, transcribing and email notifications. All of this can be edited by clicking the edit icon to the right hand side of the call flow listing.<br><br><strong>Business Callflows</strong> are notably more feature rich but take some more time and care to properly setup. The rest of this article covers them</p><h2 id="h_01FYN6N65VSSS397RAHRWCH8MH">Callflow Statuses</h2><p>Every callflow will have a status. <em><strong>ACTIVE, AVAILABLE </strong></em>or<em><strong> DRAFT</strong>.</em></p><figure class="wysiwyg-table wysiwyg-table-align-left" style="width: 119.714%;"><table style="border-collapse: collapse; border-style: solid; border-width: 1px;"><tbody>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.7899%;"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763637839513" alt="Active_140x50.png"></td>
+<td style="border-style: solid; border-width: 1px; width: 100.105%;">Callflow is currently in use by one or more of your numbers.</td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.7899%;"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763637842713" alt="Available_140x50.png"></td>
+<td style="border-style: solid; border-width: 1px; width: 100.105%;">Callflow is complete but has not been used by any services yet.</td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.7899%;"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763637844761" alt="Draft_140x50.png"></td>
+<td style="border-style: solid; border-width: 1px; width: 100.105%;">Callflow is incomplete and not able to be used yet. Complete the callflow to 100% to change the status to AVAILABLE for use.</td>
+</tr>
+</tbody></table></figure><h3 id="h_01KAYRE1DJ24GM52578ZVW8D8E"> </h3><h2 id="h_01FYN6MJ5MQW9RXQ8BX6W5VAPF">Glossary</h2><p>We will be using a few terms throughout this article. Here's what they mean:</p><figure class="wysiwyg-table wysiwyg-table-align-left" style="width: 119.714%;"><table style="border-collapse: collapse; border-style: solid; border-width: 1px;"><tbody>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Term</strong></span></td>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 100.842%;"><span class="wysiwyg-font-size-medium"><strong>Description</strong></span></td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Canvas</strong></span></td>
+<td style="border-style: solid; border-width: 1px; width: 100.842%;"><span class="wysiwyg-font-size-medium">This is the space in your callflow builder where you will place your widgets and design your callflow.</span></td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Widget</strong></span></td>
+<td style="border-style: solid; border-width: 1px; width: 100.842%;">
+<p><span class="wysiwyg-font-size-medium">A widget is a component of your callflow builder that allows you to add an event or feature to your services. Widgets can do things like:</span></p>
+<ul>
+<li class="ck-list-marker-font-size-medium" data-list-item-id="e7c645f40156f1da7cf638f2c5fdc6631"><span class="wysiwyg-font-size-medium"><em>Dial</em> a Jet phone user or external number.</span></li>
+<li class="ck-list-marker-font-size-medium" data-list-item-id="ebd54e2d1410acdf5155ecec99f4f5ccc"><span class="wysiwyg-font-size-medium">Collect and send a <em>Voicemail</em> to an email.</span></li>
+<li class="ck-list-marker-font-size-medium" data-list-item-id="e1d84bf0cd1fe3028ea25b825567b83aa"><span class="wysiwyg-font-size-medium">Play a <em>Greeting</em> to a caller.</span></li>
+<li class="ck-list-marker-font-size-medium" data-list-item-id="e15e037661a2902d2b9c37c29f2ec5180"><span class="wysiwyg-font-size-medium">Send callers to different flows based on your <em>Time Routing</em>.</span></li>
+</ul>
+<p><span class="wysiwyg-font-size-medium">For a full list of widgets and functions see </span><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4409823345177" target="_self"><span class="wysiwyg-font-size-medium">Callflow 101</span></a></p>
+</td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Node</strong></span></td>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 100.842%;">
+<p class="wysiwyg-text-align-left"><span class="wysiwyg-font-size-medium">A node is what we call the coloured dots on the top or bottom of each widget. Connecting these nodes to each other is how you build your callflow. Nodes will often have different colours based on their functionality. For example on the Dial widget below:</span></p>
+<p class="wysiwyg-text-align-center"><span class="wysiwyg-font-size-medium"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659154841" alt="Dial_300x300.png" width="221" height="221"></span></p>
+<ul>
+<li class="wysiwyg-text-align-left ck-list-marker-font-size-medium" data-list-item-id="ee59d8cca98d9d9293ea000f7ed1056ed"><span class="wysiwyg-font-size-medium">The Yellow Node - is for any <em><strong>ANSWERED</strong></em> calls.</span></li>
+<li class="wysiwyg-text-align-left ck-list-marker-font-size-medium" data-list-item-id="e19047925e0a263a26e44763489e8e0e8"><span class="wysiwyg-font-size-medium">The Pink Node - is for any calls that were <em><strong>BUSY</strong></em> (E.g. your phone user was offline or your external number could not be reached).</span></li>
+<li class="wysiwyg-text-align-left ck-list-marker-font-size-medium" data-list-item-id="e580fec46ad41cfb47a01afdad9298eaa"><span class="wysiwyg-font-size-medium">The red is for any <em><strong>UNANSWERED</strong></em> calls (E.g. the call rang out).</span></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Modal Window</strong></span></td>
+<td style="border-style: solid; border-width: 1px; width: 100.842%;"><span class="wysiwyg-font-size-medium">When you click a widget, the setting or configuration screen of this widget will pop up on the right of your screen. We sometimes refer to this as your <em>modal window</em>. You can change the size, shape and location of your modal window by dragging the blue title base anywhere on your screen, and using the small white lines on the bottom right to increase the size.</span></td>
+</tr>
+<tr>
+<td style="border-style: solid; border-width: 1px; text-align: center; width: 18.8729%;"><span class="wysiwyg-font-size-medium"><strong>Progress Bar</strong></span></td>
+<td style="border-style: solid; border-width: 1px; width: 100.842%;">
+<p><span class="wysiwyg-font-size-medium">In the top right of your callflow builder, you will see a progress bar showing a percentage. This percentage needs to be at 100% to allow this callflow to be used. At any time, you can click into this progress bar to see what is left to complete.</span></p>
+<p class="wysiwyg-text-align-center"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659157273" alt="Incomplete_420x190.png" width="325" height="147"></p>
+<p><span class="wysiwyg-font-size-medium">Clicking the message displayed will highlight the widget that still needs attention:</span></p>
+<p class="wysiwyg-text-align-center"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659161881" alt="Dial_Widget_475x475.png" width="281" height="281"></p>
+</td>
+</tr>
+</tbody></table></figure><p> </p><p> </p><h1 id="h_01FYQM43J3QNXRJFNKGSYT261X">Widget Overview</h1><h2 id="h_01FYQMBQBSDD63JG4GBV3M8EEP"><span style="font-weight: 400;">Dial</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900728007961" alt="Dial_300x300.png"></p><p>The Dial widget is used to configure a dial event. This enables the user to configure what phone user or external number a call should dial, and also where the call should go if the nominated user is busy, or if the call is not answered within its configured timeout. Calls that go to an answering point that is busy or calls that timeout can be configured to go to Voicemail (below).  </p><p>More information on how to use Dial widgets:</p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404817579033" target="_self" rel="undefined">How to add or change an answering point</a></p><p> </p><h2 id="h_01FYQMBY6R7XQKFEZZ9064SJZF"><span style="font-weight: 400;">Greetings</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900751430425" alt="Greeting_300x300.png"></p><p><span style="font-weight: 400;">The Greetings widget is used to configure an audio message to be played to a caller before proceeding through the callflow. A greeting widget is usually found early in a callflow and is usually followed by an action event such as a IVR menu, Queue or Dial widget. A greeting allows the user to ensure the caller they have called the right number and makes the call feel more personal. </span></p><p><span style="font-weight: 400;">More information on how to use Greetings widgets:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404808664601" target="_blank" rel="noopener noreferrer">How to add a custom greeting</a></p><p> </p><h2 id="h_01FYQMD477RSVC46NQN62XX9AY"><span style="font-weight: 400;">Hang Up</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900731911833" alt="Hang_Up_300x300.png"></p><p><span style="font-weight: 400;">The Hang Up widget is used to end a </span><span style="font-weight: 400;">callflow</span><span style="font-weight: 400;">. All callflows must end in a Hang Up to be 100% completed and ready for use. The hang up widget does not require any configuration other than being connected to the callflow by the yellow node above the widget.</span></p><p> </p><h2 id="h_01FYQMDCPXRM6AF9JJNFKZV506"><span style="font-weight: 400;">IVR Menu</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900747938201" alt="IVR_Menu_300x300.png"></p><p><span style="font-weight: 400;">The </span><span style="font-weight: 400;">IVR Menu</span><span style="font-weight: 400;"> widget is used to set up an Interactive Voice Response Menu. An IVR menu is the system that helps callers navigate their way to the correct path by listening to a menu and then entering the corresponding prompt on the dial pad to direct their call where they would like to go. IVR menus are great for businesses with one inbound number and multiple departments or locations. It is one of Jet’s most used features.</span></p><p><span style="font-weight: 400;">More information on how to use IVR Menu widgets:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404801411609" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">How to add an IVR</span></a></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4409582429209" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">IVR Report</span></a></p><p> </p><h2 id="h_01FYQMDN631RS6XSPSM8VX5H3H"><span style="font-weight: 400;">Voice Mail</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900768924185" alt="Voicemail_300x300.png"></p><p><span style="font-weight: 400;">The </span><span style="font-weight: 400;">Voice Mail</span><span style="font-weight: 400;"> widget is used to configure an audio voicemail message to be played if the call goes unanswered. You can also configure an email address to be notified once a voicemail has been left. An automated email with a link to the voice message audio will be sent to the nominated email addresses. The email will also contain the caller ID, Time/Date, the phone user called and the reason it went to voicemail.</span></p><p><span style="font-weight: 400;">More information on how to use Voicemail widgets:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404808762649" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">How to add voicemail</span></a></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404817904537" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">Using the Voicemail Manager</span></a></p><p> </p><h2 id="h_01FYQMDWY51EY9A846DY8T1GMQ"><span style="font-weight: 400;">Email</span></h2><h2 id="h_01KAYRE1DJ64DRNKCA1W05VAPN"><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900755073561" alt="Email_300x300.png"></h2><p><span style="font-weight: 400;">The em</span><span style="font-weight: 400;">ail widget is used to notify the user of a phone call via an automated email sent to an address of the user's choosing. In the case of a </span><span style="font-weight: 400;">Cloud Mobile</span><span style="font-weight: 400;"> user, the email widget can be used to notify the user of SMS messages.</span></p><p><span style="font-weight: 400;">Within the email widget, you can configure the email address(es) to be notified, as well as the subject and email text. Information such as caller ID, time/date, SMS message and call recording details will automatically be filled into the email.</span></p><p> </p><h2 id="h_01FYQMEAF79BXZ5R5F1XF26W68"><span style="font-weight: 400;">Time Routing</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900770744729" alt="Time_Routing_300x300.png"></p><p><span style="font-weight: 400;">The </span><span style="font-weight: 400;">Time Routing</span><span style="font-weight: 400;"> widget is used to set up time of day routing. Time of day routing allows the user to direct calls differently during different periods of day, or on specific dates and one-off events. In the widget, the user chooses the time zone and sets up business hours. The more time slots you configure the more nodes will be created for you to direct calls under the widget. Time of day routing is great for directing after hours calls and calls on public holidays straight to an after hours voicemail.</span></p><p><span style="font-weight: 400;">More information on how to use Time Routing widgets:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404801445785" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">How to add time of day routing</span></a></p><p> </p><h2 id="h_01FYQMEKNP068YTN3ZSZZYRTWE"><span style="font-weight: 400;">SMS</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900736343961" alt="SMS_300x300.png"></p><p><span style="font-weight: 400;">The SMS widget is only used with </span><span style="font-weight: 400;">Cloud Mobile</span><span style="font-weight: 400;"> phone users. This enables the user to receive SMS to the Jet phone user of their choosing. The SMS widget will need to have a phone user selected as a recipient. Two nodes will be displayed under the SMS widget -</span></p><ul>
+<li style="font-weight: 400;" aria-level="1" data-list-item-id="e1ee19ad57562594aaf1d2d1ec610647c"><span style="font-weight: 400;"> Delivered - A delivered SMS is complete can be directed to a Hang Up widget.</span></li>
+<li style="font-weight: 400;" aria-level="1" data-list-item-id="e17f29d5a801695a7910cbeda9ba898a7"><span style="font-weight: 400;"> Failure -  In the event a SMS fails to be sent an Email widget can be added and configured to send an email containing the SMS caller ID, time and message text to a nominated email address.  </span></li>
+</ul><p>More information on SMS can be found here:</p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4409090467353" target="_blank" rel="noopener noreferrer">SMS report</a></p><p> </p><h2 id="h_01FYQMFBSWYV8THQWWZMNY4344"><span style="font-weight: 400;">Queues </span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900785052185" alt="Queues_300x300.png"></p><p><span style="font-weight: 400;">The </span><span style="font-weight: 400;">Queues</span><span style="font-weight: 400;"> widget enables users to have new callers placed into a queue if your phone users are already on a call. The queue will hold the caller until it is able to be answered or has timed out, depending on the parameters of the queue, and is sent to voicemail or redirected elsewhere. Queues must have Jet phone users to be in use.</span></p><p><span style="font-weight: 400;">Queue options include -</span></p><ul>
+<li style="font-weight: 400;" aria-level="1" data-list-item-id="ef23261aea3eda16584727130f630dbb3"><span style="font-weight: 400;">Timeout (Seconds) - How long the call will be kept on hold before being redirected.</span></li>
+<li style="font-weight: 400;" aria-level="1" data-list-item-id="e3d5c74d57da3e3011c89bd04020d41aa"><span style="font-weight: 400;">Phone Users - How many users are involved in the queue and in which order to dial the phone users.</span></li>
+<li style="font-weight: 400;" aria-level="1" data-list-item-id="e15a94170523974f7c6296052ca588a1f">
+<span style="font-weight: 400;">Escape prompts - Caller inputs that can be used to return to the previous menu if an </span><a href="https://www.jetinteractive.com.au/business-phone-system/ivr/"><span style="font-weight: 400;">IVR</span></a><span style="font-weight: 400;"> is used or to go straight to voicemail, etc.</span>
+</li>
+</ul><p><span style="font-weight: 400;">Note - A queue must first be set up in the Phone System &gt;&gt; Queues menu before adding it to the Queues widget in a </span><span style="font-weight: 400;">callflow</span><span style="font-weight: 400;">.</span></p><p><span style="font-weight: 400;">For more information on how to use Queues:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4410173471513" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">Understanding your Queue setup</span></a></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404824846489" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">How to set up call queues</span></a></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4410187164825" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">Call Queue FAQ</span></a></p><p> </p><h2 id="h_01FYQMFNGAH9WRKCDS3DGDRGBX"><span style="font-weight: 400;">Geo Routing</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900779097881" alt="Geo_Routing.png"></p><p><span style="font-weight: 400;">The </span><span style="font-weight: 400;">Geo Routing</span><span style="font-weight: 400;"> widget is used in complex </span><span style="font-weight: 400;">callflows, and it is recommended you </span><a href="https://calendly.com/jetsupport/account-management" target="_self"><span style="font-weight: 400;">book a consultation</span></a><span style="font-weight: 400;"> with Jet Support if you wish to set this up.</span><span style="font-weight: 400;"> Geo Routing allows users to automatically direct calls coming from specific geographical locations to a nominated answering point. Eg. You are using a 1300 number nationwide and you would like calls coming from Sydney to be directed to your local Sydney offices. This setup is great for nationwide businesses and franchises.</span></p><p><span style="font-weight: 400;">More information on Geo Routing:</span></p><p><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4404816148249" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">How to add geographic routing</span></a></p><p> </p><h2 id="h_01FYQMFYK039DQ39994674RSTY"><span style="font-weight: 400;">Post Code</span></h2><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/4900773183001" alt="Postcode_300x300.png"></p><p><span style="font-weight: 400;">The Post Code widget is used in complex </span><a href="https://support.jetinteractive.com.au/hc/en-us/articles/4409823335065" target="_self" rel="undefined">callflows</a>, and i<span style="font-weight: 400;">t is recommended you </span><a href="https://calendly.com/jetsupport/account-management" target="_self" rel="undefined"><span style="font-weight: 400;">book a consultation</span></a><span style="font-weight: 400;"> with Jet Support if you wish to set this up</span><span style="font-weight: 400;">. Postcode routing allows the user to play an audio prompt asking the caller to enter their postcode to be directed to the closest phone user. Postcode ranges can be set up within the widget to direct calls to nominated answering points if the caller inputs a postcode within that range.</span></p><p> </p><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText">
+<h2 id="h_01KAYRE1DJB96H4P52KWXX2RKW"> </h2>
+<h2 id="h_01KAYRE1DJTFFWKEZ91SN4QD77"><strong>Using callflows with Phone Numbers</strong></h2>
+<p>To view your phone numbers, choose the <strong>Phone Numbers </strong>from the Phone System section<strong>. </strong></p>
+</div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659168025" alt="Screen_Shot_2022-06-30_at_10.14.07_am.png"></div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText">
+<br>This will display a list of your phone numbers.</div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText">
+<br><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763637864345" alt="phone_numbers.png"><br><br>From the phone numbers screen, you can change the Service Name, Service Group, download a list of your services or change the callflow of each number as required.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659178521" alt="phone_number_actions.png"><br><br>To change the callflow associated with a phone number, click on the phone number you wish to change and click Change Callflow. You will be able to choose any Available or Active callflow.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/52763659180697" alt="phone_numbers_change_callflow.png" width="326" height="231">
+</div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><h2 class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText" id="h_01KAYRE1DJCJS9NVFSHF0HV5A2"><strong><span class="wysiwyg-underline">Copy Callflow</span></strong></h2><p>To Copy a callflow head to callflow section and click on copy .</p><p><strong><span class="wysiwyg-underline"><img src="https://support.jetinteractive.com.au/hc/article_attachments/15338725605401" alt="Screen_Shot_2023-02-08_at_11.43.56_am.png"></span></strong></p><p> </p><p>Then on the top create click on Create callflow---&gt; Copy from clipboard.</p><p> </p><p><img src="https://support.jetinteractive.com.au/hc/article_attachments/15341095976217" alt="Screen_Shot_2023-02-08_at_12.34.05_pm.png"></p><p> </p><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText">It will then ask you if you wish to retain all the settings of the copied callflow. If you click on YES it will copy all the configurations (settings) . However , if you click on NO , it will only copy the callflow and no configurations.</div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"><img src="https://support.jetinteractive.com.au/hc/article_attachments/15341167868953" alt="Screen_Shot_2023-02-08_at_12.35.26_pm.png"></div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><h2 class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText" id="h_01GRQCZCY4FTA2CHPA0SADV0TD"><strong><span class="wysiwyg-underline">JUMP Widget</span></strong></h2><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText">Jump widget Enables to the caller to go back in the Queue and select the correct IVR option. </div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"><img src="https://support.jetinteractive.com.au/hc/article_attachments/15343020258201" alt="Screen_Shot_2023-02-08_at_1.21.27_pm.png"></div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText"> </div>
+    </div>
+
+    <div class="kb-help" id="kb-help">
+      <div class="kb-help__cta" id="kb-help-cta">
+        <div>
+          <h3>Still need help?</h3>
+          <p>Our support team is ready to assist you.</p>
+        </div>
+        <button class="kb-help__btn" onclick="document.getElementById('kb-help-cta').style.display='none';document.getElementById('kb-help-form').style.display='block'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Support
+        </button>
+      </div>
+      <div id="kb-help-form" style="display:none">
+        <div class="kb-help__form-header">
+          <div><h3>Contact Support</h3><p>We'll get back to you as soon as possible.</p></div>
+          <button class="kb-help__close" onclick="document.getElementById('kb-help-cta').style.display='flex';document.getElementById('kb-help-form').style.display='none'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <form class="support-form" id="support-form">
+          <div class="support-form__row">
+            <div class="support-form__field"><label for="sf-name">Full name</label><input type="text" id="sf-name" required placeholder="Jane Smith"></div>
+            <div class="support-form__field"><label for="sf-email">Email address</label><input type="email" id="sf-email" required placeholder="jane@company.com.au"></div>
+          </div>
+          <div class="support-form__field"><label for="sf-subject">Subject</label><input type="text" id="sf-subject" required placeholder="Brief description of your issue"></div>
+          <div class="support-form__field"><label for="sf-message">Message</label><textarea id="sf-message" required placeholder="Please describe your issue in detail..."></textarea></div>
+          <div class="support-form__error" id="sf-error"></div>
+          <button type="submit" class="support-form__submit" id="sf-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <div class="support-form__success" id="sf-success">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h4>Message sent!</h4>
+            <p>Thanks for reaching out. We'll be in touch shortly.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="../../project/assets/jet-logo-light.svg" alt="Jet Interactive" style="height:28px;margin-bottom:16px">
+        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      </div>
+      <div class="footer__col"><h4>Product</h4><ul><li><a href="../../index.html">Jet Cloud Mobile</a></li><li><a href="../../pricing.html">Pricing</a></li><li><a href="../../downloads.html">Downloads</a></li></ul></div>
+      <div class="footer__col"><h4>Solutions</h4><ul><li><a href="../../solutions/small-business.html">Small Business</a></li><li><a href="../../solutions/sales-teams.html">Sales Teams</a></li><li><a href="../../solutions/international-staff.html">International Staff</a></li></ul></div>
+      <div class="footer__col"><h4>Support</h4><ul><li><a href="../../knowledgebase.html">Knowledgebase</a></li><li><a href="../../contact.html">Contact Us</a></li><li><a href="../../faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4>Company</h4><ul><li><a href="https://jetinteractive.com.au" target="_blank">Jet Interactive</a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Jet Interactive. All rights reserved.</span>
+      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('.nav__burger');
+    const drawer = document.querySelector('.nav__drawer');
+    burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+
+    const form = document.getElementById('support-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('sf-submit');
+        const err = document.getElementById('sf-error');
+        btn.disabled = true; btn.textContent = 'Sending…'; err.style.display = 'none';
+        try {
+          const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({request:{subject:document.getElementById('sf-subject').value,comment:{body:document.getElementById('sf-message').value},requester:{name:document.getElementById('sf-name').value,email:document.getElementById('sf-email').value}}})
+          });
+          if (!res.ok) throw new Error();
+          document.getElementById('sf-success').style.display = 'block';
+          form.style.display = 'none';
+        } catch { err.textContent = 'Something went wrong. Please call us on 0488 811 729.'; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; }
+      });
+    }
+  </script>
+  <script src="../../project/assets/chat.js" defer></script>
+</body>
+</html>
