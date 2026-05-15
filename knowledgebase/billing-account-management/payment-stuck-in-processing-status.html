@@ -139,8 +139,19 @@
     @media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.article-wrap{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}}
   </style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WSH8LKXT');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSH8LKXT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <nav class="nav">
     <div class="nav__inner">
@@ -200,14 +211,14 @@
       <p><br>If the payment integration with Braintree encounters a problem while processing a payment and is unable to determine the payment status from the gateway, Zuora will keep the payment in Processing status to prevent duplicate payments from being attempted on the same invoice(s). <br><br></p>
 <p>Follow the steps below to manually approve or error out the payment.</p>
 <p> </p>
-<h2>Step 1: Locate the payment stuck in processing status.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/18100234249113" alt="unnamed__3_.png"><br><br>Step 2: Verify the payment status by going to your Payment Gateway UI Console (processed or declined).</h2>
+<h2>Step 1: Locate the payment stuck in processing status.<br><br><img src="../../project/assets/images/kb/18100234249113.png" alt="unnamed__3_.png"><br><br>Step 2: Verify the payment status by going to your Payment Gateway UI Console (processed or declined).</h2>
 <p>You do this via the Braintree portal here: <a href="https://www.braintreegateway.com/merchants/52trgp98rb3q6wpn/transactions/advanced_search">https://www.braintreegateway.com/merchants/52trgp98rb3q6wpn/transactions/advanced_search</a></p>
 <p>Use the transaction date/time and the transaction amount to try and locate the payment. If this does not exist, you should mark the transaction as failed in step 4. </p>
 <h2>
 <br><br>Step 3: Find the Payment ID</h2>
 <p>(note this is not the payment number)</p>
-<h2>You can locate the payment ID with the URL on the payment page.<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/18100241795097" alt="unnamed__4_.png"><br><br><br>Step 4: Enter Status details</h2>
-<p>Use the following URL and add the Payment ID you copied from step 3 at the end of the URL (replacing the X's with the Payment ID).<br><br>https://www.zuora.com/apps/PaymentLog.do?method=addTransactionLog&amp;paymentID=XXXXXXXXXXXXXXXXXXXX<br><br><img src="https://support.jetinteractive.com.au/hc/article_attachments/18100297921817" alt="unnamed__5_.png"><br><br></p>
+<h2>You can locate the payment ID with the URL on the payment page.<br><br><img src="../../project/assets/images/kb/18100241795097.png" alt="unnamed__4_.png"><br><br><br>Step 4: Enter Status details</h2>
+<p>Use the following URL and add the Payment ID you copied from step 3 at the end of the URL (replacing the X's with the Payment ID).<br><br>https://www.zuora.com/apps/PaymentLog.do?method=addTransactionLog&amp;paymentID=XXXXXXXXXXXXXXXXXXXX<br><br><img src="../../project/assets/images/kb/18100297921817.png" alt="unnamed__5_.png"><br><br></p>
 <p>Fill out the fields as below:</p>
 <table style="border-collapse: collapse; width: 117%; height: 155px;" border="1">
 <tbody>
