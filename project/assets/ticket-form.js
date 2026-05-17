@@ -3,6 +3,19 @@
 
   const ZENDESK = 'https://support.jetinteractive.com.au/api/v2/requests.json';
 
+  const ISSUE_MAP = {
+    'App (iOS / Android)':   { cat: 'report_a_problem',     sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+    'App (Mac / Windows)':   { cat: 'report_a_problem',     sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+    'Hardware / Desk phone': { cat: 'report_a_problem',     sub: 'my_hardware_is_not_working' },
+    'Call quality':          { cat: 'report_a_problem',     sub: 'poor_audio_quality' },
+    'Callflows & routing':   { cat: 'report_a_problem',     sub: 'my_callflows_are_not_working' },
+    'SMS':                   { cat: 'report_a_problem',     sub: 'i_m_having_issues_with_sms' },
+    'Billing & account':     { cat: 'enquire_about_billing', sub: 'other_billing' },
+    'Porting a number':      { cat: 'new_service',          sub: 'port_a_number_to_jet_interactive' },
+    'Reporting':             { cat: 'enquire_about_reports', sub: 'i_cannot_find_the_information_i_need' },
+    'Other':                 { cat: 'report_a_problem',     sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+  };
+
   const CSS = `
     .kb-help {
       background: var(--ink-50, #F7F8FA);
@@ -48,9 +61,7 @@
     }
     .kb-help__open-btn:hover { background: var(--red-dark, #A71C20); }
 
-    .kb-help__form-wrap {
-      display: none;
-    }
+    .kb-help__form-wrap { display: none; }
     .kb-help__form-header {
       display: flex;
       align-items: flex-start;
@@ -97,6 +108,7 @@
       padding: 10px 14px;
       outline: none;
       width: 100%;
+      box-sizing: border-box;
       transition: border-color 140ms, box-shadow 140ms;
     }
     .tf-field input:focus,
@@ -114,7 +126,6 @@
       background-position: right 14px center;
       padding-right: 36px;
     }
-    .tf-field .tf-hint { font-size: 12px; color: var(--ink-500, #6B6E76); margin-top: 2px; }
     .tf-error {
       display: none;
       background: #fff0f0;
@@ -149,28 +160,22 @@
       padding: 40px 0 8px;
     }
     .tf-success__icon {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       background: var(--red-50, #FEF3F4);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
       color: var(--red, #ED1C24);
     }
     .tf-success h4 {
       font-family: 'Saira', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 22px; font-weight: 700;
       color: var(--ink-900, #0B0B0C);
       margin: 0 0 8px;
     }
-    .tf-success p {
-      font-size: 16px;
-      color: var(--ink-600, #4A4D55);
-      margin: 0;
-    }
+    .tf-success p { font-size: 16px; color: var(--ink-600, #4A4D55); margin: 0; }
+
+    @keyframes tfSpin { to { transform: rotate(360deg); } }
 
     @media (max-width: 600px) {
       .kb-help { padding: 28px 20px; }
@@ -218,15 +223,21 @@
             <input type="text" id="tf-name" name="name" required placeholder="Jane Smith" autocomplete="name">
           </div>
           <div class="tf-field">
-            <label for="tf-email">Email address <span style="color:var(--red,#ED1C24)">*</span></label>
-            <input type="email" id="tf-email" name="email" required placeholder="jane@company.com.au" autocomplete="email">
+            <label for="tf-company">Company</label>
+            <input type="text" id="tf-company" name="company" placeholder="Acme Pty Ltd" autocomplete="organization">
           </div>
         </div>
         <div class="tf-row">
           <div class="tf-field">
+            <label for="tf-email">Email address <span style="color:var(--red,#ED1C24)">*</span></label>
+            <input type="email" id="tf-email" name="email" required placeholder="jane@company.com.au" autocomplete="email">
+          </div>
+          <div class="tf-field">
             <label for="tf-phone">Phone number</label>
             <input type="tel" id="tf-phone" name="phone" placeholder="0400 000 000" autocomplete="tel">
           </div>
+        </div>
+        <div class="tf-row">
           <div class="tf-field">
             <label for="tf-type">Issue type</label>
             <select id="tf-type" name="type">
@@ -243,10 +254,10 @@
               <option>Other</option>
             </select>
           </div>
-        </div>
-        <div class="tf-field">
-          <label for="tf-subject">Subject <span style="color:var(--red,#ED1C24)">*</span></label>
-          <input type="text" id="tf-subject" name="subject" required placeholder="Brief description of your issue">
+          <div class="tf-field">
+            <label for="tf-subject">Subject <span style="color:var(--red,#ED1C24)">*</span></label>
+            <input type="text" id="tf-subject" name="subject" required placeholder="Brief description of your issue">
+          </div>
         </div>
         <div class="tf-field">
           <label for="tf-message">Message <span style="color:var(--red,#ED1C24)">*</span></label>
@@ -262,14 +273,12 @@
   `;
 
   function init() {
-    // Inject CSS
     if (!document.getElementById('tf-styles')) {
       const s = document.createElement('style');
       s.id = 'tf-styles';
       s.textContent = CSS;
       document.head.appendChild(s);
     }
-
     document.querySelectorAll('.kb-help').forEach(function (el) {
       el.innerHTML = FORM_HTML;
       wire(el);
@@ -304,6 +313,7 @@
       errorEl.style.display = 'none';
 
       const name    = el.querySelector('#tf-name').value.trim();
+      const company = el.querySelector('#tf-company').value.trim();
       const email   = el.querySelector('#tf-email').value.trim();
       const phone   = el.querySelector('#tf-phone').value.trim();
       const type    = el.querySelector('#tf-type').value;
@@ -317,13 +327,15 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
+      submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:tfSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
 
+      const zdMap = ISSUE_MAP[type] || { cat: 'report_a_problem', sub: 'other_jet_soft_phone_app_issue__not_listed_above_' };
       const body = [
         message,
-        phone   ? `\nPhone: ${phone}` : '',
-        type    ? `\nIssue type: ${type}` : '',
-        `\nPage: ${window.location.href}`,
+        company ? '\nCompany: '    + company : '',
+        phone   ? '\nPhone: '      + phone   : '',
+        type    ? '\nIssue type: ' + type    : '',
+        '\nPage: ' + window.location.href,
       ].join('');
 
       try {
@@ -335,6 +347,11 @@
               subject: subject,
               comment: { body: body },
               requester: { name: name, email: email },
+              custom_fields: [
+                { id: 900011984406, value: phone || 'Not provided' },
+                { id: 900010486406, value: zdMap.cat },
+                { id: 900011584086, value: zdMap.sub },
+              ],
             }
           })
         });
@@ -349,11 +366,6 @@
       }
     });
   }
-
-  // Spin keyframe for loading state
-  const spin = document.createElement('style');
-  spin.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
-  document.head.appendChild(spin);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
