@@ -114,13 +114,18 @@
     }
     .jcf-field { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
     .jcf-field label { font-size: 11.5px; font-weight: 600; color: #374151; }
-    .jcf-field input, .jcf-field textarea {
+    .jcf-field input, .jcf-field select, .jcf-field textarea {
       border: 1px solid #e2e8f0; border-radius: 6px;
       padding: 6px 9px; font-size: 13px; font-family: 'Barlow',sans-serif;
       color: #1e293b; background: #fff; outline: none;
       transition: border-color .15s; width: 100%; box-sizing: border-box;
     }
-    .jcf-field input:focus, .jcf-field textarea:focus { border-color: #ED1C24; }
+    .jcf-field input:focus, .jcf-field select:focus, .jcf-field textarea:focus { border-color: #ED1C24; }
+    .jcf-field select {
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 9px center; padding-right: 28px;
+    }
     .jcf-field textarea { resize: none; height: 64px; line-height: 1.4; }
     .jcf-error {
       display: none; font-size: 12px; color: #b91c1c;
@@ -313,6 +318,19 @@
   }
 
   // ── Ticket form ───────────────────────────────────────────────────────────────
+  const ISSUE_MAP = {
+    'App (iOS / Android)':   { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+    'App (Mac / Windows)':   { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+    'Hardware / Desk phone': { cat: 'report_a_problem',    sub: 'my_hardware_is_not_working' },
+    'Call quality':          { cat: 'report_a_problem',    sub: 'poor_audio_quality' },
+    'Callflows & routing':   { cat: 'report_a_problem',    sub: 'my_callflows_are_not_working' },
+    'SMS':                   { cat: 'report_a_problem',    sub: 'i_m_having_issues_with_sms' },
+    'Billing & account':     { cat: 'enquire_about_billing', sub: 'other_billing' },
+    'Porting a number':      { cat: 'new_service',         sub: 'port_a_number_to_jet_interactive' },
+    'Reporting':             { cat: 'enquire_about_reports', sub: 'i_cannot_find_the_information_i_need' },
+    'Other':                 { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+  };
+
   function showTicketForm() {
     if (quick.style.display !== 'none') quick.style.display = 'none';
 
@@ -329,16 +347,40 @@
             <input type="text" class="jcf-name" placeholder="Jane Smith" autocomplete="name">
           </div>
           <div class="jcf-field">
+            <label>Company</label>
+            <input type="text" class="jcf-company" placeholder="Acme Pty Ltd" autocomplete="organization">
+          </div>
+          <div class="jcf-field">
             <label>Email <span style="color:#ED1C24">*</span></label>
             <input type="email" class="jcf-email" placeholder="jane@company.com.au" autocomplete="email">
           </div>
           <div class="jcf-field">
-            <label>Phone (optional)</label>
+            <label>Phone number</label>
             <input type="tel" class="jcf-phone" placeholder="0400 000 000" autocomplete="tel">
           </div>
           <div class="jcf-field">
+            <label>Issue type</label>
+            <select class="jcf-type">
+              <option value="">Select a category…</option>
+              <option>App (iOS / Android)</option>
+              <option>App (Mac / Windows)</option>
+              <option>Hardware / Desk phone</option>
+              <option>Call quality</option>
+              <option>Callflows &amp; routing</option>
+              <option>SMS</option>
+              <option>Billing &amp; account</option>
+              <option>Porting a number</option>
+              <option>Reporting</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="jcf-field">
+            <label>Subject <span style="color:#ED1C24">*</span></label>
+            <input type="text" class="jcf-subject" placeholder="Brief description of your issue">
+          </div>
+          <div class="jcf-field">
             <label>Message <span style="color:#ED1C24">*</span></label>
-            <textarea class="jcf-message" placeholder="Describe your issue…"></textarea>
+            <textarea class="jcf-message" placeholder="Please describe your issue in as much detail as possible…"></textarea>
           </div>
           <div class="jcf-error"></div>
           <button class="jcf-submit">
@@ -351,14 +393,16 @@
     messages.appendChild(row);
     scrollBottom();
 
-    const card    = row.querySelector('.jcf-card');
-    const body    = row.querySelector('.jcf-body');
-    const nameEl  = row.querySelector('.jcf-name');
-    const emailEl = row.querySelector('.jcf-email');
-    const phoneEl = row.querySelector('.jcf-phone');
-    const msgEl   = row.querySelector('.jcf-message');
-    const errEl   = row.querySelector('.jcf-error');
-    const submitEl= row.querySelector('.jcf-submit');
+    const body      = row.querySelector('.jcf-body');
+    const nameEl    = row.querySelector('.jcf-name');
+    const companyEl = row.querySelector('.jcf-company');
+    const emailEl   = row.querySelector('.jcf-email');
+    const phoneEl   = row.querySelector('.jcf-phone');
+    const typeEl    = row.querySelector('.jcf-type');
+    const subjectEl = row.querySelector('.jcf-subject');
+    const msgEl     = row.querySelector('.jcf-message');
+    const errEl     = row.querySelector('.jcf-error');
+    const submitEl  = row.querySelector('.jcf-submit');
 
     nameEl.focus();
 
@@ -366,11 +410,14 @@
       errEl.style.display = 'none';
 
       const name    = nameEl.value.trim();
+      const company = companyEl.value.trim();
       const email   = emailEl.value.trim();
       const phone   = phoneEl.value.trim();
+      const type    = typeEl.value;
+      const subject = subjectEl.value.trim();
       const message = msgEl.value.trim();
 
-      if (!name || !email || !message) {
+      if (!name || !email || !subject || !message) {
         errEl.textContent = 'Please fill in all required fields.';
         errEl.style.display = 'block';
         return;
@@ -384,19 +431,28 @@
       submitEl.disabled = true;
       submitEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:jcSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
 
+      const zdMap = ISSUE_MAP[type] || { cat: 'report_a_problem', sub: 'other_jet_soft_phone_app_issue__not_listed_above_' };
+      const bodyLines = [
+        message,
+        company ? '\nCompany: ' + company  : '',
+        phone   ? '\nPhone: '   + phone    : '',
+        type    ? '\nIssue type: ' + type  : '',
+        '\nPage: ' + window.location.href,
+      ].join('');
+
       try {
         const res = await fetch(ZENDESK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             request: {
-              subject: 'Support request via chat',
-              comment: { body: message + (phone ? '\n\nPhone: ' + phone : '') + '\n\nPage: ' + window.location.href },
+              subject: subject,
+              comment: { body: bodyLines },
               requester: { name: name, email: email },
               custom_fields: [
                 { id: 900011984406, value: phone || 'Not provided' },
-                { id: 900010486406, value: 'report_a_problem' },
-                { id: 900011584086, value: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+                { id: 900010486406, value: zdMap.cat },
+                { id: 900011584086, value: zdMap.sub },
               ],
             },
           }),
