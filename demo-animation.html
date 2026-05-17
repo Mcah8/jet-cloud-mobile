@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Jet Cloud Mobile — Setup Animation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#f7f8fa;font-family:'Barlow',system-ui,sans-serif}
+
+:root{
+  --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;
+  --ink-900:#0B0B0C;--ink-600:#4A4D55;--ink-300:#C9CCD1;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+  --white:#ffffff;
+  --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+  --font-ui:'Barlow',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+}
+
+/* ── WRAPPER ────────────────────────────────────────────────────────── */
+.demo-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  padding:64px 24px;gap:32px;
+}
+
+/* ── PHONE STAGE ────────────────────────────────────────────────────── */
+.phone-stage{
+  position:relative;width:340px;height:680px;
+  perspective:1400px;
+}
+
+.phone{
+  position:relative;width:100%;height:100%;
+  background:#1a1a1e;border-radius:42px;
+  border:8px solid #2a2a2e;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.35),
+    0 16px 32px rgba(0,0,0,.2),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  transform:rotateY(-8deg) rotateX(3deg) rotateZ(-1.5deg);
+  transform-style:preserve-3d;
+  overflow:hidden;
+}
+
+/* notch */
+.phone::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:110px;height:28px;background:#1a1a1e;
+  border-radius:0 0 20px 20px;z-index:10;
+}
+
+/* status bar */
+.status-bar{
+  position:absolute;top:0;left:0;right:0;height:44px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 20px 6px;z-index:9;
+  font-family:var(--font-display);font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.7);
+}
+.status-bar .time{font-size:12px;font-weight:700;color:#fff}
+.status-icons{display:flex;gap:5px;align-items:center}
+.status-icons svg{width:14px;height:14px;fill:rgba(255,255,255,.8)}
+
+/* screen area */
+.screen{
+  position:absolute;inset:44px 0 0 0;
+  overflow:hidden;background:#fff;
+}
+
+/* ── SCENE SYSTEM ───────────────────────────────────────────────────── */
+.scene{
+  position:absolute;inset:0;
+  opacity:0;pointer-events:none;
+  transform:translateY(14px) scale(0.982);
+  transition:opacity .55s cubic-bezier(.2,.8,.2,1), transform .55s cubic-bezier(.2,.8,.2,1);
+  background:#fff;
+}
+.scene.active{opacity:1;pointer-events:auto;transform:none}
+.scene.out{
+  opacity:0;transform:translateY(-12px) scale(1.012);
+  transition:opacity .42s ease, transform .42s ease;
+}
+
+/* ── SATELLITE CARDS ────────────────────────────────────────────────── */
+.card{
+  position:absolute;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.08);
+  padding:12px 16px;
+  font-family:var(--font-ui);
+  opacity:0;pointer-events:none;
+  transition:opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+.card.active{opacity:1;pointer-events:auto}
+.card.out{opacity:0;transition:opacity .35s ease}
+
+.card--left{left:-130px;top:50%;transform:translateY(-50%) translateX(-8px)}
+.card--left.active{transform:translateY(-50%) translateX(0)}
+.card--right{right:-130px;top:50%;transform:translateY(-50%) translateX(8px)}
+.card--right.active{transform:translateY(-50%) translateX(0)}
+.card--bottom{bottom:-80px;left:50%;transform:translateX(-50%) translateY(8px)}
+.card--bottom.active{transform:translateX(-50%) translateY(0)}
+
+.card__label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-600);margin-bottom:4px}
+.card__value{font-size:14px;font-weight:700;color:var(--ink-900);line-height:1.2}
+.card__sub{font-size:11px;color:var(--ink-600);margin-top:2px}
+
+.card__icon{
+  width:28px;height:28px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:6px;
+}
+.card__icon--red{background:var(--red)}
+.card__icon--green{background:#0E8A4A}
+.card__icon svg{width:14px;height:14px;fill:#fff}
+
+/* ── CONNECTOR LINES ────────────────────────────────────────────────── */
+.connector{
+  position:absolute;pointer-events:none;
+  opacity:0;transition:opacity .5s var(--ease-out);
+}
+.connector.active{opacity:1}
+.connector line{stroke:rgba(237,28,36,.25);stroke-width:1;stroke-dasharray:4 3}
+
+/* ── PROGRESS DOTS ──────────────────────────────────────────────────── */
+.progress-dots{
+  display:flex;gap:8px;align-items:center;
+}
+.dot{
+  width:7px;height:7px;border-radius:999px;
+  background:var(--ink-300);
+  transition:width .3s var(--ease-out), background .3s ease;
+}
+.dot.active{width:22px;background:var(--red)}
+
+/* ── CAPTION ────────────────────────────────────────────────────────── */
+.caption-track{
+  position:relative;height:24px;overflow:hidden;
+}
+.cap{
+  position:absolute;inset:0;
+  font-family:var(--font-display);font-size:13px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-600);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .4s ease, transform .4s ease;
+}
+.cap.active{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 1 — App Store Download
+══════════════════════════════════════════════════════════════════════ */
+.s1-bg{background:#f2f2f7;height:100%}
+
+/* sub-panel A: search */
+.s1-search-panel{
+  position:absolute;inset:0;background:#f2f2f7;
+  transition:opacity .4s ease, transform .4s ease;
+}
+.s1-search-panel.hidden{opacity:0;transform:translateX(-10px);pointer-events:none}
+
+.s1-search-bar{
+  margin:12px 12px 0;height:36px;background:#fff;
+  border-radius:10px;border:1px solid #e0e0e5;
+  display:flex;align-items:center;padding:0 12px;gap:8px;
+}
+.s1-search-bar svg{width:14px;height:14px;fill:#8e8e93;flex-shrink:0}
+.s1-search-text{
+  font-family:var(--font-ui);font-size:14px;color:#1c1c1e;
+  display:flex;align-items:center;gap:1px;
+}
+.s1-cursor{
+  display:inline-block;width:2px;height:16px;background:#0071e3;
+  animation:blink .8s step-end infinite;
+  margin-left:1px;vertical-align:middle;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.s1-section-header{
+  font-family:var(--font-display);font-size:11px;font-weight:600;
+  color:#636366;letter-spacing:.08em;text-transform:uppercase;
+  padding:12px 16px 6px;
+}
+.s1-suggestion{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;background:#fff;border-bottom:1px solid #f0f0f5;
+  font-size:14px;color:#1c1c1e;
+}
+.s1-suggestion svg{width:16px;height:16px;fill:#8e8e93}
+
+/* sub-panel B: listing */
+.s1-listing-panel{
+  position:absolute;inset:0;background:#f2f2f7;
+  transition:opacity .45s ease, transform .45s ease;
+  opacity:0;transform:translateX(10px);
+}
+.s1-listing-panel.visible{opacity:1;transform:translateX(0)}
+
+.s1-app-hero{
+  background:linear-gradient(160deg,#ED1C24 0%,#A71C20 100%);
+  height:80px;display:flex;align-items:center;padding:0 16px;gap:14px;
+}
+.s1-app-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);flex-shrink:0;
+}
+.s1-app-icon img{width:36px;height:36px;object-fit:contain}
+.s1-app-meta{flex:1}
+.s1-app-name{font-family:var(--font-display);font-size:16px;font-weight:700;color:#fff}
+.s1-app-dev{font-size:11px;color:rgba(255,255,255,.75);margin-top:2px}
+.s1-open-btn{
+  background:#fff;color:var(--red);
+  font-family:var(--font-display);font-size:13px;font-weight:700;
+  border:none;border-radius:20px;padding:7px 18px;cursor:default;
+  opacity:0;transition:opacity .4s ease;
+}
+.s1-open-btn.visible{opacity:1}
+
+.s1-stars{display:flex;align-items:center;gap:4px;padding:10px 16px;background:#fff;margin-top:8px}
+.s1-star{color:#FF9500;font-size:16px}
+.s1-rating{font-size:13px;color:#636366;margin-left:4px}
+
+.s1-desc{
+  background:#fff;margin-top:8px;padding:12px 16px;
+  font-size:12px;color:#3c3c43;line-height:1.5;
+}
+.s1-desc-title{font-family:var(--font-display);font-size:14px;font-weight:600;color:#1c1c1e;margin-bottom:6px}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 2 — Login
+══════════════════════════════════════════════════════════════════════ */
+.s2-screen{
+  height:100%;background:linear-gradient(180deg,#fff 0%,#f7f8fa 100%);
+  display:flex;flex-direction:column;align-items:center;
+  padding-top:40px;
+}
+.s2-logo{
+  width:120px;height:40px;margin-bottom:32px;
+}
+.s2-logo svg{width:100%;height:100%}
+.s2-title{
+  font-family:var(--font-display);font-size:22px;font-weight:700;
+  color:var(--ink-900);margin-bottom:28px;
+}
+.s2-field{
+  width:240px;margin-bottom:12px;
+  border:1.5px solid var(--ink-300);border-radius:10px;
+  background:#fff;padding:11px 14px;
+  font-family:var(--font-ui);font-size:13px;color:var(--ink-900);
+  min-height:42px;display:flex;align-items:center;
+  transition:border-color .2s ease;
+}
+.s2-field.focused{border-color:var(--red)}
+.s2-field-label{font-size:10px;color:var(--ink-600);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;width:240px;text-align:left}
+.s2-email-text{display:flex;align-items:center;gap:1px;font-size:13px}
+.s2-pwd-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--ink-900);margin:0 2px;
+  opacity:0;transform:scale(0);
+  transition:opacity .15s ease, transform .15s ease;
+}
+.s2-pwd-dot.visible{opacity:1;transform:scale(1)}
+.s2-signin{
+  width:240px;margin-top:20px;padding:13px;
+  background:var(--red);color:#fff;border:none;border-radius:10px;
+  font-family:var(--font-display);font-size:15px;font-weight:700;
+  cursor:default;opacity:0;transform:translateY(6px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.s2-signin.visible{opacity:1;transform:translateY(0)}
+.s2-forgot{font-size:12px;color:var(--red);margin-top:12px;opacity:0;transition:opacity .4s ease}
+.s2-forgot.visible{opacity:1}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 3 — Contacts
+══════════════════════════════════════════════════════════════════════ */
+.s3-header{
+  background:var(--red);padding:12px 16px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.s3-header-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff}
+.s3-header-count{font-size:12px;color:rgba(255,255,255,.7)}
+
+.s3-tabs{
+  display:flex;background:#fff;border-bottom:1.5px solid var(--ink-100);
+  overflow-x:auto;scrollbar-width:none;
+}
+.s3-tab{
+  flex:1;text-align:center;padding:9px 4px;
+  font-family:var(--font-display);font-size:10px;font-weight:600;
+  color:var(--ink-600);border-bottom:2px solid transparent;white-space:nowrap;
+}
+.s3-tab.active{color:var(--red);border-bottom-color:var(--red)}
+
+.s3-search{
+  margin:8px 12px;height:32px;background:var(--ink-100);
+  border-radius:8px;display:flex;align-items:center;padding:0 10px;gap:8px;
+}
+.s3-search svg{width:12px;height:12px;fill:var(--ink-600)}
+.s3-search span{font-size:12px;color:var(--ink-600)}
+
+.s3-row{
+  display:flex;align-items:center;gap:12px;
+  padding:9px 14px;border-bottom:1px solid var(--ink-100);background:#fff;
+  opacity:0;transform:translateX(-10px);
+}
+.s3-avatar{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:13px;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+.s3-name{font-family:var(--font-ui);font-size:13px;font-weight:600;color:var(--ink-900)}
+.s3-num{font-size:11px;color:var(--ink-600)}
+.s3-badge{
+  margin-left:auto;background:var(--red);color:#fff;
+  border-radius:10px;font-size:10px;font-weight:700;padding:2px 7px;
+}
+
+@keyframes rowIn{
+  from{opacity:0;transform:translateX(-10px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.scene.active .s3-row.r1{animation:rowIn .3s .15s both}
+.scene.active .s3-row.r2{animation:rowIn .3s .32s both}
+.scene.active .s3-row.r3{animation:rowIn .3s .49s both}
+.scene.active .s3-row.r4{animation:rowIn .3s .66s both}
+.scene.active .s3-row.r5{animation:rowIn .3s .83s both}
+.scene.active .s3-row.r6{animation:rowIn .3s 1.0s both}
+.scene.active .s3-row.r7{animation:rowIn .3s 1.17s both}
+
+.s3-footer{
+  padding:10px 16px;background:#fff;
+  font-size:11px;color:var(--ink-600);text-align:center;
+  opacity:0;
+}
+.scene.active .s3-footer{animation:rowIn .3s 1.4s both}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 4 — Keypad
+══════════════════════════════════════════════════════════════════════ */
+.s4-header{
+  background:var(--red);padding:12px 16px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.s4-header-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff}
+.s4-caller-id{font-size:11px;color:rgba(255,255,255,.75)}
+
+.s4-number-display{
+  text-align:center;padding:20px 16px 10px;
+  min-height:52px;
+  font-family:var(--font-display);font-size:28px;font-weight:600;
+  color:var(--ink-900);letter-spacing:.08em;
+}
+.s4-digit{
+  display:inline-block;
+  animation:digitIn .2s var(--ease-out) both;
+}
+@keyframes digitIn{
+  from{opacity:0;transform:scale(1.4) translateY(-4px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.s4-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--ink-100);margin:0 16px;border-radius:12px;overflow:hidden;
+}
+.s4-key{
+  background:#fff;padding:14px 4px;text-align:center;cursor:default;
+  transition:background .1s ease;
+}
+.s4-key.pressed{background:var(--ink-100)}
+.s4-key-num{
+  font-family:var(--font-display);font-size:20px;font-weight:600;
+  color:var(--ink-900);line-height:1;
+}
+.s4-key-letters{font-size:9px;color:var(--ink-600);letter-spacing:.08em;margin-top:2px}
+
+.s4-call-wrap{
+  display:flex;justify-content:center;margin-top:18px;
+}
+.s4-call{
+  width:60px;height:60px;border-radius:50%;
+  background:#0E8A4A;border:none;cursor:default;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(14,138,74,.3);
+  opacity:0;transform:scale(.6);
+  transition:opacity .3s ease, transform .3s var(--ease-out);
+}
+.s4-call.visible{opacity:1;transform:scale(1)}
+.s4-call.pulsing{
+  animation:callPulse 1s ease-in-out infinite;
+}
+@keyframes callPulse{
+  0%,100%{box-shadow:0 4px 16px rgba(14,138,74,.3)}
+  50%{box-shadow:0 4px 28px rgba(14,138,74,.6),0 0 0 8px rgba(14,138,74,.15)}
+}
+.s4-call svg{width:24px;height:24px;fill:#fff}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 5 — SMS
+══════════════════════════════════════════════════════════════════════ */
+.s5-header{
+  background:var(--red);padding:10px 16px;
+  display:flex;align-items:center;gap:10px;
+}
+.s5-avatar{
+  width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:12px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.s5-contact{flex:1}
+.s5-contact-name{font-family:var(--font-display);font-size:15px;font-weight:700;color:#fff}
+.s5-contact-num{font-size:11px;color:rgba(255,255,255,.7)}
+
+#s5{display:flex;flex-direction:column}
+
+.s5-messages{
+  flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:7px;
+  background:#f2f2f7;overflow:hidden;min-height:0;
+}
+
+.s5-bubble{
+  max-width:75%;padding:8px 12px;border-radius:16px;
+  font-size:12px;line-height:1.45;
+  opacity:0;transform:translateY(6px);
+}
+@keyframes bubbleIn{
+  from{opacity:0;transform:translateY(8px) scale(.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.s5-bubble.in{
+  align-self:flex-start;
+  background:#fff;color:var(--ink-900);
+  border-bottom-left-radius:4px;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.s5-bubble.out{
+  align-self:flex-end;
+  background:var(--red);color:#fff;
+  border-bottom-right-radius:4px;
+}
+
+.scene.active .s5-b1{animation:bubbleIn .35s .2s both}
+.scene.active .s5-b2{animation:bubbleIn .35s .6s both}
+.scene.active .s5-b3{animation:bubbleIn .35s 1.05s both}
+.scene.active .s5-b4{animation:bubbleIn .35s 1.5s both}
+.scene.active .s5-b5{animation:bubbleIn .35s 1.9s both}
+.scene.active .s5-b6{animation:bubbleIn .35s 2.3s both}
+.scene.active .s5-b7{animation:bubbleIn .35s 2.7s both}
+.scene.active .s5-b8{animation:bubbleIn .35s 3.1s both}
+
+.s5-typing{
+  align-self:flex-start;display:flex;gap:4px;align-items:center;
+  background:#fff;padding:8px 12px;border-radius:16px;border-bottom-left-radius:4px;
+  opacity:0;
+}
+.scene.active .s5-typing{animation:bubbleIn .35s 3.6s both}
+.s5-typing-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--ink-300);
+  animation:typingDot 1.2s ease-in-out infinite;
+}
+.s5-typing-dot:nth-child(2){animation-delay:.2s}
+.s5-typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+
+.s5-input-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;background:#fff;border-top:1px solid var(--ink-100);
+}
+.s5-input{
+  flex:1;height:32px;background:var(--ink-100);border-radius:16px;
+  border:none;padding:0 12px;font-size:12px;color:var(--ink-900);
+  display:flex;align-items:center;
+}
+.s5-send{
+  width:30px;height:30px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+}
+.s5-send svg{width:14px;height:14px;fill:#fff}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SCENE 6 — Voicemail
+══════════════════════════════════════════════════════════════════════ */
+.s6-header{
+  background:var(--red);padding:12px 16px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.s6-header-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff}
+.s6-header-sub{font-size:11px;color:rgba(255,255,255,.7)}
+
+.s6-vm{
+  background:#fff;border-bottom:1px solid var(--ink-100);
+  padding:12px 14px;cursor:default;
+  opacity:0;transform:translateY(8px);
+}
+@keyframes vmIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.scene.active .s6-vm.vm1{animation:vmIn .4s .4s both}
+.scene.active .s6-vm.vm2{animation:vmIn .4s 2.2s both}
+
+.s6-vm-top{display:flex;align-items:center;gap:10px}
+.s6-vm-avatar{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:13px;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+.s6-vm-info{flex:1}
+.s6-vm-name{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--ink-900)}
+.s6-vm-time{font-size:11px;color:var(--ink-600)}
+.s6-vm-dur{
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--ink-600);background:var(--ink-100);
+  padding:3px 7px;border-radius:6px;
+}
+.s6-play-wrap{display:flex;align-items:center;gap:8px;margin-top:8px}
+.s6-play{
+  width:26px;height:26px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.s6-play svg{width:10px;height:10px;fill:#fff;margin-left:2px}
+.s6-waveform{
+  flex:1;height:20px;display:flex;align-items:center;gap:2px;
+}
+.s6-bar{
+  width:3px;border-radius:2px;background:var(--ink-300);
+  height:var(--h,8px);
+}
+.s6-bar.played{background:var(--red)}
+
+.s6-transcript{
+  max-height:0;opacity:0;overflow:hidden;font-size:11px;color:var(--ink-600);
+  line-height:1.5;border-left:2px solid var(--ink-200);
+  padding:0 0 0 10px;margin-top:0;
+  transition:max-height .5s ease, opacity .4s ease, padding .4s ease, margin .4s ease;
+}
+.s6-vm.expanded .s6-transcript{
+  max-height:60px;opacity:1;padding:5px 0 0 10px;margin-top:7px;
+}
+
+.s6-vm-section-header{
+  padding:6px 14px;background:var(--ink-50);
+  font-size:10px;font-weight:600;color:var(--ink-600);
+  letter-spacing:.1em;text-transform:uppercase;
+  opacity:0;
+}
+.scene.active .s6-vm-section-header.sh1{animation:vmIn .3s .2s both}
+.scene.active .s6-vm-section-header.sh2{animation:vmIn .3s 2.0s both}
+
+/* ══════════════════════════════════════════════════════════════════════
+   CONTROLS BELOW PHONE
+══════════════════════════════════════════════════════════════════════ */
+.below-phone{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding-top:16px;
+}
+
+/* ── SOUND TOGGLE ───────────────────────────────────────────────────── */
+.sound-btn{
+  position:absolute;top:12px;right:12px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+  border:1px solid rgba(0,0,0,.08);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1);
+  transition:background .15s ease, transform .1s ease;
+  z-index:20;
+}
+.sound-btn:hover{background:#fff;transform:scale(1.08)}
+.sound-btn svg{width:16px;height:16px;fill:var(--ink-600)}
+</style>
+</head>
+<body>
+<div class="demo-wrap">
+
+  <!-- Sound toggle -->
+  <button class="sound-btn" id="sound-btn" title="Toggle sound">
+    <!-- muted icon shown by default -->
+    <svg id="icon-muted" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0017.73 18L19 19.27 20.27 18 5.27 3 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+    <svg id="icon-sound" viewBox="0 0 24 24" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+  </button>
+
+  <!-- Phone + satellites -->
+  <div class="phone-stage">
+
+    <!-- SVG connector lines -->
+    <svg class="connector" id="conn-0" style="position:absolute;top:0;left:-140px;width:150px;height:100%;overflow:visible">
+      <line x1="140" y1="50%" x2="0" y2="50%"/>
+    </svg>
+    <svg class="connector" id="conn-1" style="position:absolute;top:0;right:-140px;width:150px;height:100%;overflow:visible">
+      <line x1="0" y1="50%" x2="140" y2="50%"/>
+    </svg>
+
+    <!-- Satellite cards -->
+    <div class="card card--left" id="card-0">
+      <div class="card__icon" style="background:#fff;border:1px solid #eee">
+        <img src="project/assets/jet-symbol-solid.png" alt="Jet" style="width:18px;height:18px;object-fit:contain">
+      </div>
+      <div class="card__label">App Store</div>
+      <div class="card__value">Jet Phone</div>
+      <div class="card__sub">⭐ 4.8 · 1.2k ratings</div>
+    </div>
+
+    <div class="card card--right" id="card-1">
+      <div class="card__icon card__icon--red">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="card__label">Single Sign-On</div>
+      <div class="card__value">SSO Ready</div>
+      <div class="card__sub">david.jones@acmeco</div>
+    </div>
+
+    <div class="card card--left" id="card-2">
+      <div class="card__icon card__icon--red">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <div class="card__label">Contacts synced</div>
+      <div class="card__value">1,376</div>
+      <div class="card__sub">Google · Office 365 · Jet</div>
+    </div>
+
+    <div class="card card--right" id="card-3">
+      <div class="card__icon card__icon--green">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div class="card__label">Call placed</div>
+      <div class="card__value">041 235 689</div>
+      <div class="card__sub">Via Jet Phone</div>
+    </div>
+
+    <div class="card card--left" id="card-4">
+      <div class="card__icon card__icon--red">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <div class="card__label">SMS</div>
+      <div class="card__value">Dale</div>
+      <div class="card__sub">Reply from mobile</div>
+    </div>
+
+    <div class="card card--right" id="card-5">
+      <div class="card__icon card__icon--red">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      <div class="card__label">Voicemail</div>
+      <div class="card__value">AI Transcripts</div>
+      <div class="card__sub">Instant · Searchable</div>
+    </div>
+
+    <!-- Phone body -->
+    <div class="phone">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="status-icons">
+          <svg viewBox="0 0 24 24"><path d="M1.5 8.5a13 13 0 0121 0M5 12a10 10 0 0114 0M8.5 15.5a6 6 0 017 0M12 19h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="14" height="10" rx="2" fill="rgba(255,255,255,.8)"/><rect x="18" y="10" width="3" height="4" rx="1" fill="rgba(255,255,255,.5)"/></svg>
+        </div>
+      </div>
+      <div class="screen">
+
+        <!-- ── SCENE 1: App Store ─────────────────────────────────────── -->
+        <div class="scene" id="s1">
+          <div class="s1-search-panel" id="s1-search">
+            <div class="s1-search-bar">
+              <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" stroke="#8e8e93" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              <div class="s1-search-text"><span id="s1-typed"></span><span class="s1-cursor"></span></div>
+            </div>
+            <div class="s1-section-header">Suggested</div>
+            <div class="s1-suggestion">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#8e8e93" stroke-width="1.5" fill="none"/><path d="M12 8v4l3 3" stroke="#8e8e93" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+              Jet Phone
+            </div>
+            <div class="s1-suggestion">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#8e8e93" stroke-width="1.5" fill="none"/><path d="M12 8v4l3 3" stroke="#8e8e93" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+              Jet Interactive
+            </div>
+          </div>
+          <div class="s1-listing-panel" id="s1-listing">
+            <div class="s1-app-hero">
+              <div class="s1-app-icon">
+                <img src="project/assets/jet-symbol-solid.png" alt="Jet Phone" style="width:32px;height:32px;object-fit:contain">
+              </div>
+              <div class="s1-app-meta">
+                <div class="s1-app-name">Jet Phone</div>
+                <div class="s1-app-dev">by Jet Interactive</div>
+              </div>
+              <button class="s1-open-btn" id="s1-open">Open</button>
+            </div>
+            <div class="s1-stars">
+              <span class="s1-star">★</span><span class="s1-star">★</span><span class="s1-star">★</span><span class="s1-star">★</span><span class="s1-star">★</span>
+              <span class="s1-rating">4.8 · Business</span>
+            </div>
+            <div class="s1-desc">
+              <div class="s1-desc-title">Business calls &amp; SMS</div>
+              Make and receive calls from your business number on any device. Includes voicemail, SMS, contacts and team messaging.
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SCENE 2: Login ─────────────────────────────────────────── -->
+        <div class="scene" id="s2">
+          <div class="s2-screen">
+            <div class="s2-logo">
+              <img src="project/assets/jet-logo-full-color.png" alt="Jet Interactive" style="width:140px;height:auto;object-fit:contain">
+            </div>
+            <div class="s2-title">Sign in</div>
+            <div class="s2-field-label">Email</div>
+            <div class="s2-field" id="s2-email">
+              <div class="s2-email-text"><span id="s2-email-text"></span><span class="s1-cursor" id="s2-cursor"></span></div>
+            </div>
+            <div class="s2-field-label" style="margin-top:4px">Password</div>
+            <div class="s2-field" id="s2-pwd">
+              <div id="s2-dots"></div>
+            </div>
+            <button class="s2-signin" id="s2-signin">Sign in</button>
+            <div class="s2-forgot" id="s2-forgot">Forgot password?</div>
+          </div>
+        </div>
+
+        <!-- ── SCENE 3: Contacts ──────────────────────────────────────── -->
+        <div class="scene" id="s3">
+          <div class="s3-header">
+            <div class="s3-header-title">Contacts</div>
+            <div class="s3-header-count">1,376 contacts</div>
+          </div>
+          <div class="s3-tabs">
+            <div class="s3-tab">Address Book</div>
+            <div class="s3-tab active">Google</div>
+            <div class="s3-tab">Office 365</div>
+            <div class="s3-tab">Jet</div>
+          </div>
+          <div class="s3-search">
+            <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" stroke="#6B6E76" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            <span>Search contacts…</span>
+          </div>
+          <div class="s3-row r1">
+            <div class="s3-avatar" style="background:#5C6BC0">AJ</div>
+            <div><div class="s3-name">Alex Johnson</div><div class="s3-num">0412 345 678</div></div>
+          </div>
+          <div class="s3-row r2">
+            <div class="s3-avatar" style="background:#26A69A">CL</div>
+            <div><div class="s3-name">Chris Lee</div><div class="s3-num">0423 456 789</div></div>
+            <div class="s3-badge">2</div>
+          </div>
+          <div class="s3-row r3">
+            <div class="s3-avatar" style="background:#EF5350">DJ</div>
+            <div><div class="s3-name">David Jones</div><div class="s3-num">david.jones@acme</div></div>
+          </div>
+          <div class="s3-row r4">
+            <div class="s3-avatar" style="background:#FFA726">JG</div>
+            <div><div class="s3-name">Justin Graham</div><div class="s3-num">0434 567 890</div></div>
+          </div>
+          <div class="s3-row r5">
+            <div class="s3-avatar" style="background:#66BB6A">MC</div>
+            <div><div class="s3-name">Matthew Cahill</div><div class="s3-num">0445 678 901</div></div>
+          </div>
+          <div class="s3-row r6">
+            <div class="s3-avatar" style="background:#AB47BC">PR</div>
+            <div><div class="s3-name">Priya Rajan</div><div class="s3-num">0456 789 012</div></div>
+          </div>
+          <div class="s3-row r7">
+            <div class="s3-avatar" style="background:#29B6F6">SW</div>
+            <div><div class="s3-name">Sam Wilson</div><div class="s3-num">0467 890 123</div></div>
+          </div>
+          <div class="s3-footer">Synced · just now</div>
+        </div>
+
+        <!-- ── SCENE 4: Keypad ────────────────────────────────────────── -->
+        <div class="scene" id="s4">
+          <div class="s4-header">
+            <div>
+              <div class="s4-header-title">Keypad</div>
+              <div class="s4-caller-id">Justin Graham</div>
+            </div>
+          </div>
+          <div class="s4-number-display" id="s4-number"></div>
+          <div class="s4-grid">
+            <div class="s4-key" data-digit="1"><div class="s4-key-num">1</div><div class="s4-key-letters"></div></div>
+            <div class="s4-key" data-digit="2"><div class="s4-key-num">2</div><div class="s4-key-letters">ABC</div></div>
+            <div class="s4-key" data-digit="3"><div class="s4-key-num">3</div><div class="s4-key-letters">DEF</div></div>
+            <div class="s4-key" data-digit="4"><div class="s4-key-num">4</div><div class="s4-key-letters">GHI</div></div>
+            <div class="s4-key" data-digit="5"><div class="s4-key-num">5</div><div class="s4-key-letters">JKL</div></div>
+            <div class="s4-key" data-digit="6"><div class="s4-key-num">6</div><div class="s4-key-letters">MNO</div></div>
+            <div class="s4-key" data-digit="7"><div class="s4-key-num">7</div><div class="s4-key-letters">PQRS</div></div>
+            <div class="s4-key" data-digit="8"><div class="s4-key-num">8</div><div class="s4-key-letters">TUV</div></div>
+            <div class="s4-key" data-digit="9"><div class="s4-key-num">9</div><div class="s4-key-letters">WXYZ</div></div>
+            <div class="s4-key" data-digit="*"><div class="s4-key-num">✱</div><div class="s4-key-letters"></div></div>
+            <div class="s4-key" data-digit="0"><div class="s4-key-num">0</div><div class="s4-key-letters">+</div></div>
+            <div class="s4-key" data-digit="#"><div class="s4-key-num">#</div><div class="s4-key-letters"></div></div>
+          </div>
+          <div class="s4-call-wrap">
+            <button class="s4-call" id="s4-call">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── SCENE 5: SMS ───────────────────────────────────────────── -->
+        <div class="scene" id="s5">
+          <div class="s5-header">
+            <div class="s5-avatar">D</div>
+            <div class="s5-contact">
+              <div class="s5-contact-name">Dale</div>
+              <div class="s5-contact-num">+61 493 462 037</div>
+            </div>
+          </div>
+          <div class="s5-messages">
+            <div class="s5-bubble in s5-b1">Hey, are you free for a quick call later?</div>
+            <div class="s5-bubble out s5-b2">Sure, what time works?</div>
+            <div class="s5-bubble in s5-b3">Around 3pm? I've got some questions about the new system.</div>
+            <div class="s5-bubble out s5-b4">Works for me. I'll call from my Jet number.</div>
+            <div class="s5-bubble in s5-b5">Perfect. Looking forward to it 👍</div>
+            <div class="s5-bubble out s5-b6">Talk then!</div>
+            <div class="s5-bubble in s5-b7">Also, can you send that proposal over?</div>
+            <div class="s5-bubble out s5-b8">Will do, sending now.</div>
+            <div class="s5-typing">
+              <div class="s5-typing-dot"></div>
+              <div class="s5-typing-dot"></div>
+              <div class="s5-typing-dot"></div>
+            </div>
+          </div>
+          <div class="s5-input-bar">
+            <div class="s5-input">Message</div>
+            <div class="s5-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div>
+          </div>
+        </div>
+
+        <!-- ── SCENE 6: Voicemail ─────────────────────────────────────── -->
+        <div class="scene" id="s6">
+          <div class="s6-header">
+            <div class="s6-header-title">Voicemail</div>
+            <div class="s6-header-sub">AI Transcripts</div>
+          </div>
+          <div class="s6-vm-section-header sh1">Today</div>
+          <div class="s6-vm vm1">
+            <div class="s6-vm-top">
+              <div class="s6-vm-avatar" style="background:#FFA726">JG</div>
+              <div class="s6-vm-info">
+                <div class="s6-vm-name">Justin Graham</div>
+                <div class="s6-vm-time">2:34 PM · Today</div>
+              </div>
+              <div class="s6-vm-dur">0:42</div>
+            </div>
+            <div class="s6-play-wrap">
+              <div class="s6-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="s6-waveform" id="wave1"></div>
+            </div>
+            <div class="s6-transcript">"Hey, just following up on the proposal I sent over. Let me know if you have any questions or need me to adjust anything. Cheers."</div>
+          </div>
+          <div class="s6-vm-section-header sh2">Yesterday</div>
+          <div class="s6-vm vm2">
+            <div class="s6-vm-top">
+              <div class="s6-vm-avatar" style="background:#66BB6A">MC</div>
+              <div class="s6-vm-info">
+                <div class="s6-vm-name">Matthew Cahill</div>
+                <div class="s6-vm-time">4:18 PM · Yesterday</div>
+              </div>
+              <div class="s6-vm-dur">0:28</div>
+            </div>
+            <div class="s6-play-wrap">
+              <div class="s6-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="s6-waveform" id="wave2"></div>
+            </div>
+            <div class="s6-transcript">"Quick note — the meeting's been moved to Thursday at 10. Let me know if that works. Thanks."</div>
+          </div>
+        </div>
+
+      </div><!-- /screen -->
+    </div><!-- /phone -->
+  </div><!-- /phone-stage -->
+
+  <!-- Below phone -->
+  <div class="below-phone">
+    <div class="caption-track">
+      <div class="cap" data-scene="0">App Store Download</div>
+      <div class="cap" data-scene="1">One-tap Login</div>
+      <div class="cap" data-scene="2">Contacts Sync</div>
+      <div class="cap" data-scene="3">Make a Call</div>
+      <div class="cap" data-scene="4">Send an SMS</div>
+      <div class="cap" data-scene="5">Voicemail &amp; Transcripts</div>
+    </div>
+    <div class="progress-dots">
+      <div class="dot" data-scene="0"></div>
+      <div class="dot" data-scene="1"></div>
+      <div class="dot" data-scene="2"></div>
+      <div class="dot" data-scene="3"></div>
+      <div class="dot" data-scene="4"></div>
+      <div class="dot" data-scene="5"></div>
+    </div>
+  </div>
+
+</div><!-- /demo-wrap -->
+
+<script>
+(function(){
+  /* ── SCENE SYSTEM ─────────────────────────────────────────────── */
+  const SCENE_DURATION = 6000;
+  const TOTAL = 6;
+  let cur = 0;
+  let timer = null;
+
+  const scenes   = Array.from(document.querySelectorAll('.scene'));
+  const cards    = Array.from(document.querySelectorAll('.card'));
+  const conns    = Array.from(document.querySelectorAll('.connector'));
+  const captions = Array.from(document.querySelectorAll('.cap'));
+  const dots     = Array.from(document.querySelectorAll('.dot'));
+
+  /* cards per scene (by index) */
+  const cardMap = [0, 1, 2, 3, 4, 5];
+  const connMap = [0, 1, 0, 1, 0, 1]; /* which connector side */
+
+  function transitionTo(next) {
+    const prev = cur;
+    cur = next;
+
+    /* outgoing */
+    scenes[prev].classList.remove('active');
+    scenes[prev].classList.add('out');
+    cards[cardMap[prev]]?.classList.remove('active');
+    cards[cardMap[prev]]?.classList.add('out');
+    conns[connMap[prev]]?.classList.remove('active');
+    captions[prev]?.classList.remove('active');
+    dots[prev]?.classList.remove('active');
+
+    setTimeout(() => {
+      scenes[prev].classList.remove('out');
+      cards[cardMap[prev]]?.classList.remove('out');
+    }, 480);
+
+    /* incoming */
+    scenes[next].classList.add('active');
+    captions[next]?.classList.add('active');
+    dots[next]?.classList.add('active');
+
+    setTimeout(() => {
+      cards[cardMap[next]]?.classList.add('active');
+      conns[connMap[next]]?.classList.add('active');
+    }, 120);
+
+    onSceneEnter(next);
+  }
+
+  function start() {
+    transitionTo(0);
+    timer = setInterval(() => {
+      transitionTo((cur + 1) % TOTAL);
+    }, SCENE_DURATION);
+  }
+
+  /* ── PER-SCENE INIT ─────────────────────────────────────────── */
+  const storeTimers = [];
+  function clearStoreTimers() { storeTimers.forEach(clearTimeout); storeTimers.length = 0; }
+
+  function onSceneEnter(i) {
+    clearStoreTimers();
+    if (i === 0) initScene1();
+    if (i === 1) initScene2();
+    if (i === 3) initScene4();
+    if (i === 5) initScene6();
+  }
+
+  /* SCENE 1 — App Store typing + reveal listing */
+  function initScene1() {
+    const searchPanel  = document.getElementById('s1-search');
+    const listingPanel = document.getElementById('s1-listing');
+    const typedEl      = document.getElementById('s1-typed');
+    const openBtn      = document.getElementById('s1-open');
+
+    searchPanel.classList.remove('hidden');
+    listingPanel.classList.remove('visible');
+    typedEl.textContent = '';
+    openBtn.classList.remove('visible');
+
+    const query = 'Jet i';
+    query.split('').forEach((ch, i) => {
+      storeTimers.push(setTimeout(() => {
+        typedEl.textContent += ch;
+      }, 400 + i * 140));
+    });
+
+    /* slide to listing */
+    storeTimers.push(setTimeout(() => {
+      searchPanel.classList.add('hidden');
+      listingPanel.classList.add('visible');
+    }, 400 + query.length * 140 + 600));
+
+    /* show Open button */
+    storeTimers.push(setTimeout(() => {
+      openBtn.classList.add('visible');
+    }, 400 + query.length * 140 + 1000));
+  }
+
+  /* SCENE 2 — Login typing */
+  function initScene2() {
+    const emailEl  = document.getElementById('s2-email-text');
+    const dotsEl   = document.getElementById('s2-dots');
+    const signinBtn = document.getElementById('s2-signin');
+    const forgot   = document.getElementById('s2-forgot');
+    const cursor   = document.getElementById('s2-cursor');
+
+    emailEl.textContent = '';
+    dotsEl.innerHTML = '';
+    signinBtn.classList.remove('visible');
+    forgot.classList.remove('visible');
+    cursor.style.display = 'inline-block';
+
+    const email = 'david.jones@acmeco.com.au';
+    email.split('').forEach((ch, i) => {
+      storeTimers.push(setTimeout(() => {
+        emailEl.textContent += ch;
+      }, 500 + i * 55));
+    });
+
+    const pwdStart = 500 + email.length * 55 + 500;
+
+    /* hide cursor when moving to password */
+    storeTimers.push(setTimeout(() => {
+      cursor.style.display = 'none';
+    }, pwdStart - 100));
+
+    /* password dots */
+    const pwdLen = 10;
+    for (let i = 0; i < pwdLen; i++) {
+      storeTimers.push(setTimeout(() => {
+        const d = document.createElement('span');
+        d.className = 's2-pwd-dot';
+        dotsEl.appendChild(d);
+        requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('visible')));
+      }, pwdStart + i * 120));
+    }
+
+    /* sign in button */
+    storeTimers.push(setTimeout(() => {
+      signinBtn.classList.add('visible');
+      forgot.classList.add('visible');
+    }, pwdStart + pwdLen * 120 + 400));
+  }
+
+  /* SCENE 4 — Keypad dialling */
+  function initScene4() {
+    const numEl  = document.getElementById('s4-number');
+    const callBtn = document.getElementById('s4-call');
+
+    numEl.innerHTML = '';
+    callBtn.classList.remove('visible', 'pulsing');
+
+    const digits = ['0','4','1',' ','2','3','5',' ','6','8','9'];
+    digits.forEach((d, i) => {
+      storeTimers.push(setTimeout(() => {
+        if (d === ' ') { numEl.innerHTML += ' '; return; }
+        const span = document.createElement('span');
+        span.className = 's4-digit';
+        span.textContent = d;
+        numEl.appendChild(span);
+        const key = document.querySelector(`.s4-key[data-digit="${d}"]`);
+        if (key) {
+          key.classList.add('pressed');
+          setTimeout(() => key.classList.remove('pressed'), 120);
+        }
+      }, 600 + i * 210));
+    });
+
+    const callDelay = 600 + digits.length * 210 + 500;
+    storeTimers.push(setTimeout(() => {
+      callBtn.classList.add('visible');
+      setTimeout(() => callBtn.classList.add('pulsing'), 300);
+    }, callDelay));
+  }
+
+  /* SCENE 6 — Voicemail transcript expand */
+  function initScene6() {
+    const vm1 = document.querySelector('.s6-vm.vm1');
+    const vm2 = document.querySelector('.s6-vm.vm2');
+    vm1.classList.remove('expanded');
+    vm2.classList.remove('expanded');
+
+    storeTimers.push(setTimeout(() => vm1.classList.add('expanded'), 1200));
+    storeTimers.push(setTimeout(() => vm2.classList.add('expanded'), 3200));
+  }
+
+  /* ── WAVEFORMS ──────────────────────────────────────────────── */
+  function buildWaveform(id) {
+    const el = document.getElementById(id);
+    const heights = [4,7,12,8,16,10,6,14,9,11,5,13,7,15,8,10,6,12,9,5,14,8,11,7,13,9,6,10,8,12];
+    heights.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 's6-bar' + (i < 12 ? ' played' : '');
+      bar.style.setProperty('--h', h + 'px');
+      el.appendChild(bar);
+    });
+  }
+  buildWaveform('wave1');
+  buildWaveform('wave2');
+
+  /* ── AUDIO ENGINE ───────────────────────────────────────────── */
+  let audioCtx = null;
+  let soundOn = false;
+
+  function getCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  /* keyboard click: short noise burst */
+  function playClick(vol = 0.06) {
+    if (!soundOn) return;
+    const ctx = getCtx();
+    const buf = ctx.createBuffer(1, ctx.sampleRate * 0.025, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(vol, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'highpass'; filter.frequency.value = 4000;
+    src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+    src.start();
+  }
+
+  /* DTMF tone for keypad digits */
+  const DTMF = {
+    '1':[697,1209],'2':[697,1336],'3':[697,1477],
+    '4':[770,1209],'5':[770,1336],'6':[770,1477],
+    '7':[852,1209],'8':[852,1336],'9':[852,1477],
+    '*':[941,1209],'0':[941,1336],'#':[941,1477]
+  };
+  function playDTMF(digit, dur = 0.1) {
+    if (!soundOn) return;
+    const ctx = getCtx();
+    const freqs = DTMF[digit]; if (!freqs) return;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.12, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+    gain.connect(ctx.destination);
+    freqs.forEach(f => {
+      const osc = ctx.createOscillator();
+      osc.type = 'sine'; osc.frequency.value = f;
+      osc.connect(gain);
+      osc.start(); osc.stop(ctx.currentTime + dur);
+    });
+  }
+
+  /* soft bubble pop */
+  function playPop(pitch = 420) {
+    if (!soundOn) return;
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(pitch, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(pitch * 0.4, ctx.currentTime + 0.12);
+    gain.gain.setValueAtTime(0.09, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + 0.12);
+  }
+
+  /* soft ding for voicemail */
+  function playDing() {
+    if (!soundOn) return;
+    const ctx = getCtx();
+    [1046, 1318].forEach((f, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine'; osc.frequency.value = f;
+      gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + i * 0.12 + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.6);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + i * 0.12);
+      osc.stop(ctx.currentTime + i * 0.12 + 0.65);
+    });
+  }
+
+  /* sound toggle button */
+  const soundBtn = document.getElementById('sound-btn');
+  const iconMuted = document.getElementById('icon-muted');
+  const iconSound = document.getElementById('icon-sound');
+  soundBtn.addEventListener('click', () => {
+    soundOn = !soundOn;
+    iconMuted.style.display = soundOn ? 'none' : '';
+    iconSound.style.display = soundOn ? '' : 'none';
+    if (soundOn) getCtx();
+  });
+
+  /* ── PATCH INIT FUNCTIONS TO ADD SOUND ─────────────────────── */
+  const _initScene1 = initScene1;
+  initScene1 = function() {
+    _initScene1();
+    /* typing clicks for search */
+    'Jet i'.split('').forEach((_, i) => {
+      storeTimers.push(setTimeout(() => playClick(0.05), 400 + i * 140));
+    });
+  };
+
+  const _initScene2 = initScene2;
+  initScene2 = function() {
+    _initScene2();
+    const email = 'david.jones@acmeco.com.au';
+    email.split('').forEach((_, i) => {
+      storeTimers.push(setTimeout(() => playClick(0.045), 500 + i * 55));
+    });
+    const pwdStart = 500 + email.length * 55 + 500;
+    for (let i = 0; i < 10; i++) {
+      storeTimers.push(setTimeout(() => playClick(0.04), pwdStart + i * 120));
+    }
+  };
+
+  const _initScene4 = initScene4;
+  initScene4 = function() {
+    _initScene4();
+    const digits = ['0','4','1',' ','2','3','5',' ','6','8','9'];
+    digits.forEach((d, i) => {
+      if (d !== ' ') {
+        storeTimers.push(setTimeout(() => playDTMF(d), 600 + i * 210));
+      }
+    });
+  };
+
+  /* SMS bubble pops — hook into CSS animation timing */
+  const _origOnSceneEnter = onSceneEnter;
+  onSceneEnter = function(i) {
+    _origOnSceneEnter(i);
+    if (i === 4) {
+      /* match bubbleIn animation delays */
+      [.2,.6,1.05,1.5,1.9,2.3,2.7,3.1].forEach((t, idx) => {
+        storeTimers.push(setTimeout(() => playPop(idx % 2 === 0 ? 380 : 480), t * 1000));
+      });
+    }
+    if (i === 5) {
+      storeTimers.push(setTimeout(() => playDing(), 1200));
+      storeTimers.push(setTimeout(() => playDing(), 3200));
+    }
+  };
+
+  /* ── START ──────────────────────────────────────────────────── */
+  start();
+})();
+</script>
+</body>
+</html>
