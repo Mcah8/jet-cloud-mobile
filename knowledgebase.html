@@ -167,6 +167,8 @@
     .support-form__success{display:none;text-align:center;padding:var(--sp-8) 0;color:var(--fg-2)}
     .support-form__success svg{color:var(--red);margin-bottom:var(--sp-4)}
     .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);color:var(--fg-1);margin-bottom:var(--sp-2)}
+    .sf-sub-field { display: none; }
+    .sf-sub-field.visible { display: flex; }
     @media(max-width:600px){.support-form__row{grid-template-columns:1fr}}
   </style>
 <!-- Google Tag Manager -->
@@ -397,6 +399,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="call_tracking___integrations">Call Tracking &amp; Integrations</option>
             </select>
           </div>
+          <div class="support-form__field sf-sub-field" id="sf-sub-field">
+            <label for="sf-sub-reason">What specifically can we help you with? <span style="color:var(--red)">*</span></label>
+            <select id="sf-sub-reason">
+              <option value="">Select...</option>
+            </select>
+          </div>
           <div class="support-form__field">
             <label for="sf-subject">Subject <span style="color:var(--red)">*</span></label>
             <input type="text" id="sf-subject" placeholder="Brief summary of your request" required>
@@ -590,6 +598,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (searchInput.value.trim().length >= 2) renderResults(searchInput.value.trim());
     });
 
+    // Sub-reason options per category
+    const SUB_OPTIONS = {
+      'new_service': [
+        ['New Jet Interactive Account',                    'new_jet_interactive_account'],
+        ['New Jet Phone User (with Local number)',         'new_jet_phone_user'],
+        ['New Cloud Mobile Phone User (with Mobile number)', 'new_cloud_mobile_phone_user'],
+        ['New 1300/1800 Number',                          'new_1300/1800_number'],
+        ['New Local/Mobile number (without Phone User)',  'new_local/mobile_number__without_phor'],
+        ['IVR',                                           'ivr'],
+        ['Queue Capacity',                                'queue_capacity'],
+        ['Inbound Call Recording',                        'inbound_call_recording'],
+        ['Outbound Recording',                            'outbound_recording'],
+        ['International Calling',                         'international_calling'],
+        ['Hardware',                                      'hardware'],
+        ['Port a Number to Jet Interactive',              'port_a_number_to_jet_interactive'],
+        ['Other feature (please specify in description)', 'other_feature__please_specify_'],
+      ],
+      'modify_a_service': [
+        ['Change/Swap a phone number',                    'change/swap_a_phone_number'],
+        ['Add/Change Phone User Details',                 'add/change_phone_user_details'],
+        ['Add/Change Call Recording',                     'add/change_call_recording'],
+        ['Add/Change Queue Setup',                        'add/change_queue_setup'],
+        ['Add/Change An Answering Point',                 'add/change_an_answering_point'],
+        ['Add/Change Voicemail',                          'add/change_voicemail'],
+        ['Add/Change Time of Day Routing',                'add/change_time_of_day_routing'],
+        ['Add/Change Hardware/Desk Phone',                'add/change_hardware'],
+        ['Add/Change Callflow Greeting',                  'add/change_greeting'],
+        ['Add/Change SMS Setup',                          'add/change_sms_setup'],
+        ['Add/Change a Service Description',              'modify_service_description'],
+        ['Add/Change Geographic or Postcode Routing',     'add/change_geographic_postcode_routing'],
+        ['Update dynamic tracking codes',                 'update_dynamic_tracking_codes'],
+        ['Other (Not listed above)',                      'other__not_listed_above_'],
+      ],
+      'report_a_problem': [
+        ["I'm unable to make/receive calls",              'unable_to_make/receive_calls'],
+        ["I'm having issues with SMS",                    'i_m_having_issues_with_sms'],
+        ["I'm seeing Account Not Registered",             'account_not_registered'],
+        ["I'm having poor audio quality",                 'poor_audio_quality'],
+        ["I'm having one way audio",                      'one_way_audio'],
+        ["I can't login to my Jet Soft Phone app",        'can_t_login_to_jetphone'],
+        ['My inbound calls do not work (Jet app)',        'my_inbound_calls_do_not_work__jet_app'],
+        ['My inbound calls do not work (external numbers)', 'my_inbound_numbers_are_not_connectin'],
+        ["I can't login to Jet Hub",                      'can_t_login_to_jet_portal'],
+        ['My hardware is not working',                    'my_hardware_is_not_working'],
+        ['My callflows are not working',                  'my_callflows_are_not_working'],
+        ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+        ['I need help with my Google Analytics integration', 'i_need_help_with_my_google_analytics_i'],
+        ['Other Jet Hub issue (not listed above)',        'other_jet_hub_issue__not_listed_above_'],
+        ['Other Jet Soft Phone App issue (not listed above)', 'other_jet_soft_phone_app_issue__not_li'],
+      ],
+      'enquire_about_reports': [
+        ['My reports are not loading',                    'my_reports_are_not_loading'],
+        ['My reports are incorrect',                      'my_reports_are_incorrect'],
+        ['I cannot find the information I need',          'i_cannot_find_the_information_i_need'],
+      ],
+      'enquire_about_billing': [
+        ['I have a question about my invoice',            'i_have_a_question_about_my_invoice'],
+        ['I need to update my payment details',           'i_need_to_update_my_payment_details'],
+        ["I need to change my account's invoicing",       'i_need_to_change_my_account_s_invoic'],
+        ['I need to give someone access to my account',   'i_need_to_give_someone_access_to_my_'],
+        ['Other',                                         'other_billing'],
+      ],
+      'cancel_a_service': [
+        ['Remove a service or feature from my account',   'remove_a_service_or_feature_from_my_a'],
+        ['Cancel my entire account',                      'cancel_my_entire_account'],
+      ],
+      'call_tracking___integrations': [
+        ['I need new codes for my website',               'i_need_new_codes_for_my_website'],
+        ['I need to set up GA4',                          'i_need_to_set_up_ga4'],
+        ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+        ['I need help with a Google Analytics Integration', 'i_need_help_with_a_google_analytics_int'],
+        ['I need help with my call tracking reports',     'i_need_help_with_my_call_tracking_repo'],
+        ['I have a question about integrations',          'i_have_a_question_about_integrations'],
+        ['Other call tracking issue (not listed above)',  'other_call_tracking_issue__not_listed_ab'],
+      ],
+    };
+
+    const sfReasonEl   = document.getElementById('sf-reason');
+    const sfSubField   = document.getElementById('sf-sub-field');
+    const sfSubReason  = document.getElementById('sf-sub-reason');
+
+    sfReasonEl.addEventListener('change', function () {
+      const opts = SUB_OPTIONS[this.value] || [];
+      sfSubReason.innerHTML = '<option value="">Select...</option>' +
+        opts.map(([label, value]) => `<option value="${value}">${label}</option>`).join('');
+      sfSubField.classList.toggle('visible', opts.length > 0);
+    });
+
     // Support form toggle
     const sfOpen  = document.getElementById('sf-open');
     const sfClose = document.getElementById('sf-close');
@@ -603,17 +699,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const sfError   = document.getElementById('sf-error');
     sfForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = sfForm.querySelector('button[type="submit"]');
-      const name    = document.getElementById('sf-name').value.trim();
-      const email   = document.getElementById('sf-email').value.trim();
-      const account = document.getElementById('sf-account').value.trim();
-      const phone   = document.getElementById('sf-phone').value.trim();
-      const reason  = document.getElementById('sf-reason').value;
-      const subject = document.getElementById('sf-subject').value.trim();
-      const message = document.getElementById('sf-message').value.trim();
+      const btn      = sfForm.querySelector('button[type="submit"]');
+      const name     = document.getElementById('sf-name').value.trim();
+      const email    = document.getElementById('sf-email').value.trim();
+      const account  = document.getElementById('sf-account').value.trim();
+      const phone    = document.getElementById('sf-phone').value.trim();
+      const reason   = sfReasonEl.value;
+      const subReason = sfSubReason.value;
+      const subject  = document.getElementById('sf-subject').value.trim();
+      const message  = document.getElementById('sf-message').value.trim();
+      const subRequired = sfSubField.classList.contains('visible');
       sfError.style.display = 'none';
       if (!name || !email || !phone || !reason || !subject || !message) {
         sfError.textContent = 'Please fill in all required fields.';
+        sfError.style.display = 'block'; return;
+      }
+      if (subRequired && !subReason) {
+        sfError.textContent = 'Please select what specifically we can help you with.';
         sfError.style.display = 'block'; return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -625,9 +727,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const customFields = [
         { id: 900010486406, value: reason },
         { id: 900011984406, value: phone },
-        { id: 900011971946, value: name }
+        { id: 900011971946, value: name },
       ];
-      if (account) customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
+      if (subReason) customFields.push({ id: 900011584086, value: subReason });
+      if (account)   customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
       try {
         const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
           method: 'POST',
