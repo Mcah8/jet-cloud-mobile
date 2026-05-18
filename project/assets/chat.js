@@ -185,6 +185,76 @@
       #jc-panel { right: 12px; left: 12px; width: auto; bottom: 80px; }
       #jc-btn   { right: 16px; bottom: 16px; }
     }
+
+    /* Support ticket modal */
+    #jsm-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,.55); align-items: flex-start; justify-content: center;
+      padding: 20px 16px; overflow-y: auto;
+    }
+    #jsm-overlay.open { display: flex; }
+    #jsm-modal {
+      background: #fff; border-radius: 16px; width: 100%; max-width: 520px;
+      margin: auto; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      animation: jcFadeIn .2s ease;
+    }
+    #jsm-header {
+      background: #ED1C24; padding: 16px 20px; border-radius: 16px 16px 0 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    #jsm-header-title {
+      flex: 1; font-family: 'Saira','Barlow',sans-serif; font-weight: 700;
+      font-size: 15px; color: #fff;
+    }
+    #jsm-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.8); padding: 4px; line-height: 1;
+      display: flex; align-items: center; border-radius: 6px;
+      transition: color .15s, background .15s;
+    }
+    #jsm-close-btn:hover { color: #fff; background: rgba(255,255,255,.15); }
+    #jsm-body { padding: 20px; }
+    .jsm-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .jsm-field label { font-size: 12px; font-weight: 600; color: #374151; font-family: 'Barlow',sans-serif; }
+    .jsm-field input, .jsm-field select, .jsm-field textarea {
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 8px 12px; font-size: 13.5px; font-family: 'Barlow',sans-serif;
+      color: #1e293b; background: #fff; outline: none;
+      transition: border-color .15s; width: 100%; box-sizing: border-box;
+    }
+    .jsm-field input:focus, .jsm-field select:focus, .jsm-field textarea:focus { border-color: #ED1C24; }
+    .jsm-field select {
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px;
+    }
+    .jsm-field textarea { resize: none; height: 80px; line-height: 1.4; }
+    .jsm-sub-field { display: none; }
+    .jsm-sub-field.visible { display: flex; }
+    .jsm-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .jsm-error {
+      display: none; font-size: 13px; color: #b91c1c;
+      background: #fff0f0; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px;
+    }
+    .jsm-submit {
+      width: 100%; background: #ED1C24; color: #fff; border: none;
+      border-radius: 10px; padding: 11px; font-size: 14px; font-weight: 600;
+      font-family: 'Barlow',sans-serif; cursor: pointer; transition: background .15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .jsm-submit:hover { background: #A71C20; }
+    .jsm-submit:disabled { opacity: .6; cursor: not-allowed; }
+    .jsm-success { text-align: center; padding: 32px 20px; }
+    .jsm-success svg { color: #22c55e; margin: 0 auto 12px; display: block; }
+    .jsm-success h3 { font-family: 'Saira','Barlow',sans-serif; font-size: 18px; color: #1e293b; margin: 0 0 8px; }
+    .jsm-success p { font-size: 14px; color: #475569; margin: 0 0 16px; }
+    .jsm-success-close {
+      background: none; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 8px 20px; font-size: 13px; font-family: 'Barlow',sans-serif;
+      color: #475569; cursor: pointer; transition: border-color .15s, color .15s;
+    }
+    .jsm-success-close:hover { border-color: #ED1C24; color: #ED1C24; }
+    @media (max-width: 480px) { .jsm-row-2 { grid-template-columns: 1fr; } }
   `;
 
   const styleEl = document.createElement('style');
@@ -236,6 +306,85 @@
     </div>
   `;
   document.body.appendChild(wrapper);
+
+  // ── Support modal HTML ────────────────────────────────────────────────────────
+  const modalWrapper = document.createElement('div');
+  modalWrapper.innerHTML = `
+    <div id="jsm-overlay" role="dialog" aria-modal="true" aria-label="Submit a support ticket">
+      <div id="jsm-modal">
+        <div id="jsm-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span id="jsm-header-title">Submit a support ticket</span>
+          <button id="jsm-close-btn" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="jsm-body">
+          <div id="jsm-form">
+            <div class="jsm-row-2">
+              <div class="jsm-field">
+                <label>Full name <span style="color:#ED1C24">*</span></label>
+                <input type="text" id="jsm-name" placeholder="Jane Smith" autocomplete="name">
+              </div>
+              <div class="jsm-field">
+                <label>Email address <span style="color:#ED1C24">*</span></label>
+                <input type="email" id="jsm-email" placeholder="jane@company.com.au" autocomplete="email">
+              </div>
+            </div>
+            <div class="jsm-row-2">
+              <div class="jsm-field">
+                <label>Phone number <span style="color:#ED1C24">*</span></label>
+                <input type="tel" id="jsm-phone" placeholder="0400 000 000" autocomplete="tel">
+              </div>
+              <div class="jsm-field">
+                <label>Account number</label>
+                <input type="number" id="jsm-account" placeholder="Optional">
+              </div>
+            </div>
+            <div class="jsm-field">
+              <label>What is your enquiry regarding? <span style="color:#ED1C24">*</span></label>
+              <select id="jsm-reason">
+                <option value="">Select a category…</option>
+                <option value="new_service">Order A New Service</option>
+                <option value="modify_a_service">Modify A Service</option>
+                <option value="report_a_problem">Report an Issue</option>
+                <option value="enquire_about_reports">Enquire About Reports</option>
+                <option value="enquire_about_billing">Enquire About Billing or Accounts</option>
+                <option value="cancel_a_service">Cancel A Service</option>
+                <option value="call_tracking___integrations">Call Tracking &amp; Integrations</option>
+              </select>
+            </div>
+            <div class="jsm-field jsm-sub-field" id="jsm-sub-field">
+              <label>What specifically can we help you with? <span style="color:#ED1C24">*</span></label>
+              <select id="jsm-sub-reason">
+                <option value="">Select…</option>
+              </select>
+            </div>
+            <div class="jsm-field">
+              <label>Subject <span style="color:#ED1C24">*</span></label>
+              <input type="text" id="jsm-subject" placeholder="Brief summary of your request">
+            </div>
+            <div class="jsm-field">
+              <label>Message <span style="color:#ED1C24">*</span></label>
+              <textarea id="jsm-message" placeholder="Please describe your issue in as much detail as possible…"></textarea>
+            </div>
+            <div class="jsm-error" id="jsm-error"></div>
+            <button class="jsm-submit" id="jsm-submit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send message
+            </button>
+          </div>
+          <div class="jsm-success" id="jsm-success" style="display:none">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Ticket submitted!</h3>
+            <p id="jsm-success-msg">We'll be in touch shortly.</p>
+            <button class="jsm-success-close" id="jsm-success-close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modalWrapper);
 
   // ── Elements ─────────────────────────────────────────────────────────────────
   const btn      = document.getElementById('jc-btn');
@@ -317,166 +466,201 @@
     input.style.height = Math.min(input.scrollHeight, 100) + 'px';
   }
 
-  // ── Ticket form ───────────────────────────────────────────────────────────────
-  const ISSUE_MAP = {
-    'App (iOS / Android)':   { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
-    'App (Mac / Windows)':   { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
-    'Hardware / Desk phone': { cat: 'report_a_problem',    sub: 'my_hardware_is_not_working' },
-    'Call quality':          { cat: 'report_a_problem',    sub: 'poor_audio_quality' },
-    'Callflows & routing':   { cat: 'report_a_problem',    sub: 'my_callflows_are_not_working' },
-    'SMS':                   { cat: 'report_a_problem',    sub: 'i_m_having_issues_with_sms' },
-    'Billing & account':     { cat: 'enquire_about_billing', sub: 'other_billing' },
-    'Porting a number':      { cat: 'new_service',         sub: 'port_a_number_to_jet_interactive' },
-    'Reporting':             { cat: 'enquire_about_reports', sub: 'i_cannot_find_the_information_i_need' },
-    'Other':                 { cat: 'report_a_problem',    sub: 'other_jet_soft_phone_app_issue__not_listed_above_' },
+  // ── Support ticket modal ──────────────────────────────────────────────────────
+  const SUB_FIELD_IDS = {
+    'new_service':                  { id: 1900000673208, multi: true  },
+    'modify_a_service':             { id: 1900000371628, multi: true  },
+    'report_a_problem':             { id: 900011584086,  multi: false },
+    'enquire_about_reports':        { id: 8122409755417, multi: false },
+    'enquire_about_billing':        { id: 900011896466,  multi: false },
+    'call_tracking___integrations': { id: 9986763840537, multi: false },
   };
 
-  function showTicketForm() {
-    if (quick.style.display !== 'none') quick.style.display = 'none';
+  const SUB_OPTIONS = {
+    'new_service': [
+      ['New Jet Interactive Account',                    'new_jet_interactive_account'],
+      ['New Jet Phone User (with Local number)',         'new_jet_phone_user'],
+      ['New Cloud Mobile Phone User (with Mobile number)', 'new_cloud_mobile_phone_user'],
+      ['New 1300/1800 Number',                          'new_1300/1800_number'],
+      ['New Local/Mobile number (without Phone User)',  'new_local/mobile_number__without_phor'],
+      ['IVR',                                           'ivr'],
+      ['Queue Capacity',                                'queue_capacity'],
+      ['Inbound Call Recording',                        'inbound_call_recording'],
+      ['Outbound Recording',                            'outbound_recording'],
+      ['International Calling',                         'international_calling'],
+      ['Hardware',                                      'hardware'],
+      ['Port a Number to Jet Interactive',              'port_a_number_to_jet_interactive'],
+      ['Other feature (please specify in description)', 'other_feature__please_specify_'],
+    ],
+    'modify_a_service': [
+      ['Change/Swap a phone number',                    'change/swap_a_phone_number'],
+      ['Add/Change Phone User Details',                 'add/change_phone_user_details'],
+      ['Add/Change Call Recording',                     'add/change_call_recording'],
+      ['Add/Change Queue Setup',                        'add/change_queue_setup'],
+      ['Add/Change An Answering Point',                 'add/change_an_answering_point'],
+      ['Add/Change Voicemail',                          'add/change_voicemail'],
+      ['Add/Change Time of Day Routing',                'add/change_time_of_day_routing'],
+      ['Add/Change Hardware/Desk Phone',                'add/change_hardware'],
+      ['Add/Change Callflow Greeting',                  'add/change_greeting'],
+      ['Add/Change SMS Setup',                          'add/change_sms_setup'],
+      ['Add/Change a Service Description',              'modify_service_description'],
+      ['Add/Change Geographic or Postcode Routing',     'add/change_geographic_postcode_routing'],
+      ['Update dynamic tracking codes',                 'update_dynamic_tracking_codes'],
+      ['Other (Not listed above)',                      'other__not_listed_above_'],
+    ],
+    'report_a_problem': [
+      ["I'm unable to make/receive calls",              'unable_to_make/receive_calls'],
+      ["I'm having issues with SMS",                    'i_m_having_issues_with_sms'],
+      ["I'm seeing Account Not Registered",             'account_not_registered'],
+      ["I'm having poor audio quality",                 'poor_audio_quality'],
+      ["I'm having one way audio",                      'one_way_audio'],
+      ["I can't login to my Jet Soft Phone app",        'can_t_login_to_jetphone'],
+      ['My inbound calls do not work (Jet app)',        'my_inbound_calls_do_not_work__jet_app'],
+      ['My inbound calls do not work (external numbers)', 'my_inbound_numbers_are_not_connectin'],
+      ["I can't login to Jet Hub",                      'can_t_login_to_jet_portal'],
+      ['My hardware is not working',                    'my_hardware_is_not_working'],
+      ['My callflows are not working',                  'my_callflows_are_not_working'],
+      ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+      ['I need help with my Google Analytics integration', 'i_need_help_with_my_google_analytics_i'],
+      ['Other Jet Hub issue (not listed above)',        'other_jet_hub_issue__not_listed_above_'],
+      ['Other Jet Soft Phone App issue (not listed above)', 'other_jet_soft_phone_app_issue__not_li'],
+    ],
+    'enquire_about_reports': [
+      ['My reports are not loading',                    'my_reports_are_not_loading'],
+      ['My reports are incorrect',                      'my_reports_are_incorrect'],
+      ['I cannot find the information I need',          'i_cannot_find_the_information_i_need'],
+    ],
+    'enquire_about_billing': [
+      ['I have a question about my invoice',            'i_have_a_question_about_my_invoice'],
+      ['I need to update my payment details',           'i_need_to_update_my_payment_details'],
+      ["I need to change my account's invoicing",       'i_need_to_change_my_account_s_invoic'],
+      ['I need to give someone access to my account',   'i_need_to_give_someone_access_to_my_'],
+      ['Other',                                         'other_billing'],
+    ],
+    'call_tracking___integrations': [
+      ['I need new codes for my website',               'i_need_new_codes_for_my_website'],
+      ['I need to set up GA4',                          'i_need_to_set_up_ga4'],
+      ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+      ['I need help with a Google Analytics Integration', 'i_need_help_with_a_google_analytics_int'],
+      ['I need help with my call tracking reports',     'i_need_help_with_my_call_tracking_repo'],
+      ['I have a question about integrations',          'i_have_a_question_about_integrations'],
+      ['Other call tracking issue (not listed above)',  'other_call_tracking_issue__not_listed_ab'],
+    ],
+  };
 
-    const row = document.createElement('div');
-    row.className = 'jc-msg jc-msg--bot jc-msg--wide';
-    row.style.marginTop = '4px';
-    row.innerHTML = `
-      ${botAvatar()}
-      <div class="jcf-card">
-        <h4>Submit a support ticket</h4>
-        <div class="jcf-body">
-          <div class="jcf-field">
-            <label>Full name <span style="color:#ED1C24">*</span></label>
-            <input type="text" class="jcf-name" placeholder="Jane Smith" autocomplete="name">
-          </div>
-          <div class="jcf-field">
-            <label>Company</label>
-            <input type="text" class="jcf-company" placeholder="Acme Pty Ltd" autocomplete="organization">
-          </div>
-          <div class="jcf-field">
-            <label>Email <span style="color:#ED1C24">*</span></label>
-            <input type="email" class="jcf-email" placeholder="jane@company.com.au" autocomplete="email">
-          </div>
-          <div class="jcf-field">
-            <label>Phone number</label>
-            <input type="tel" class="jcf-phone" placeholder="0400 000 000" autocomplete="tel">
-          </div>
-          <div class="jcf-field">
-            <label>Issue type</label>
-            <select class="jcf-type">
-              <option value="">Select a category…</option>
-              <option>App (iOS / Android)</option>
-              <option>App (Mac / Windows)</option>
-              <option>Hardware / Desk phone</option>
-              <option>Call quality</option>
-              <option>Callflows &amp; routing</option>
-              <option>SMS</option>
-              <option>Billing &amp; account</option>
-              <option>Porting a number</option>
-              <option>Reporting</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="jcf-field">
-            <label>Subject <span style="color:#ED1C24">*</span></label>
-            <input type="text" class="jcf-subject" placeholder="Brief description of your issue">
-          </div>
-          <div class="jcf-field">
-            <label>Message <span style="color:#ED1C24">*</span></label>
-            <textarea class="jcf-message" placeholder="Please describe your issue in as much detail as possible…"></textarea>
-          </div>
-          <div class="jcf-error"></div>
-          <button class="jcf-submit">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Send message
-          </button>
-        </div>
-      </div>
-    `;
-    messages.appendChild(row);
-    scrollBottom();
+  const overlay      = document.getElementById('jsm-overlay');
+  const jsmReasonEl  = document.getElementById('jsm-reason');
+  const jsmSubField  = document.getElementById('jsm-sub-field');
+  const jsmSubReason = document.getElementById('jsm-sub-reason');
+  const jsmForm      = document.getElementById('jsm-form');
+  const jsmSuccess   = document.getElementById('jsm-success');
+  const jsmError     = document.getElementById('jsm-error');
+  const jsmSubmit    = document.getElementById('jsm-submit');
 
-    const body      = row.querySelector('.jcf-body');
-    const nameEl    = row.querySelector('.jcf-name');
-    const companyEl = row.querySelector('.jcf-company');
-    const emailEl   = row.querySelector('.jcf-email');
-    const phoneEl   = row.querySelector('.jcf-phone');
-    const typeEl    = row.querySelector('.jcf-type');
-    const subjectEl = row.querySelector('.jcf-subject');
-    const msgEl     = row.querySelector('.jcf-message');
-    const errEl     = row.querySelector('.jcf-error');
-    const submitEl  = row.querySelector('.jcf-submit');
+  jsmReasonEl.addEventListener('change', function () {
+    const opts = SUB_OPTIONS[this.value] || [];
+    jsmSubReason.innerHTML = '<option value="">Select…</option>' +
+      opts.map(([label, value]) => `<option value="${value}">${label}</option>`).join('');
+    jsmSubField.classList.toggle('visible', opts.length > 0);
+  });
 
-    nameEl.focus();
+  document.getElementById('jsm-close-btn').addEventListener('click', closeSupportModal);
+  document.getElementById('jsm-success-close').addEventListener('click', closeSupportModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSupportModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSupportModal(); });
 
-    submitEl.addEventListener('click', async function () {
-      errEl.style.display = 'none';
+  jsmSubmit.addEventListener('click', async function () {
+    jsmError.style.display = 'none';
+    const name      = document.getElementById('jsm-name').value.trim();
+    const email     = document.getElementById('jsm-email').value.trim();
+    const phone     = document.getElementById('jsm-phone').value.trim();
+    const account   = document.getElementById('jsm-account').value.trim();
+    const reason    = jsmReasonEl.value;
+    const subReason = jsmSubReason.value;
+    const subject   = document.getElementById('jsm-subject').value.trim();
+    const message   = document.getElementById('jsm-message').value.trim();
+    const subRequired = jsmSubField.classList.contains('visible');
 
-      const name    = nameEl.value.trim();
-      const company = companyEl.value.trim();
-      const email   = emailEl.value.trim();
-      const phone   = phoneEl.value.trim();
-      const type    = typeEl.value;
-      const subject = subjectEl.value.trim();
-      const message = msgEl.value.trim();
+    if (!name || !email || !phone || !reason || !subject || !message) {
+      jsmError.textContent = 'Please fill in all required fields.';
+      jsmError.style.display = 'block'; return;
+    }
+    if (subRequired && !subReason) {
+      jsmError.textContent = 'Please select what specifically we can help you with.';
+      jsmError.style.display = 'block'; return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      jsmError.textContent = 'Please enter a valid email address.';
+      jsmError.style.display = 'block'; return;
+    }
 
-      if (!name || !email || !subject || !message) {
-        errEl.textContent = 'Please fill in all required fields.';
-        errEl.style.display = 'block';
-        return;
+    jsmSubmit.disabled = true;
+    jsmSubmit.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:jcSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
+
+    const customFields = [
+      { id: 900010486406, value: reason },
+      { id: 900011984406, value: phone },
+      { id: 900011971946, value: name },
+    ];
+    const subFieldCfg = SUB_FIELD_IDS[reason];
+    if (subReason && subFieldCfg) {
+      customFields.push({ id: subFieldCfg.id, value: subFieldCfg.multi ? [subReason] : subReason });
+    }
+    if (account) customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'submit_ticket',
+          request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields },
+        }),
+      });
+      if (res.ok || res.status === 201) {
+        jsmForm.style.display = 'none';
+        document.getElementById('jsm-success-msg').textContent = `Thanks ${name}. We'll be in touch shortly.`;
+        jsmSuccess.style.display = 'block';
+      } else {
+        const detail = await res.text();
+        console.error('Zendesk response:', res.status, detail);
+        throw new Error(res.status);
       }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errEl.textContent = 'Please enter a valid email address.';
-        errEl.style.display = 'block';
-        return;
-      }
+    } catch (err) {
+      console.error('Ticket submit error:', err);
+      jsmError.textContent = 'Something went wrong. Please try again or call us on 0488 811 729.';
+      jsmError.style.display = 'block';
+      jsmSubmit.disabled = false;
+      jsmSubmit.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
+    }
+  });
 
-      submitEl.disabled = true;
-      submitEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:jcSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
-
-      const zdMap = ISSUE_MAP[type] || { cat: 'report_a_problem', sub: 'other_jet_soft_phone_app_issue__not_listed_above_' };
-      const bodyLines = [
-        message,
-        company ? '\nCompany: ' + company  : '',
-        phone   ? '\nPhone: '   + phone    : '',
-        type    ? '\nIssue type: ' + type  : '',
-        '\nPage: ' + window.location.href,
-      ].join('');
-
-      try {
-        const res = await fetch(ZENDESK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            request: {
-              subject: subject,
-              comment: { body: bodyLines },
-              requester: { name: name, email: email },
-            },
-          }),
-        });
-
-        if (!res.ok) {
-          const errBody = await res.text().catch(() => '');
-          console.error('Ticket submission failed:', res.status, errBody);
-          throw new Error('HTTP ' + res.status);
-        }
-
-        body.innerHTML = `
-          <div class="jcf-success">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <strong style="font-size:14px;color:#1e293b">Ticket submitted!</strong>
-            <p>Thanks ${escapeHtml(name).replace(/<br>/g,'')}. We'll be in touch shortly.</p>
-          </div>
-        `;
-        scrollBottom();
-
-      } catch (err) {
-        console.error('Ticket submit error:', err);
-        errEl.textContent = 'Something went wrong. Please try again or call 0488 811 729.';
-        errEl.style.display = 'block';
-        submitEl.disabled = false;
-        submitEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
-      }
-    });
+  function openSupportModal() {
+    jsmForm.style.display = '';
+    jsmSuccess.style.display = 'none';
+    jsmError.style.display = 'none';
+    document.getElementById('jsm-name').value = '';
+    document.getElementById('jsm-email').value = '';
+    document.getElementById('jsm-phone').value = '';
+    document.getElementById('jsm-account').value = '';
+    jsmReasonEl.value = '';
+    jsmSubReason.innerHTML = '<option value="">Select…</option>';
+    jsmSubField.classList.remove('visible');
+    document.getElementById('jsm-subject').value = '';
+    document.getElementById('jsm-message').value = '';
+    jsmSubmit.disabled = false;
+    jsmSubmit.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('jsm-name').focus(), 50);
   }
+
+  function closeSupportModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.showTicketForm = openSupportModal;
 
   // ── Send ──────────────────────────────────────────────────────────────────────
   async function sendMessage(text) {
@@ -536,13 +720,19 @@
   document.querySelectorAll('.jc-quick-btn').forEach((qb) => {
     qb.addEventListener('click', () => {
       if (qb.dataset.action === 'ticket') {
-        if (quick.style.display !== 'none') quick.style.display = 'none';
-        if (messages.children.length === 0) openPanel();
-        showTicketForm();
+        openSupportModal();
       } else {
         sendMessage(qb.textContent);
       }
     });
+  });
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (a && /contact\.html/.test(a.getAttribute('href'))) {
+      e.preventDefault();
+      openSupportModal();
+    }
   });
 
   document.addEventListener('click', (e) => {
