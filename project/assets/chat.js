@@ -459,7 +459,11 @@
           }),
         });
 
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res.ok) {
+          const errBody = await res.text().catch(() => '');
+          console.error('Ticket submission failed:', res.status, errBody);
+          throw new Error('HTTP ' + res.status);
+        }
 
         body.innerHTML = `
           <div class="jcf-success">
@@ -470,7 +474,8 @@
         `;
         scrollBottom();
 
-      } catch {
+      } catch (err) {
+        console.error('Ticket submit error:', err);
         errEl.textContent = 'Something went wrong. Please try again or call 0488 811 729.';
         errEl.style.display = 'block';
         submitEl.disabled = false;
