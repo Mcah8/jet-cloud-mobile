@@ -441,20 +441,14 @@
       ].join('');
 
       try {
-        const res = await fetch(WORKER_URL, {
+        const res = await fetch(ZENDESK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            action: 'submit_ticket',
             request: {
               subject: subject,
               comment: { body: bodyLines },
               requester: { name: name, email: email },
-              custom_fields: [
-                { id: 900011984406, value: phone || 'Not provided' },
-                { id: 900010486406, value: zdMap.cat },
-                { id: 900011584086, value: zdMap.sub },
-              ],
             },
           }),
         });
