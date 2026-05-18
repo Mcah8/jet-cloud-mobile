@@ -121,23 +121,19 @@
     .support-form__success p{color:var(--fg-2);font-size:var(--fs-lead)}
     @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.support-form__submit{width:100%;justify-content:center}}
     .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
-    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
-    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
-    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
-    .footer__phone:hover{color:var(--red)}
-    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
-    .footer__col ul{list-style:none}
-    .footer__col li{margin-bottom:var(--sp-2)}
-    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto}
+    .footer__top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-7);flex-wrap:wrap;padding-bottom:var(--sp-6);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:var(--sp-6)}
+    .footer__brand{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__brand img{height:28px;width:auto}
+    .footer__brand p{color:rgba(255,255,255,.5);font-size:var(--fs-small);max-width:280px}
+    .footer__cols{display:flex;gap:var(--sp-8);flex-wrap:wrap}
+    .footer__col{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__col-label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.4);margin-bottom:var(--sp-1)}
+    .footer__col a{text-decoration:none;color:rgba(255,255,255,.7);font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
     .footer__col a:hover{color:var(--white)}
-    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
-    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
-    .footer__legal{display:flex;gap:var(--sp-5)}
-    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
-    .footer__legal a:hover{color:var(--white)}
-    @media(max-width:1024px){.footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}.footer__brand{grid-column:1/-1}}
-    @media(max-width:768px){.nav__links,.nav__phone{display:none}.nav__burger{display:flex}.article-wrap{padding:var(--sp-7) var(--sp-5)}.footer__inner{grid-template-columns:1fr 1fr}}
-    @media(max-width:480px){.footer__inner{grid-template-columns:1fr}.kb-hero{padding:var(--sp-7) var(--sp-5) var(--sp-8)}}
+    .footer__bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-4)}
+    .footer__copy{color:rgba(255,255,255,.4);font-size:var(--fs-small)}
+    @media(max-width:768px){.footer__top{flex-direction:column}}}
   </style>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -155,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" href="../../index.html"><img src="../../project/assets/jet-logo-dark.svg" alt="Jet Interactive"></a>
+      <a class="nav__logo" href="../../index.html"><img src="../../project/assets/jet-logo-full-color.png" alt="Jet Interactive"></a>
       <ul class="nav__links">
         <li><a href="../../index.html">Home</a></li>
         <li class="nav__dropdown">
@@ -171,7 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="../../contact.html">Contact</a></li>
       </ul>
       <a href="tel:0488811729" class="nav__phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.4l.42.52z"/></svg>0488 811 729</a>
-      <a href="../../contact.html" class="nav__cta">Contact Support</a>
+      <a href="#" class="nav__cta" onclick="if(window.showTicketForm){window.showTicketForm();return false;}">Contact Support</a>
       <button id="gs-trigger-mob" aria-label="Search" title="Search (/)" style="background:none;border:none;cursor:pointer;color:var(--fg-1,#0B0B0C);display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;transition:background 140ms,color 140ms;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
       <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -190,7 +186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="../../pricing.html">Pricing</a>
     <a href="../../knowledgebase.html" class="active">Knowledgebase</a>
     <a href="../../contact.html">Contact</a>
-    <a href="../../contact.html" class="nav__cta">Contact Support</a>
+    <a href="#" class="nav__cta" onclick="if(window.showTicketForm){window.showTicketForm();return false;}">Contact Support</a>
   </div>
 
   <section class="kb-hero">
@@ -265,22 +261,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="kb-help"></div>
+  </div>
 
-  <footer class="footer">
+  <footer>
     <div class="footer__inner">
-      <div class="footer__brand">
-        <img src="../../project/assets/jet-logo-light.svg" alt="Jet Interactive" style="height:28px;margin-bottom:16px">
-        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
-        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../../project/assets/jet-logo-full-color.png" alt="Jet Interactive" width="1200" height="434">
+          <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <span class="footer__col-label">Solutions</span>
+            <a href="../../solutions/sales-teams.html">Sales Teams</a>
+            <a href="../../solutions/international-staff.html">International Staff</a>
+            <a href="../../solutions/small-business.html">Small Business</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Industries</span>
+            <a href="../../industries/automotive.html">Automotive</a>
+            <a href="../../industries/real-estate.html">Real Estate</a>
+            <a href="../../industries/finance.html">Finance</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Resources</span>
+            <a href="../../pricing.html">Pricing</a>
+            <a href="../../faq.html">FAQ</a>
+            <a href="../../articles.html">Articles</a>
+            <a href="../../downloads.html">Downloads</a>
+            <a href="../../knowledgebase.html">Knowledgebase</a>
+            <a href="../../contact.html">Contact</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Legal</span>
+            <a href="../../Jet-Cloud-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Cloud Mobile CIS</a>
+            <a href="../../Jet-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Jet Mobile CIS</a>
+            <a href="../../Privacy-Policy-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="../../Service-Level-Agreement-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">SLA</a>
+            <a href="../../Master-Service-Agreement-Jet-Interactive-V3.0.pdf" target="_blank" rel="noopener">Master Services Agreement</a>
+          </div>
+        </div>
       </div>
-      <div class="footer__col"><h4>Product</h4><ul><li><a href="../../index.html">Jet Cloud Mobile</a></li><li><a href="../../pricing.html">Pricing</a></li><li><a href="../../downloads.html">Downloads</a></li></ul></div>
-      <div class="footer__col"><h4>Solutions</h4><ul><li><a href="../../solutions/small-business.html">Small Business</a></li><li><a href="../../solutions/sales-teams.html">Sales Teams</a></li><li><a href="../../solutions/international-staff.html">International Staff</a></li></ul></div>
-      <div class="footer__col"><h4>Support</h4><ul><li><a href="../../knowledgebase.html">Knowledgebase</a></li><li><a href="../../contact.html">Contact Us</a></li><li><a href="../../faq.html">FAQ</a></li></ul></div>
-      <div class="footer__col"><h4>Company</h4><ul><li><a href="https://jetinteractive.com.au" target="_blank">Jet Interactive</a></li></ul></div>
-    </div>
-    <div class="footer__bottom">
-      <span>© 2025 Jet Interactive. All rights reserved.</span>
-      <div class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Jet Interactive Pty Ltd. All rights reserved. ABN 70 168 999 371.</p>
+      </div>
     </div>
   </footer>
 
