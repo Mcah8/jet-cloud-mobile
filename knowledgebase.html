@@ -741,10 +741,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       if (account)   customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
       try {
-        const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
+        const res = await fetch('https://livechat.matthew-cahill.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields } })
+          body: JSON.stringify({
+            action: 'submit_ticket',
+            request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields },
+          }),
         });
         if (res.ok || res.status === 201) {
           sfForm.style.display = 'none'; sfSuccess.style.display = 'block';
