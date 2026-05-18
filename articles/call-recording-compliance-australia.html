@@ -106,24 +106,20 @@
     .article-cta .btn:hover{background:var(--red-50);box-shadow:var(--shadow-2)}
 
     .footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
-    .footer__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-8)}
-    .footer__brand p{color:var(--ink-400);font-size:var(--fs-small);line-height:var(--lh-normal);margin-bottom:var(--sp-4)}
-    .footer__phone{color:var(--white);font-weight:600;text-decoration:none;font-size:var(--fs-lead)}
-    .footer__phone:hover{color:var(--red)}
-    .footer__col h4{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--ink-400);margin-bottom:var(--sp-4)}
-    .footer__col ul{list-style:none}
-    .footer__col li{margin-bottom:var(--sp-2)}
-    .footer__col a{color:var(--ink-300);text-decoration:none;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto}
+    .footer__top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-7);flex-wrap:wrap;padding-bottom:var(--sp-6);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:var(--sp-6)}
+    .footer__brand{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__brand img{height:28px;width:auto;max-width:180px;object-fit:contain}
+    .footer__brand p{color:rgba(255,255,255,.5);font-size:var(--fs-small);max-width:280px}
+    .footer__cols{display:flex;gap:var(--sp-8);flex-wrap:wrap}
+    .footer__col{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__col-label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.4);margin-bottom:var(--sp-1)}
+    .footer__col a{text-decoration:none;color:rgba(255,255,255,.7);font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
     .footer__col a:hover{color:var(--white)}
-    .footer__bottom{max-width:var(--max-w);margin:0 auto;padding-top:var(--sp-5);border-top:1px solid var(--ink-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3)}
-    .footer__bottom span{color:var(--ink-400);font-size:var(--fs-small)}
-    .footer__legal{display:flex;gap:var(--sp-5)}
-    .footer__legal a{color:var(--ink-400);text-decoration:none;font-size:var(--fs-small)}
-    .footer__legal a:hover{color:var(--white)}
+    .footer__bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--sp-4)}
+    .footer__copy{color:rgba(255,255,255,.4);font-size:var(--fs-small)}
+    @media(max-width:768px){.footer__top{flex-direction:column}.footer__bottom{flex-direction:column;align-items:flex-start}}
 
-    @media(max-width:1024px){
-      .footer__inner{grid-template-columns:1fr 1fr;gap:var(--sp-6)}
-      .footer__brand{grid-column:1/-1}
     }
     @media(max-width:768px){
       .nav__links,.nav__phone{display:none}
@@ -322,54 +318,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer__inner">
-      <div class="footer__brand">
-        <img src="../project/assets/jet-logo-full-color.png" alt="Jet Interactive" height="28" style="margin-bottom:var(--sp-3)">
-        <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
-        <a href="tel:0488811729" class="footer__phone">0488 811 729</a>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../project/assets/jet-logo-full-color.png" alt="Jet Interactive" width="1200" height="434">
+          <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <span class="footer__col-label">Solutions</span>
+            <a href="../solutions/sales-teams.html">Sales Teams</a>
+            <a href="../solutions/international-staff.html">International Staff</a>
+            <a href="../solutions/small-business.html">Small Business</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Industries</span>
+            <a href="../industries/automotive.html">Automotive</a>
+            <a href="../industries/real-estate.html">Real Estate</a>
+            <a href="../industries/finance.html">Finance</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Resources</span>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../faq.html">FAQ</a>
+            <a href="../articles.html">Articles</a>
+            <a href="../downloads.html">Downloads</a>
+            <a href="../knowledgebase.html">Knowledgebase</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Legal</span>
+            <a href="../Jet-Cloud-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Cloud Mobile CIS</a>
+            <a href="../Jet-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Jet Mobile CIS</a>
+            <a href="../Privacy-Policy-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="../Service-Level-Agreement-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">SLA</a>
+            <a href="../Master-Service-Agreement-Jet-Interactive-V3.0.pdf" target="_blank" rel="noopener">Master Services Agreement</a>
+          </div>
+        </div>
       </div>
-      <div class="footer__col">
-        <h4>Solutions</h4>
-        <ul>
-          <li><a href="../solutions/sales-teams.html">Sales Teams</a></li>
-          <li><a href="../solutions/international-staff.html">International Staff</a></li>
-          <li><a href="../solutions/small-business.html">Small Business</a></li>
-        </ul>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Jet Interactive Pty Ltd. All rights reserved. ABN 70 168 999 371.</p>
       </div>
-      <div class="footer__col">
-        <h4>Industries</h4>
-        <ul>
-          <li><a href="../industries/automotive.html">Automotive</a></li>
-          <li><a href="../industries/real-estate.html">Real Estate</a></li>
-          <li><a href="../industries/finance.html">Finance</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="../pricing.html">Pricing</a></li>
-          <li><a href="../faq.html">FAQ</a></li>
-          <li><a href="../articles.html">Articles</a></li>
-          <li><a href="../downloads.html">Downloads</a></li>
-          <li><a href="../videos.html">Videos</a></li>
-          <li><a href="../knowledgebase.html">Knowledgebase</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="../Jet-Cloud-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Cloud Mobile CIS</a></li>
-          <li><a href="../Jet-Mobile-Pricing-Critical-Information-Summary.pdf" target="_blank" rel="noopener">Jet Mobile CIS</a></li>
-          <li><a href="../Privacy-Policy-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">Privacy Policy</a></li>
-          <li><a href="../Service-Level-Agreement-Jet-Interactive-V2.0.pdf" target="_blank" rel="noopener">SLA</a></li>
-          <li><a href="../Master-Service-Agreement-Jet-Interactive-V3.0.pdf" target="_blank" rel="noopener">Master Services Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>&copy; 2026 Jet Interactive Pty Ltd. All rights reserved. ABN 70 168 999 371.</span>
     </div>
   </footer>
 
