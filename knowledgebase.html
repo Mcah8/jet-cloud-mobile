@@ -598,6 +598,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (searchInput.value.trim().length >= 2) renderResults(searchInput.value.trim());
     });
 
+    // Field ID + type for each sub-reason field in Zendesk
+    const SUB_FIELD_IDS = {
+      'new_service':                  { id: 1900000673208, multi: true  },
+      'modify_a_service':             { id: 1900000371628, multi: true  },
+      'report_a_problem':             { id: 900011584086,  multi: false },
+      'enquire_about_reports':        { id: 8122409755417, multi: false },
+      'enquire_about_billing':        { id: 900011896466,  multi: false },
+      'call_tracking___integrations': { id: 9986763840537, multi: false },
+    };
+
     // Sub-reason options per category
     const SUB_OPTIONS = {
       'new_service': [
@@ -659,10 +669,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ["I need to change my account's invoicing",       'i_need_to_change_my_account_s_invoic'],
         ['I need to give someone access to my account',   'i_need_to_give_someone_access_to_my_'],
         ['Other',                                         'other_billing'],
-      ],
-      'cancel_a_service': [
-        ['Remove a service or feature from my account',   'remove_a_service_or_feature_from_my_a'],
-        ['Cancel my entire account',                      'cancel_my_entire_account'],
       ],
       'call_tracking___integrations': [
         ['I need new codes for my website',               'i_need_new_codes_for_my_website'],
@@ -729,7 +735,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         { id: 900011984406, value: phone },
         { id: 900011971946, value: name },
       ];
-      if (subReason) customFields.push({ id: 900011584086, value: subReason });
+      const subFieldCfg = SUB_FIELD_IDS[reason];
+      if (subReason && subFieldCfg) {
+        customFields.push({ id: subFieldCfg.id, value: subFieldCfg.multi ? [subReason] : subReason });
+      }
       if (account)   customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
       try {
         const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
@@ -741,7 +750,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           sfForm.style.display = 'none'; sfSuccess.style.display = 'block';
         } else {
           const detail = await res.text();
-          throw new Error(res.status + ': ' + detail.slice(0, 120));
+          console.error('Zendesk full response:', detail);
+          throw new Error(res.status + ': ' + detail.slice(0, 500));
         }
       } catch (err) {
         console.error('Zendesk error:', err);
