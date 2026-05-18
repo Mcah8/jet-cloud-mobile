@@ -441,10 +441,11 @@
       ].join('');
 
       try {
-        const res = await fetch(ZENDESK_URL, {
+        const res = await fetch(WORKER_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            action: 'submit_ticket',
             request: {
               subject: subject,
               comment: { body: bodyLines },
