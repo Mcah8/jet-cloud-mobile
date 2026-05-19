@@ -1,13 +1,226 @@
 (function () {
   'use strict';
 
-  // Resolve the path to search-index.json relative to this script's location
+  // ── Stemmer (English suffix-stripping) ────────────────────────────────────
+  // Strips the most common English inflectional and derivational suffixes so that
+  // "calling", "calls", "called" all match a query for "call".
+  function stem(w) {
+    if (w.length < 4) return w;
+    const orig = w;
+
+    // -ies / -ied → -y  (carries → carry, carried → carry)
+    if (w.length > 5 && w.endsWith('ies'))      { w = w.slice(0, -3) + 'y'; }
+    else if (w.length > 5 && w.endsWith('ied')) { w = w.slice(0, -3) + 'y'; }
+    // -sses → -ss  (addresses → address)
+    else if (w.endsWith('sses'))                 { w = w.slice(0, -2); }
+    // simple -s  (calls → call, accounts → account) but not -ss/-us/-is
+    else if (w.length > 4 && w.endsWith('s') &&
+             !w.endsWith('ss') && !w.endsWith('us') && !w.endsWith('is')) {
+      w = w.slice(0, -1);
+    }
+
+    if (w.length < 4) return orig;
+
+    // -ations / -ation → -ate  (configuration → configure skipped; ation→ate)
+    if      (w.endsWith('ations') && w.length > 8)  { w = w.slice(0, -6) + 'ate'; }
+    else if (w.endsWith('ation')  && w.length > 7)  { w = w.slice(0, -5) + 'ate'; }
+    // -izing / -ising → keep root  (organizing → organ… not ideal but ok)
+    else if (w.endsWith('izing')  && w.length > 7)  { w = w.slice(0, -3); }
+    else if (w.endsWith('ising')  && w.length > 7)  { w = w.slice(0, -3); }
+    // -ing  (calling → call, downloading → download)
+    else if (w.endsWith('ing')    && w.length > 6)  { w = w.slice(0, -3); }
+    // -ed   (transferred → transfer, recorded → record)
+    else if (w.endsWith('ed')     && w.length > 5)  { w = w.slice(0, -2); }
+
+    if (w.length < 3) return orig;
+
+    // derivational suffixes — only strip if root stays meaningful
+    if      (w.endsWith('ness')   && w.length > 7)  { w = w.slice(0, -4); }
+    else if (w.endsWith('ment')   && w.length > 7)  { w = w.slice(0, -4); }
+    else if (w.endsWith('ful')    && w.length > 6)  { w = w.slice(0, -3); }
+    else if (w.endsWith('ous')    && w.length > 6)  { w = w.slice(0, -3); }
+    else if (w.endsWith('ive')    && w.length > 6)  { w = w.slice(0, -3); }
+    else if (w.endsWith('ical')   && w.length > 7)  { w = w.slice(0, -4) + 'ic'; }
+
+    // -ers / -er
+    if      (w.endsWith('ers')    && w.length > 6)  { w = w.slice(0, -3); }
+    else if (w.endsWith('er')     && w.length > 5)  { w = w.slice(0, -2); }
+
+    // -ly
+    if      (w.endsWith('ly')     && w.length > 5)  { w = w.slice(0, -2); }
+
+    return w.length >= 3 ? w : orig;
+  }
+
+  // ── Synonym expansion (telecom-focused) ───────────────────────────────────
+  // Groups of words treated as equivalent. A query for any member expands to
+  // all members, boosting recall without hurting precision.
+  const SYNONYM_GROUPS = [
+    ['voicemail', 'vm', 'vmail', 'voice mail'],
+    ['sms', 'text', 'message', 'txt', 'messaging'],
+    ['call', 'phone', 'dial', 'ring', 'calling'],
+    ['transfer', 'forward', 'redirect', 'divert'],
+    ['app', 'application', 'softphone', 'client'],
+    ['login', 'signin', 'log in', 'sign in', 'authenticate'],
+    ['password', 'credentials', 'passcode'],
+    ['cancel', 'terminate', 'disconnect', 'stop service'],
+    ['hardware', 'handset', 'desk phone', 'deskphone', 'physical phone'],
+    ['recording', 'record', 'recorded'],
+    ['report', 'reporting', 'analytics', 'statistics', 'stats'],
+    ['queue', 'hold', 'waiting', 'ring group'],
+    ['conference', 'group call', 'multi-party'],
+    ['billing', 'invoice', 'payment', 'bill', 'charge'],
+    ['number', 'phone number', 'extension', 'did'],
+    ['download', 'install', 'setup', 'set up'],
+    ['account', 'portal', 'hub', 'admin', 'dashboard'],
+    ['mobile', 'smartphone', 'cell', 'handset'],
+    ['audio', 'sound', 'microphone', 'speaker', 'headset'],
+    ['international', 'overseas', 'global', 'abroad'],
+  ];
+
+  // Build word → array-of-synonyms lookup
+  const _synLookup = {};
+  for (const group of SYNONYM_GROUPS) {
+    const stemmed = group.map(stem);
+    for (const s of stemmed) _synLookup[s] = stemmed;
+  }
+
+  function expandTerms(terms) {
+    const expanded = new Set(terms);
+    for (const t of terms) {
+      const syn = _synLookup[t];
+      if (syn) syn.forEach(s => expanded.add(s));
+    }
+    return [...expanded];
+  }
+
+  // ── Tokeniser ─────────────────────────────────────────────────────────────
+  function tokenize(text) {
+    if (!text) return [];
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(t => t.length > 1 && !STOPWORDS.has(t))
+      .map(stem);
+  }
+
+  const STOPWORDS = new Set([
+    'a','an','the','and','or','but','in','on','at','to','for','of','with',
+    'is','it','its','this','that','was','are','be','been','by','from','has',
+    'have','had','not','as','do','did','can','will','if','we','you','your',
+    'how','what','when','where','my','all','also','into','any','our',
+  ]);
+
+  // ── Levenshtein fuzzy matching ────────────────────────────────────────────
+  // Returns edit distance between two strings.
+  function editDistance(a, b) {
+    const m = a.length, n = b.length;
+    if (Math.abs(m - n) > 2) return 99; // fast reject
+    const dp = Array.from({ length: m + 1 }, (_, i) => [i]);
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        dp[i][j] = a[i-1] === b[j-1]
+          ? dp[i-1][j-1]
+          : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+      }
+    }
+    return dp[m][n];
+  }
+
+  // Maximum edit distance allowed for a given term length
+  function fuzzyThreshold(len) {
+    if (len <= 3) return 0;
+    if (len <= 5) return 1;
+    return 2;
+  }
+
+  // ── TF-IDF ────────────────────────────────────────────────────────────────
+  let idfTable    = {};   // term → idf score
+  let tokenCache  = [];   // pre-tokenized docs: [{titleToks, bodyToks}]
+  let vocabulary  = [];   // all unique stemmed terms (for fuzzy vocab lookup)
+
+  function buildSearchStructures(docs) {
+    const N = docs.length;
+    const df = {};   // document frequency per term
+
+    tokenCache = docs.map(doc => {
+      const titleToks = tokenize(doc.title);
+      const bodyToks  = tokenize(doc.text || '');
+      // count document frequency
+      new Set([...titleToks, ...bodyToks]).forEach(t => {
+        df[t] = (df[t] || 0) + 1;
+      });
+      return { titleToks, bodyToks };
+    });
+
+    // IDF with Laplace smoothing: ln((N+1)/(df+1)) + 1
+    idfTable = {};
+    for (const [term, freq] of Object.entries(df)) {
+      idfTable[term] = Math.log((N + 1) / (freq + 1)) + 1;
+    }
+
+    vocabulary = Object.keys(idfTable);
+  }
+
+  // For a query term that had no exact match, find vocabulary terms within
+  // the fuzzy threshold and return a weighted bonus score.
+  function fuzzyScore(queryTerm) {
+    const thresh = fuzzyThreshold(queryTerm.length);
+    if (thresh === 0) return { matches: [], bonus: 0 };
+    let best = thresh + 1;
+    const matches = [];
+    for (const vt of vocabulary) {
+      const d = editDistance(queryTerm, vt);
+      if (d <= thresh) {
+        matches.push({ term: vt, dist: d });
+        if (d < best) best = d;
+      }
+    }
+    // Score bonus decreases with distance: dist=1 → 0.6, dist=2 → 0.3
+    const bonus = best <= thresh ? (1 - best * 0.4) : 0;
+    return { matches: matches.map(m => m.term), bonus };
+  }
+
+  // Score a single document against expanded query terms
+  function scoreDocument(docIdx, queryTerms) {
+    const { titleToks, bodyToks } = tokenCache[docIdx];
+    const titleLen = Math.max(titleToks.length, 1);
+    const bodyLen  = Math.max(bodyToks.length, 1);
+    let score = 0;
+
+    for (const qt of queryTerms) {
+      const idf = idfTable[qt] || 1;
+
+      // TF in title (with 6× boost) and body
+      const tTF = titleToks.filter(t => t === qt).length / titleLen;
+      const bTF = bodyToks.filter(t  => t === qt).length / bodyLen;
+      score += tTF * idf * 6 + bTF * idf;
+
+      // Fuzzy fallback when no exact match exists in this document at all
+      if (tTF === 0 && bTF === 0) {
+        const { matches, bonus } = fuzzyScore(qt);
+        if (bonus > 0) {
+          for (const fm of matches) {
+            const fidf = idfTable[fm] || 1;
+            const ftTF = titleToks.filter(t => t === fm).length / titleLen;
+            const fbTF = bodyToks.filter(t  => t === fm).length / bodyLen;
+            score += (ftTF * fidf * 6 + fbTF * fidf) * bonus;
+          }
+        }
+      }
+    }
+    return score;
+  }
+
+  // ── Resolve index URL relative to this script ─────────────────────────────
   const scripts = document.querySelectorAll('script[src*="global-search.js"]');
   const scriptSrc = scripts[scripts.length - 1]?.src || '';
   const base = scriptSrc ? scriptSrc.replace('global-search.js', '') : '';
   const INDEX_URL = base + 'search-index.json';
 
-  // ── CSS ────────────────────────────────────────────────────────────────────
+  // ── CSS ───────────────────────────────────────────────────────────────────
   const css = `
     #gs-trigger {
       background: none;
@@ -134,7 +347,7 @@
       flex-shrink: 0;
       margin-top: 1px;
     }
-    .gs-result__icon--page { background: #f0f4ff; color: #3b5bdb; }
+    .gs-result__icon--page    { background: #f0f4ff; color: #3b5bdb; }
     .gs-result__icon--article { background: #f0fdf4; color: #16a34a; }
     .gs-result__title {
       font-weight: 600;
@@ -192,9 +405,8 @@
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
-  // ── Wire trigger buttons ───────────────────────────────────────────────────
+  // ── Wire trigger buttons ──────────────────────────────────────────────────
   function injectTrigger() {
-    // Desktop button is pre-rendered inside nav__links; mobile button is before burger
     document.querySelectorAll('#gs-trigger, #gs-trigger-mob').forEach(btn => {
       if (btn) btn.addEventListener('click', openSearch);
     });
@@ -205,7 +417,7 @@
   mobCss.textContent = '@media(max-width:900px){#gs-trigger{display:none!important}#gs-trigger-mob{display:flex!important}}';
   document.head.appendChild(mobCss);
 
-  // ── Build overlay HTML ─────────────────────────────────────────────────────
+  // ── Build overlay HTML ────────────────────────────────────────────────────
   const overlay = document.createElement('div');
   overlay.id = 'gs-overlay';
   overlay.setAttribute('role', 'dialog');
@@ -229,19 +441,21 @@
   const gsInput = overlay.querySelector('#gs-input');
   const gsBody  = overlay.querySelector('#gs-body');
 
-  // ── Search index ───────────────────────────────────────────────────────────
-  let index = null;
+  // ── Load index and build structures ──────────────────────────────────────
+  let index    = null;
   let focusIdx = -1;
 
   fetch(INDEX_URL).then(r => r.json()).then(d => {
     index = d;
+    buildSearchStructures(d);
     overlay.querySelector('#gs-hint span:last-child').textContent = d.length + ' articles & pages';
   }).catch(() => {});
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
-  function hl(text, q) {
-    if (!q || !text) return text || '';
-    const e = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function hlRaw(text, rawQuery) {
+    // Highlight original query terms in display text (pre-stemming)
+    if (!rawQuery || !text) return text || '';
+    const e = rawQuery.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return String(text).replace(new RegExp(`(${e})`, 'gi'), '<mark>$1</mark>');
   }
 
@@ -261,42 +475,41 @@
   }
 
   function getUrl(item) {
-    // Make URL relative to current page
     const depth = (window.location.pathname.match(/\//g) || []).length - 1;
     const prefix = depth <= 1 ? '' : '../'.repeat(depth - 1);
     return prefix + item.url;
   }
 
-  function renderResults(q) {
-    if (!index || !q || q.length < 2) {
+  // ── Render ────────────────────────────────────────────────────────────────
+  function renderResults(rawQuery) {
+    if (!index || !rawQuery || rawQuery.length < 2) {
       gsBody.innerHTML = '';
       focusIdx = -1;
       return;
     }
 
-    const terms = q.toLowerCase().trim().split(/\s+/);
+    // Tokenize + stem the query, then expand with synonyms
+    const queryTerms = expandTerms(tokenize(rawQuery));
 
-    const scored = index.map(item => {
-      const tl = (item.title || '').toLowerCase();
-      const tx = (item.text || '').toLowerCase();
-      let score = 0;
-      for (const t of terms) {
-        if (tl === t) score += 20;
-        else if (tl.startsWith(t)) score += 12;
-        else if (tl.includes(t)) score += 8;
-        if (tx.includes(t)) score += 2;
-      }
-      return { ...item, score };
-    }).filter(i => i.score > 0).sort((a, b) => b.score - a.score);
+    if (queryTerms.length === 0) {
+      gsBody.innerHTML = '';
+      return;
+    }
+
+    // Score every document
+    const scored = index.map((item, i) => ({
+      ...item,
+      score: scoreDocument(i, queryTerms),
+    })).filter(i => i.score > 0).sort((a, b) => b.score - a.score);
 
     focusIdx = -1;
 
     if (scored.length === 0) {
-      gsBody.innerHTML = `<div id="gs-empty"><strong>No results for "${q}"</strong>Try a different search term.</div>`;
+      gsBody.innerHTML = `<div id="gs-empty"><strong>No results for "${rawQuery}"</strong>Try a different search term.</div>`;
       return;
     }
 
-    // Group by category
+    // Group top-12 by category
     const groups = {};
     const ORDER = ['Home','Page','FAQ','Knowledgebase','Article','Solution','Industry',
       'New Services & Setups','Phone System Management','Jet Phone (Apps & Hardware)',
@@ -322,12 +535,12 @@
                     ['Industry','industries'].includes(g) ? 'Industries' : g;
       html += `<div class="gs-section-label">${label}</div>`;
       for (const item of groups[g]) {
-        const ic = iconFor(item);
-        const exc = hl(excerpt(item.text, q), q);
+        const ic  = iconFor(item);
+        const exc = hlRaw(excerpt(item.text, rawQuery), rawQuery);
         html += `<a href="${getUrl(item)}" class="gs-result" data-idx="${globalIdx++}">
           <div class="gs-result__icon ${ic.cls}">${ic.svg}</div>
           <div>
-            <div class="gs-result__title">${hl(item.title, q)}</div>
+            <div class="gs-result__title">${hlRaw(item.title, rawQuery)}</div>
             <div class="gs-result__meta">${item.cat}</div>
             ${exc ? `<div class="gs-result__excerpt">${exc}</div>` : ''}
           </div>
@@ -338,7 +551,7 @@
     gsBody.innerHTML = html;
   }
 
-  // ── Open / close ───────────────────────────────────────────────────────────
+  // ── Open / close ──────────────────────────────────────────────────────────
   function openSearch() {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -353,7 +566,7 @@
     focusIdx = -1;
   }
 
-  // ── Events ─────────────────────────────────────────────────────────────────
+  // ── Events ────────────────────────────────────────────────────────────────
   let debounce;
   gsInput.addEventListener('input', () => {
     clearTimeout(debounce);
@@ -380,7 +593,6 @@
 
   overlay.addEventListener('click', e => { if (e.target === overlay) closeSearch(); });
 
-  // Keyboard shortcut: / to open (when not in an input)
   document.addEventListener('keydown', e => {
     if (e.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) {
       e.preventDefault(); openSearch();
@@ -389,7 +601,7 @@
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
   });
 
-  // ── Init ───────────────────────────────────────────────────────────────────
+  // ── Init ──────────────────────────────────────────────────────────────────
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectTrigger);
   } else {
