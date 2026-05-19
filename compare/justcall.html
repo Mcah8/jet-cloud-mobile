@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jet Cloud Mobile vs JustCall — The Australian Alternative</title>
+  <meta name="description" content="See how Jet Cloud Mobile compares to JustCall. Real 04XX mobile numbers on the Telstra network, AUD pricing, Australian data residency and Sydney-based support. From $35/month.">
+  <link rel="icon" href="../project/assets/jet-symbol-gradient.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
+      --black:#000;--white:#fff;
+      --ink-900:#0B0B0C;--ink-800:#1A1A1E;--ink-700:#2A2A2E;--ink-600:#4A4D55;--ink-500:#6B6E76;--ink-400:#9A9DA4;--ink-300:#C9CCD1;--ink-200:#E1E4E8;--ink-100:#EEF0F3;--ink-50:#F7F8FA;
+      --fg-1:var(--ink-900);--fg-2:var(--ink-600);--fg-3:var(--ink-500);
+      --border:1px solid var(--ink-300);
+      --grad-hero:linear-gradient(135deg,#7A1418 0%,var(--red-dark) 40%,var(--red) 100%);
+      --font-display:'Saira','Arial Narrow',system-ui,sans-serif;
+      --font-ui:'Barlow',system-ui,-apple-system,sans-serif;
+      --fs-small:14px;--fs-body:16px;--fs-lead:18px;--fs-h5:20px;--fs-h4:24px;--fs-h3:32px;--fs-h2:44px;
+      --lh-tight:1.05;--lh-snug:1.2;--lh-normal:1.5;
+      --tr-tight:-0.02em;--tr-snug:-0.01em;--tr-ultra:0.14em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --radius-md:8px;--radius-lg:16px;--radius-pill:999px;
+      --shadow-1:0 1px 2px rgba(11,11,12,.06),0 1px 3px rgba(11,11,12,.08);
+      --shadow-2:0 4px 12px rgba(11,11,12,.08),0 2px 4px rgba(11,11,12,.06);
+      --shadow-3:0 20px 40px rgba(11,11,12,.14),0 8px 16px rgba(11,11,12,.08);
+      --shadow-red:0 8px 24px rgba(237,28,36,.28);
+      --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
+      --dur-base:140ms;--dur-med:220ms;
+      --max-w:1200px;--nav-h:72px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--font-ui);color:var(--fg-1);line-height:var(--lh-normal);background:var(--white);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    ::selection{background:var(--red);color:var(--white)}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--white);border-bottom:var(--border);height:var(--nav-h)}
+    .nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--sp-6);height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7)}
+    .nav__logo img{height:32px;width:auto}
+    .nav__links{display:flex;align-items:center;gap:var(--sp-5);list-style:none}
+    .nav__links a{text-decoration:none;color:var(--fg-1);font-weight:500;font-size:var(--fs-body);transition:color var(--dur-base) var(--ease-out)}
+    .nav__links a:hover{color:var(--red)}
+    .nav__cta{background:var(--red);color:var(--white)!important;padding:.5rem 1.5rem;border-radius:var(--radius-md);font-weight:600!important;white-space:nowrap;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)!important}
+    .nav__cta:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)}
+    .nav__phone{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg-1);font-weight:600;font-size:var(--fs-body);white-space:nowrap;transition:color var(--dur-base) var(--ease-out)}
+    .nav__phone:hover{color:var(--red)}
+    .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:var(--sp-2)}
+    .nav__burger span{display:block;width:22px;height:2px;background:var(--fg-1);border-radius:2px;transition:transform var(--dur-med) var(--ease-io),opacity var(--dur-med) var(--ease-io)}
+    .nav__burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav__drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:var(--white);z-index:199;flex-direction:column;padding:var(--sp-5) var(--sp-6);gap:0;border-top:var(--border);overflow-y:auto}
+    .nav__drawer.open{display:flex}
+    .nav__drawer a{text-decoration:none;color:var(--fg-1);font-size:var(--fs-lead);font-weight:500;padding:var(--sp-3) 0;border-bottom:var(--border);display:block}
+    .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
+
+    /* Hero */
+    .hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-10) var(--sp-6)}
+    .hero__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-8);align-items:center}
+    .hero__eyebrow{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(255,255,255,.15);color:var(--white);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:4px 14px;border-radius:var(--radius-pill);margin-bottom:var(--sp-5)}
+    .hero h1{font-family:var(--font-display);font-size:clamp(32px,4.5vw,52px);font-weight:800;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-5)}
+    .hero h1 span{color:rgba(255,255,255,.55)}
+    .hero__sub{color:rgba(255,255,255,.85);font-size:var(--fs-lead);line-height:var(--lh-normal);margin-bottom:var(--sp-7)}
+    .hero__ctas{display:flex;gap:var(--sp-3);flex-wrap:wrap}
+    .btn-white{background:var(--white);color:var(--red);padding:var(--sp-3) var(--sp-6);border-radius:var(--radius-md);font-weight:700;font-size:var(--fs-body);text-decoration:none;display:inline-flex;align-items:center;gap:var(--sp-2);transition:box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+    .btn-white:hover{box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(-1px)}
+    .btn-ghost{background:transparent;color:var(--white);padding:var(--sp-3) var(--sp-6);border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-body);text-decoration:none;display:inline-flex;align-items:center;gap:var(--sp-2);border:2px solid rgba(255,255,255,.4);transition:border-color var(--dur-base) var(--ease-out),background var(--dur-base) var(--ease-out)}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.1)}
+    .hero__vs{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-lg);padding:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-5)}
+    .hero__vs-logos{display:flex;align-items:center;justify-content:center;gap:var(--sp-5)}
+    .hero__vs-badge{background:rgba(255,255,255,.15);border-radius:var(--radius-md);padding:var(--sp-4) var(--sp-5);text-align:center;flex:1}
+    .hero__vs-badge .name{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;color:var(--white)}
+    .hero__vs-badge .tag{font-size:var(--fs-small);color:rgba(255,255,255,.6);margin-top:2px}
+    .hero__vs-divider{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:rgba(255,255,255,.4)}
+    .hero__vs-stat{display:flex;align-items:center;gap:var(--sp-3);background:rgba(255,255,255,.08);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4)}
+    .hero__vs-stat svg{flex-shrink:0;color:rgba(255,255,255,.7)}
+    .hero__vs-stat span{font-size:var(--fs-small);color:rgba(255,255,255,.8)}
+    .hero__vs-stat strong{color:var(--white)}
+
+    /* Switcher bar */
+    .switcher{background:var(--ink-50);border-bottom:var(--border);padding:var(--sp-4) var(--sp-6);position:sticky;top:var(--nav-h);z-index:100}
+    .switcher__inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);flex-wrap:wrap}
+    .switcher__label{font-size:var(--fs-small);color:var(--fg-3);font-weight:500}
+    .switcher__links{display:flex;gap:var(--sp-2)}
+    .switcher__links a{padding:6px var(--sp-4);border-radius:var(--radius-md);font-size:var(--fs-small);font-weight:600;text-decoration:none;color:var(--fg-2);border:var(--border);background:var(--white);transition:all var(--dur-base) var(--ease-out)}
+    .switcher__links a:hover{color:var(--red);border-color:var(--red)}
+    .switcher__links a.active{background:var(--red);color:var(--white);border-color:var(--red)}
+    .switcher__cta{background:var(--red);color:var(--white);padding:8px var(--sp-5);border-radius:var(--radius-md);font-size:var(--fs-small);font-weight:600;text-decoration:none;white-space:nowrap;transition:background var(--dur-base) var(--ease-out)}
+    .switcher__cta:hover{background:var(--red-dark)}
+
+    /* Sections */
+    .section{padding:var(--sp-9) var(--sp-6)}
+    .section--alt{background:var(--ink-50)}
+    .section--dark{background:var(--ink-900);color:var(--white)}
+    .section__inner{max-width:var(--max-w);margin:0 auto}
+    .section__header{text-align:center;margin-bottom:var(--sp-8)}
+    .section__eyebrow{font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--red);margin-bottom:var(--sp-3)}
+    .section__title{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:var(--lh-snug);letter-spacing:var(--tr-tight)}
+    .section__lead{font-size:var(--fs-lead);color:var(--fg-2);max-width:640px;margin:var(--sp-5) auto 0}
+
+    /* Why cards */
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-5)}
+    .why-card{background:var(--white);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-6);box-shadow:var(--shadow-1);transition:box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+    .why-card:hover{box-shadow:var(--shadow-2);transform:translateY(-2px)}
+    .why-card__icon{width:48px;height:48px;background:var(--red-50);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:var(--sp-4)}
+    .why-card h3{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:700;margin-bottom:var(--sp-3)}
+    .why-card p{color:var(--fg-2);font-size:var(--fs-body);line-height:var(--lh-normal)}
+
+    /* Compare table */
+    .compare-wrap{overflow-x:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-2)}
+    .compare-table{width:100%;border-collapse:collapse;font-size:var(--fs-body)}
+    .compare-table thead tr{background:var(--ink-900);color:var(--white)}
+    .compare-table thead th{padding:var(--sp-4) var(--sp-5);text-align:left;font-family:var(--font-display);font-weight:700;font-size:var(--fs-body)}
+    .compare-table thead th.col-jet{color:#ffd7d8}
+    .compare-table thead th.col-comp{color:var(--ink-300)}
+    .compare-table .badge{display:inline-flex;align-items:center;background:var(--red);color:var(--white);font-size:11px;font-weight:700;padding:2px 7px;border-radius:var(--radius-pill);margin-left:var(--sp-2);vertical-align:middle}
+    .compare-table tbody tr{border-bottom:var(--border)}
+    .compare-table tbody tr:last-child{border-bottom:none}
+    .compare-table tbody td{padding:var(--sp-4) var(--sp-5);vertical-align:middle}
+    .compare-table tbody td:first-child{font-weight:500;color:var(--fg-1)}
+    .compare-table tbody td:not(:first-child){text-align:center;width:160px}
+    .compare-table tbody tr:hover{background:var(--ink-50)}
+    .compare-table .cat-row td{background:var(--ink-100);font-family:var(--font-display);font-weight:700;font-size:var(--fs-small);text-transform:uppercase;letter-spacing:.08em;color:var(--fg-2);padding:var(--sp-3) var(--sp-5)}
+    .compare-table .sub{display:block;font-size:12px;font-weight:400;color:var(--fg-3);margin-top:2px}
+    .tick{color:#16a34a}
+    .cross{color:#dc2626}
+    .partial{color:#d97706}
+
+    /* Pain grid */
+    .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-8)}
+    .pain-label{font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);margin-bottom:var(--sp-5)}
+    .pain-label--bad{color:rgba(255,255,255,.5)}
+    .pain-label--good{color:var(--red)}
+    .pain-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:var(--sp-5);display:flex;gap:var(--sp-4)}
+    .pain-card--good{background:rgba(237,28,36,.12);border-color:rgba(237,28,36,.25)}
+    .pain-card__icon{flex-shrink:0;width:40px;height:40px;border-radius:var(--radius-md);background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+    .pain-card--good .pain-card__icon{background:rgba(237,28,36,.15)}
+    .pain-card h4{font-family:var(--font-display);font-size:var(--fs-body);font-weight:700;color:var(--white);margin-bottom:var(--sp-2)}
+    .pain-card p{font-size:var(--fs-small);color:rgba(255,255,255,.65);line-height:var(--lh-normal)}
+
+    /* Testimonial */
+    .testimonial{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-8);max-width:760px;margin:0 auto;text-align:center;box-shadow:var(--shadow-1)}
+    .stars{display:flex;justify-content:center;gap:4px;color:var(--red);margin-bottom:var(--sp-4)}
+    .testimonial__quote{font-size:var(--fs-lead);line-height:var(--lh-normal);color:var(--fg-1);font-style:italic;margin-bottom:var(--sp-5)}
+    .testimonial__author{font-family:var(--font-display);font-weight:700;font-size:var(--fs-body);color:var(--fg-1)}
+    .testimonial__role{font-size:var(--fs-small);color:var(--fg-3);margin-top:4px}
+
+    /* FAQ */
+    .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+    .faq-item{border-bottom:var(--border)}
+    .faq-item:first-child{border-top:var(--border)}
+    .faq-q{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-5) 0;cursor:pointer;font-weight:600;font-size:var(--fs-body);color:var(--fg-1);user-select:none}
+    .faq-q svg{flex-shrink:0;transition:transform var(--dur-base) var(--ease-out);color:var(--fg-3)}
+    .faq-item.open .faq-q svg{transform:rotate(45deg);color:var(--red)}
+    .faq-a{display:none;padding:0 0 var(--sp-5);color:var(--fg-2);line-height:var(--lh-normal);font-size:var(--fs-body)}
+    .faq-item.open .faq-a{display:block}
+
+    /* CTA band */
+    .cta-band{background:var(--grad-hero);padding:var(--sp-9) var(--sp-6);text-align:center}
+    .cta-band__inner{max-width:680px;margin:0 auto}
+    .cta-band h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;color:var(--white);margin-bottom:var(--sp-4);line-height:var(--lh-snug)}
+    .cta-band p{color:rgba(255,255,255,.85);font-size:var(--fs-lead);margin-bottom:var(--sp-7)}
+    .cta-band__btns{display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap}
+
+    /* Footer */
+    footer{background:var(--ink-900);color:var(--ink-300);padding:var(--sp-9) var(--sp-6) var(--sp-7)}
+    .footer__inner{max-width:var(--max-w);margin:0 auto}
+    .footer__top{display:flex;gap:var(--sp-8);margin-bottom:var(--sp-7)}
+    .footer__brand{flex:0 0 260px}
+    .footer__brand img{height:28px;width:auto;margin-bottom:var(--sp-4);filter:brightness(0) invert(1);opacity:.7}
+    .footer__brand p{font-size:var(--fs-small);line-height:var(--lh-normal);color:var(--ink-400)}
+    .footer__cols{display:flex;gap:var(--sp-7);flex:1;justify-content:flex-end}
+    .footer__col{display:flex;flex-direction:column;gap:var(--sp-3)}
+    .footer__col-label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-500);margin-bottom:var(--sp-1)}
+    .footer__col a{text-decoration:none;color:var(--ink-400);font-size:var(--fs-small);transition:color var(--dur-base) var(--ease-out)}
+    .footer__col a:hover{color:var(--white)}
+    .footer__bottom{border-top:1px solid var(--ink-700);padding-top:var(--sp-5)}
+    .footer__copy{font-size:var(--fs-small);color:var(--ink-500)}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .hero__inner{grid-template-columns:1fr}
+      .hero__vs{display:none}
+      .why-grid{grid-template-columns:1fr 1fr}
+      .pain-grid{grid-template-columns:1fr}
+      .footer__top{flex-direction:column}
+      .footer__brand{flex:none}
+      .footer__cols{flex-wrap:wrap;gap:var(--sp-5);justify-content:flex-start}
+    }
+    @media(max-width:600px){
+      .why-grid{grid-template-columns:1fr}
+      .nav__links{display:none}
+      .nav__phone{display:none}
+      .nav__burger{display:flex}
+      .switcher__label{display:none}
+      .switcher__cta{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../" class="nav__logo"><img src="../project/assets/jet-logo-full-color.png" alt="Jet Cloud Mobile" width="1200" height="434"></a>
+      <ul class="nav__links">
+        <li><a href="../solutions/sales-teams">Solutions</a></li>
+        <li><a href="../pricing">Pricing</a></li>
+        <li><a href="../knowledgebase">Support</a></li>
+        <li><a href="../contact">Contact</a></li>
+        <li><a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a></li>
+      </ul>
+      <a href="tel:0488811729" class="nav__phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+        0488 811 729
+      </a>
+      <button class="nav__burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav__drawer" id="navDrawer">
+      <a href="../solutions/sales-teams">Solutions</a>
+      <a href="../pricing">Pricing</a>
+      <a href="../knowledgebase">Support</a>
+      <a href="../contact">Contact</a>
+      <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nav__cta">Get started</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero__inner">
+      <div>
+        <div class="hero__eyebrow">Competitor Comparison</div>
+        <h1>Jet Cloud Mobile <span>vs</span> JustCall</h1>
+        <p class="hero__sub">JustCall is built for high-volume sales diallers from India-based infrastructure, billed in USD. Jet gives every Australian team member a real 04XX mobile number on the Telstra network — from $35/month.</p>
+        <div class="hero__ctas">
+          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-white">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Start free trial
+          </a>
+          <a href="tel:0488811729" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Talk to us
+          </a>
+        </div>
+      </div>
+      <div class="hero__vs">
+        <div class="hero__vs-logos">
+          <div class="hero__vs-badge">
+            <div class="name">Jet Cloud Mobile</div>
+            <div class="tag">Australian-built</div>
+          </div>
+          <div class="hero__vs-divider">vs</div>
+          <div class="hero__vs-badge">
+            <div class="name">JustCall</div>
+            <div class="tag">India-based SaaS</div>
+          </div>
+        </div>
+        <div class="hero__vs-stat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Jet from <strong>$35 AUD/user/month</strong> — JustCall from <strong>~$29 AUD (USD pricing)</strong></span>
+        </div>
+        <div class="hero__vs-stat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span>JustCall is VoIP only — Jet gives <strong>real 04XX mobile numbers</strong></span>
+        </div>
+        <div class="hero__vs-stat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>JustCall data routed via <strong>overseas infrastructure</strong> — Jet stores everything in Australia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="switcher">
+    <div class="switcher__inner">
+      <span class="switcher__label">Also compare:</span>
+      <div class="switcher__links">
+        <a href="aircall">vs Aircall</a>
+        <a href="dialpad">vs Dialpad</a>
+        <a href="justcall" class="active">vs JustCall</a>
+      </div>
+      <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="switcher__cta">Get started free →</a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">Why businesses switch</p>
+        <h2 class="section__title">What JustCall can't give you</h2>
+        <p class="section__lead">JustCall is a capable dialler for outbound sales teams — but if your team needs real Australian mobile numbers, local data hosting, and AEST support, it falls short.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Real 04XX mobile numbers</h3>
+          <p>Every Jet user gets a genuine Australian mobile number on the Telstra network. JustCall provides VoIP lines — your clients see numbers that don't look like a typical Australian mobile.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3>Australian data residency</h3>
+          <p>JustCall is operated by Saas Labs out of India, meaning your call data and recordings are stored on overseas infrastructure. Jet keeps everything in Australian data centres — important for compliance-conscious businesses.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <h3>Sydney-based support</h3>
+          <p>JustCall's support team operates in IST (India Standard Time), which means getting help during Australian business hours can be hit-and-miss. Jet's Sydney team responds when your business is running.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Predictable AUD billing</h3>
+          <p>JustCall charges in USD. When the Australian dollar softens, you pay more — with no warning. Jet bills in Australian dollars at a fixed monthly rate, every time.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>More than a sales dialler</h3>
+          <p>JustCall is optimised for outbound sales diallers. Jet is a full cloud mobile platform — every team member gets their own number, voicemail, and two-way SMS, not just a shared pool for cold calling.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>Telstra network reliability</h3>
+          <p>Because Jet numbers are real mobile numbers, calls travel over the Telstra mobile network — Australia's largest and most reliable. JustCall routes over VoIP, which depends entirely on your internet connection quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">Feature comparison</p>
+        <h2 class="section__title">Jet vs JustCall — side by side</h2>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="col-jet">Jet Cloud Mobile <span class="badge">AU</span></th>
+              <th class="col-comp">JustCall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cat-row"><td colspan="3">Numbers &amp; Network</td></tr>
+            <tr>
+              <td>Real 04XX mobile numbers<span class="sub">Genuine mobile, not VoIP</span></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+            <tr>
+              <td>Australian local numbers (02, 03, 07…)</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Telstra mobile network coverage</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+            <tr>
+              <td>Australian data residency</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+
+            <tr class="cat-row"><td colspan="3">Calling &amp; Messaging</td></tr>
+            <tr>
+              <td>Unlimited local calls included</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="partial" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></td>
+            </tr>
+            <tr>
+              <td>SMS &amp; MMS (two-way)</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Call transfer (blind &amp; warm)</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Call recording</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="partial" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></td>
+            </tr>
+            <tr>
+              <td>Power dialler / auto-dialler<span class="sub">Outbound calling feature</span></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Voicemail with transcription</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+
+            <tr class="cat-row"><td colspan="3">Admin &amp; Management</td></tr>
+            <tr>
+              <td>Centralised admin portal</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>IVR &amp; call routing</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="partial" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></td>
+            </tr>
+            <tr>
+              <td>Call analytics &amp; reporting</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Call tracking &amp; dynamic number insertion</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+            <tr>
+              <td>Australian-based support (AEST hours)</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+
+            <tr class="cat-row"><td colspan="3">Pricing</td></tr>
+            <tr>
+              <td>Billed in AUD</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="cross" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></td>
+            </tr>
+            <tr>
+              <td>No per-minute call charges</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="partial" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></td>
+            </tr>
+            <tr>
+              <td>No lock-in contracts</td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+              <td><svg class="tick" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            </tr>
+            <tr>
+              <td>Starting price (per user/month)</td>
+              <td style="font-weight:700;color:var(--red)">$35 AUD</td>
+              <td style="color:var(--fg-2)">~$29 AUD (USD pricing)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="text-align:center;margin-top:var(--sp-4);font-size:var(--fs-small);color:var(--fg-3)">Pricing comparisons are approximate. JustCall pricing converted from USD at time of writing. Always verify current pricing directly.</p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow" style="color:rgba(255,255,255,.5)">Common feedback</p>
+        <h2 class="section__title">What JustCall customers tell us</h2>
+      </div>
+      <div class="pain-grid">
+        <div>
+          <p class="pain-label pain-label--bad">With JustCall</p>
+          <div style="display:flex;flex-direction:column;gap:var(--sp-4)">
+            <div class="pain-card pain-card--bad">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+              <div>
+                <h4>No real Australian mobile numbers</h4>
+                <p>JustCall can provision Australian local numbers, but not genuine 04XX mobile numbers on a mobile network. For businesses where individual team members need a mobile identity, it's a significant gap.</p>
+              </div>
+            </div>
+            <div class="pain-card pain-card--bad">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <div>
+                <h4>Data stored overseas</h4>
+                <p>JustCall is headquartered in India and routes infrastructure through international data centres. Businesses subject to Australian privacy obligations — healthcare, finance, legal — face real compliance concerns.</p>
+              </div>
+            </div>
+            <div class="pain-card pain-card--bad">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+              <div>
+                <h4>Support outside AEST hours</h4>
+                <p>With a support team in India, getting timely help during Australian business hours is inconsistent. When something breaks at 9am Monday in Sydney, you need someone who's awake.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="pain-label pain-label--good">With Jet Cloud Mobile</p>
+          <div style="display:flex;flex-direction:column;gap:var(--sp-4)">
+            <div class="pain-card pain-card--good">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+              <div>
+                <h4>Real 04XX mobile numbers</h4>
+                <p>Every user gets a genuine Australian mobile number on the Telstra network — the same format your clients save in their phone and actually answer when it rings.</p>
+              </div>
+            </div>
+            <div class="pain-card pain-card--good">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <div>
+                <h4>Australian-hosted, always</h4>
+                <p>Call recordings, contacts, and metadata stay in Australian data centres under Australian jurisdiction — critical for businesses in regulated industries.</p>
+              </div>
+            </div>
+            <div class="pain-card pain-card--good">
+              <div class="pain-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg></div>
+              <div>
+                <h4>Sydney support in business hours</h4>
+                <p>Our support team is based in Sydney and available during AEST hours. When you need us, you get a real person who understands the Australian market.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">Customer stories</p>
+        <h2 class="section__title">Businesses that made the switch</h2>
+      </div>
+      <div class="testimonial">
+        <div class="stars">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial__quote">"We were using JustCall for outbound calls but kept running into issues — clients wouldn't answer numbers they didn't recognise, and our data was sitting somewhere overseas. Jet gave every rep a real Australian mobile number, and we saw answer rates go up almost immediately."</p>
+        <p class="testimonial__author">Head of Sales</p>
+        <p class="testimonial__role">Property management company, 22 users</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">Questions</p>
+        <h2 class="section__title">Frequently asked</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Does Jet have a power dialler like JustCall? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-a">Jet doesn't offer an automated power dialler. JustCall's dialler is a genuine strength for pure outbound sales teams running high-volume cold-call campaigns. If that's your primary use case, it's worth comparing directly. Jet is the better fit for businesses where team members need a persistent, professional mobile identity — their own number, voicemail, and SMS — rather than a shared pool for auto-dialling.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why does data residency matter for Australian businesses? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-a">Under the Australian Privacy Act and certain industry regulations (healthcare, finance, legal), businesses are obligated to understand where customer data is stored and who has access to it. JustCall is operated by Saas Labs in India, meaning call recordings and contact data may be subject to foreign data laws. Jet stores all data in Australian data centres under Australian jurisdiction, simplifying your compliance obligations considerably.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I port my existing numbers from JustCall to Jet? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-a">Australian local numbers (02, 03, 07) and 1300/1800 numbers can typically be ported to Jet. VoIP-provisioned numbers from JustCall may not be portable depending on how they were issued. New 04XX mobile numbers are provisioned on the same day you sign up — your team can be live almost immediately.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How does Jet's pricing compare to JustCall for a team of 10? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-a">At 10 users, Jet is $350 AUD/month, fixed. JustCall's entry plan starts around $29 AUD equivalent, but calling minutes are often separate, and recording and analytics features require higher tiers. Factor in currency fluctuation and the total cost of a comparable JustCall setup is typically similar — or more — with less predictability.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long does it take to switch from JustCall to Jet? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="faq-a">Most teams are live within 1 business day. New 04XX mobile numbers are issued same-day, and our onboarding team handles IVR configuration, call routing, and user setup. We work around your schedule to ensure minimal disruption during the transition.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="cta-band__inner">
+      <h2>Ready to switch from JustCall?</h2>
+      <p>Get real Australian mobile numbers on the Telstra network, fixed AUD pricing, and a Sydney support team who's available when your business is.</p>
+      <div class="cta-band__btns">
+        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Start free trial
+        </a>
+        <a href="tel:0488811729" class="btn-ghost">Call 0488 811 729</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../project/assets/jet-logo-full-color.png" alt="Jet Interactive" width="1200" height="434">
+          <p>Australia's largest privately owned cloud communications network, purpose-built for business.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <span class="footer__col-label">Solutions</span>
+            <a href="../solutions/sales-teams">Sales Teams</a>
+            <a href="../solutions/international-staff">International Staff</a>
+            <a href="../solutions/small-business">Small Business</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Industries</span>
+            <a href="../industries/automotive">Automotive</a>
+            <a href="../industries/real-estate">Real Estate</a>
+            <a href="../industries/finance">Finance</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Resources</span>
+            <a href="../pricing">Pricing</a>
+            <a href="../faq">FAQ</a>
+            <a href="../articles">Articles</a>
+            <a href="../knowledgebase">Knowledgebase</a>
+            <a href="../contact">Contact</a>
+          </div>
+          <div class="footer__col">
+            <span class="footer__col-label">Compare</span>
+            <a href="aircall">vs Aircall</a>
+            <a href="dialpad">vs Dialpad</a>
+            <a href="justcall">vs JustCall</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Jet Interactive Pty Ltd. All rights reserved. ABN 70 168 999 371.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('navBurger');
+    const drawer = document.getElementById('navDrawer');
+    if (burger) burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open'));
+    });
+  </script>
+  <script src="../project/assets/chat.js" defer></script>
+</body>
+</html>
