@@ -100,26 +100,37 @@
     .article-body blockquote{border-left:4px solid var(--red);padding:var(--sp-4) var(--sp-5);background:var(--red-50);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:var(--sp-6) 0}
     .article-body blockquote p{margin-bottom:0;color:var(--fg-1)}
     .article-body hr{border:none;border-top:var(--border);margin:var(--sp-8) 0}
-    .kb-help{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-9)}
-    .kb-help h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-2)}
-    .kb-help>p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:var(--sp-6)}
-    .support-form{display:flex;flex-direction:column;gap:var(--sp-4)}
+    .kb-support{background:var(--ink-50);border-radius:var(--radius-lg);padding:var(--sp-8) var(--sp-7);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-7);flex-wrap:wrap;margin-top:var(--sp-8)}
+    .kb-support__text h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;letter-spacing:var(--tr-snug);margin-bottom:var(--sp-2)}
+    .kb-support__text p{color:var(--fg-2);font-size:var(--fs-body)}
+    .kb-support__actions{display:flex;gap:var(--sp-3);flex-wrap:wrap;flex-shrink:0}
+    .btn-primary{background:var(--red);color:var(--white);padding:var(--sp-3) var(--sp-6);border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-body);text-decoration:none;display:inline-flex;align-items:center;gap:var(--sp-2);border:none;cursor:pointer;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
+    .btn-primary:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    .btn-outline{background:var(--white);color:var(--fg-1);padding:var(--sp-3) var(--sp-6);border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-body);text-decoration:none;border:var(--border);display:inline-flex;align-items:center;gap:var(--sp-2);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+    .btn-outline:hover{background:var(--ink-50);border-color:var(--ink-400)}
+    .sf-panel{background:var(--ink-50);border:var(--border);border-radius:var(--radius-lg);padding:var(--sp-7) var(--sp-6);margin-top:var(--sp-5)}
+    .sf-panel__header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--sp-6)}
+    .sf-panel__header h3{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-1)}
+    .sf-panel__header p{color:var(--fg-2);font-size:var(--fs-lead);margin-bottom:0}
+    .sf-panel__close{background:none;border:none;cursor:pointer;color:var(--fg-3);padding:var(--sp-1);line-height:1;flex-shrink:0}
+    .sf-panel__close:hover{color:var(--fg-1)}
     .support-form__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
-    .support-form__field{display:flex;flex-direction:column;gap:6px}
+    .support-form__field{display:flex;flex-direction:column;gap:var(--sp-2);margin-bottom:var(--sp-4)}
     .support-form__field label{font-size:var(--fs-small);font-weight:600;color:var(--fg-1)}
-    .support-form__field input,.support-form__field select,.support-form__field textarea{font-family:var(--font-ui);font-size:var(--fs-body);color:var(--fg-1);background:var(--white);border:var(--border);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);outline:none;width:100%}
-    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,28,36,.12)}
-    .support-form__field textarea{resize:vertical;min-height:120px;line-height:var(--lh-normal)}
-    .support-form__field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4D55' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-    .support-form__submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);border:none;cursor:pointer;transition:all var(--dur-med) var(--ease-out)}
-    .support-form__submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
-    .support-form__submit:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
-    .support-form__error{color:#c0392b;font-size:var(--fs-small);font-weight:500;padding:var(--sp-3) var(--sp-4);background:#fdecea;border-radius:var(--radius-md);border:1px solid #f5c6c6;display:none}
-    .support-form__success{text-align:center;padding:var(--sp-7) 0;display:none}
-    .support-form__success svg{color:var(--red);margin:0 auto var(--sp-4)}
-    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:700;color:var(--fg-1);margin-bottom:var(--sp-3)}
-    .support-form__success p{color:var(--fg-2);font-size:var(--fs-lead)}
-    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.support-form__submit{width:100%;justify-content:center}}
+    .support-form__field input,.support-form__field select,.support-form__field textarea{border:var(--border);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);font-size:var(--fs-body);font-family:var(--font-ui);color:var(--fg-1);background:var(--white);outline:none;transition:border-color var(--dur-base) var(--ease-out)}
+    .support-form__field input:focus,.support-form__field select:focus,.support-form__field textarea:focus{border-color:var(--red)}
+    .support-form__field textarea{min-height:120px;resize:vertical}
+    .support-form__hint{font-size:12px;color:var(--fg-3);margin-top:4px}
+    .support-form__error{display:none;background:#fff0f0;border:1px solid var(--red);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);color:var(--red);font-size:var(--fs-small);margin-bottom:var(--sp-4)}
+    .support-form__submit{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--red);color:#fff;border:none;border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-6);font-size:var(--fs-body);font-weight:600;cursor:pointer;transition:background var(--dur-base) var(--ease-out)}
+    .support-form__submit:hover{background:var(--red-dark)}
+    .support-form__submit:disabled{opacity:.6;cursor:not-allowed}
+    .support-form__success{display:none;text-align:center;padding:var(--sp-8) 0;color:var(--fg-2)}
+    .support-form__success svg{color:var(--red);margin-bottom:var(--sp-4)}
+    .support-form__success h4{font-family:var(--font-display);font-size:var(--fs-h4);color:var(--fg-1);margin-bottom:var(--sp-2)}
+    .sf-sub-field{display:none}
+    .sf-sub-field.visible{display:flex}
+    @media(max-width:600px){.support-form__row{grid-template-columns:1fr}.kb-support{flex-direction:column}}
     footer{background:var(--ink-900);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-6)}
     .footer__inner{max-width:var(--max-w);margin:0 auto}
     .footer__top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp-7);flex-wrap:wrap;padding-bottom:var(--sp-6);border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:var(--sp-6)}
@@ -280,7 +291,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>You can access the Voicemail Manager inside the Jet Hub Portal at any time. You can listen to voicemails, take notes or flag them as important. Here are some steps on using it:</p><div><p>1. Go to <a href="https://portal.jetinteractive.com.au/">https://portal.jetinteractive.com.au/</a></p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/00420342-b8e5-4faa-8fcd-e39a66d356a0/ascreenshot_084ec01e2a1548568de3db10870bf83c_text_export.jpeg" alt="" width="560"></p><div><p>2. To access your voicemails within the Jet Hub platform, Click "Voicemails" in the top right to view and manage any voicemail messages you have received. </p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/f50db2a4-a443-4a68-90b4-bcedb922023b/ascreenshot_36f4a350ec4a45bbbbef9239e5fab5bd_text_export.jpeg" alt="" width="560"></p><div><p>3. You can see all the voicemails listed with details. Click on one to listen.</p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/5f20cfb3-e15a-4cbe-8d4f-39521a40f54f/ascreenshot_1e67f79ab8e44b83acb3018b3c83fc0b_text_export.jpeg" alt="" width="560"></p><div><p>4. If you would like to listen, simply click the play button.</p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/f51db8b2-d88d-43cc-8f6d-0266446e6285/ascreenshot_e520f4be5f3848fd8c5fedb7608b9d41_text_export.jpeg" alt="" width="560"></p><div><p> </p></div><div><p>7. It is possible to mark a voicemail as "unplayed" or unread if you want to return to it later or indicate that you have not yet listened to it. This feature can be particularly useful when you need to remind yourself to review the voicemail at another time. By marking a voicemail as unread, it will remain highlighted.</p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/dc04b1c2-f6a4-4d15-a36a-ae227546bc4d/ascreenshot_9592f49369c44733b6a1a12103f2fd1d_text_export.jpeg" alt="" width="560"></p><div><p>8. You can flag important voicemails that need action taken such as a client request or callback needed.</p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/3c272dff-fbef-4e52-8254-94f5c33d2d33/ascreenshot_05ba7a8ac2eb48bd8c09018c0a19965f_text_export.jpeg" alt="" width="560"></p><div><p> </p></div><div><p>10. You can add notes to each voicemail. Useful for adding context or reminding yourself what the voicemail is about.</p></div><p><img src="https://colony-recorder.s3.amazonaws.com/files/2026-01-22/80366525-e462-4e11-98eb-e7b87776cbc1/ascreenshot_e3775b4bdd534d0f9b1653fec61ca560_text_export.jpeg" alt="" width="560"></p><p>11. Voicemails are also transcribed. Useful for skimming for key information from the voicemail such as a phone number</p><p><img src="../../project/assets/images/kb/55259511153689.png" width="803" height="202"><br> </p><p> </p>
     </div>
 
-    <div class="kb-help"></div>
+          <div class="kb-support">
+        <div class="kb-support__text">
+          <h2>Can't find what you're looking for?</h2>
+          <p>Our support team is here to help. Submit a ticket or start a live chat.</p>
+        </div>
+        <div class="kb-support__actions">
+          <button type="button" class="btn-primary" id="sf-open">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Contact support
+          </button>
+          <a href="../../contact" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call us
+          </a>
+        </div>
+      </div>
+
+      <div class="sf-panel" id="sf-panel" style="display:none">
+        <div class="sf-panel__header">
+          <div>
+            <h3>Contact support</h3>
+            <p>Fill in the form below and we'll get back to you shortly.</p>
+          </div>
+          <button type="button" class="sf-panel__close" id="sf-close" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="support-form__success" id="sf-success" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+          <h4>Message sent!</h4>
+          <p>Thanks for reaching out. A member of our team will be in touch soon.</p>
+        </div>
+        <form class="support-form" id="sf-form" novalidate>
+          <div class="support-form__row">
+            <div class="support-form__field">
+              <label for="sf-name">Name <span style="color:var(--red)">*</span></label>
+              <input type="text" id="sf-name" placeholder="Your name" required>
+            </div>
+            <div class="support-form__field">
+              <label for="sf-email">Email <span style="color:var(--red)">*</span></label>
+              <input type="email" id="sf-email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="support-form__row">
+            <div class="support-form__field">
+              <label for="sf-account">Account Number <span style="color:var(--fg-3);font-weight:400">(optional)</span></label>
+              <input type="number" id="sf-account" placeholder="4-digit account number">
+              <span class="support-form__hint">Found in the top right of Jet Hub or on your invoice.</span>
+            </div>
+            <div class="support-form__field">
+              <label for="sf-phone">Contact Number <span style="color:var(--red)">*</span></label>
+              <input type="tel" id="sf-phone" placeholder="04XX XXX XXX" required>
+            </div>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-reason">What Is Your Enquiry Regarding? <span style="color:var(--red)">*</span></label>
+            <select id="sf-reason" required>
+              <option value="">Select...</option>
+              <option value="new_service">Order A New Service</option>
+              <option value="modify_a_service">Modify A Service</option>
+              <option value="report_a_problem">Report an Issue</option>
+              <option value="enquire_about_reports">Enquire About Reports</option>
+              <option value="enquire_about_billing">Enquire About Billing or Accounts</option>
+              <option value="cancel_a_service">Cancel A Service</option>
+              <option value="call_tracking___integrations">Call Tracking &amp; Integrations</option>
+            </select>
+          </div>
+          <div class="support-form__field sf-sub-field" id="sf-sub-field">
+            <label for="sf-sub-reason">What specifically can we help you with? <span style="color:var(--red)">*</span></label>
+            <select id="sf-sub-reason">
+              <option value="">Select...</option>
+            </select>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-subject">Subject <span style="color:var(--red)">*</span></label>
+            <input type="text" id="sf-subject" placeholder="Brief summary of your request" required>
+          </div>
+          <div class="support-form__field">
+            <label for="sf-message">Description <span style="color:var(--red)">*</span></label>
+            <textarea id="sf-message" placeholder="Please enter the details of your request. A member of our support staff will respond as soon as possible." required></textarea>
+          </div>
+          <div class="support-form__error" id="sf-error"></div>
+          <button type="submit" class="support-form__submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send message
+          </button>
+        </form>
+      </div>
   </div>
 
   <footer>
@@ -331,29 +429,167 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     const burger = document.getElementById('navBurger');
     const drawer = document.getElementById('navDrawer');
-    burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
+    if (burger) burger.addEventListener('click', () => { burger.classList.toggle('open'); drawer.classList.toggle('open'); });
 
-    const form = document.getElementById('support-form');
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('sf-submit');
-        const err = document.getElementById('sf-error');
-        btn.disabled = true; btn.textContent = 'Sending…'; err.style.display = 'none';
-        try {
-          const res = await fetch('https://support.jetinteractive.com.au/api/v2/requests.json', {
-            method: 'POST', headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({request:{subject:document.getElementById('sf-subject').value,comment:{body:document.getElementById('sf-message').value},requester:{name:document.getElementById('sf-name').value,email:document.getElementById('sf-email').value}}})
-          });
-          if (!res.ok) throw new Error();
-          document.getElementById('sf-success').style.display = 'block';
-          form.style.display = 'none';
-        } catch { err.textContent = 'Something went wrong. Please call us on 0488 811 729.'; err.style.display = 'block'; btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message'; }
-      });
-    }
+    const SUB_FIELD_IDS = {
+      'new_service':                  { id: 1900000673208, multi: true  },
+      'modify_a_service':             { id: 1900000371628, multi: true  },
+      'report_a_problem':             { id: 900011584086,  multi: false },
+      'enquire_about_reports':        { id: 8122409755417, multi: false },
+      'enquire_about_billing':        { id: 900011896466,  multi: false },
+      'call_tracking___integrations': { id: 9986763840537, multi: false },
+    };
+    const SUB_OPTIONS = {
+      'new_service': [
+        ['New Jet Interactive Account',                    'new_jet_interactive_account'],
+        ['New Jet Phone User (with Local number)',         'new_jet_phone_user'],
+        ['New Cloud Mobile Phone User (with Mobile number)', 'new_cloud_mobile_phone_user'],
+        ['New 1300/1800 Number',                          'new_1300/1800_number'],
+        ['New Local/Mobile number (without Phone User)',  'new_local/mobile_number__without_phor'],
+        ['IVR',                                           'ivr'],
+        ['Queue Capacity',                                'queue_capacity'],
+        ['Inbound Call Recording',                        'inbound_call_recording'],
+        ['Outbound Recording',                            'outbound_recording'],
+        ['International Calling',                         'international_calling'],
+        ['Hardware',                                      'hardware'],
+        ['Port a Number to Jet Interactive',              'port_a_number_to_jet_interactive'],
+        ['Other feature (please specify in description)', 'other_feature__please_specify_'],
+      ],
+      'modify_a_service': [
+        ['Change/Swap a phone number',                    'change/swap_a_phone_number'],
+        ['Add/Change Phone User Details',                 'add/change_phone_user_details'],
+        ['Add/Change Call Recording',                     'add/change_call_recording'],
+        ['Add/Change Queue Setup',                        'add/change_queue_setup'],
+        ['Add/Change An Answering Point',                 'add/change_an_answering_point'],
+        ['Add/Change Voicemail',                          'add/change_voicemail'],
+        ['Add/Change Time of Day Routing',                'add/change_time_of_day_routing'],
+        ['Add/Change Hardware/Desk Phone',                'add/change_hardware'],
+        ['Add/Change Callflow Greeting',                  'add/change_greeting'],
+        ['Add/Change SMS Setup',                          'add/change_sms_setup'],
+        ['Add/Change a Service Description',              'modify_service_description'],
+        ['Add/Change Geographic or Postcode Routing',     'add/change_geographic_postcode_routing'],
+        ['Update dynamic tracking codes',                 'update_dynamic_tracking_codes'],
+        ['Other (Not listed above)',                      'other__not_listed_above_'],
+      ],
+      'report_a_problem': [
+        ["I'm unable to make/receive calls",              'unable_to_make/receive_calls'],
+        ["I'm having issues with SMS",                    'i_m_having_issues_with_sms'],
+        ["I'm seeing Account Not Registered",             'account_not_registered'],
+        ["I'm having poor audio quality",                 'poor_audio_quality'],
+        ["I'm having one way audio",                      'one_way_audio'],
+        ["I can't login to my Jet Soft Phone app",        'can_t_login_to_jetphone'],
+        ['My inbound calls do not work (Jet app)',        'my_inbound_calls_do_not_work__jet_app'],
+        ['My inbound calls do not work (external numbers)', 'my_inbound_numbers_are_not_connectin'],
+        ["I can't login to Jet Hub",                      'can_t_login_to_jet_portal'],
+        ['My hardware is not working',                    'my_hardware_is_not_working'],
+        ['My callflows are not working',                  'my_callflows_are_not_working'],
+        ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+        ['I need help with my Google Analytics integration', 'i_need_help_with_my_google_analytics_i'],
+        ['Other Jet Hub issue (not listed above)',        'other_jet_hub_issue__not_listed_above_'],
+        ['Other Jet Soft Phone App issue (not listed above)', 'other_jet_soft_phone_app_issue__not_li'],
+      ],
+      'enquire_about_reports': [
+        ['My reports are not loading',                    'my_reports_are_not_loading'],
+        ['My reports are incorrect',                      'my_reports_are_incorrect'],
+        ['I cannot find the information I need',          'i_cannot_find_the_information_i_need'],
+      ],
+      'enquire_about_billing': [
+        ['I have a question about my invoice',            'i_have_a_question_about_my_invoice'],
+        ['I need to update my payment details',           'i_need_to_update_my_payment_details'],
+        ["I need to change my account's invoicing",       'i_need_to_change_my_account_s_invoic'],
+        ['I need to give someone access to my account',   'i_need_to_give_someone_access_to_my_'],
+        ['Other',                                         'other_billing'],
+      ],
+      'call_tracking___integrations': [
+        ['I need new codes for my website',               'i_need_new_codes_for_my_website'],
+        ['I need to set up GA4',                          'i_need_to_set_up_ga4'],
+        ["My tracking numbers aren't changing on my website", 'my_tracking_numbers_aren_t_changing_'],
+        ['I need help with a Google Analytics Integration', 'i_need_help_with_a_google_analytics_int'],
+        ['I need help with my call tracking reports',     'i_need_help_with_my_call_tracking_repo'],
+        ['I have a question about integrations',          'i_have_a_question_about_integrations'],
+        ['Other call tracking issue (not listed above)',  'other_call_tracking_issue__not_listed_ab'],
+      ],
+    };
+    const sfReasonEl  = document.getElementById('sf-reason');
+    const sfSubField  = document.getElementById('sf-sub-field');
+    const sfSubReason = document.getElementById('sf-sub-reason');
+    sfReasonEl.addEventListener('change', function () {
+      const opts = SUB_OPTIONS[this.value] || [];
+      sfSubReason.innerHTML = '<option value="">Select...</option>' +
+        opts.map(([label, value]) => `<option value="${value}">${label}</option>`).join('');
+      sfSubField.classList.toggle('visible', opts.length > 0);
+    });
+    const sfOpen  = document.getElementById('sf-open');
+    const sfClose = document.getElementById('sf-close');
+    const sfPanel = document.getElementById('sf-panel');
+    sfOpen.addEventListener('click', () => { sfPanel.style.display = 'block'; sfOpen.style.display = 'none'; sfPanel.scrollIntoView({behavior:'smooth',block:'start'}); });
+    sfClose.addEventListener('click', () => { sfPanel.style.display = 'none'; sfOpen.style.display = ''; });
+    const sfForm    = document.getElementById('sf-form');
+    const sfSuccess = document.getElementById('sf-success');
+    const sfError   = document.getElementById('sf-error');
+    sfForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn       = sfForm.querySelector('button[type="submit"]');
+      const name      = document.getElementById('sf-name').value.trim();
+      const email     = document.getElementById('sf-email').value.trim();
+      const account   = document.getElementById('sf-account').value.trim();
+      const phone     = document.getElementById('sf-phone').value.trim();
+      const reason    = sfReasonEl.value;
+      const subReason = sfSubReason.value;
+      const subject   = document.getElementById('sf-subject').value.trim();
+      const message   = document.getElementById('sf-message').value.trim();
+      const subReq    = sfSubField.classList.contains('visible');
+      sfError.style.display = 'none';
+      if (!name || !email || !phone || !reason || !subject || !message) {
+        sfError.textContent = 'Please fill in all required fields.';
+        sfError.style.display = 'block'; return;
+      }
+      if (subReq && !subReason) {
+        sfError.textContent = 'Please select what specifically we can help you with.';
+        sfError.style.display = 'block'; return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        sfError.textContent = 'Please enter a valid email address.';
+        sfError.style.display = 'block'; return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Sending…';
+      const customFields = [
+        { id: 900010486406, value: reason },
+        { id: 900011984406, value: phone },
+        { id: 900011971946, value: name },
+      ];
+      const subCfg = SUB_FIELD_IDS[reason];
+      if (subReason && subCfg) {
+        customFields.push({ id: subCfg.id, value: subCfg.multi ? [subReason] : subReason });
+      }
+      if (account) customFields.push({ id: 1900000673188, value: parseInt(account, 10) });
+      try {
+        const res = await fetch('https://livechat.matthew-cahill.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'submit_ticket',
+            request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields },
+          }),
+        });
+        if (res.ok || res.status === 201) {
+          sfForm.style.display = 'none'; sfSuccess.style.display = 'block';
+        } else {
+          const detail = await res.text();
+          console.error('Zendesk response:', detail);
+          throw new Error(res.status + ': ' + detail.slice(0, 500));
+        }
+      } catch (err) {
+        console.error('Zendesk error:', err);
+        sfError.textContent = 'Something went wrong. Please try again or call us on 0488 811 729.';
+        sfError.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
+      }
+    });
   </script>
   <script src="../../project/assets/chat.js" defer></script>
-  <script src="../../project/assets/ticket-form.js" defer></script>
   <script src="../../project/assets/global-search.js" defer></script>
 </body>
 </html>
