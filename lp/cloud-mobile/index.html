@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jet Cloud Mobile — Australian Business Phone System | First Month Free</title>
-  <meta name="description" content="Give every team member an Australian virtual mobile number. Cloud phone system built for Australian businesses — local support, Australian infrastructure. First month free.">
+  <title>Jet Cloud Mobile — A Business Mobile Number on Any Smartphone | First Month Free</title>
+  <meta name="description" content="Give every staff member a dedicated business number through an app — on their existing smartphone. No second handset, no hardware, no lock-in. Calls, SMS, recording and reporting included. From $35/month.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +106,21 @@
     .legal-consent-container{margin-top:var(--sp-3)!important;font-size:12px!important;color:var(--fg-3)!important}
     .legal-consent-container a{color:var(--red)!important}
 
+    /* ── Logo bar ──────────────────────────────────────────────────────────── */
+    .logo-bar{background:var(--white);padding:var(--sp-7) var(--sp-6);border-bottom:var(--border)}
+    .logo-bar__inner{max-width:var(--max-w);margin:0 auto;text-align:center}
+    .logo-bar__label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:var(--fg-2);margin-bottom:var(--sp-5)}
+    .logo-bar__logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--sp-5) var(--sp-8)}
+    .logo-bar__logos img{height:80px;width:auto;display:block;filter:grayscale(1) opacity(.5);transition:filter 220ms cubic-bezier(.2,.8,.2,1)}
+    .logo-bar__logos img:hover{filter:grayscale(0) opacity(1)}
+
+    /* ── Stats bar ─────────────────────────────────────────────────────────── */
+    .stats-bar{background:var(--white);padding:var(--sp-7) var(--sp-6);border-bottom:var(--border)}
+    .stats-bar__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-7)}
+    .stat{text-align:center}
+    .stat__number{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--red);line-height:1;margin-bottom:var(--sp-2)}
+    .stat__label{font-size:var(--fs-body);color:var(--fg-2)}
+
     /* ── Trust bar ─────────────────────────────────────────────────────────── */
     .trust-bar{background:var(--ink-50);border-bottom:var(--border);padding:var(--sp-5) var(--sp-6)}
     .trust-bar__inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:var(--sp-8);flex-wrap:wrap}
@@ -196,6 +211,7 @@
       .steps::before{display:none}
       .testi-grid{grid-template-columns:1fr}
       .trust-bar__inner{gap:var(--sp-5)}
+      .stats-bar__inner{grid-template-columns:1fr;gap:var(--sp-5)}
     }
     @media(max-width:600px){
       .feat-grid{grid-template-columns:1fr}
@@ -246,8 +262,8 @@
         <div class="hero__offer-pill">
           ✦ Limited offer — First month free
         </div>
-        <h1>The cloud phone system <em>built for</em> Australian business</h1>
-        <p class="hero__sub">Give every team member their own Australian virtual mobile number. Make and receive calls, send SMS, and manage your whole team from one place — with local support that actually picks up.</p>
+        <h1>A business mobile number on any smartphone.</h1>
+        <p class="hero__sub">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no hardware, no lock-in contracts. Calls, SMS, recording and reporting all included. From $35/month per user.</p>
         <div class="hero__ctas">
           <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-cta btn-cta--lg">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -282,6 +298,40 @@
       </div>
     </div>
   </section>
+
+  <!-- Logo bar -->
+  <div class="logo-bar">
+    <div class="logo-bar__inner">
+      <p class="logo-bar__label">Trusted by Australian businesses including</p>
+      <div class="logo-bar__logos">
+        <img src="../../Jet-logos-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../Jet-logos-1-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../1-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../3-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../4-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../5-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+        <img src="../../6-150x150.png" alt="Customer" width="150" height="150" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stats-bar__inner">
+      <div class="stat">
+        <div class="stat__number">10,000+</div>
+        <div class="stat__label">Cloud Mobile users</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">2M+</div>
+        <div class="stat__label">calls &amp; SMS every month</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">Since 2006</div>
+        <div class="stat__label">Operating in Australia</div>
+      </div>
+    </div>
+  </div>
 
   <!-- Trust bar -->
   <div class="trust-bar">
@@ -347,43 +397,43 @@
           <div class="feat-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           </div>
-          <h3>Virtual mobile numbers</h3>
-          <p>Every user gets their own Australian virtual mobile number. Works on iOS, Android or desktop — no SIM card needed.</p>
+          <h3>Your number, your phone</h3>
+          <p>Your staff get a dedicated business number that lives as an app on their existing smartphone. No second handset, no SIM swap, no extra hardware.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
-          <h3>SMS &amp; MMS</h3>
-          <p>Send and receive text messages from your business number — two-way, with full conversation history in the app.</p>
+          <h3>Calls &amp; SMS included</h3>
+          <p>Make and receive calls and text messages from your business number. Unlimited local calls included — no per-minute charges.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Keep personal numbers private</h3>
+          <p>Clients only ever see the business number, never the personal one. Staff keep their personal number completely separate.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
           </div>
-          <h3>Call recording</h3>
-          <p>Automatic or on-demand call recording. Listen back, share recordings, and stay compliant — all from Jet Hub.</p>
+          <h3>Call recording &amp; compliance</h3>
+          <p>Record calls automatically or on-demand. Recordings stored securely on Australian infrastructure, accessible from Jet Hub.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <h3>IVR &amp; call routing</h3>
-          <p>Set up professional call menus, ring groups, and business-hours routing — without touching a phone system or PBX.</p>
+          <h3>IVR, routing &amp; ring groups</h3>
+          <p>Set up professional call menus, business-hours routing, and ring groups without touching a PBX or calling an IT technician.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
-          <h3>Call analytics</h3>
-          <p>See call volumes, missed calls, talk time, and team performance — by user, by number, or across your whole account.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Unlimited users</h3>
-          <p>Add or remove users any month, no contracts. Each user gets their own number, voicemail, and call history.</p>
+          <h3>Live call analytics</h3>
+          <p>See exactly what's happening across your team — call volumes, missed calls, talk time — by user, number or across the whole account.</p>
         </div>
       </div>
     </div>
@@ -412,6 +462,25 @@
           <h3>Download the app &amp; go</h3>
           <p>Your team downloads Jet on iOS, Android or desktop and starts taking calls the same day — from wherever they work.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product visual -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">See it in action</p>
+        <h2 class="section__title">Your whole team's phone system in one app</h2>
+        <p class="section__lead">Calls, SMS, voicemail, transfers and call recording — all from the Jet Cloud Mobile app on the phone your team already carries.</p>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:var(--sp-7)">
+        <iframe
+          src="../../demo-animation.html"
+          style="width:700px;max-width:100%;height:960px;border:none;background:#ffffff"
+          scrolling="no"
+          title="Jet Cloud Mobile demo"
+        ></iframe>
       </div>
     </div>
   </section>
