@@ -9,7 +9,7 @@
   <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://js-ap1.hsforms.net/forms/embed/442264265.js" defer></script>
+  <script src="https://js-ap1.hsforms.net/forms/v2.js" defer></script>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
   <style>
@@ -1500,15 +1500,21 @@
         if(wizContact){wizContact.style.display='none';}
         if(ncCard){ncCard.style.display='';}
       }
+      function createHsForm(){
+        if(hsFormLoaded) return;
+        if(typeof hbspt!=='undefined'&&hbspt.forms){
+          hbspt.forms.create({region:'ap1',portalId:'442264265',formId:'52e36f05-0d63-4dd0-bdf2-20e2f6c00edc',target:'#wiz-hs-form'});
+          hsFormLoaded=true;
+        } else {
+          setTimeout(createHsForm,250);
+        }
+      }
       if(wizContactBtn){
         wizContactBtn.addEventListener('click',function(e){
           e.preventDefault();
           if(ncCard) ncCard.style.display='none';
           if(wizContact) wizContact.style.display='block';
-          if(!hsFormLoaded && typeof hbspt!=='undefined'){
-            hbspt.forms.create({region:'ap1',portalId:'442264265',formId:'52e36f05-0d63-4dd0-bdf2-20e2f6c00edc',target:'#wiz-hs-form'});
-            hsFormLoaded=true;
-          }
+          createHsForm();
         });
       }
       ['openQuote','openQuote2','openQuote3','openQuote4','openQuoteNav','openQuote5','openQuote6'].forEach(function(id){
