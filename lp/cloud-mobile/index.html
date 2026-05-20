@@ -110,29 +110,43 @@
     .nc-demo{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms;font-family:var(--font-ui)}
     .nc-demo:hover{border-color:rgba(255,255,255,.85)}
 
-    /* ── Hero calculator — compact vertical override ────────────────────────── */
+    /* ── Hero calculator — wizard (one step at a time) ──────────────────────── */
     .hero__card .nc-card{border:none;border-radius:0;box-shadow:none;max-width:none;margin:0}
-    .hero__card .nc-grid{grid-template-columns:1fr;border-bottom:none}
-    .hero__card .nc-col{padding:12px 20px;border-right:none;border-bottom:1px solid var(--ink-100)}
-    .hero__card .nc-col:last-child{border-bottom:none}
-    .hero__card .nc-step{font-size:10px;margin-bottom:2px}
-    .hero__card .nc-q{font-size:13px;margin-bottom:10px}
-    .hero__card .nc-count{gap:10px;margin-bottom:2px}
-    .hero__card .nc-btn{width:34px;height:34px;font-size:18px}
-    .hero__card .nc-num{font-size:32px;min-width:44px}
-    .hero__card .nc-unit{font-size:12px}
-    .hero__card .nc-opts{gap:5px}
-    .hero__card .nc-opt{padding:7px 10px;gap:8px;border-radius:7px}
-    .hero__card .nc-main{font-size:13px}
-    .hero__card .nc-sub{display:none}
-    .hero__card .nc-radio{width:14px;height:14px}
+    .wiz-header{padding:14px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink-100)}
+    .wiz-progress{display:flex;align-items:center}
+    .wiz-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink-200);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink-400);font-family:var(--font-display);transition:all 180ms}
+    .wiz-dot.active{border-color:var(--red);background:var(--red);color:#fff}
+    .wiz-dot.done{border-color:var(--red);background:var(--red-50);color:var(--red)}
+    .wiz-line{width:22px;height:2px;background:var(--ink-200);transition:background 180ms}
+    .wiz-line.done{background:var(--red)}
+    .wiz-label{font-size:11px;color:var(--fg-3);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+    .wiz-step{display:none;padding:16px 20px 14px}
+    .wiz-step.active{display:block;animation:wiz-in 160ms var(--ease-out)}
+    @keyframes wiz-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+    .wiz-step .nc-step{font-size:10px;margin-bottom:4px}
+    .wiz-step .nc-q{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--ink-900);line-height:1.3}
+    .wiz-step .nc-count{gap:10px;margin-bottom:4px}
+    .wiz-step .nc-btn{width:36px;height:36px;font-size:18px}
+    .wiz-step .nc-num{font-size:36px;min-width:48px}
+    .wiz-step .nc-unit{font-size:12px;color:var(--ink-400)}
+    .wiz-step .nc-opts{gap:6px}
+    .wiz-step .nc-opt{padding:8px 12px;gap:8px;border-radius:8px}
+    .wiz-step .nc-sub{display:none}
+    .wiz-step .nc-radio{width:14px;height:14px}
+    .wiz-step .nc-main{font-size:13px}
+    .wiz-nav{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ink-100)}
+    .wiz-back{background:none;border:none;color:var(--fg-3);font-size:13px;cursor:pointer;padding:6px 2px;font-family:var(--font-ui);display:flex;align-items:center;gap:4px;transition:color 120ms}
+    .wiz-back:hover{color:var(--ink-900)}
+    .wiz-back:disabled{opacity:.3;cursor:default;pointer-events:none}
+    .wiz-next{background:var(--red);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-ui);transition:background 120ms}
+    .wiz-next:hover{background:var(--red-dark)}
     .hero__card .nc-summary{padding:14px 20px;gap:10px}
-    .hero__card .nc-price{font-size:30px}
-    .hero__card .nc-price span{font-size:14px}
+    .hero__card .nc-price{font-size:28px}
+    .hero__card .nc-price span{font-size:13px}
     .hero__card .nc-detail{font-size:11px}
-    .hero__card .nc-actions{width:100%}
-    .hero__card .nc-buy{flex:1;text-align:center;padding:10px 14px;font-size:14px}
-    .hero__card .nc-demo{flex:1;text-align:center;padding:10px 14px;font-size:14px}
+    .hero__card .nc-actions{width:100%;display:flex;gap:8px}
+    .hero__card .nc-buy{flex:1;text-align:center;padding:9px 12px;font-size:13px}
+    .hero__card .nc-demo{flex:1;text-align:center;padding:9px 12px;font-size:13px}
 
     /* ── HubSpot form section ───────────────────────────────────────────────── */
     .hs-section{background:var(--ink-50);padding:var(--sp-9) var(--sp-6)}
@@ -324,7 +338,7 @@
           </a>
           <a href="tel:0488811729" class="btn-ghost-dark">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-            Call us now
+            Call or text us
           </a>
         </div>
         <div class="hero__micro">
@@ -343,47 +357,70 @@
         </div>
       </div>
 
-      <!-- Pricing calculator -->
+      <!-- Pricing calculator (wizard) -->
       <div class="hero__card">
         <div class="nc-card">
-          <div class="nc-grid">
-            <div class="nc-col">
-              <div class="nc-step">Step 1</div>
-              <div class="nc-q">How many staff need a number?</div>
-              <div class="nc-count">
-                <button class="nc-btn" id="nc-dec">&#8722;</button>
-                <div class="nc-num" id="nc-num">1</div>
-                <button class="nc-btn" id="nc-inc">+</button>
-              </div>
-              <div class="nc-unit">users</div>
+          <!-- Progress header -->
+          <div class="wiz-header">
+            <div class="wiz-progress">
+              <div class="wiz-dot active" id="wdot-1">1</div>
+              <div class="wiz-line" id="wline-1"></div>
+              <div class="wiz-dot" id="wdot-2">2</div>
+              <div class="wiz-line" id="wline-2"></div>
+              <div class="wiz-dot" id="wdot-3">3</div>
             </div>
-            <div class="nc-col">
-              <div class="nc-step">Step 2</div>
-              <div class="nc-q">New numbers, existing, or both?</div>
-              <div class="nc-opts">
-                <button class="nc-opt sel" data-nt="new"><span class="nc-radio"></span><span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span></button>
-                <button class="nc-opt" data-nt="existing"><span class="nc-radio"></span><span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span></button>
-                <button class="nc-opt" data-nt="both"><span class="nc-radio"></span><span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span></button>
-              </div>
+            <div class="wiz-label" id="wiz-label">Step 1 of 3</div>
+          </div>
+
+          <!-- Step 1: user count -->
+          <div class="wiz-step active" data-step="1">
+            <div class="nc-step">Step 1</div>
+            <div class="nc-q">How many staff need a number?</div>
+            <div class="nc-count">
+              <button class="nc-btn" id="nc-dec">&#8722;</button>
+              <div class="nc-num" id="nc-num">1</div>
+              <button class="nc-btn" id="nc-inc">+</button>
             </div>
-            <div class="nc-col">
-              <div class="nc-step">Step 3</div>
-              <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
-              <div class="nc-opts">
-                <button class="nc-opt" data-cr="0-100"><span class="nc-radio"></span><span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span></button>
-                <button class="nc-opt" data-cr="100-500"><span class="nc-radio"></span><span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span></button>
-                <button class="nc-opt" data-cr="500-1000"><span class="nc-radio"></span><span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span></button>
-                <button class="nc-opt" data-cr="1000+"><span class="nc-radio"></span><span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span></button>
-              </div>
+            <div class="nc-unit">users</div>
+          </div>
+
+          <!-- Step 2: number type -->
+          <div class="wiz-step" data-step="2">
+            <div class="nc-step">Step 2</div>
+            <div class="nc-q">New numbers, existing, or both?</div>
+            <div class="nc-opts">
+              <button class="nc-opt sel" data-nt="new"><span class="nc-radio"></span><span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span></button>
+              <button class="nc-opt" data-nt="existing"><span class="nc-radio"></span><span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span></button>
+              <button class="nc-opt" data-nt="both"><span class="nc-radio"></span><span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span></button>
             </div>
           </div>
-          <div class="nc-summary">
+
+          <!-- Step 3: call volume -->
+          <div class="wiz-step" data-step="3">
+            <div class="nc-step">Step 3</div>
+            <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
+            <div class="nc-opts">
+              <button class="nc-opt" data-cr="0-100"><span class="nc-radio"></span><span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span></button>
+              <button class="nc-opt" data-cr="100-500"><span class="nc-radio"></span><span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span></button>
+              <button class="nc-opt" data-cr="500-1000"><span class="nc-radio"></span><span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span></button>
+              <button class="nc-opt" data-cr="1000+"><span class="nc-radio"></span><span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span></button>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="wiz-nav" id="wiz-nav">
+            <button class="wiz-back" id="wiz-back" disabled>&#8592; Back</button>
+            <button class="wiz-next" id="wiz-next">Next &#8594;</button>
+          </div>
+
+          <!-- Result summary (revealed after step 3) -->
+          <div class="nc-summary" id="wiz-summary" style="display:none">
             <div class="nc-price-wrap">
               <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
               <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
             </div>
             <div class="nc-actions" id="nc-actions">
-              <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy" id="nc-buy">Buy now — A$35/mo</a>
+              <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$35/mo</a>
               <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
             </div>
           </div>
@@ -774,14 +811,48 @@
       q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open'));
     });
 
-    // Pricing calculator
+    // Pricing calculator — 3-step wizard
     (function(){
-      var users=1, numberType='new', callRange=null;
+      var users=1, numberType='new', callRange=null, currentStep=1;
       function fmt(n){return n.toLocaleString('en-AU');}
-      function update(){
+
+      function goTo(step){
+        currentStep=step;
+        // Show/hide step panels
+        document.querySelectorAll('.wiz-step').forEach(function(el){
+          el.classList.toggle('active', parseInt(el.getAttribute('data-step'))===step);
+        });
+        // Progress dots
+        for(var i=1;i<=3;i++){
+          var d=document.getElementById('wdot-'+i);
+          d.classList.toggle('active', i===step);
+          d.classList.toggle('done', i<step);
+        }
+        // Progress lines
+        for(var i=1;i<=2;i++){
+          document.getElementById('wline-'+i).classList.toggle('done', i<step);
+        }
+        document.getElementById('wiz-label').textContent='Step '+step+' of 3';
+        document.getElementById('wiz-back').disabled=(step===1);
+        document.getElementById('wiz-next').textContent=(step===3)?'See my price →':'Next →';
+        document.getElementById('wiz-nav').style.display='flex';
+        document.getElementById('wiz-summary').style.display='none';
+      }
+
+      function showResult(){
+        // Hide steps + nav
+        document.querySelectorAll('.wiz-step').forEach(function(el){el.classList.remove('active');});
+        document.getElementById('wiz-nav').style.display='none';
+        // All dots done
+        for(var i=1;i<=3;i++){
+          var d=document.getElementById('wdot-'+i);
+          d.classList.remove('active'); d.classList.add('done');
+        }
+        for(var i=1;i<=2;i++) document.getElementById('wline-'+i).classList.add('done');
+        document.getElementById('wiz-label').textContent='Your estimate';
+        // Compute price
         var monthly=users*35, allowance=users*1000;
         var demoOnly=numberType==='existing'||numberType==='both';
-        document.getElementById('nc-num').textContent=users;
         document.getElementById('nc-price').innerHTML='A$'+fmt(monthly)+'<span>/mo</span>';
         var detail='A$35.00 per user · '+users+' user'+(users>1?'s':'')+' · '+fmt(allowance)+' calls & SMS included';
         if(callRange==='1000+') detail+=' · Excess at 6¢/min';
@@ -794,26 +865,36 @@
           a.innerHTML='<a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$'+fmt(monthly)+'/mo</a>'+
             '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>';
         }
+        document.getElementById('wiz-summary').style.display='flex';
       }
-      document.getElementById('nc-dec').onclick=function(){if(users>1){users--;update();}};
-      document.getElementById('nc-inc').onclick=function(){users++;update();};
+
+      // Navigation
+      document.getElementById('wiz-back').onclick=function(){if(currentStep>1) goTo(currentStep-1);};
+      document.getElementById('wiz-next').onclick=function(){
+        if(currentStep<3) goTo(currentStep+1); else showResult();
+      };
+
+      // User count
+      document.getElementById('nc-dec').onclick=function(){if(users>1){users--;document.getElementById('nc-num').textContent=users;}};
+      document.getElementById('nc-inc').onclick=function(){users++;document.getElementById('nc-num').textContent=users;};
+
+      // Number type
       document.querySelectorAll('[data-nt]').forEach(function(b){
         b.onclick=function(){
           document.querySelectorAll('[data-nt]').forEach(function(x){x.classList.remove('sel');});
-          b.classList.add('sel');
-          numberType=b.getAttribute('data-nt');
-          update();
+          b.classList.add('sel'); numberType=b.getAttribute('data-nt');
         };
       });
+
+      // Call range
       document.querySelectorAll('[data-cr]').forEach(function(b){
         b.onclick=function(){
           document.querySelectorAll('[data-cr]').forEach(function(x){x.classList.remove('sel');});
-          b.classList.add('sel');
-          callRange=b.getAttribute('data-cr');
-          update();
+          b.classList.add('sel'); callRange=b.getAttribute('data-cr');
         };
       });
-      update();
+
+      goTo(1);
     })();
 
     // HubSpot form submission → fire Google Ads conversion + show thank-you overlay
