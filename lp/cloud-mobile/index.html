@@ -61,8 +61,8 @@
     .btn-ghost-dark:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.1)}
 
     /* ── Hero ──────────────────────────────────────────────────────────────── */
-    .hero{background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6)}
-    .hero__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:var(--sp-8);align-items:center}
+    .hero{background:var(--grad-hero);color:var(--white);padding:var(--sp-6) var(--sp-6)}
+    .hero__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:var(--sp-7);align-items:center}
     .hero__offer-pill{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:var(--white);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:5px 16px;border-radius:var(--radius-pill);margin-bottom:var(--sp-5)}
     .hero h1{font-family:var(--font-display);font-size:clamp(30px,4vw,52px);font-weight:800;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
     .hero h1 em{font-style:normal;color:rgba(255,255,255,.6)}
@@ -72,11 +72,9 @@
     .hero__micro-item{display:flex;align-items:center;gap:6px;font-size:var(--fs-small);color:rgba(255,255,255,.75)}
     .hero__micro-item svg{color:rgba(255,255,255,.9);flex-shrink:0}
 
-    /* Hero calculator card */
-    .hero__card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-3);overflow:hidden}
-    .hero__card-head{padding:var(--sp-4) var(--sp-5) var(--sp-3)}
-    .hero__card-head h2{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:800;color:var(--fg-1);margin-bottom:2px}
-    .hero__card-head p{font-size:12px;color:var(--fg-3)}
+    /* Hero phone visual */
+    .hero__visual{display:flex;align-items:flex-start;justify-content:center}
+    .hero__iframe{width:420px;max-width:100%;height:780px;border:none;background:transparent;display:block}
     .form-note{font-size:12px;color:var(--fg-3);text-align:center;line-height:1.5}
 
     /* ── Pricing calculator (shared with pricing page) ─────────────────────── */
@@ -110,8 +108,17 @@
     .nc-demo{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms;font-family:var(--font-ui)}
     .nc-demo:hover{border-color:rgba(255,255,255,.85)}
 
-    /* ── Hero calculator — wizard (one step at a time) ──────────────────────── */
-    .hero__card .nc-card{border:none;border-radius:0;box-shadow:none;max-width:none;margin:0}
+    /* ── Quick quote modal ───────────────────────────────────────────────────── */
+    .quote-modal{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity 200ms var(--ease-io),visibility 200ms}
+    .quote-modal.open{visibility:visible;opacity:1}
+    .quote-modal__backdrop{position:absolute;inset:0;background:rgba(11,11,12,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+    .quote-modal__box{position:relative;z-index:1;width:440px;max-width:calc(100vw - 32px);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-3);transform:translateY(24px) scale(.96);transition:transform 250ms var(--ease-out)}
+    .quote-modal.open .quote-modal__box{transform:none}
+    .quote-modal__close{position:absolute;top:10px;right:10px;z-index:10;background:var(--ink-100);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;color:var(--ink-600);transition:background 120ms;font-family:var(--font-ui)}
+    .quote-modal__close:hover{background:var(--ink-200)}
+
+    /* ── Wizard calculator (inside modal) ────────────────────────────────────── */
+    .quote-modal__box .nc-card{border:none;border-radius:0;box-shadow:none;max-width:none;margin:0}
     .wiz-header{padding:14px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink-100)}
     .wiz-progress{display:flex;align-items:center}
     .wiz-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink-200);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink-400);font-family:var(--font-display);transition:all 180ms}
@@ -124,29 +131,29 @@
     .wiz-step.active{display:block;animation:wiz-in 160ms var(--ease-out)}
     @keyframes wiz-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
     .wiz-step .nc-step{font-size:10px;margin-bottom:4px}
-    .wiz-step .nc-q{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--ink-900);line-height:1.3}
-    .wiz-step .nc-count{gap:10px;margin-bottom:4px}
-    .wiz-step .nc-btn{width:36px;height:36px;font-size:18px}
-    .wiz-step .nc-num{font-size:36px;min-width:48px}
+    .wiz-step .nc-q{font-size:14px;font-weight:600;margin-bottom:14px;color:var(--ink-900);line-height:1.3}
+    .wiz-step .nc-count{gap:12px;margin-bottom:6px}
+    .wiz-step .nc-btn{width:38px;height:38px;font-size:20px}
+    .wiz-step .nc-num{font-size:40px;min-width:52px}
     .wiz-step .nc-unit{font-size:12px;color:var(--ink-400)}
-    .wiz-step .nc-opts{gap:6px}
-    .wiz-step .nc-opt{padding:8px 12px;gap:8px;border-radius:8px}
-    .wiz-step .nc-sub{display:none}
-    .wiz-step .nc-radio{width:14px;height:14px}
-    .wiz-step .nc-main{font-size:13px}
-    .wiz-nav{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ink-100)}
+    .wiz-step .nc-opts{gap:7px}
+    .wiz-step .nc-opt{padding:10px 14px;gap:10px;border-radius:9px}
+    .wiz-step .nc-sub{font-size:11px}
+    .wiz-step .nc-radio{width:15px;height:15px}
+    .wiz-step .nc-main{font-size:14px}
+    .wiz-nav{padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ink-100)}
     .wiz-back{background:none;border:none;color:var(--fg-3);font-size:13px;cursor:pointer;padding:6px 2px;font-family:var(--font-ui);display:flex;align-items:center;gap:4px;transition:color 120ms}
     .wiz-back:hover{color:var(--ink-900)}
     .wiz-back:disabled{opacity:.3;cursor:default;pointer-events:none}
-    .wiz-next{background:var(--red);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-ui);transition:background 120ms}
+    .wiz-next{background:var(--red);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-ui);transition:background 120ms}
     .wiz-next:hover{background:var(--red-dark)}
-    .hero__card .nc-summary{padding:14px 20px;gap:10px}
-    .hero__card .nc-price{font-size:28px}
-    .hero__card .nc-price span{font-size:13px}
-    .hero__card .nc-detail{font-size:11px}
-    .hero__card .nc-actions{width:100%;display:flex;gap:8px}
-    .hero__card .nc-buy{flex:1;text-align:center;padding:9px 12px;font-size:13px}
-    .hero__card .nc-demo{flex:1;text-align:center;padding:9px 12px;font-size:13px}
+    .quote-modal__box .nc-summary{padding:16px 20px;gap:12px}
+    .quote-modal__box .nc-price{font-size:30px}
+    .quote-modal__box .nc-price span{font-size:14px}
+    .quote-modal__box .nc-detail{font-size:11px}
+    .quote-modal__box .nc-actions{width:100%;display:flex;gap:8px}
+    .quote-modal__box .nc-buy{flex:1;text-align:center;padding:10px 14px;font-size:14px}
+    .quote-modal__box .nc-demo{flex:1;text-align:center;padding:10px 14px;font-size:14px}
 
     /* ── HubSpot form section ───────────────────────────────────────────────── */
     .hs-section{background:var(--ink-50);padding:var(--sp-9) var(--sp-6)}
@@ -272,7 +279,7 @@
     /* ── Responsive ────────────────────────────────────────────────────────── */
     @media(max-width:960px){
       .hero__inner{grid-template-columns:1fr;max-width:600px;margin:0 auto}
-      .hero__card{margin-top:var(--sp-2)}
+      .hero__visual{display:none}
       .feat-grid{grid-template-columns:1fr 1fr}
       .steps{grid-template-columns:1fr;gap:var(--sp-5)}
       .steps::before{display:none}
@@ -336,12 +343,16 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             Start free — first month on us
           </a>
-          <a href="tel:0488811729" class="btn-ghost-dark">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-            Call or text us
-          </a>
+          <button class="btn-ghost-dark" id="openQuote" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Quick quote
+          </button>
         </div>
         <div class="hero__micro">
+          <a href="tel:0488811729" class="hero__micro-item" style="color:rgba(255,255,255,.75);text-decoration:none">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call or text us
+          </a>
           <div class="hero__micro-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             Month-to-month billing
@@ -357,77 +368,87 @@
         </div>
       </div>
 
-      <!-- Pricing calculator (wizard) -->
-      <div class="hero__card">
-        <div class="nc-card">
-          <!-- Progress header -->
-          <div class="wiz-header">
-            <div class="wiz-progress">
-              <div class="wiz-dot active" id="wdot-1">1</div>
-              <div class="wiz-line" id="wline-1"></div>
-              <div class="wiz-dot" id="wdot-2">2</div>
-              <div class="wiz-line" id="wline-2"></div>
-              <div class="wiz-dot" id="wdot-3">3</div>
-            </div>
-            <div class="wiz-label" id="wiz-label">Step 1 of 3</div>
-          </div>
+      <!-- Phone animation -->
+      <div class="hero__visual">
+        <iframe
+          src="../../demo-animation.html"
+          class="hero__iframe"
+          scrolling="no"
+          allowtransparency="true"
+          title="Jet Cloud Mobile app demo"
+        ></iframe>
+      </div>
+    </div>
+  </section>
 
-          <!-- Step 1: user count -->
-          <div class="wiz-step active" data-step="1">
-            <div class="nc-step">Step 1</div>
-            <div class="nc-q">How many staff need a number?</div>
-            <div class="nc-count">
-              <button class="nc-btn" id="nc-dec">&#8722;</button>
-              <div class="nc-num" id="nc-num">1</div>
-              <button class="nc-btn" id="nc-inc">+</button>
-            </div>
-            <div class="nc-unit">users</div>
+  <!-- Quick quote modal -->
+  <div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-label="Quick quote calculator">
+    <div class="quote-modal__backdrop" id="quoteBackdrop"></div>
+    <div class="quote-modal__box">
+      <button class="quote-modal__close" id="quoteClose" aria-label="Close">&times;</button>
+      <div class="nc-card">
+        <!-- Progress header -->
+        <div class="wiz-header">
+          <div class="wiz-progress">
+            <div class="wiz-dot active" id="wdot-1">1</div>
+            <div class="wiz-line" id="wline-1"></div>
+            <div class="wiz-dot" id="wdot-2">2</div>
+            <div class="wiz-line" id="wline-2"></div>
+            <div class="wiz-dot" id="wdot-3">3</div>
           </div>
-
-          <!-- Step 2: number type -->
-          <div class="wiz-step" data-step="2">
-            <div class="nc-step">Step 2</div>
-            <div class="nc-q">New numbers, existing, or both?</div>
-            <div class="nc-opts">
-              <button class="nc-opt sel" data-nt="new"><span class="nc-radio"></span><span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span></button>
-              <button class="nc-opt" data-nt="existing"><span class="nc-radio"></span><span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span></button>
-              <button class="nc-opt" data-nt="both"><span class="nc-radio"></span><span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span></button>
-            </div>
+          <div class="wiz-label" id="wiz-label">Step 1 of 3</div>
+        </div>
+        <!-- Step 1: user count -->
+        <div class="wiz-step active" data-step="1">
+          <div class="nc-step">Step 1</div>
+          <div class="nc-q">How many staff need a number?</div>
+          <div class="nc-count">
+            <button class="nc-btn" id="nc-dec">&#8722;</button>
+            <div class="nc-num" id="nc-num">1</div>
+            <button class="nc-btn" id="nc-inc">+</button>
           </div>
-
-          <!-- Step 3: call volume -->
-          <div class="wiz-step" data-step="3">
-            <div class="nc-step">Step 3</div>
-            <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
-            <div class="nc-opts">
-              <button class="nc-opt" data-cr="0-100"><span class="nc-radio"></span><span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span></button>
-              <button class="nc-opt" data-cr="100-500"><span class="nc-radio"></span><span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span></button>
-              <button class="nc-opt" data-cr="500-1000"><span class="nc-radio"></span><span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span></button>
-              <button class="nc-opt" data-cr="1000+"><span class="nc-radio"></span><span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span></button>
-            </div>
+          <div class="nc-unit">users</div>
+        </div>
+        <!-- Step 2: number type -->
+        <div class="wiz-step" data-step="2">
+          <div class="nc-step">Step 2</div>
+          <div class="nc-q">New numbers, existing, or both?</div>
+          <div class="nc-opts">
+            <button class="nc-opt sel" data-nt="new"><span class="nc-radio"></span><span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span></button>
+            <button class="nc-opt" data-nt="existing"><span class="nc-radio"></span><span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span></button>
+            <button class="nc-opt" data-nt="both"><span class="nc-radio"></span><span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span></button>
           </div>
-
-          <!-- Navigation -->
-          <div class="wiz-nav" id="wiz-nav">
-            <button class="wiz-back" id="wiz-back" disabled>&#8592; Back</button>
-            <button class="wiz-next" id="wiz-next">Next &#8594;</button>
+        </div>
+        <!-- Step 3: call volume -->
+        <div class="wiz-step" data-step="3">
+          <div class="nc-step">Step 3</div>
+          <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
+          <div class="nc-opts">
+            <button class="nc-opt" data-cr="0-100"><span class="nc-radio"></span><span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span></button>
+            <button class="nc-opt" data-cr="100-500"><span class="nc-radio"></span><span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span></button>
+            <button class="nc-opt" data-cr="500-1000"><span class="nc-radio"></span><span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span></button>
+            <button class="nc-opt" data-cr="1000+"><span class="nc-radio"></span><span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span></button>
           </div>
-
-          <!-- Result summary (revealed after step 3) -->
-          <div class="nc-summary" id="wiz-summary" style="display:none">
-            <div class="nc-price-wrap">
-              <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
-              <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
-            </div>
-            <div class="nc-actions" id="nc-actions">
-              <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$35/mo</a>
-              <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
-            </div>
+        </div>
+        <!-- Navigation -->
+        <div class="wiz-nav" id="wiz-nav">
+          <button class="wiz-back" id="wiz-back" disabled>&#8592; Back</button>
+          <button class="wiz-next" id="wiz-next">Next &#8594;</button>
+        </div>
+        <!-- Result summary -->
+        <div class="nc-summary" id="wiz-summary" style="display:none">
+          <div class="nc-price-wrap">
+            <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
+            <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
+          </div>
+          <div class="nc-actions" id="nc-actions">
+            <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$35/mo</a>
+            <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Logo bar -->
   <div class="logo-bar">
@@ -444,25 +465,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Product visual -->
-  <section class="section section--alt">
-    <div class="section__inner">
-      <div class="section__header">
-        <p class="section__eyebrow">See it in action</p>
-        <h2 class="section__title">Your whole team's phone system in one app</h2>
-        <p class="section__lead">Calls, SMS, voicemail, transfers and call recording — all from the Jet Cloud Mobile app on the phone your team already carries.</p>
-      </div>
-      <div style="display:flex;justify-content:center;margin-top:var(--sp-7)">
-        <iframe
-          src="../../demo-animation.html"
-          style="width:700px;max-width:100%;height:960px;border:none;background:#ffffff"
-          scrolling="no"
-          title="Jet Cloud Mobile demo"
-        ></iframe>
-      </div>
-    </div>
-  </section>
 
   <!-- Stats bar -->
   <div class="stats-bar">
@@ -811,6 +813,27 @@
       q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open'));
     });
 
+    // Quick quote modal
+    (function(){
+      var modal=document.getElementById('quoteModal');
+      var backdrop=document.getElementById('quoteBackdrop');
+      var closeBtn=document.getElementById('quoteClose');
+      var openBtn=document.getElementById('openQuote');
+      function openModal(){
+        modal.classList.add('open');
+        document.body.style.overflow='hidden';
+        if(window.wizReset) window.wizReset();
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.style.overflow='';
+      }
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+    })();
+
     // Pricing calculator — 3-step wizard
     (function(){
       var users=1, numberType='new', callRange=null, currentStep=1;
@@ -895,6 +918,19 @@
       });
 
       goTo(1);
+
+      // Expose reset so modal can reinitialise wizard on open
+      window.wizReset = function(){
+        users=1; numberType='new'; callRange=null;
+        document.getElementById('nc-num').textContent=1;
+        document.querySelectorAll('[data-nt]').forEach(function(x){
+          x.classList.toggle('sel', x.getAttribute('data-nt')==='new');
+        });
+        document.querySelectorAll('[data-cr]').forEach(function(x){ x.classList.remove('sel'); });
+        document.getElementById('wiz-summary').style.display='none';
+        document.getElementById('wiz-nav').style.display='flex';
+        goTo(1);
+      };
     })();
 
     // HubSpot form submission → fire Google Ads conversion + show thank-you overlay
