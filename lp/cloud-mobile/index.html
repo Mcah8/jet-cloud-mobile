@@ -9,6 +9,7 @@
   <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://js-ap1.hsforms.net/forms/embed/442264265.js" defer></script>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
   <style>
@@ -84,6 +85,26 @@
     .form-submit{width:100%;padding:.75rem;font-size:var(--fs-lead);font-weight:700;font-family:var(--font-ui);background:var(--red);color:var(--white);border:none;border-radius:var(--radius-md);cursor:pointer;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
     .form-submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
     .form-note{font-size:12px;color:var(--fg-3);text-align:center;margin-top:var(--sp-3);line-height:1.5}
+
+    /* ── HubSpot form overrides ─────────────────────────────────────────────── */
+    .hs-form-frame{width:100%}
+    /* labels */
+    .hs-form-field>label{display:block;font-size:var(--fs-small);font-weight:600;color:var(--fg-2);margin-bottom:6px}
+    /* inputs + selects */
+    .hs-input:not([type=checkbox]):not([type=radio]){width:100%!important;border:var(--border)!important;border-radius:var(--radius-md)!important;padding:10px var(--sp-4)!important;font-size:var(--fs-body)!important;font-family:var(--font-ui)!important;color:var(--fg-1)!important;background:var(--white)!important;outline:none!important;transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)!important;box-shadow:none!important;appearance:none!important;-webkit-appearance:none!important}
+    .hs-input:focus{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(237,28,36,.12)!important}
+    /* field spacing */
+    .hs-form-field{margin-bottom:var(--sp-3)!important}
+    /* submit button */
+    .hs-button.primary{width:100%!important;padding:.75rem var(--sp-5)!important;font-size:var(--fs-lead)!important;font-weight:700!important;font-family:var(--font-ui)!important;background:var(--red)!important;color:var(--white)!important;border:none!important;border-radius:var(--radius-md)!important;cursor:pointer!important;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)!important;margin-top:var(--sp-2)!important}
+    .hs-button.primary:hover{background:var(--red-dark)!important;box-shadow:var(--shadow-red)!important}
+    /* error messages */
+    .hs-error-msgs{list-style:none!important;margin:4px 0 0!important;padding:0!important}
+    .hs-error-msgs label{font-size:12px!important;color:#dc2626!important;font-weight:500!important}
+    /* remove HubSpot branding / extra chrome */
+    .hs-richtext p,.submitted-message p{font-size:var(--fs-small);color:var(--fg-3);margin-top:var(--sp-3);text-align:center}
+    .legal-consent-container{margin-top:var(--sp-3)!important;font-size:12px!important;color:var(--fg-3)!important}
+    .legal-consent-container a{color:var(--red)!important}
 
     /* ── Trust bar ─────────────────────────────────────────────────────────── */
     .trust-bar{background:var(--ink-50);border-bottom:var(--border);padding:var(--sp-5) var(--sp-6)}
@@ -253,40 +274,11 @@
         </div>
       </div>
 
-      <!-- Lead capture form -->
+      <!-- Lead capture form (HubSpot) -->
       <div class="hero__card">
         <h2>Get your first month free</h2>
         <p>No credit card needed. Takes under 2 minutes.</p>
-        <form id="leadForm" novalidate>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-name">Full name</label>
-              <input type="text" id="f-name" name="name" placeholder="Jane Smith" autocomplete="name" required>
-            </div>
-            <div class="form-field">
-              <label for="f-email">Work email</label>
-              <input type="email" id="f-email" name="email" placeholder="jane@company.com.au" autocomplete="email" required>
-            </div>
-            <div class="form-field">
-              <label for="f-phone">Phone number</label>
-              <input type="tel" id="f-phone" name="phone" placeholder="04XX XXX XXX" autocomplete="tel">
-            </div>
-            <div class="form-field">
-              <label for="f-size">Team size</label>
-              <select id="f-size" name="team_size">
-                <option value="">Select team size</option>
-                <option value="1-5">1–5 users</option>
-                <option value="6-20">6–20 users</option>
-                <option value="21-50">21–50 users</option>
-                <option value="51+">51+ users</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="form-submit">
-            Claim first month free →
-          </button>
-        </form>
-        <p class="form-note">By submitting you agree to our <a href="../../privacy-policy" style="color:var(--red)">privacy policy</a>. We'll be in touch within one business day.</p>
+        <div class="hs-form-frame" data-region="ap1" data-form-id="52e36f05-0d63-4dd0-bdf2-20e2f6c00edc" data-portal-id="442264265"></div>
       </div>
     </div>
   </section>
@@ -606,30 +598,30 @@
       q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open'));
     });
 
-    // Lead form → show thank-you overlay + fire conversion event
-    document.getElementById('leadForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('f-name').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      if (!name || !email) {
-        document.getElementById('f-name').focus();
-        return;
-      }
+    // HubSpot form submission → fire Google Ads conversion + show thank-you overlay
+    window.addEventListener('message', function(event) {
+      if (
+        event.data &&
+        event.data.type === 'hsFormCallback' &&
+        event.data.eventName === 'onFormSubmit' &&
+        event.data.id === '52e36f05-0d63-4dd0-bdf2-20e2f6c00edc'
+      ) {
+        // Google Ads conversion ping (replace CONVERSION_ID/LABEL with your values)
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'conversion', {
+            send_to: 'AW-CONVERSION_ID/LABEL',
+            value: 35.0,
+            currency: 'AUD'
+          });
+        }
 
-      // Google Ads conversion ping (update CONVERSION_ID and LABEL with your values)
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'conversion', {
-          send_to: 'AW-CONVERSION_ID/LABEL',
-          value: 35.0,
-          currency: 'AUD'
+        // Show thank-you overlay
+        const overlay = document.getElementById('tyOverlay');
+        overlay.classList.add('show');
+        overlay.addEventListener('click', function(ev) {
+          if (ev.target === overlay) overlay.classList.remove('show');
         });
       }
-
-      // Show thank-you overlay
-      document.getElementById('tyOverlay').classList.add('show');
-      document.getElementById('tyOverlay').addEventListener('click', function(ev) {
-        if (ev.target === this) this.classList.remove('show');
-      });
     });
   </script>
 
