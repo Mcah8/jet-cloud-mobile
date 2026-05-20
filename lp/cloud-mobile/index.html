@@ -149,6 +149,9 @@
     .wiz-step .nc-sub{font-size:12px}
     .wiz-step .nc-radio{width:17px;height:17px}
     .wiz-step .nc-main{font-size:15px}
+    .wiz-step[data-step="1"]{text-align:center}
+    .wiz-step[data-step="1"] .nc-count{justify-content:center}
+    .wiz-step[data-step="1"] .nc-unit{text-align:center}
     .wiz-nav{padding:16px 28px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ink-100)}
     .wiz-back{background:none;border:none;color:var(--fg-3);font-size:14px;cursor:pointer;padding:6px 2px;font-family:var(--font-ui);display:flex;align-items:center;gap:4px;transition:color 120ms}
     .wiz-back:hover{color:var(--ink-900)}
@@ -315,6 +318,37 @@
     .analytics-bar-fill{height:100%;border-radius:999px;background:var(--red)}
     .analytics-bar-count{font-size:12px;font-weight:600;color:var(--fg-2);width:24px;text-align:right;flex-shrink:0}
 
+    /* ── Animated analytics card screens ──────────────────────────────────── */
+    .ac-card{position:relative;background:var(--white);border-radius:16px;box-shadow:var(--shadow-3);overflow:hidden;min-height:360px}
+    .ac-screen{position:absolute;inset:0;padding:var(--sp-5);opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    .ac-screen.ac-active{opacity:1;transform:none;pointer-events:auto}
+    .ac-screen.ac-out{opacity:0;transform:translateY(-10px);transition:opacity .3s ease,transform .3s ease}
+    /* Screen 2: hourly bar chart */
+    .ac-chart{display:flex;align-items:flex-end;gap:5px;height:80px;margin-bottom:8px}
+    .ac-bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+    .ac-bar-bg{width:100%;border-radius:4px 4px 0 0;background:var(--red);transform-origin:bottom;transform:scaleY(0);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+    .ac-screen.ac-active .ac-bar-bg{transform:scaleY(1)}
+    .ac-bar-label{font-size:9px;color:var(--fg-3);font-family:var(--font-display);font-weight:600}
+    .ac-chart-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4)}
+    /* Screen 3: recordings */
+    .ac-rec-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--ink-100)}
+    .ac-rec-row:last-child{border-bottom:none}
+    .ac-play{width:28px;height:28px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ac-play svg{width:10px;height:10px;fill:#fff;margin-left:2px}
+    .ac-rec-info{flex:1;min-width:0}
+    .ac-rec-name{font-size:13px;font-weight:600;color:var(--fg-1)}
+    .ac-rec-transcript{font-size:11px;color:var(--fg-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+    .ac-rec-meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+    .ac-rec-dur{font-family:var(--font-display);font-size:11px;font-weight:600;color:var(--fg-2)}
+    .ac-rec-time{font-size:10px;color:var(--fg-3)}
+    .ac-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;background:#E8F7EF;color:#0E8A4A}
+    /* counting numbers */
+    .ac-count-num{transition:none}
+    /* screen indicator dots */
+    .ac-dots{display:flex;gap:5px;justify-content:center;padding-top:10px;position:absolute;bottom:12px;left:0;right:0}
+    .ac-dot{width:5px;height:5px;border-radius:50%;background:var(--ink-200);transition:background .3s ease}
+    .ac-dot.ac-dot-active{background:var(--red)}
+
     /* ── Feature split sections ────────────────────────────────────────────── */
     .feat-section{padding:var(--sp-9) var(--sp-6)}
     .feat-section--dark{background:var(--grad-hero);color:var(--white)}
@@ -356,6 +390,17 @@
     .feat-card-ui__num--private .feat-card-ui__num-badge{color:var(--ink-400)}
     .feat-card-ui__footer{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--ink-50);border-radius:8px;font-size:12px;color:var(--fg-2);line-height:1.5}
     .feat-card-ui__footer svg{flex-shrink:0;color:var(--ink-400);margin-top:1px}
+    /* Prob-card (before/after visual — matches home page) */
+    .lp-prob-card{background:var(--white);border-radius:var(--radius-md);border:var(--border);box-shadow:var(--shadow-1);padding:var(--sp-5);display:flex;align-items:flex-start;gap:var(--sp-4)}
+    .lp-prob-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center}
+    .lp-prob-icon--before{background:var(--red-100)}
+    .lp-prob-icon--after{background:#E3F4EA}
+    .lp-prob-text{display:flex;flex-direction:column;gap:4px}
+    .lp-prob-label{font-family:var(--font-display);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra)}
+    .lp-prob-label--before{color:var(--red)}
+    .lp-prob-label--after{color:#0E8A4A}
+    .lp-prob-text p{font-size:var(--fs-body);color:var(--fg-2);margin:0;line-height:var(--lh-normal)}
+    .lp-prob-divider{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--fg-3);font-size:13px;padding:4px 0}
     .loc-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ink-50);border-radius:8px;margin-bottom:8px}
     .loc-flag{font-size:18px;line-height:1;flex-shrink:0}
     .loc-info{flex:1}
@@ -548,8 +593,18 @@
           </div>
           <div class="nc-actions" id="nc-actions">
             <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$35/mo</a>
-            <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
+            <a href="#" class="nc-demo" id="wizContactBtn">Contact sales</a>
           </div>
+        </div>
+      </div>
+      <!-- Contact sales form screen -->
+      <div id="wizContact" style="display:none">
+        <div style="padding:20px 28px 16px;border-bottom:1px solid var(--ink-100);display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--fg-1)">Get in touch</div>
+          <div style="font-size:12px;color:var(--fg-3)">Our Sydney team will call you back</div>
+        </div>
+        <div style="padding:20px 28px 24px">
+          <div id="wiz-hs-form"></div>
         </div>
       </div>
     </div>
@@ -629,165 +684,180 @@
         </div>
       </div>
       <div class="report-section__visual">
-        <div class="analytics-card">
-          <div class="analytics-card__header">
-            <div class="analytics-card__title">Jet Hub &mdash; Call Activity</div>
-            <div class="analytics-card__live"><span class="live-dot"></span> Live</div>
-          </div>
-          <div class="analytics-stats">
-            <div class="analytics-stat">
-              <div class="analytics-stat__value">47</div>
-              <div class="analytics-stat__label">Calls today</div>
-            </div>
-            <div class="analytics-stat">
-              <div class="analytics-stat__value">41</div>
-              <div class="analytics-stat__label">Answered</div>
-            </div>
-            <div class="analytics-stat">
-              <div class="analytics-stat__value red">6</div>
-              <div class="analytics-stat__label">Missed</div>
-            </div>
-            <div class="analytics-stat">
-              <div class="analytics-stat__value">3:24</div>
-              <div class="analytics-stat__label">Avg duration</div>
-            </div>
-          </div>
-          <div class="analytics-bars__label">Calls by team member</div>
-          <div class="analytics-bars">
-            <div class="analytics-bar-row">
-              <div class="analytics-bar-name">Sarah K.</div>
-              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:88%"></div></div>
-              <div class="analytics-bar-count">14</div>
-            </div>
-            <div class="analytics-bar-row">
-              <div class="analytics-bar-name">James T.</div>
-              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:69%"></div></div>
-              <div class="analytics-bar-count">11</div>
-            </div>
-            <div class="analytics-bar-row">
-              <div class="analytics-bar-name">Priya M.</div>
-              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:56%"></div></div>
-              <div class="analytics-bar-count">9</div>
-            </div>
-            <div class="analytics-bar-row">
-              <div class="analytics-bar-name">David L.</div>
-              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:44%"></div></div>
-              <div class="analytics-bar-count">7</div>
-            </div>
-            <div class="analytics-bar-row">
-              <div class="analytics-bar-name">Michelle W.</div>
-              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:38%"></div></div>
-              <div class="analytics-bar-count">6</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="ac-card" id="acCard">
 
-  <!-- One phone, two numbers -->
-  <section class="feat-section">
-    <div class="feat-section__inner">
-      <div class="feat-section__copy">
-        <p class="feat-section__eyebrow">One phone. Two numbers.</p>
-        <h2 class="feat-section__title">Give every staff member a business number — without the second handset.</h2>
-        <p class="feat-section__lead">Jet Cloud Mobile runs as an app on the phone your staff already carry. No hardware, no SIM cards, no extra device to manage or pay for.</p>
-        <ul class="feat-section__list">
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Customers always see the business number — staff personal numbers stay completely private
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Numbers belong to your account — reassign instantly when staff leave, no porting delays
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            One app on the device they already own — save on handsets, SIM cards and hardware costs
-          </li>
-        </ul>
-        <div class="hero__ctas" style="margin-bottom:0">
-          <a href="#" class="btn-cta btn-cta--lg" id="openQuote3" role="button">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Quick Quote
-          </a>
-          <a href="tel:0488811729" class="btn-outline-dark">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-            Call or Text Us
-          </a>
-        </div>
-      </div>
-      <div class="feat-section__visual">
-        <div class="feat-card-ui">
-          <div class="feat-card-ui__header">
-            <div class="feat-card-ui__title">Staff Number Card</div>
-            <span class="feat-tag feat-tag--green">&#9679; Active</span>
-          </div>
-          <div class="feat-card-ui__staff">
-            <div class="feat-card-ui__avatar" style="background:#5C6BC0">SM</div>
-            <div>
-              <div class="feat-card-ui__name">Sarah Mitchell</div>
-              <div class="feat-card-ui__role">Sales Team &middot; Sydney</div>
+          <!-- Screen 1: Live activity with counting stats -->
+          <div class="ac-screen" id="acS1">
+            <div class="analytics-card__header">
+              <div class="analytics-card__title">Jet Hub &mdash; Call Activity</div>
+              <div class="analytics-card__live"><span class="live-dot"></span> Live</div>
             </div>
-          </div>
-          <div class="feat-card-ui__numbers">
-            <div class="feat-card-ui__num feat-card-ui__num--business">
-              <div>
-                <div class="feat-card-ui__num-label">Business number</div>
-                <div class="feat-card-ui__num-value">0491 571 234</div>
+            <div class="analytics-stats">
+              <div class="analytics-stat">
+                <div class="analytics-stat__value ac-count-num" id="acN1" data-target="47">0</div>
+                <div class="analytics-stat__label">Calls today</div>
               </div>
-              <span class="feat-card-ui__num-badge">Shown to customers</span>
-            </div>
-            <div class="feat-card-ui__num feat-card-ui__num--private">
-              <div>
-                <div class="feat-card-ui__num-label">Personal number</div>
-                <div class="feat-card-ui__num-value feat-card-ui__num-value--hidden">&#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679; &#9679;&#9679;&#9679;</div>
+              <div class="analytics-stat">
+                <div class="analytics-stat__value ac-count-num" id="acN2" data-target="41">0</div>
+                <div class="analytics-stat__label">Answered</div>
               </div>
-              <span class="feat-card-ui__num-badge">Always private</span>
+              <div class="analytics-stat">
+                <div class="analytics-stat__value red ac-count-num" id="acN3" data-target="6">0</div>
+                <div class="analytics-stat__label">Missed</div>
+              </div>
+              <div class="analytics-stat">
+                <div class="analytics-stat__value" id="acN4">0:00</div>
+                <div class="analytics-stat__label">Avg duration</div>
+              </div>
+            </div>
+            <div class="analytics-bars__label">Calls by team member</div>
+            <div class="analytics-bars">
+              <div class="analytics-bar-row">
+                <div class="analytics-bar-name">Sarah K.</div>
+                <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:88%"></div></div>
+                <div class="analytics-bar-count">14</div>
+              </div>
+              <div class="analytics-bar-row">
+                <div class="analytics-bar-name">James T.</div>
+                <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:69%"></div></div>
+                <div class="analytics-bar-count">11</div>
+              </div>
+              <div class="analytics-bar-row">
+                <div class="analytics-bar-name">Priya M.</div>
+                <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:56%"></div></div>
+                <div class="analytics-bar-count">9</div>
+              </div>
+              <div class="analytics-bar-row">
+                <div class="analytics-bar-name">David L.</div>
+                <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:44%"></div></div>
+                <div class="analytics-bar-count">7</div>
+              </div>
+              <div class="analytics-bar-row">
+                <div class="analytics-bar-name">Michelle W.</div>
+                <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:38%"></div></div>
+                <div class="analytics-bar-count">6</div>
+              </div>
             </div>
           </div>
-          <div class="feat-card-ui__footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            Number belongs to <strong style="margin:0 3px">your business account</strong> &mdash; reassign instantly if Sarah leaves
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- How it works -->
-  <section class="section section--alt">
-    <div class="section__inner">
-      <div class="section__header">
-        <p class="section__eyebrow">Up and running today</p>
-        <h2 class="section__title">Three steps to your new phone system</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step__num">1</div>
-          <h3>Sign up in minutes</h3>
-          <p>Create your account online — no hardware, no technician, no long onboarding process. Tell us how many users you need.</p>
+          <!-- Screen 2: Calls over time bar chart -->
+          <div class="ac-screen" id="acS2">
+            <div class="ac-chart-meta">
+              <div class="analytics-card__title">Call Volume &mdash; Today</div>
+              <div style="font-size:11px;color:var(--fg-3)">47 total</div>
+            </div>
+            <div class="ac-chart" id="acChart">
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:28px" data-h="28"></div>
+                <div class="ac-bar-label">9am</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:44px" data-h="44"></div>
+                <div class="ac-bar-label">10am</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:72px" data-h="72"></div>
+                <div class="ac-bar-label">11am</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:56px" data-h="56"></div>
+                <div class="ac-bar-label">12pm</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:40px" data-h="40"></div>
+                <div class="ac-bar-label">1pm</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:62px" data-h="62"></div>
+                <div class="ac-bar-label">2pm</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:48px" data-h="48"></div>
+                <div class="ac-bar-label">3pm</div>
+              </div>
+              <div class="ac-bar-col">
+                <div class="ac-bar-bg" style="height:20px" data-h="20"></div>
+                <div class="ac-bar-label">4pm</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--ink-100);margin-top:4px">
+              <div class="analytics-stat" style="background:none;padding:0">
+                <div class="analytics-stat__value" style="font-size:22px">12</div>
+                <div class="analytics-stat__label">Peak hour (11am)</div>
+              </div>
+              <div class="analytics-stat" style="background:none;padding:0;text-align:right">
+                <div class="analytics-stat__value" style="font-size:22px">87%</div>
+                <div class="analytics-stat__label">Answer rate</div>
+              </div>
+              <div class="analytics-stat" style="background:none;padding:0;text-align:right">
+                <div class="analytics-stat__value" style="font-size:22px">3:24</div>
+                <div class="analytics-stat__label">Avg duration</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 3: Call recordings + AI transcripts -->
+          <div class="ac-screen" id="acS3">
+            <div class="analytics-card__header" style="margin-bottom:var(--sp-3)">
+              <div class="analytics-card__title">Call Recordings</div>
+              <span class="ac-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                AI Transcripts
+              </span>
+            </div>
+            <div class="ac-rec-row">
+              <div class="ac-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="ac-rec-info">
+                <div class="ac-rec-name">Kevin Nakamura</div>
+                <div class="ac-rec-transcript">"Just following up on the proposal I sent over..."</div>
+              </div>
+              <div class="ac-rec-meta">
+                <div class="ac-rec-dur">0:42</div>
+                <div class="ac-rec-time">2:34 PM</div>
+              </div>
+            </div>
+            <div class="ac-rec-row">
+              <div class="ac-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="ac-rec-info">
+                <div class="ac-rec-name">Aisha Patel</div>
+                <div class="ac-rec-transcript">"The meeting's been moved to Thursday at 10..."</div>
+              </div>
+              <div class="ac-rec-meta">
+                <div class="ac-rec-dur">0:28</div>
+                <div class="ac-rec-time">1:18 PM</div>
+              </div>
+            </div>
+            <div class="ac-rec-row">
+              <div class="ac-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="ac-rec-info">
+                <div class="ac-rec-name">Sophie Dubois</div>
+                <div class="ac-rec-transcript">"Can you send that proposal over before end of day..."</div>
+              </div>
+              <div class="ac-rec-meta">
+                <div class="ac-rec-dur">1:14</div>
+                <div class="ac-rec-time">11:47 AM</div>
+              </div>
+            </div>
+            <div class="ac-rec-row" style="border-bottom:none">
+              <div class="ac-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <div class="ac-rec-info">
+                <div class="ac-rec-name">James Okonkwo</div>
+                <div class="ac-rec-transcript">"Happy to proceed, just need the signed contract..."</div>
+              </div>
+              <div class="ac-rec-meta">
+                <div class="ac-rec-dur">2:05</div>
+                <div class="ac-rec-time">10:22 AM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicator dots -->
+          <div class="ac-dots">
+            <div class="ac-dot ac-dot-active" data-s="0"></div>
+            <div class="ac-dot" data-s="1"></div>
+            <div class="ac-dot" data-s="2"></div>
+          </div>
         </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <h3>Numbers provisioned same day</h3>
-          <p>Our team sets up your numbers, IVR, and call routing. Port existing numbers or get new ones issued immediately.</p>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <h3>Download the app &amp; go</h3>
-          <p>Your team downloads Jet on iOS, Android or desktop and starts taking calls the same day — from wherever they work.</p>
-        </div>
-      </div>
-      <div class="section-ctas">
-        <a href="#" class="btn-cta btn-cta--lg" id="openQuote2" role="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Quick Quote
-        </a>
-        <a href="tel:0488811729" class="btn-outline-dark">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-          Call or Text Us
-        </a>
       </div>
     </div>
   </section>
@@ -842,6 +912,109 @@
             <span class="testi-card__role">Operations Manager</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- One phone, two numbers -->
+  <section class="feat-section">
+    <div class="feat-section__inner">
+      <div class="feat-section__copy">
+        <p class="feat-section__eyebrow">One phone. Two numbers.</p>
+        <h2 class="feat-section__title">Give every staff member a business number — without the second handset.</h2>
+        <p class="feat-section__lead">Jet Cloud Mobile runs as an app on the phone your staff already carry. No hardware, no SIM cards, no extra device to manage or pay for.</p>
+        <ul class="feat-section__list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Customers always see the business number — staff personal numbers stay completely private
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Numbers belong to your account — reassign instantly when staff leave, no porting delays
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            One app on the device they already own — save on handsets, SIM cards and hardware costs
+          </li>
+        </ul>
+        <div class="hero__ctas" style="margin-bottom:0">
+          <a href="#" class="btn-cta btn-cta--lg" id="openQuote3" role="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Quick Quote
+          </a>
+          <a href="tel:0488811729" class="btn-outline-dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call or Text Us
+          </a>
+        </div>
+      </div>
+      <div class="feat-section__visual">
+        <div style="display:flex;flex-direction:column;gap:var(--sp-4)">
+          <div class="lp-prob-card">
+            <div class="lp-prob-icon lp-prob-icon--before">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <div class="lp-prob-text">
+              <span class="lp-prob-label lp-prob-label--before">The problem</span>
+              <p>Staff use personal phones for business calls. No records, no control, numbers lost when they leave.</p>
+            </div>
+          </div>
+          <div class="lp-prob-divider">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            Jet Cloud Mobile
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="lp-prob-card">
+            <div class="lp-prob-icon lp-prob-icon--after">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E8A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="lp-prob-text">
+              <span class="lp-prob-label lp-prob-label--after">The fix</span>
+              <p>Dedicated business numbers on any phone. Full call logs, recordings, and reporting — from day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">Up and running today</p>
+        <h2 class="section__title">Three steps to your new phone system</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <h3>Sign up in minutes</h3>
+          <p>Create your account online — no hardware, no technician, no long onboarding process. Tell us how many users you need.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <h3>Numbers provisioned same day</h3>
+          <p>Our team sets up your numbers, IVR, and call routing. Port existing numbers or get new ones issued immediately.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <h3>Download the app &amp; go</h3>
+          <p>Your team downloads Jet on iOS, Android or desktop and starts taking calls the same day — from wherever they work.</p>
+        </div>
+      </div>
+      <div class="section-ctas">
+        <a href="#" class="btn-cta btn-cta--lg" id="openQuote2" role="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Quick Quote
+        </a>
+        <a href="tel:0488811729" class="btn-outline-dark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          Call or Text Us
+        </a>
       </div>
     </div>
   </section>
@@ -1021,9 +1194,9 @@
     <h2>Give your team a business number today</h2>
     <p>Australian-owned. Australian infrastructure. Sydney support. Month-to-month pricing that works for your business.</p>
     <div class="cta-band__btns">
-      <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-cta btn-cta--lg" style="color:var(--red);background:var(--white)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Get started
+      <a href="#" class="btn-cta btn-cta--lg" id="openQuote4" role="button" style="color:var(--red);background:var(--white)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Quick Quote
       </a>
       <a href="tel:0488811729" class="btn-ghost-dark">Call 0488 811 729</a>
     </div>
@@ -1065,11 +1238,28 @@
         document.body.style.overflow='hidden';
         if(window.wizReset) window.wizReset();
       }
+      var wizContact=document.getElementById('wizContact');
+      var ncCard=document.querySelector('.quote-modal__box .nc-card');
+      var wizContactBtn=document.getElementById('wizContactBtn');
+      var hsFormLoaded=false;
       function closeModal(){
         modal.classList.remove('open');
         document.body.style.overflow='';
+        if(wizContact){wizContact.style.display='none';}
+        if(ncCard){ncCard.style.display='';}
       }
-      ['openQuote','openQuote2','openQuote3'].forEach(function(id){
+      if(wizContactBtn){
+        wizContactBtn.addEventListener('click',function(e){
+          e.preventDefault();
+          if(ncCard) ncCard.style.display='none';
+          if(wizContact) wizContact.style.display='block';
+          if(!hsFormLoaded && typeof hbspt!=='undefined'){
+            hbspt.forms.create({region:'ap1',portalId:'442264265',formId:'52e36f05-0d63-4dd0-bdf2-20e2f6c00edc',target:'#wiz-hs-form'});
+            hsFormLoaded=true;
+          }
+        });
+      }
+      ['openQuote','openQuote2','openQuote3','openQuote4'].forEach(function(id){
         var btn=document.getElementById(id);
         if(btn) btn.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
       });
@@ -1175,6 +1365,90 @@
         document.getElementById('wiz-nav').style.display='flex';
         goTo(1);
       };
+    })();
+
+    // ── Analytics card animation ─────────────────────────────────────────
+    (function(){
+      var screens=[document.getElementById('acS1'),document.getElementById('acS2'),document.getElementById('acS3')];
+      var dots=document.querySelectorAll('.ac-dot');
+      var cur=0;
+      var timer=null;
+
+      function countUp(el,target,dur){
+        var start=0,step=target/Math.ceil(dur/16);
+        var t=setInterval(function(){
+          start=Math.min(start+step,target);
+          el.textContent=Math.round(start);
+          if(start>=target) clearInterval(t);
+        },16);
+      }
+
+      function countDuration(el,target,dur){
+        // target in seconds
+        var start=0,step=target/Math.ceil(dur/16);
+        var t=setInterval(function(){
+          start=Math.min(start+step,target);
+          var m=Math.floor(start/60),s=Math.floor(start%60);
+          el.textContent=m+':'+(s<10?'0':'')+s;
+          if(start>=target) clearInterval(t);
+        },16);
+      }
+
+      function showScreen(idx){
+        var prev=cur;
+        cur=idx;
+        screens[prev].classList.add('ac-out');
+        screens[prev].classList.remove('ac-active');
+        dots[prev].classList.remove('ac-dot-active');
+        setTimeout(function(){screens[prev].classList.remove('ac-out');},320);
+
+        screens[cur].classList.add('ac-active');
+        dots[cur].classList.add('ac-dot-active');
+
+        if(cur===0){
+          // count up numbers
+          var n1=document.getElementById('acN1'),n2=document.getElementById('acN2'),n3=document.getElementById('acN3'),n4=document.getElementById('acN4');
+          n1.textContent='0';n2.textContent='0';n3.textContent='0';n4.textContent='0:00';
+          setTimeout(function(){
+            countUp(n1,47,1200);
+            countUp(n2,41,1200);
+            countUp(n3,6,800);
+            countDuration(n4,204,1200); // 3:24 = 204s
+          },200);
+        }
+        if(cur===1){
+          // reset bar animations so they retrigger
+          document.querySelectorAll('.ac-bar-bg').forEach(function(b){
+            b.style.transition='none';
+            b.style.transform='scaleY(0)';
+          });
+          setTimeout(function(){
+            document.querySelectorAll('.ac-bar-bg').forEach(function(b,i){
+              b.style.transition='transform .5s cubic-bezier(.2,.8,.2,1) '+(i*60)+'ms';
+              b.style.transform='scaleY(1)';
+            });
+          },80);
+        }
+      }
+
+      function next(){
+        showScreen((cur+1)%3);
+        scheduleNext();
+      }
+
+      function scheduleNext(){
+        clearTimeout(timer);
+        timer=setTimeout(next,3800);
+      }
+
+      // Start
+      screens[0].classList.add('ac-active');
+      // Kick off counting immediately
+      setTimeout(function(){
+        var n1=document.getElementById('acN1'),n2=document.getElementById('acN2'),n3=document.getElementById('acN3'),n4=document.getElementById('acN4');
+        countUp(n1,47,1200);countUp(n2,41,1200);countUp(n3,6,800);countDuration(n4,204,1200);
+      },600);
+      scheduleNext();
     })();
 
     // HubSpot form submission → fire Google Ads conversion + show thank-you overlay
