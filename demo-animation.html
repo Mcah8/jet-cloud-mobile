@@ -44,6 +44,7 @@ html,body{margin:0;padding:0;background:transparent;font-family:'Barlow',system-
   transform:rotateY(-8deg) rotateX(3deg) rotateZ(-1.5deg);
   transform-style:preserve-3d;
   overflow:hidden;
+  z-index:1;
 }
 
 /* notch */
@@ -88,6 +89,7 @@ html,body{margin:0;padding:0;background:transparent;font-family:'Barlow',system-
 /* ── SATELLITE CARDS ────────────────────────────────────────────────── */
 .card{
   position:absolute;
+  z-index:2;
   background:rgba(255,255,255,.92);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border:1px solid rgba(255,255,255,.5);
