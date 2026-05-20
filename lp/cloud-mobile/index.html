@@ -72,6 +72,14 @@
     .hero__micro-item{display:flex;align-items:center;gap:6px;font-size:var(--fs-small);color:rgba(255,255,255,.75)}
     .hero__micro-item svg{color:rgba(255,255,255,.9);flex-shrink:0}
 
+    /* Hero trust grid */
+    .hero__trust{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-top:var(--sp-5)}
+    .hero__trust-item{display:flex;align-items:center;gap:10px}
+    .hero__trust-icon{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(255,255,255,.9)}
+    .hero__trust-text{display:flex;flex-direction:column;gap:1px}
+    .hero__trust-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.95);line-height:1.2}
+    .hero__trust-sub{font-size:11px;color:rgba(255,255,255,.55);line-height:1.3}
+
     /* Hero phone visual */
     .hero__visual{display:flex;align-items:flex-start;justify-content:center}
     .hero__iframe{width:680px;max-width:100%;height:880px;border:none;display:block;background:transparent}
@@ -373,18 +381,42 @@
             Quick Quote
           </button>
         </div>
-        <div class="hero__micro">
-          <div class="hero__micro-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Month-to-month billing
+        <div class="hero__trust">
+          <div class="hero__trust-item">
+            <div class="hero__trust-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="hero__trust-text">
+              <span class="hero__trust-label">Australian-owned</span>
+              <span class="hero__trust-sub">Not a US or European product</span>
+            </div>
           </div>
-          <div class="hero__micro-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            No lock-in contracts
+          <div class="hero__trust-item">
+            <div class="hero__trust-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="hero__trust-text">
+              <span class="hero__trust-label">From $35/user/month</span>
+              <span class="hero__trust-sub">Billed in AUD, no hidden fees</span>
+            </div>
           </div>
-          <div class="hero__micro-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Live same day
+          <div class="hero__trust-item">
+            <div class="hero__trust-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><polyline points="9 14 11 16 15 12"/></svg>
+            </div>
+            <div class="hero__trust-text">
+              <span class="hero__trust-label">No lock-in contracts</span>
+              <span class="hero__trust-sub">Month-to-month as standard</span>
+            </div>
+          </div>
+          <div class="hero__trust-item">
+            <div class="hero__trust-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.18 6h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 13.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="hero__trust-text">
+              <span class="hero__trust-label">Sydney-based support</span>
+              <span class="hero__trust-sub">Help during AEST business hours</span>
+            </div>
           </div>
         </div>
       </div>
@@ -487,57 +519,6 @@
     </div>
   </div>
 
-
-  <!-- Trust bar -->
-  <div class="trust-bar">
-    <div class="trust-bar__inner">
-      <div class="trust-item">
-        <div class="trust-item__icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div class="trust-item__text">
-          <span class="trust-item__label">Australian-owned</span>
-          <span class="trust-item__sub">Not a US or European product</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item__icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <div class="trust-item__text">
-          <span class="trust-item__label">Australian infrastructure</span>
-          <span class="trust-item__sub">Your data never leaves Australia</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item__icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <div class="trust-item__text">
-          <span class="trust-item__label">Sydney-based support</span>
-          <span class="trust-item__sub">Help during AEST business hours</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item__icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <div class="trust-item__text">
-          <span class="trust-item__label">From $35/user/month</span>
-          <span class="trust-item__sub">Billed in AUD, no hidden fees</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item__icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <div class="trust-item__text">
-          <span class="trust-item__label">No lock-in contracts</span>
-          <span class="trust-item__sub">Month-to-month as standard</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Reporting -->
   <section class="report-section">
