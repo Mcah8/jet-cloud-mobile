@@ -61,53 +61,78 @@
     .btn-ghost-dark:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.1)}
 
     /* ── Hero ──────────────────────────────────────────────────────────────── */
-    .hero{background:var(--grad-hero);color:var(--white);padding:var(--sp-10) var(--sp-6) var(--sp-9)}
-    .hero__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:var(--sp-8);align-items:center}
+    .hero{background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6)}
+    .hero__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:var(--sp-8);align-items:center}
     .hero__offer-pill{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:var(--white);font-size:var(--fs-small);font-weight:700;text-transform:uppercase;letter-spacing:var(--tr-ultra);padding:5px 16px;border-radius:var(--radius-pill);margin-bottom:var(--sp-5)}
-    .hero h1{font-family:var(--font-display);font-size:clamp(34px,4.8vw,58px);font-weight:800;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-5)}
+    .hero h1{font-family:var(--font-display);font-size:clamp(30px,4vw,52px);font-weight:800;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
     .hero h1 em{font-style:normal;color:rgba(255,255,255,.6)}
-    .hero__sub{color:rgba(255,255,255,.88);font-size:var(--fs-lead);line-height:1.6;margin-bottom:var(--sp-7);max-width:540px}
-    .hero__ctas{display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center;margin-bottom:var(--sp-6)}
+    .hero__sub{color:rgba(255,255,255,.88);font-size:var(--fs-body);line-height:1.6;margin-bottom:var(--sp-5);max-width:520px}
+    .hero__ctas{display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center;margin-bottom:var(--sp-5)}
     .hero__micro{display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap}
     .hero__micro-item{display:flex;align-items:center;gap:6px;font-size:var(--fs-small);color:rgba(255,255,255,.75)}
     .hero__micro-item svg{color:rgba(255,255,255,.9);flex-shrink:0}
 
-    /* Hero form card */
-    .hero__card{background:var(--white);border-radius:var(--radius-lg);padding:var(--sp-6);box-shadow:var(--shadow-3)}
-    .hero__card h2{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:800;color:var(--fg-1);margin-bottom:var(--sp-2);line-height:var(--lh-snug)}
-    .hero__card p{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--sp-5)}
-    .form-row{display:flex;flex-direction:column;gap:var(--sp-3);margin-bottom:var(--sp-4)}
-    .form-field{display:flex;flex-direction:column;gap:6px}
-    .form-field label{font-size:var(--fs-small);font-weight:600;color:var(--fg-2)}
-    .form-field input,.form-field select{border:var(--border);border-radius:var(--radius-md);padding:10px var(--sp-4);font-size:var(--fs-body);font-family:var(--font-ui);color:var(--fg-1);background:var(--white);transition:border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);outline:none;width:100%}
-    .form-field input:focus,.form-field select:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,28,36,.12)}
-    .form-field input::placeholder{color:var(--ink-400)}
-    .form-submit{width:100%;padding:.75rem;font-size:var(--fs-lead);font-weight:700;font-family:var(--font-ui);background:var(--red);color:var(--white);border:none;border-radius:var(--radius-md);cursor:pointer;transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
-    .form-submit:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
-    .form-note{font-size:12px;color:var(--fg-3);text-align:center;margin-top:var(--sp-3);line-height:1.5}
+    /* Hero calculator card */
+    .hero__card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-3);overflow:hidden}
+    .hero__card-head{padding:var(--sp-4) var(--sp-5) var(--sp-3)}
+    .hero__card-head h2{font-family:var(--font-display);font-size:var(--fs-h5);font-weight:800;color:var(--fg-1);margin-bottom:2px}
+    .hero__card-head p{font-size:12px;color:var(--fg-3)}
+    .form-note{font-size:12px;color:var(--fg-3);text-align:center;line-height:1.5}
 
-    /* ── Pricing calculator ────────────────────────────────────────────────── */
-    .calc__label-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--sp-3)}
-    .calc__label-row label{font-size:var(--fs-small);font-weight:600;color:var(--fg-2)}
-    .calc__count{font-family:var(--font-display);font-size:var(--fs-h4);font-weight:800;color:var(--fg-1)}
-    .calc__count span{color:var(--red)}
-    input[type=range].calc__slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:var(--ink-200);outline:none;margin-bottom:var(--sp-5);cursor:pointer}
-    input[type=range].calc__slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 2px 6px rgba(237,28,36,.4);transition:box-shadow var(--dur-base) var(--ease-out)}
-    input[type=range].calc__slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--red);cursor:pointer;border:none;box-shadow:0 2px 6px rgba(237,28,36,.4)}
-    input[type=range].calc__slider:hover::-webkit-slider-thumb{box-shadow:0 2px 12px rgba(237,28,36,.55)}
-    .calc__result{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-5);background:var(--ink-50);border-radius:var(--radius-lg);padding:var(--sp-4) var(--sp-5)}
-    .calc__col{text-align:center}
-    .calc__col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--fg-3);margin-bottom:4px}
-    .calc__col-price{font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:800;line-height:1}
-    .calc__col--free .calc__col-price{color:var(--red)}
-    .calc__col--then .calc__col-price{color:var(--fg-1)}
-    .calc__col-sub{font-size:11px;color:var(--fg-3);margin-top:3px}
-    .calc__arrow{color:var(--ink-300);font-size:18px;font-weight:300}
-    .calc__includes{list-style:none;margin-bottom:var(--sp-5);display:flex;flex-direction:column;gap:var(--sp-2)}
-    .calc__includes li{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-small);color:var(--fg-2)}
-    .calc__includes li svg{color:var(--red);flex-shrink:0}
-    .calc__cta{width:100%;padding:.8rem;font-size:var(--fs-lead);font-weight:700;font-family:var(--font-ui);background:var(--red);color:var(--white);border:none;border-radius:var(--radius-md);cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:var(--sp-2);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)}
-    .calc__cta:hover{background:var(--red-dark);box-shadow:var(--shadow-red)}
+    /* ── Pricing calculator (shared with pricing page) ─────────────────────── */
+    .nc-card{background:var(--white);border:1px solid var(--ink-200);border-radius:16px;box-shadow:0 8px 32px rgba(11,11,12,.1);overflow:hidden;max-width:960px;margin:0 auto}
+    .nc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--ink-100)}
+    .nc-col{padding:2rem 2rem 1.75rem;border-right:1px solid var(--ink-100)}
+    .nc-col:last-child{border-right:none}
+    .nc-step{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;font-family:var(--font-display)}
+    .nc-q{font-size:15px;font-weight:600;color:var(--ink-900);margin-bottom:1.25rem;line-height:1.35}
+    .nc-count{display:flex;align-items:center;gap:14px;margin-bottom:.5rem}
+    .nc-btn{width:40px;height:40px;border-radius:8px;border:1.5px solid var(--ink-300);background:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-600);transition:all 120ms;font-weight:500;flex-shrink:0;font-family:var(--font-ui)}
+    .nc-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-50)}
+    .nc-num{font-size:40px;font-weight:700;min-width:56px;text-align:center;color:var(--ink-900);font-family:var(--font-display);line-height:1}
+    .nc-unit{font-size:13px;color:var(--ink-400)}
+    .nc-opts{display:flex;flex-direction:column;gap:8px}
+    .nc-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1.5px solid var(--ink-200);border-radius:9px;cursor:pointer;background:#fff;text-align:left;transition:all 120ms;width:100%;font-family:var(--font-ui)}
+    .nc-opt:hover{border-color:var(--red-100);background:var(--red-50)}
+    .nc-opt.sel{border-color:var(--red);background:var(--red-50)}
+    .nc-radio{width:17px;height:17px;border-radius:50%;border:2px solid var(--ink-300);flex-shrink:0;transition:all 120ms}
+    .nc-opt.sel .nc-radio{border-color:var(--red);background:var(--red);box-shadow:0 0 0 3px var(--red-100)}
+    .nc-main{font-size:14px;font-weight:500;color:var(--ink-900);line-height:1.2;display:block}
+    .nc-sub{font-size:11px;color:var(--ink-400);margin-top:1px;display:block}
+    .nc-summary{background:var(--red);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+    .nc-price-wrap{display:flex;flex-direction:column;gap:3px}
+    .nc-price{font-family:var(--font-display);font-size:40px;font-weight:700;color:#fff;line-height:1}
+    .nc-price span{font-size:16px;font-weight:400;color:rgba(255,255,255,.45)}
+    .nc-detail{font-size:13px;color:rgba(255,255,255,.82)}
+    .nc-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .nc-buy{background:#fff;color:var(--red);padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap;transition:background 120ms,box-shadow 120ms;font-family:var(--font-ui)}
+    .nc-buy:hover{background:var(--red-50);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nc-demo{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;white-space:nowrap;transition:all 120ms;font-family:var(--font-ui)}
+    .nc-demo:hover{border-color:rgba(255,255,255,.85)}
+
+    /* ── Hero calculator — compact vertical override ────────────────────────── */
+    .hero__card .nc-card{border:none;border-radius:0;box-shadow:none;max-width:none;margin:0}
+    .hero__card .nc-grid{grid-template-columns:1fr;border-bottom:none}
+    .hero__card .nc-col{padding:12px 20px;border-right:none;border-bottom:1px solid var(--ink-100)}
+    .hero__card .nc-col:last-child{border-bottom:none}
+    .hero__card .nc-step{font-size:10px;margin-bottom:2px}
+    .hero__card .nc-q{font-size:13px;margin-bottom:10px}
+    .hero__card .nc-count{gap:10px;margin-bottom:2px}
+    .hero__card .nc-btn{width:34px;height:34px;font-size:18px}
+    .hero__card .nc-num{font-size:32px;min-width:44px}
+    .hero__card .nc-unit{font-size:12px}
+    .hero__card .nc-opts{gap:5px}
+    .hero__card .nc-opt{padding:7px 10px;gap:8px;border-radius:7px}
+    .hero__card .nc-main{font-size:13px}
+    .hero__card .nc-sub{display:none}
+    .hero__card .nc-radio{width:14px;height:14px}
+    .hero__card .nc-summary{padding:14px 20px;gap:10px}
+    .hero__card .nc-price{font-size:30px}
+    .hero__card .nc-price span{font-size:14px}
+    .hero__card .nc-detail{font-size:11px}
+    .hero__card .nc-actions{width:100%}
+    .hero__card .nc-buy{flex:1;text-align:center;padding:10px 14px;font-size:14px}
+    .hero__card .nc-demo{flex:1;text-align:center;padding:10px 14px;font-size:14px}
 
     /* ── HubSpot form section ───────────────────────────────────────────────── */
     .hs-section{background:var(--ink-50);padding:var(--sp-9) var(--sp-6)}
@@ -320,42 +345,49 @@
 
       <!-- Pricing calculator -->
       <div class="hero__card">
-        <h2>Calculate your price</h2>
-        <p>No hidden fees. Billed in AUD. Cancel anytime.</p>
-
-        <div class="calc__label-row">
-          <label for="calcSlider">How many users?</label>
-          <div class="calc__count"><span id="calcUsers">5</span> users</div>
-        </div>
-        <input type="range" class="calc__slider" id="calcSlider" min="1" max="100" value="5" aria-label="Number of users">
-
-        <div class="calc__result">
-          <div class="calc__col calc__col--free">
-            <div class="calc__col-label">First month</div>
-            <div class="calc__col-price">$0</div>
-            <div class="calc__col-sub">Free — on us</div>
+        <div class="nc-card">
+          <div class="nc-grid">
+            <div class="nc-col">
+              <div class="nc-step">Step 1</div>
+              <div class="nc-q">How many staff need a number?</div>
+              <div class="nc-count">
+                <button class="nc-btn" id="nc-dec">&#8722;</button>
+                <div class="nc-num" id="nc-num">1</div>
+                <button class="nc-btn" id="nc-inc">+</button>
+              </div>
+              <div class="nc-unit">users</div>
+            </div>
+            <div class="nc-col">
+              <div class="nc-step">Step 2</div>
+              <div class="nc-q">New numbers, existing, or both?</div>
+              <div class="nc-opts">
+                <button class="nc-opt sel" data-nt="new"><span class="nc-radio"></span><span><span class="nc-main">New numbers</span><span class="nc-sub">Fresh Australian mobile numbers</span></span></button>
+                <button class="nc-opt" data-nt="existing"><span class="nc-radio"></span><span><span class="nc-main">Existing numbers</span><span class="nc-sub">Port your current numbers</span></span></button>
+                <button class="nc-opt" data-nt="both"><span class="nc-radio"></span><span><span class="nc-main">Both</span><span class="nc-sub">Mix of new and ported</span></span></button>
+              </div>
+            </div>
+            <div class="nc-col">
+              <div class="nc-step">Step 3</div>
+              <div class="nc-q">Avg calls &amp; SMS per user per month?</div>
+              <div class="nc-opts">
+                <button class="nc-opt" data-cr="0-100"><span class="nc-radio"></span><span><span class="nc-main">0 – 100</span><span class="nc-sub">Light usage</span></span></button>
+                <button class="nc-opt" data-cr="100-500"><span class="nc-radio"></span><span><span class="nc-main">100 – 500</span><span class="nc-sub">Moderate usage</span></span></button>
+                <button class="nc-opt" data-cr="500-1000"><span class="nc-radio"></span><span><span class="nc-main">500 – 1,000</span><span class="nc-sub">Active team</span></span></button>
+                <button class="nc-opt" data-cr="1000+"><span class="nc-radio"></span><span><span class="nc-main">1,000+</span><span class="nc-sub">High volume — excess at 6¢/min</span></span></button>
+              </div>
+            </div>
           </div>
-          <div class="calc__arrow">→</div>
-          <div class="calc__col calc__col--then">
-            <div class="calc__col-label">Then per month</div>
-            <div class="calc__col-price" id="calcPrice">$175</div>
-            <div class="calc__col-sub">AUD · inc. GST</div>
+          <div class="nc-summary">
+            <div class="nc-price-wrap">
+              <div class="nc-price" id="nc-price">A$35<span>/mo</span></div>
+              <div class="nc-detail" id="nc-detail">A$35.00 per user · 1 user · 1,000 calls &amp; SMS included · No lock-in contract</div>
+            </div>
+            <div class="nc-actions" id="nc-actions">
+              <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy" id="nc-buy">Buy now — A$35/mo</a>
+              <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>
+            </div>
           </div>
         </div>
-
-        <ul class="calc__includes">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Virtual mobile number per user</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited local calls included</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> SMS, call recording &amp; voicemail</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Australian infrastructure &amp; support</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No lock-in — cancel any month</li>
-        </ul>
-
-        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="calc__cta">
-          Start free — first month on us
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <p class="form-note" style="margin-top:var(--sp-3)">$35 AUD per user/month from month 2. Cancel anytime.</p>
       </div>
     </div>
   </section>
@@ -743,23 +775,46 @@
     });
 
     // Pricing calculator
-    const PRICE_PER_USER = 35;
-    const slider = document.getElementById('calcSlider');
-    const usersEl = document.getElementById('calcUsers');
-    const priceEl = document.getElementById('calcPrice');
-
-    function updateCalc() {
-      const n = parseInt(slider.value, 10);
-      usersEl.textContent = n;
-      const monthly = n * PRICE_PER_USER;
-      priceEl.textContent = '$' + monthly.toLocaleString('en-AU');
-      // Update slider fill colour
-      const pct = ((n - 1) / (slider.max - 1)) * 100;
-      slider.style.background = `linear-gradient(to right, var(--red) ${pct}%, var(--ink-200) ${pct}%)`;
-    }
-
-    slider.addEventListener('input', updateCalc);
-    updateCalc(); // initialise
+    (function(){
+      var users=1, numberType='new', callRange=null;
+      function fmt(n){return n.toLocaleString('en-AU');}
+      function update(){
+        var monthly=users*35, allowance=users*1000;
+        var demoOnly=numberType==='existing'||numberType==='both';
+        document.getElementById('nc-num').textContent=users;
+        document.getElementById('nc-price').innerHTML='A$'+fmt(monthly)+'<span>/mo</span>';
+        var detail='A$35.00 per user · '+users+' user'+(users>1?'s':'')+' · '+fmt(allowance)+' calls & SMS included';
+        if(callRange==='1000+') detail+=' · Excess at 6¢/min';
+        detail+=' · No lock-in contract';
+        document.getElementById('nc-detail').textContent=detail;
+        var a=document.getElementById('nc-actions');
+        if(demoOnly){
+          a.innerHTML='<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-buy">Book a demo</a>';
+        } else {
+          a.innerHTML='<a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="nc-buy">Buy now — A$'+fmt(monthly)+'/mo</a>'+
+            '<a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="nc-demo">Book a demo</a>';
+        }
+      }
+      document.getElementById('nc-dec').onclick=function(){if(users>1){users--;update();}};
+      document.getElementById('nc-inc').onclick=function(){users++;update();};
+      document.querySelectorAll('[data-nt]').forEach(function(b){
+        b.onclick=function(){
+          document.querySelectorAll('[data-nt]').forEach(function(x){x.classList.remove('sel');});
+          b.classList.add('sel');
+          numberType=b.getAttribute('data-nt');
+          update();
+        };
+      });
+      document.querySelectorAll('[data-cr]').forEach(function(b){
+        b.onclick=function(){
+          document.querySelectorAll('[data-cr]').forEach(function(x){x.classList.remove('sel');});
+          b.classList.add('sel');
+          callRange=b.getAttribute('data-cr');
+          update();
+        };
+      });
+      update();
+    })();
 
     // HubSpot form submission → fire Google Ads conversion + show thank-you overlay
     window.addEventListener('message', function(event) {
