@@ -196,10 +196,10 @@
     .stat__label{font-size:var(--fs-body);color:var(--fg-2)}
 
     /* ── Trust bar ─────────────────────────────────────────────────────────── */
-    .trust-bar{background:var(--ink-50);border-bottom:var(--border);padding:var(--sp-5) var(--sp-6)}
+    .trust-bar{background:var(--white);border-bottom:var(--border);padding:var(--sp-6) var(--sp-6)}
     .trust-bar__inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:var(--sp-8);flex-wrap:wrap}
     .trust-item{display:flex;align-items:center;gap:var(--sp-3)}
-    .trust-item__icon{width:36px;height:36px;border-radius:var(--radius-md);background:var(--red-50);display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0}
+    .trust-item__icon{width:56px;height:56px;border-radius:14px;background:var(--red-50);display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0}
     .trust-item__text{display:flex;flex-direction:column}
     .trust-item__label{font-size:13px;font-weight:700;color:var(--fg-1)}
     .trust-item__sub{font-size:12px;color:var(--fg-3)}
@@ -276,6 +276,37 @@
     .footer-min p{font-size:var(--fs-small);color:var(--ink-500)}
     .footer-min a{color:var(--ink-400);text-decoration:underline}
 
+    .section-ctas{display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap;margin-top:var(--sp-7)}
+    .btn-outline-dark{background:transparent;color:var(--fg-1);padding:.85rem 2rem;border-radius:var(--radius-md);font-weight:600;font-size:var(--fs-lead);display:inline-flex;align-items:center;gap:var(--sp-2);border:2px solid var(--ink-200);transition:border-color var(--dur-base) var(--ease-out),background var(--dur-base) var(--ease-out);font-family:var(--font-ui)}
+    .btn-outline-dark:hover{border-color:var(--ink-400);background:var(--ink-50)}
+
+    /* ── Reporting section ─────────────────────────────────────────────────── */
+    .report-section{background:var(--grad-hero);color:var(--white);padding:var(--sp-9) var(--sp-6)}
+    .report-section__inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 480px;gap:var(--sp-8);align-items:center}
+    .report-section__title{font-family:var(--font-display);font-size:clamp(26px,3.5vw,42px);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:var(--tr-tight);margin-bottom:var(--sp-4)}
+    .report-section__lead{color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:var(--sp-6);font-size:var(--fs-lead);max-width:480px}
+    .report-list{list-style:none;display:flex;flex-direction:column;gap:var(--sp-3);margin-bottom:var(--sp-6)}
+    .report-list li{display:flex;align-items:flex-start;gap:var(--sp-3);color:rgba(255,255,255,.9);font-size:var(--fs-body);line-height:1.5}
+    .report-list li svg{color:rgba(255,255,255,.85);flex-shrink:0;margin-top:3px}
+    .analytics-card{background:var(--white);border-radius:16px;padding:var(--sp-5);box-shadow:var(--shadow-3)}
+    .analytics-card__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4);padding-bottom:var(--sp-4);border-bottom:1px solid var(--ink-100)}
+    .analytics-card__title{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--fg-1)}
+    .analytics-card__live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg-3)}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:#0E8A4A;display:inline-block;animation:blink 1.4s ease infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .analytics-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-5)}
+    .analytics-stat{background:var(--ink-50);border-radius:10px;padding:var(--sp-3) var(--sp-4)}
+    .analytics-stat__value{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--fg-1);line-height:1}
+    .analytics-stat__value.red{color:var(--red)}
+    .analytics-stat__label{font-size:11px;color:var(--fg-3);margin-top:4px}
+    .analytics-bars__label{font-size:11px;font-weight:700;color:var(--fg-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-3)}
+    .analytics-bars{display:flex;flex-direction:column;gap:10px}
+    .analytics-bar-row{display:flex;align-items:center;gap:var(--sp-3)}
+    .analytics-bar-name{font-size:12px;color:var(--fg-2);width:76px;flex-shrink:0}
+    .analytics-bar-track{flex:1;height:7px;background:var(--ink-100);border-radius:999px;overflow:hidden}
+    .analytics-bar-fill{height:100%;border-radius:999px;background:var(--red)}
+    .analytics-bar-count{font-size:12px;font-weight:600;color:var(--fg-2);width:24px;text-align:right;flex-shrink:0}
+
     /* ── Responsive ────────────────────────────────────────────────────────── */
     @media(max-width:960px){
       .hero__inner{grid-template-columns:1fr;max-width:600px;margin:0 auto}
@@ -286,6 +317,8 @@
       .testi-grid{grid-template-columns:1fr}
       .trust-bar__inner{gap:var(--sp-5)}
       .stats-bar__inner{grid-template-columns:1fr;gap:var(--sp-5)}
+      .report-section__inner{grid-template-columns:1fr}
+      .report-section__visual{display:none}
     }
     @media(max-width:600px){
       .feat-grid{grid-template-columns:1fr}
@@ -339,20 +372,16 @@
         <h1>A business mobile number on any smartphone.</h1>
         <p class="hero__sub">Jet Cloud Mobile gives every staff member a dedicated business number through an app — no second handset, no hardware, no lock-in contracts. Calls, SMS, recording and reporting all included. From $35/month per user.</p>
         <div class="hero__ctas">
-          <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-cta btn-cta--lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Start free — first month on us
+          <a href="tel:0488811729" class="btn-ghost-dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call or Text Us
           </a>
-          <button class="btn-ghost-dark" id="openQuote" type="button">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            Quick quote
+          <button class="btn-cta btn-cta--lg" id="openQuote" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Quick Quote
           </button>
         </div>
         <div class="hero__micro">
-          <a href="tel:0488811729" class="hero__micro-item" style="color:rgba(255,255,255,.75);text-decoration:none">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-            Call or text us
-          </a>
           <div class="hero__micro-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             Month-to-month billing
@@ -465,30 +494,13 @@
     </div>
   </div>
 
-  <!-- Stats bar -->
-  <div class="stats-bar">
-    <div class="stats-bar__inner">
-      <div class="stat">
-        <div class="stat__number">10,000+</div>
-        <div class="stat__label">Cloud Mobile users</div>
-      </div>
-      <div class="stat">
-        <div class="stat__number">2M+</div>
-        <div class="stat__label">calls &amp; SMS every month</div>
-      </div>
-      <div class="stat">
-        <div class="stat__number">Since 2006</div>
-        <div class="stat__label">Operating in Australia</div>
-      </div>
-    </div>
-  </div>
 
   <!-- Trust bar -->
   <div class="trust-bar">
     <div class="trust-bar__inner">
       <div class="trust-item">
         <div class="trust-item__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
         <div class="trust-item__text">
           <span class="trust-item__label">Australian-owned</span>
@@ -497,7 +509,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-item__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
         <div class="trust-item__text">
           <span class="trust-item__label">Australian infrastructure</span>
@@ -506,7 +518,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-item__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </div>
         <div class="trust-item__text">
           <span class="trust-item__label">Sydney-based support</span>
@@ -515,7 +527,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-item__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <div class="trust-item__text">
           <span class="trust-item__label">From $35/user/month</span>
@@ -524,7 +536,7 @@
       </div>
       <div class="trust-item">
         <div class="trust-item__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <div class="trust-item__text">
           <span class="trust-item__label">No lock-in contracts</span>
@@ -613,58 +625,114 @@
           <p>Your team downloads Jet on iOS, Android or desktop and starts taking calls the same day — from wherever they work.</p>
         </div>
       </div>
+      <div class="section-ctas">
+        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-cta btn-cta--lg">
+          Get started — first month free →
+        </a>
+        <button class="btn-cta btn-cta--lg" id="openQuote2" type="button" style="background:var(--ink-800);box-shadow:none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Quick Quote
+        </button>
+        <a href="tel:0488811729" class="btn-outline-dark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          Call or Text Us
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section class="section">
-    <div class="section__inner">
-      <div class="section__header">
-        <p class="section__eyebrow">Simple pricing</p>
-        <h2 class="section__title">One flat price. No surprises.</h2>
-        <p class="section__lead">No per-minute charges, no feature add-ons, no USD invoices. Just one price per user per month, billed in Australian dollars.</p>
-      </div>
-      <div class="pricing-card">
-        <div class="pricing-card__badge">🎉 First month free — limited offer</div>
-        <div class="pricing-card__crossed">$35/user/month</div>
-        <div class="pricing-card__price">
-          <sup>$</sup>0<sub>/user first month</sub>
-        </div>
-        <div class="pricing-card__offer">Then $35 AUD/user/month — cancel anytime</div>
-        <ul class="pricing-list">
+  <!-- Reporting -->
+  <section class="report-section">
+    <div class="report-section__inner">
+      <div class="report-section__copy">
+        <p class="section__eyebrow" style="color:rgba(255,255,255,.65)">Live visibility</p>
+        <h2 class="report-section__title">Know exactly what your team is doing on the phone.</h2>
+        <p class="report-section__lead">Jet Hub gives you a real-time view of every call, every number and every team member — no waiting for end-of-month reports.</p>
+        <ul class="report-list">
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Australian virtual mobile number per user
+            Live call dashboard — active, missed and completed calls
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Unlimited local calls included
+            Per-user call volumes, talk time and response rates
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            SMS &amp; MMS, call recording, voicemail
+            Call recordings stored securely on Australian infrastructure
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            IVR, call routing &amp; ring groups
+            Missed call alerts and follow-up tracking
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Call analytics &amp; reporting
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Australian infrastructure &amp; support
-          </li>
-          <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            No lock-in — cancel or change any month
+            Downloadable reports for compliance and performance reviews
           </li>
         </ul>
-        <a href="https://signup.jetinteractive.com.au/cloud-mobile" target="_blank" rel="noopener" class="btn-cta btn-cta--lg" style="width:100%;justify-content:center">
-          Claim first month free →
-        </a>
-        <p class="pricing-note">Offer applies to new customers only.</p>
+        <div class="hero__ctas" style="margin-bottom:0">
+          <a href="https://calendly.com/d/dn9-czx-557/book-a-demo" target="_blank" rel="noopener" class="btn-cta btn-cta--lg">
+            See it in a demo
+          </a>
+          <a href="tel:0488811729" class="btn-ghost-dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call or Text Us
+          </a>
+        </div>
+      </div>
+      <div class="report-section__visual">
+        <div class="analytics-card">
+          <div class="analytics-card__header">
+            <div class="analytics-card__title">Jet Hub &mdash; Call Activity</div>
+            <div class="analytics-card__live"><span class="live-dot"></span> Live</div>
+          </div>
+          <div class="analytics-stats">
+            <div class="analytics-stat">
+              <div class="analytics-stat__value">47</div>
+              <div class="analytics-stat__label">Calls today</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat__value">41</div>
+              <div class="analytics-stat__label">Answered</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat__value red">6</div>
+              <div class="analytics-stat__label">Missed</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat__value">3:24</div>
+              <div class="analytics-stat__label">Avg duration</div>
+            </div>
+          </div>
+          <div class="analytics-bars__label">Calls by team member</div>
+          <div class="analytics-bars">
+            <div class="analytics-bar-row">
+              <div class="analytics-bar-name">Sarah K.</div>
+              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:88%"></div></div>
+              <div class="analytics-bar-count">14</div>
+            </div>
+            <div class="analytics-bar-row">
+              <div class="analytics-bar-name">James T.</div>
+              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:69%"></div></div>
+              <div class="analytics-bar-count">11</div>
+            </div>
+            <div class="analytics-bar-row">
+              <div class="analytics-bar-name">Priya M.</div>
+              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:56%"></div></div>
+              <div class="analytics-bar-count">9</div>
+            </div>
+            <div class="analytics-bar-row">
+              <div class="analytics-bar-name">David L.</div>
+              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:44%"></div></div>
+              <div class="analytics-bar-count">7</div>
+            </div>
+            <div class="analytics-bar-row">
+              <div class="analytics-bar-name">Michelle W.</div>
+              <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:38%"></div></div>
+              <div class="analytics-bar-count">6</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -685,10 +753,10 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <blockquote>"Set up was done in a morning. Each of our reps now has their own number, their calls are recorded, and I can see exactly what's happening across the team in real time. The Sydney support team is genuinely helpful."</blockquote>
+          <blockquote>"Thanks for setting up our business phones. My staff can finally work at home. Great service. Would highly recommend!"</blockquote>
           <div class="testi-card__meta">
-            <span class="testi-card__name">General Manager</span>
-            <span class="testi-card__role">Property management company · 14 users</span>
+            <span class="testi-card__name">Deborah</span>
+            <span class="testi-card__role">CEO</span>
           </div>
         </div>
         <div class="testi-card">
@@ -699,10 +767,10 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <blockquote>"We were paying more in USD for a US platform with US support. Switching to Jet saved us money, our invoices are in AUD, and everything is hosted in Australia — which matters for our compliance obligations."</blockquote>
+          <blockquote>"We initially switched over to Jet based on cost. We however found their product and service to be excellent. The management platform is extremely powerful and gives us great control."</blockquote>
           <div class="testi-card__meta">
-            <span class="testi-card__name">Operations Director</span>
-            <span class="testi-card__role">Financial services firm · 28 users</span>
+            <span class="testi-card__name">Bilal</span>
+            <span class="testi-card__role">Managing Director</span>
           </div>
         </div>
         <div class="testi-card">
@@ -713,10 +781,10 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <blockquote>"No lock-in was the deciding factor for us. We tried it for a month, it worked, and we've stayed ever since. The month-to-month billing gives us confidence that Jet has to keep earning our business."</blockquote>
+          <blockquote>"I'd been looking at Jet for a couple of months before taking the plunge. So glad I did! Jet Hub has made WFH so painless I can concentrate on getting my team's issues solved."</blockquote>
           <div class="testi-card__meta">
-            <span class="testi-card__name">Head of Sales</span>
-            <span class="testi-card__role">National recruitment agency · 9 users</span>
+            <span class="testi-card__name">Rosie</span>
+            <span class="testi-card__role">Operations Manager</span>
           </div>
         </div>
       </div>
@@ -759,19 +827,6 @@
     </div>
   </section>
 
-  <!-- HubSpot form -->
-  <section class="hs-section">
-    <div class="hs-section__inner">
-      <div class="hs-section__header">
-        <p class="section__eyebrow">Get started</p>
-        <h2 class="section__title">Claim your first month free</h2>
-        <p class="section__lead" style="font-size:var(--fs-body)">Fill in your details and our Sydney team will be in touch within one business day to get you set up.</p>
-      </div>
-      <div class="hero__card" style="box-shadow:var(--shadow-2)">
-        <div class="hs-form-frame" data-region="ap1" data-form-id="52e36f05-0d63-4dd0-bdf2-20e2f6c00edc" data-portal-id="442264265"></div>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA band -->
   <div class="cta-band">
@@ -818,6 +873,7 @@
       var backdrop=document.getElementById('quoteBackdrop');
       var closeBtn=document.getElementById('quoteClose');
       var openBtn=document.getElementById('openQuote');
+      var openBtn2=document.getElementById('openQuote2');
       function openModal(){
         modal.classList.add('open');
         document.body.style.overflow='hidden';
@@ -828,6 +884,7 @@
         document.body.style.overflow='';
       }
       openBtn.addEventListener('click', openModal);
+      if(openBtn2) openBtn2.addEventListener('click', openModal);
       closeBtn.addEventListener('click', closeModal);
       backdrop.addEventListener('click', closeModal);
       document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
