@@ -9,9 +9,9 @@
   <link rel="icon" href="../../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://js-ap1.hsforms.net/forms/v2.js" defer></script>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <link rel="dns-prefetch" href="https://js-ap1.hsforms.net">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
@@ -644,6 +644,8 @@
           scrolling="no"
           allowtransparency="true"
           title="Jet Cloud Mobile app demo"
+          loading="lazy"
+          fetchpriority="low"
         ></iframe>
       </div>
     </div>
@@ -1505,6 +1507,12 @@
         if(typeof hbspt!=='undefined'&&hbspt.forms){
           hbspt.forms.create({region:'ap1',portalId:'442264265',formId:'52e36f05-0d63-4dd0-bdf2-20e2f6c00edc',target:'#wiz-hs-form'});
           hsFormLoaded=true;
+        } else if(!document.getElementById('hs-forms-script')){
+          var s=document.createElement('script');
+          s.id='hs-forms-script';
+          s.src='https://js-ap1.hsforms.net/forms/v2.js';
+          s.onload=createHsForm;
+          document.head.appendChild(s);
         } else {
           setTimeout(createHsForm,250);
         }
