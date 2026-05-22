@@ -12,16 +12,9 @@
     localStorage.setItem('jc-session-id', sessionId);
   }
 
-  let sessionStatus = 'bot';   // 'bot' | 'agent'
-  let agentName     = null;
-  let lastPollTs    = 0;
-  let pollTimer     = null;
-  let pollAttempts  = 0;
-  let isOpen        = false;
-  let isTyping      = false;
+  let isOpen   = false;
+  let isTyping = false;
 
-  const POLL_INTERVAL    = 1200;  // ms between polls
-  const POLL_MAX         = 25;    // ~30s before timeout
   const HS_PORTAL_ID     = '442264265';
   const HS_FORM_ID       = '52e36f05-0d63-4dd0-bdf2-20e2f6c00edc';
   const SUPPORT_PHONE    = '0488 811 729';
@@ -617,7 +610,7 @@
         </div>
       </div>`);
     card.querySelector('#jc-handoff-yes').addEventListener('click', () => {
-      card.remove(); requestHandoff();
+      card.remove(); showHandoffCard();
     });
     card.querySelector('#jc-handoff-no').addEventListener('click', () => card.remove());
   }
@@ -642,86 +635,6 @@
         </div>
       </div>`);
     card.querySelector('#jc-sales-form-btn').addEventListener('click', openSalesModal);
-  }
-
-  function showAfterHoursCard() {
-    const card = addCard(`
-      <div class="jc-card">
-        <p>Our team is available Monday–Friday, 8:30am–5:30pm AEST. Leave us a support ticket and we'll get back to you.</p>
-        <div class="jc-card__actions">
-          <button class="jc-card__btn jc-card__btn--primary" id="jc-ah-ticket">Submit a support ticket</button>
-        </div>
-      </div>`);
-    card.querySelector('#jc-ah-ticket').addEventListener('click', openSupportModal);
-  }
-
-  // ── Polling (agent mode only) ─────────────────────────────────────────────────
-  function startPolling() {
-    if (pollTimer) return;
-    pollAttempts = 0;
-    schedulePoll();
-  }
-
-  function stopPolling() {
-    if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
-  }
-
-  function schedulePoll() {
-    pollTimer = setTimeout(doPoll, POLL_INTERVAL);
-  }
-
-  async function doPoll() {
-    pollTimer = null;
-    if (pollAttempts >= POLL_MAX) {
-      removeTyping();
-      errorBar.style.display = 'block';
-      isTyping = false; send.disabled = false;
-      return;
-    }
-
-    try {
-      const res  = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'poll', conversationId, since: lastPollTs }),
-      });
-      const data = await res.json();
-
-      // Render new messages
-      if (data.messages?.length) {
-        removeTyping();
-        isTyping = false; send.disabled = false;
-
-        data.messages.forEach(msg => {
-          lastPollTs = Math.max(lastPollTs, msg.ts || 0);
-          if (msg.role === 'agent')  addAgentMessage(msg.text, msg.agentName);
-          else if (msg.role === 'system') addSystemMessage(msg.text);
-          else addBotMessage(msg.text);
-        });
-      }
-
-      // Status transitions
-      if (data.status === 'agent' && sessionStatus !== 'agent') {
-        sessionStatus = 'agent';
-        agentName = data.agentName;
-        setHeaderAgent(agentName);
-      }
-      if (data.status === 'bot' && sessionStatus === 'agent') {
-        sessionStatus = 'bot';
-        agentName = null;
-        setHeaderBot();
-        stopPolling(); return;
-      }
-
-      // Keep polling in agent mode or while waiting for initial response
-      if (sessionStatus === 'agent' || isTyping) {
-        pollAttempts++;
-        schedulePoll();
-      }
-    } catch (err) {
-      pollAttempts++;
-      schedulePoll();
-    }
   }
 
   // ── Send message ──────────────────────────────────────────────────────────────
@@ -760,19 +673,12 @@
         localStorage.setItem('jc-conversation-id', conversationId);
       }
 
-      if (data.mode === 'bot') {
-        // Synchronous reply — display immediately
-        removeTyping();
-        isTyping = false; send.disabled = false;
+      removeTyping();
+      isTyping = false; send.disabled = false;
 
-        if (data.reply) addBotMessage(data.reply);
-        if (data.suggestHandoff) showHandoffSuggestionCard();
-        if (data.suggestSales)   showSalesCard();
-
-      } else {
-        // Agent mode — start polling for reply
-        startPolling();
-      }
+      if (data.reply) addBotMessage(data.reply);
+      if (data.suggestHandoff) showHandoffSuggestionCard();
+      if (data.suggestSales)   showSalesCard();
 
     } catch (err) {
       console.error('Chat error:', err);
@@ -785,38 +691,79 @@
   }
 
   // ── Handoff ───────────────────────────────────────────────────────────────────
-  async function requestHandoff() {
-    if (!conversationId) {
-      // No conversation started — go straight to ticket form
-      openSupportModal(); return;
-    }
-
+  function showHandoffCard() {
     if (quick.style.display !== 'none') quick.style.display = 'none';
-    addBotMessage('Connecting you to the next available agent…');
 
-    try {
-      const res  = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'handoff', conversationId }),
-      });
-      const data = await res.json();
+    const card = addCard(`
+      <div class="jcf-card">
+        <h4>Connect with our support team</h4>
+        <div class="jcf-field">
+          <label>Your name</label>
+          <input type="text" id="jc-hf-name" placeholder="Jane Smith" autocomplete="name">
+        </div>
+        <div class="jcf-field">
+          <label>Your email <span style="color:#ED1C24">*</span></label>
+          <input type="email" id="jc-hf-email" placeholder="jane@company.com.au" autocomplete="email">
+        </div>
+        <div class="jcf-error" id="jc-hf-error"></div>
+        <button class="jcf-submit" id="jc-hf-submit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Submit request
+        </button>
+      </div>`);
 
-      if (data.available === false) {
-        showAfterHoursCard();
-      } else if (data.alreadyHandedOff) {
-        addSystemMessage('You are already connected to an agent.');
-        startPolling();
-      } else {
-        sessionStatus = 'agent';
-        showTyping();
-        startPolling();
+    const nameEl  = card.querySelector('#jc-hf-name');
+    const emailEl = card.querySelector('#jc-hf-email');
+    const errEl   = card.querySelector('#jc-hf-error');
+    const btnEl   = card.querySelector('#jc-hf-submit');
+
+    setTimeout(() => nameEl.focus(), 50);
+
+    btnEl.addEventListener('click', async () => {
+      errEl.style.display = 'none';
+      const name  = nameEl.value.trim();
+      const email = emailEl.value.trim();
+
+      if (!email) {
+        errEl.textContent = 'Please enter your email address.';
+        errEl.style.display = 'block'; return;
       }
-    } catch (err) {
-      console.error('Handoff error:', err);
-      addBotMessage("We couldn't connect you right now. Please try again or submit a support ticket.");
-      showAfterHoursCard();
-    }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errEl.textContent = 'Please enter a valid email address.';
+        errEl.style.display = 'block'; return;
+      }
+
+      btnEl.disabled = true;
+      btnEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:jcSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Submitting…';
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'handoff', conversationId, name, email }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          const timeMsg = data.businessHours
+            ? 'shortly — usually within a few minutes'
+            : 'next business day (Mon–Fri, 8:30am–5:30pm AEST)';
+          card.querySelector('.jcf-card').innerHTML = `
+            <div class="jcf-success">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <p>Request submitted! We'll follow up at <strong>${email}</strong> ${timeMsg}.</p>
+            </div>`;
+        } else {
+          throw new Error('Request failed');
+        }
+      } catch (err) {
+        console.error('Handoff error:', err);
+        errEl.textContent = 'Something went wrong. Please try again or call us on ' + SUPPORT_PHONE + '.';
+        errEl.style.display = 'block';
+        btnEl.disabled = false;
+        btnEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit request';
+      }
+    });
   }
 
   // ── History restore ───────────────────────────────────────────────────────────
@@ -831,18 +778,11 @@
 
       if (data.history?.length) {
         data.history.forEach(msg => {
-          lastPollTs = Math.max(lastPollTs, msg.ts || 0);
           if (msg.role === 'user')        addUserMessage(msg.text);
           else if (msg.role === 'agent')  addAgentMessage(msg.text, msg.agentName);
           else if (msg.role === 'system') addSystemMessage(msg.text);
           else                            addBotMessage(msg.text);
         });
-        if (data.status === 'agent') {
-          sessionStatus = 'agent';
-          agentName = data.agentName;
-          setHeaderAgent(agentName);
-          startPolling();
-        }
         return true;
       }
     } catch (err) {
@@ -1133,7 +1073,7 @@
       e.stopPropagation();
       const action = qb.dataset.action;
       if (action === 'human') {
-        requestHandoff();
+        showHandoffCard();
       } else if (action === 'sales') {
         if (quick.style.display !== 'none') quick.style.display = 'none';
         showSalesCard();
