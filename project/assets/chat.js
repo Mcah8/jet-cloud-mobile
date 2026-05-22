@@ -1,14 +1,34 @@
 (function () {
   'use strict';
 
-  const WORKER_URL  = 'https://livechat.matthew-cahill.workers.dev';
-  const ZENDESK_URL = 'https://support.jetinteractive.com.au/api/v2/requests.json';
+  const WORKER_URL = 'https://livechat.matthew-cahill.workers.dev';
 
-  const history = [];
-  let isOpen   = false;
-  let isTyping = false;
+  // ── Session state ─────────────────────────────────────────────────────────────
+  let sessionId      = localStorage.getItem('jc-session-id');
+  let conversationId = localStorage.getItem('jc-conversation-id') || null;
+  if (!sessionId) {
+    sessionId = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+    localStorage.setItem('jc-session-id', sessionId);
+  }
 
-  // ── CSS ──────────────────────────────────────────────────────────────────────
+  let sessionStatus = 'bot';   // 'bot' | 'agent'
+  let agentName     = null;
+  let lastPollTs    = 0;
+  let pollTimer     = null;
+  let pollAttempts  = 0;
+  let isOpen        = false;
+  let isTyping      = false;
+
+  const POLL_INTERVAL    = 1200;  // ms between polls
+  const POLL_MAX         = 25;    // ~30s before timeout
+  const HS_PORTAL_ID     = '442264265';
+  const HS_FORM_ID       = '52e36f05-0d63-4dd0-bdf2-20e2f6c00edc';
+  const SUPPORT_PHONE    = '0488 811 729';
+  const SUPPORT_TEL      = 'tel:0488811729';
+  const SUPPORT_SMS      = 'sms:0488811729';
+
+  // ── CSS ───────────────────────────────────────────────────────────────────────
   const css = `
     #jc-btn {
       position: fixed; bottom: 24px; right: 24px; z-index: 9998;
@@ -41,7 +61,9 @@
     #jc-header {
       background: #ED1C24; padding: 14px 16px;
       display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+      transition: background .3s;
     }
+    #jc-header.agent { background: #1e40af; }
     #jc-header-avatar {
       width: 36px; height: 36px; border-radius: 50%;
       background: rgba(255,255,255,.2);
@@ -58,8 +80,9 @@
     }
     #jc-header-status::before {
       content:''; width:6px; height:6px; border-radius:50%;
-      background:#86efac; flex-shrink:0;
+      background:#86efac; flex-shrink:0; transition: background .3s;
     }
+    #jc-header.agent #jc-header-status::before { background: #93c5fd; }
     #jc-close {
       background: none; border: none; cursor: pointer;
       color: rgba(255,255,255,.8); padding: 4px; line-height: 1;
@@ -90,6 +113,11 @@
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-bottom: 2px;
     }
+    .jc-msg__avatar--agent { background: #475569; }
+    .jc-msg__agent-label {
+      font-size: 11px; color: #64748b; font-weight: 600;
+      margin-bottom: 2px; padding-left: 2px;
+    }
     .jc-msg__bubble {
       padding: 9px 13px; border-radius: 14px;
       font-size: 13.5px; line-height: 1.5; font-family: 'Barlow',sans-serif;
@@ -97,13 +125,42 @@
     .jc-msg--bot  .jc-msg__bubble { background:#f1f5f9; color:#1e293b; border-bottom-left-radius:4px; }
     .jc-msg--user .jc-msg__bubble { background:#ED1C24; color:#fff; border-bottom-right-radius:4px; }
 
+    .jc-msg--system {
+      align-self: center; font-size: 12px; color: #94a3b8;
+      font-style: italic; text-align: center; padding: 2px 8px;
+      max-width: 100%;
+    }
+
     .jc-typing .jc-msg__bubble { display:flex; align-items:center; gap:4px; padding:12px 14px; }
     .jc-typing .jc-dot { width:7px; height:7px; border-radius:50%; background:#94a3b8; animation:jcBounce 1.2s infinite; }
     .jc-typing .jc-dot:nth-child(2) { animation-delay:.2s; }
     .jc-typing .jc-dot:nth-child(3) { animation-delay:.4s; }
     @keyframes jcBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
 
-    /* Ticket form card */
+    /* Suggestion / action cards */
+    .jc-card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 13px 14px 11px; width: 100%; box-sizing: border-box;
+      animation: jcFadeIn .2s ease;
+    }
+    .jc-card p { font-size: 13px; color: #475569; margin: 0 0 10px; line-height: 1.45; }
+    .jc-card__actions { display: flex; flex-direction: column; gap: 6px; }
+    .jc-card__btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 11px; border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 13px; font-family: 'Barlow',sans-serif; color: #1e293b;
+      background: #fff; cursor: pointer; text-decoration: none;
+      transition: border-color .15s, background .15s, color .15s;
+      text-align: left;
+    }
+    .jc-card__btn:hover { border-color: #ED1C24; color: #ED1C24; background: #fff5f5; }
+    .jc-card__btn--primary {
+      background: #ED1C24; color: #fff; border-color: #ED1C24; justify-content: center; font-weight: 600;
+    }
+    .jc-card__btn--primary:hover { background: #A71C20; border-color: #A71C20; color: #fff; }
+    .jc-card__btn svg { flex-shrink: 0; }
+
+    /* HubSpot form */
     .jcf-card {
       background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
       padding: 14px 14px 12px; width: 100%; box-sizing: border-box;
@@ -255,13 +312,45 @@
     }
     .jsm-success-close:hover { border-color: #ED1C24; color: #ED1C24; }
     @media (max-width: 480px) { .jsm-row-2 { grid-template-columns: 1fr; } }
+
+    /* HubSpot sales modal */
+    #jc-hs-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10001;
+      background: rgba(0,0,0,.55); align-items: flex-start; justify-content: center;
+      padding: 20px 16px; overflow-y: auto;
+    }
+    #jc-hs-overlay.open { display: flex; }
+    #jc-hs-modal {
+      background: #fff; border-radius: 16px; width: 100%; max-width: 520px;
+      margin: auto; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      animation: jcFadeIn .2s ease;
+    }
+    #jc-hs-header {
+      background: #ED1C24; padding: 16px 20px; border-radius: 16px 16px 0 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    #jc-hs-header span {
+      flex: 1; font-family: 'Saira','Barlow',sans-serif; font-weight: 700;
+      font-size: 15px; color: #fff;
+    }
+    #jc-hs-close {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.8); padding: 4px; line-height: 1;
+      display: flex; align-items: center; border-radius: 6px;
+      transition: color .15s, background .15s;
+    }
+    #jc-hs-close:hover { color: #fff; background: rgba(255,255,255,.15); }
+    #jc-hs-body { padding: 20px; min-height: 120px; }
+    #jc-hs-body .hs-loading {
+      text-align: center; padding: 32px 0; color: #94a3b8; font-size: 13px; font-family: 'Barlow',sans-serif;
+    }
   `;
 
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
-  // ── HTML ─────────────────────────────────────────────────────────────────────
+  // ── HTML ──────────────────────────────────────────────────────────────────────
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
     <button id="jc-btn" aria-label="Open support chat">
@@ -292,10 +381,11 @@
         <button class="jc-quick-btn">Transfer a call</button>
         <button class="jc-quick-btn">Send an SMS</button>
         <button class="jc-quick-btn">Set up voicemail</button>
-        <button class="jc-quick-btn" data-action="ticket">Talk to a human</button>
+        <button class="jc-quick-btn" data-action="sales">Sales enquiry</button>
+        <button class="jc-quick-btn" data-action="human">Talk to a human</button>
       </div>
 
-      <div id="jc-error-bar">Something went wrong. Please try again or call us on 0488 811 729.</div>
+      <div id="jc-error-bar">Something went wrong. Please try again or call us on ${SUPPORT_PHONE}.</div>
 
       <div id="jc-input-row">
         <textarea id="jc-input" placeholder="Ask me anything…" rows="1"></textarea>
@@ -307,7 +397,7 @@
   `;
   document.body.appendChild(wrapper);
 
-  // ── Support modal HTML ────────────────────────────────────────────────────────
+  // ── Support ticket modal ──────────────────────────────────────────────────────
   const modalWrapper = document.createElement('div');
   modalWrapper.innerHTML = `
     <div id="jsm-overlay" role="dialog" aria-modal="true" aria-label="Submit a support ticket">
@@ -386,9 +476,30 @@
   `;
   document.body.appendChild(modalWrapper);
 
-  // ── Elements ─────────────────────────────────────────────────────────────────
+  // ── HubSpot sales modal ───────────────────────────────────────────────────────
+  const hsWrapper = document.createElement('div');
+  hsWrapper.innerHTML = `
+    <div id="jc-hs-overlay" role="dialog" aria-modal="true" aria-label="Sales enquiry">
+      <div id="jc-hs-modal">
+        <div id="jc-hs-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          <span>Sales &amp; New Services</span>
+          <button id="jc-hs-close" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="jc-hs-body">
+          <div class="hs-loading">Loading…</div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(hsWrapper);
+
+  // ── Elements ──────────────────────────────────────────────────────────────────
   const btn      = document.getElementById('jc-btn');
   const panel    = document.getElementById('jc-panel');
+  const header   = document.getElementById('jc-header');
   const closeBtn = document.getElementById('jc-close');
   const messages = document.getElementById('jc-messages');
   const quick    = document.getElementById('jc-quick');
@@ -396,39 +507,39 @@
   const send     = document.getElementById('jc-send');
   const errorBar = document.getElementById('jc-error-bar');
 
-  // ── Helpers ───────────────────────────────────────────────────────────────────
-  function openPanel() {
-    isOpen = true;
-    panel.classList.add('open');
-    input.focus();
-    if (messages.children.length === 0) {
-      addBotMessage(
-        'Hi! I\'m Jet\'s virtual support assistant. I can help with the Jet Phone app, calling features, SMS, voicemail, and more.\n\n' +
-        'Prefer to talk to a person? Call us on <a href="tel:0488811729" style="color:#ED1C24;text-decoration:underline">0488 811 729</a> or click <strong>Talk to a human</strong> below to raise a support ticket.\n\n' +
-        'What can I help you with today?',
-        true
-      );
-    }
-  }
-
-  function closePanel() {
-    isOpen = false;
-    panel.classList.remove('open');
-  }
-
-  function scrollBottom() {
-    messages.scrollTop = messages.scrollHeight;
+  // ── Render helpers ────────────────────────────────────────────────────────────
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   }
 
   function botAvatar() {
     return `<div class="jc-msg__avatar"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>`;
   }
 
+  function agentAvatar() {
+    return `<div class="jc-msg__avatar jc-msg__avatar--agent"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>`;
+  }
+
   function addBotMessage(text, allowHtml) {
     const el = document.createElement('div');
     el.className = 'jc-msg jc-msg--bot';
-    const content = allowHtml ? text.replace(/\n/g, '<br>') : escapeHtml(text);
+    const content = allowHtml ? text.replace(/\n/g,'<br>') : escapeHtml(text);
     el.innerHTML = `${botAvatar()}<div class="jc-msg__bubble">${content}</div>`;
+    messages.appendChild(el);
+    scrollBottom();
+  }
+
+  function addAgentMessage(text, name) {
+    const el = document.createElement('div');
+    el.className = 'jc-msg jc-msg--bot';
+    el.innerHTML = `
+      ${agentAvatar()}
+      <div>
+        ${name ? `<div class="jc-msg__agent-label">${escapeHtml(name)}</div>` : ''}
+        <div class="jc-msg__bubble">${escapeHtml(text)}</div>
+      </div>`;
     messages.appendChild(el);
     scrollBottom();
   }
@@ -441,7 +552,25 @@
     scrollBottom();
   }
 
+  function addSystemMessage(text) {
+    const el = document.createElement('div');
+    el.className = 'jc-msg--system';
+    el.textContent = text;
+    messages.appendChild(el);
+    scrollBottom();
+  }
+
+  function addCard(html) {
+    const wrap = document.createElement('div');
+    wrap.className = 'jc-msg jc-msg--bot jc-msg--wide';
+    wrap.innerHTML = `${botAvatar()}<div style="flex:1;min-width:0">${html}</div>`;
+    messages.appendChild(wrap);
+    scrollBottom();
+    return wrap;
+  }
+
   function showTyping() {
+    if (document.getElementById('jc-typing')) return;
     const el = document.createElement('div');
     el.className = 'jc-msg jc-msg--bot jc-typing';
     el.id = 'jc-typing';
@@ -455,15 +584,298 @@
     if (el) el.remove();
   }
 
-  function escapeHtml(str) {
-    return str
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+  function scrollBottom() {
+    messages.scrollTop = messages.scrollHeight;
   }
 
   function autoResize() {
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  }
+
+  // ── Header state ──────────────────────────────────────────────────────────────
+  function setHeaderAgent(name) {
+    header.classList.add('agent');
+    document.getElementById('jc-header-name').textContent = name || 'Support Agent';
+    document.getElementById('jc-header-status').textContent = 'Connected — speaking with a human agent';
+  }
+
+  function setHeaderBot() {
+    header.classList.remove('agent');
+    document.getElementById('jc-header-name').textContent = 'Jet Support';
+    document.getElementById('jc-header-status').textContent = 'Online — typically replies instantly';
+  }
+
+  // ── Inline cards ──────────────────────────────────────────────────────────────
+  function showHandoffSuggestionCard() {
+    const card = addCard(`
+      <div class="jc-card">
+        <p>It looks like you might benefit from speaking with a member of our team. Would you like me to connect you?</p>
+        <div class="jc-card__actions">
+          <button class="jc-card__btn jc-card__btn--primary" id="jc-handoff-yes">Connect me to an agent</button>
+          <button class="jc-card__btn" id="jc-handoff-no">No thanks, keep chatting</button>
+        </div>
+      </div>`);
+    card.querySelector('#jc-handoff-yes').addEventListener('click', () => {
+      card.remove(); requestHandoff();
+    });
+    card.querySelector('#jc-handoff-no').addEventListener('click', () => card.remove());
+  }
+
+  function showSalesCard() {
+    const card = addCard(`
+      <div class="jc-card">
+        <p>For sales, pricing, and new service enquiries our team is ready to help:</p>
+        <div class="jc-card__actions">
+          <a class="jc-card__btn" href="${SUPPORT_TEL}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call us — ${SUPPORT_PHONE}
+          </a>
+          <a class="jc-card__btn" href="${SUPPORT_SMS}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            SMS us — ${SUPPORT_PHONE}
+          </a>
+          <button class="jc-card__btn jc-card__btn--primary" id="jc-sales-form-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Get a callback — fill in your details
+          </button>
+        </div>
+      </div>`);
+    card.querySelector('#jc-sales-form-btn').addEventListener('click', openSalesModal);
+  }
+
+  function showAfterHoursCard() {
+    const card = addCard(`
+      <div class="jc-card">
+        <p>Our team is available Monday–Friday, 8:30am–5:30pm AEST. Leave us a support ticket and we'll get back to you.</p>
+        <div class="jc-card__actions">
+          <button class="jc-card__btn jc-card__btn--primary" id="jc-ah-ticket">Submit a support ticket</button>
+        </div>
+      </div>`);
+    card.querySelector('#jc-ah-ticket').addEventListener('click', openSupportModal);
+  }
+
+  // ── Polling (agent mode only) ─────────────────────────────────────────────────
+  function startPolling() {
+    if (pollTimer) return;
+    pollAttempts = 0;
+    schedulePoll();
+  }
+
+  function stopPolling() {
+    if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
+  }
+
+  function schedulePoll() {
+    pollTimer = setTimeout(doPoll, POLL_INTERVAL);
+  }
+
+  async function doPoll() {
+    pollTimer = null;
+    if (pollAttempts >= POLL_MAX) {
+      removeTyping();
+      errorBar.style.display = 'block';
+      isTyping = false; send.disabled = false;
+      return;
+    }
+
+    try {
+      const res  = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'poll', conversationId, since: lastPollTs }),
+      });
+      const data = await res.json();
+
+      // Render new messages
+      if (data.messages?.length) {
+        removeTyping();
+        isTyping = false; send.disabled = false;
+
+        data.messages.forEach(msg => {
+          lastPollTs = Math.max(lastPollTs, msg.ts || 0);
+          if (msg.role === 'agent')  addAgentMessage(msg.text, msg.agentName);
+          else if (msg.role === 'system') addSystemMessage(msg.text);
+          else addBotMessage(msg.text);
+        });
+      }
+
+      // Status transitions
+      if (data.status === 'agent' && sessionStatus !== 'agent') {
+        sessionStatus = 'agent';
+        agentName = data.agentName;
+        setHeaderAgent(agentName);
+      }
+      if (data.status === 'bot' && sessionStatus === 'agent') {
+        sessionStatus = 'bot';
+        agentName = null;
+        setHeaderBot();
+        stopPolling(); return;
+      }
+
+      // Keep polling in agent mode or while waiting for initial response
+      if (sessionStatus === 'agent' || isTyping) {
+        pollAttempts++;
+        schedulePoll();
+      }
+    } catch (err) {
+      pollAttempts++;
+      schedulePoll();
+    }
+  }
+
+  // ── Send message ──────────────────────────────────────────────────────────────
+  async function sendMessage(text) {
+    text = text.trim();
+    if (!text || isTyping) return;
+
+    if (quick.style.display !== 'none') quick.style.display = 'none';
+    errorBar.style.display = 'none';
+
+    addUserMessage(text);
+    input.value = '';
+    input.style.height = 'auto';
+    send.disabled = true;
+    isTyping = true;
+    showTyping();
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'send_message',
+          message: text,
+          sessionId,
+          conversationId,
+        }),
+      });
+
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+
+      // Persist conversationId after first message
+      if (data.conversationId && data.conversationId !== conversationId) {
+        conversationId = data.conversationId;
+        localStorage.setItem('jc-conversation-id', conversationId);
+      }
+
+      if (data.mode === 'bot') {
+        // Synchronous reply — display immediately
+        removeTyping();
+        isTyping = false; send.disabled = false;
+
+        if (data.reply) addBotMessage(data.reply);
+        if (data.suggestHandoff) showHandoffSuggestionCard();
+        if (data.suggestSales)   showSalesCard();
+
+      } else {
+        // Agent mode — start polling for reply
+        startPolling();
+      }
+
+    } catch (err) {
+      console.error('Chat error:', err);
+      removeTyping();
+      isTyping = false; send.disabled = false;
+      errorBar.style.display = 'block';
+    } finally {
+      if (!isTyping) input.focus();
+    }
+  }
+
+  // ── Handoff ───────────────────────────────────────────────────────────────────
+  async function requestHandoff() {
+    if (!conversationId) {
+      // No conversation started — go straight to ticket form
+      openSupportModal(); return;
+    }
+
+    if (quick.style.display !== 'none') quick.style.display = 'none';
+    addBotMessage('Connecting you to the next available agent…');
+
+    try {
+      const res  = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'handoff', conversationId }),
+      });
+      const data = await res.json();
+
+      if (data.available === false) {
+        showAfterHoursCard();
+      } else if (data.alreadyHandedOff) {
+        addSystemMessage('You are already connected to an agent.');
+        startPolling();
+      } else {
+        sessionStatus = 'agent';
+        showTyping();
+        startPolling();
+      }
+    } catch (err) {
+      console.error('Handoff error:', err);
+      addBotMessage("We couldn't connect you right now. Please try again or submit a support ticket.");
+      showAfterHoursCard();
+    }
+  }
+
+  // ── History restore ───────────────────────────────────────────────────────────
+  async function restoreHistory() {
+    try {
+      const res  = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'get_history', conversationId }),
+      });
+      const data = await res.json();
+
+      if (data.history?.length) {
+        data.history.forEach(msg => {
+          lastPollTs = Math.max(lastPollTs, msg.ts || 0);
+          if (msg.role === 'user')        addUserMessage(msg.text);
+          else if (msg.role === 'agent')  addAgentMessage(msg.text, msg.agentName);
+          else if (msg.role === 'system') addSystemMessage(msg.text);
+          else                            addBotMessage(msg.text);
+        });
+        if (data.status === 'agent') {
+          sessionStatus = 'agent';
+          agentName = data.agentName;
+          setHeaderAgent(agentName);
+          startPolling();
+        }
+        return true;
+      }
+    } catch (err) {
+      console.error('History restore error:', err);
+    }
+    return false;
+  }
+
+  // ── Panel open / close ────────────────────────────────────────────────────────
+  async function openPanel() {
+    isOpen = true;
+    panel.classList.add('open');
+    input.focus();
+
+    if (messages.children.length > 0) return;
+
+    if (conversationId) {
+      const restored = await restoreHistory();
+      if (restored) return;
+    }
+
+    // Fresh session — show greeting
+    addBotMessage(
+      'Hi! I\'m Jet\'s virtual support assistant. I can help with the Jet Phone app, calling features, SMS, voicemail, and more.\n\n' +
+      'Prefer to talk to a person? Call us on <a href="tel:0488811729" style="color:#ED1C24;text-decoration:underline">0488 811 729</a> or click <strong>Talk to a human</strong> below.\n\n' +
+      'What can I help you with today?',
+      true
+    );
+  }
+
+  function closePanel() {
+    isOpen = false;
+    panel.classList.remove('open');
   }
 
   // ── Support ticket modal ──────────────────────────────────────────────────────
@@ -567,7 +979,7 @@
   document.getElementById('jsm-close-btn').addEventListener('click', closeSupportModal);
   document.getElementById('jsm-success-close').addEventListener('click', closeSupportModal);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSupportModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSupportModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeSupportModal(); closeSalesModal(); } });
 
   jsmSubmit.addEventListener('click', async function () {
     jsmError.style.display = 'none';
@@ -622,13 +1034,11 @@
         document.getElementById('jsm-success-msg').textContent = `Thanks ${name}. We'll be in touch shortly.`;
         jsmSuccess.style.display = 'block';
       } else {
-        const detail = await res.text();
-        console.error('Zendesk response:', res.status, detail);
         throw new Error(res.status);
       }
     } catch (err) {
       console.error('Ticket submit error:', err);
-      jsmError.textContent = 'Something went wrong. Please try again or call us on 0488 811 729.';
+      jsmError.textContent = 'Something went wrong. Please try again or call us on ' + SUPPORT_PHONE + '.';
       jsmError.style.display = 'block';
       jsmSubmit.disabled = false;
       jsmSubmit.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
@@ -639,15 +1049,12 @@
     jsmForm.style.display = '';
     jsmSuccess.style.display = 'none';
     jsmError.style.display = 'none';
-    document.getElementById('jsm-name').value = '';
-    document.getElementById('jsm-email').value = '';
-    document.getElementById('jsm-phone').value = '';
-    document.getElementById('jsm-account').value = '';
+    ['jsm-name','jsm-email','jsm-phone','jsm-account','jsm-subject','jsm-message'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
     jsmReasonEl.value = '';
     jsmSubReason.innerHTML = '<option value="">Select…</option>';
     jsmSubField.classList.remove('visible');
-    document.getElementById('jsm-subject').value = '';
-    document.getElementById('jsm-message').value = '';
     jsmSubmit.disabled = false;
     jsmSubmit.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send message';
     overlay.classList.add('open');
@@ -662,49 +1069,53 @@
 
   window.showTicketForm = openSupportModal;
 
-  // ── Send ──────────────────────────────────────────────────────────────────────
-  async function sendMessage(text) {
-    text = text.trim();
-    if (!text || isTyping) return;
+  // ── HubSpot sales modal ───────────────────────────────────────────────────────
+  let hsLoaded = false;
 
-    if (quick.style.display !== 'none') quick.style.display = 'none';
-    errorBar.style.display = 'none';
+  function openSalesModal() {
+    const hsOverlay = document.getElementById('jc-hs-overlay');
+    const hsBody    = document.getElementById('jc-hs-body');
+    hsOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
 
-    addUserMessage(text);
-    history.push({ role: 'user', content: text });
-
-    input.value = '';
-    input.style.height = 'auto';
-    send.disabled = true;
-    isTyping = true;
-    showTyping();
-
-    try {
-      const res = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
-      });
-
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-
-      const data  = await res.json();
-      const reply = data?.content?.[0]?.text || "I'm sorry, I couldn't process that. Please call us on 0488 811 729.";
-
-      removeTyping();
-      addBotMessage(reply);
-      history.push({ role: 'assistant', content: reply });
-
-    } catch (err) {
-      console.error('Chat error:', err);
-      removeTyping();
-      errorBar.style.display = 'block';
-    } finally {
-      isTyping = false;
-      send.disabled = false;
-      input.focus();
+    if (!hsLoaded) {
+      hsLoaded = true;
+      if (typeof hbspt !== 'undefined') {
+        hsBody.innerHTML = '<div id="jc-hs-form-target"></div>';
+        hbspt.forms.create({
+          region:   'ap1',
+          portalId: HS_PORTAL_ID,
+          formId:   HS_FORM_ID,
+          target:   '#jc-hs-form-target',
+        });
+      } else {
+        // HubSpot script not yet loaded — load it now
+        hsBody.innerHTML = '<div id="jc-hs-form-target"></div>';
+        const script = document.createElement('script');
+        script.src = 'https://js-ap1.hsforms.net/forms/embed/v2.js';
+        script.onload = () => {
+          hbspt.forms.create({
+            region:   'ap1',
+            portalId: HS_PORTAL_ID,
+            formId:   HS_FORM_ID,
+            target:   '#jc-hs-form-target',
+          });
+        };
+        document.head.appendChild(script);
+      }
     }
   }
+
+  function closeSalesModal() {
+    const hsOverlay = document.getElementById('jc-hs-overlay');
+    hsOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('jc-hs-close').addEventListener('click', closeSalesModal);
+  document.getElementById('jc-hs-overlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('jc-hs-overlay')) closeSalesModal();
+  });
 
   // ── Events ────────────────────────────────────────────────────────────────────
   btn.addEventListener('click', () => isOpen ? closePanel() : openPanel());
@@ -719,8 +1130,12 @@
 
   document.querySelectorAll('.jc-quick-btn').forEach((qb) => {
     qb.addEventListener('click', () => {
-      if (qb.dataset.action === 'ticket') {
-        openSupportModal();
+      const action = qb.dataset.action;
+      if (action === 'human') {
+        requestHandoff();
+      } else if (action === 'sales') {
+        if (quick.style.display !== 'none') quick.style.display = 'none';
+        showSalesCard();
       } else {
         sendMessage(qb.textContent);
       }
