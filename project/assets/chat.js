@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const WORKER_URL = 'https://livechat.matthew-cahill.workers.dev';
+  const WORKER_URL = 'https://jet-chat-bot.matthew-cahill.workers.dev';
 
   // ── Session state ─────────────────────────────────────────────────────────────
   let sessionId      = localStorage.getItem('jc-session-id');
