@@ -1129,7 +1129,8 @@
   input.addEventListener('input', autoResize);
 
   document.querySelectorAll('.jc-quick-btn').forEach((qb) => {
-    qb.addEventListener('click', () => {
+    qb.addEventListener('click', (e) => {
+      e.stopPropagation();
       const action = qb.dataset.action;
       if (action === 'human') {
         requestHandoff();
