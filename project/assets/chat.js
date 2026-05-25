@@ -896,6 +896,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'submit_ticket',
+          conversationId,
           request: { requester: { name, email }, subject, comment: { body: message }, custom_fields: customFields },
         }),
       });
