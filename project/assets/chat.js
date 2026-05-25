@@ -693,77 +693,7 @@
   // ── Handoff ───────────────────────────────────────────────────────────────────
   function showHandoffCard() {
     if (quick.style.display !== 'none') quick.style.display = 'none';
-
-    const card = addCard(`
-      <div class="jcf-card">
-        <h4>Connect with our support team</h4>
-        <div class="jcf-field">
-          <label>Your name</label>
-          <input type="text" id="jc-hf-name" placeholder="Jane Smith" autocomplete="name">
-        </div>
-        <div class="jcf-field">
-          <label>Your email <span style="color:#ED1C24">*</span></label>
-          <input type="email" id="jc-hf-email" placeholder="jane@company.com.au" autocomplete="email">
-        </div>
-        <div class="jcf-error" id="jc-hf-error"></div>
-        <button class="jcf-submit" id="jc-hf-submit">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Submit request
-        </button>
-      </div>`);
-
-    const nameEl  = card.querySelector('#jc-hf-name');
-    const emailEl = card.querySelector('#jc-hf-email');
-    const errEl   = card.querySelector('#jc-hf-error');
-    const btnEl   = card.querySelector('#jc-hf-submit');
-
-    setTimeout(() => nameEl.focus(), 50);
-
-    btnEl.addEventListener('click', async () => {
-      errEl.style.display = 'none';
-      const name  = nameEl.value.trim();
-      const email = emailEl.value.trim();
-
-      if (!email) {
-        errEl.textContent = 'Please enter your email address.';
-        errEl.style.display = 'block'; return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errEl.textContent = 'Please enter a valid email address.';
-        errEl.style.display = 'block'; return;
-      }
-
-      btnEl.disabled = true;
-      btnEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:jcSpin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Submitting…';
-
-      try {
-        const res = await fetch(WORKER_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'handoff', conversationId, name, email }),
-        });
-        const data = await res.json();
-
-        if (data.success) {
-          const timeMsg = data.businessHours
-            ? 'shortly — usually within a few minutes'
-            : 'next business day (Mon–Fri, 8:30am–5:30pm AEST)';
-          card.querySelector('.jcf-card').innerHTML = `
-            <div class="jcf-success">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <p>Request submitted! We'll follow up at <strong>${email}</strong> ${timeMsg}.</p>
-            </div>`;
-        } else {
-          throw new Error('Request failed');
-        }
-      } catch (err) {
-        console.error('Handoff error:', err);
-        errEl.textContent = 'Something went wrong. Please try again or call us on ' + SUPPORT_PHONE + '.';
-        errEl.style.display = 'block';
-        btnEl.disabled = false;
-        btnEl.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit request';
-      }
-    });
+    openSupportModal();
   }
 
   // ── History restore ───────────────────────────────────────────────────────────
