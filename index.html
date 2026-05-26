@@ -9,8 +9,8 @@
   <link rel="icon" href="project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <style>
     /* ── Design tokens ─────────────────────────────────────── */
     :root {
@@ -46,6 +46,8 @@
 
       --font-display:  'Saira', 'Arial Narrow', system-ui, sans-serif;
       --font-ui:       'Barlow', system-ui, -apple-system, sans-serif;
+      --font-mono:     'JetBrains Mono', monospace;
+      --grad-symbol:   linear-gradient(135deg, #ED1C24, #A71C20);
 
       --fs-caption:    12px;
       --fs-small:      14px;
@@ -354,45 +356,265 @@
     .section--red .section__headline { color: var(--white); }
 
     /* ── Problem section ────────────────────────────────────── */
+    .problem-section{
+      position:relative;overflow:hidden;isolation:isolate;
+      background:
+        radial-gradient(60% 60% at 92% 8%, rgba(237,28,36,.05) 0%, transparent 65%),
+        radial-gradient(50% 60% at 5% 95%, rgba(38,217,122,.05) 0%, transparent 65%),
+        var(--ink-50)!important;
+    }
+    .problem-section::before{
+      content:"";position:absolute;inset:0;
+      background-image:url("project/assets/jet-symbol-solid.png");
+      background-size:480px;background-position:right -120px top 60%;
+      background-repeat:no-repeat;opacity:.025;pointer-events:none;z-index:0;
+    }
     .problem {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--sp-8); align-items: center;
+      position:relative;z-index:1;
+      display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr);
+      gap: 80px; align-items: center;
+    }
+    .problem__copy .prob-eyebrow {
+      font-family:var(--font-display);font-weight:600;
+      font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--red);margin-bottom:28px;
     }
     .problem__copy h2 {
       font-family: var(--font-display);
-      font-size: var(--fs-h2); font-weight: 700;
-      line-height: var(--lh-tight); letter-spacing: var(--tr-tight);
-      margin-bottom: var(--sp-5);
+      font-size: clamp(32px,3.5vw,54px); font-weight: 700;
+      line-height: 1.02; letter-spacing: -.015em;
+      margin-bottom: var(--sp-5); text-wrap: balance;
     }
-    .problem__copy p { font-size: var(--fs-lead); color: var(--fg-2); line-height: var(--lh-normal); }
+    .problem__copy .prob-lede {
+      font-size: var(--fs-lead); color: var(--fg-2);
+      line-height: var(--lh-normal); max-width:480px; margin-bottom:32px;
+    }
+    .problem__copy .prob-lede strong { color:var(--ink-900); font-weight:600; }
+    .key-points { display:flex; flex-direction:column; gap:14px; }
+    .kp { display:flex; align-items:flex-start; gap:12px; font-size:15px; color:var(--ink-900); font-weight:500; }
+    .kp .kp-ic {
+      width:26px; height:26px; border-radius:8px; flex-shrink:0;
+      background:linear-gradient(135deg,#26d97a,#0E8A4A);
+      color:#fff; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 10px rgba(38,217,122,.25);
+    }
+    .kp .kp-ic svg { width:14px; height:14px; }
 
-    /* before/after illustration */
+    /* Call-log card shared */
     .problem__visual {
-      display: flex; flex-direction: column; gap: var(--sp-4);
+      display:flex; flex-direction:column; align-items:center; gap:18px;
+      perspective:1600px;
     }
-    .prob-card {
-      background: var(--white); border-radius: var(--radius-md);
-      border: var(--border); box-shadow: var(--shadow-1);
-      padding: var(--sp-5);
-      display: flex; align-items: flex-start; gap: var(--sp-4);
+    .log {
+      width:100%; max-width:540px;
+      background:#fff; border-radius:18px;
+      box-shadow:0 24px 60px rgba(11,11,12,.08),0 4px 14px rgba(11,11,12,.05),0 0 0 1px rgba(11,11,12,.04);
+      overflow:hidden; opacity:0; transform-origin:center;
     }
-    .prob-card__icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
+    .log-head {
+      padding:14px 18px; display:flex; align-items:center; gap:12px;
+      border-bottom:1px solid var(--ink-200);
     }
-    .prob-card__icon--before { background: var(--red-100); }
-    .prob-card__icon--after  { background: #E3F4EA; }
-    .prob-card__text { display: flex; flex-direction: column; gap: 4px; }
-    .prob-card__label {
-      font-family: var(--font-display);
-      font-size: var(--fs-small); font-weight: 700;
-      text-transform: uppercase; letter-spacing: var(--tr-ultra);
+    .log-badge {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:5px 11px; border-radius:999px;
+      font-family:var(--font-display); font-weight:700;
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     }
-    .prob-card__label--before { color: var(--red); }
-    .prob-card__label--after  { color: #0E8A4A; }
-    .prob-card p { font-size: var(--fs-body); color: var(--fg-2); margin: 0; }
+    .log-badge .lb-ic {
+      display:flex; align-items:center; justify-content:center;
+    }
+    .log-head-meta {
+      margin-left:auto; font-size:11px; color:var(--ink-500);
+      font-family:var(--font-mono); letter-spacing:.02em;
+      display:flex; align-items:center; gap:6px;
+    }
+    .log-head-meta .lhm-dt { width:5px; height:5px; border-radius:50%; }
+
+    /* Problem card */
+    .log.log--problem {
+      transform:rotate(-1.2deg) translateY(20px) scale(.96);
+      animation:probCardIn .9s .55s cubic-bezier(.2,.8,.2,1) forwards;
+      border-top:3px solid var(--red);
+    }
+    @keyframes probCardIn { to { opacity:1; transform:rotate(-1.2deg) translateY(0) scale(1); } }
+    .log--problem .log-badge { background:var(--red-100); color:var(--red); }
+    .log--problem .log-badge .lb-ic { width:20px; height:20px; border-radius:50%; background:var(--red); color:#fff; }
+    .log--problem .log-badge .lb-ic svg { width:11px; height:11px; }
+    .log--problem .log-head-title { font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--ink-900); letter-spacing:-.005em; }
+    .log--problem .log-head-title .lht-device { font-size:11px; color:var(--ink-500); font-family:var(--font-mono); font-weight:500; margin-left:8px; letter-spacing:.02em; }
+    .log--problem .log-head-meta .lhm-dt { background:var(--red); }
+
+    /* Problem rows */
+    .pl-row {
+      display:grid; grid-template-columns:32px 1fr auto 26px; gap:14px; align-items:center;
+      padding:12px 18px; border-top:1px solid var(--ink-200); font-size:13px;
+    }
+    .pl-row:nth-child(2) { border-top:0; }
+    .pl-row .pl-av {
+      width:32px; height:32px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-display); font-weight:700; font-size:11px;
+      color:var(--ink-500); background:var(--ink-100); border:1px dashed var(--ink-300);
+    }
+    .pl-row.pl-row--unknown .pl-av { color:var(--red); background:var(--red-50); border-color:#fcc1c5; }
+    .pl-row .pl-body { min-width:0; }
+    .pl-row .pl-nm { font-weight:600; color:var(--ink-900); font-size:13.5px; letter-spacing:-.005em; display:flex; align-items:center; gap:8px; }
+    .pl-row .pl-nm.pl-nm--unk { color:var(--ink-500); font-weight:500; font-style:italic; }
+    .pl-row .pl-nm .pl-miss {
+      display:inline-flex; align-items:center; gap:4px; padding:1px 6px; border-radius:4px;
+      background:var(--red-50); color:var(--red); font-size:10px; font-weight:700;
+      letter-spacing:.04em; text-transform:uppercase; font-family:var(--font-display); font-style:normal;
+    }
+    .pl-row .pl-sub { font-size:11.5px; color:var(--ink-500); margin-top:2px; font-family:var(--font-mono); letter-spacing:.02em; }
+    .pl-row .pl-meta { font-family:var(--font-mono); font-size:11.5px; color:var(--ink-500); }
+    .pl-row .pl-icx {
+      width:22px; height:22px; border-radius:6px;
+      background:var(--red-50); color:var(--red);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .pl-row .pl-icx svg { width:11px; height:11px; }
+    .pl-row.pl-row--gone {
+      background:repeating-linear-gradient(135deg,transparent 0 8px,rgba(237,28,36,.04) 8px 12px);
+      position:relative;
+    }
+    .pl-row.pl-row--gone::after {
+      content:""; position:absolute; left:18px; right:18px; top:50%;
+      height:1.2px; background:var(--red); opacity:.55;
+      transform-origin:left center; transform:scaleX(0);
+      animation:probStrikeIn .8s 2.2s cubic-bezier(.4,.6,.4,1) forwards;
+    }
+    @keyframes probStrikeIn { to { transform:scaleX(1); } }
+    .pl-row.pl-row--gone .pl-nm,
+    .pl-row.pl-row--gone .pl-sub,
+    .pl-row.pl-row--gone .pl-meta { color:var(--ink-400); }
+    .pl-row.pl-row--gone .pl-nm { font-weight:500; }
+    .log--problem .log-footer {
+      padding:12px 18px; background:var(--red-50); border-top:1px solid #fcc1c5;
+      display:flex; align-items:center; gap:10px;
+      font-size:12px; color:var(--red-darker); font-weight:500;
+    }
+    .log--problem .log-footer .lf-ic {
+      width:20px; height:20px; border-radius:5px; background:var(--red); color:#fff;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .log--problem .log-footer .lf-ic svg { width:12px; height:12px; }
+    .log--problem .log-footer strong { color:var(--red); font-weight:700; }
+
+    /* Connector */
+    .log-connector {
+      position:relative; width:100%; max-width:540px;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; animation:probFadeUp .6s 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+    @keyframes probFadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .log-connector::before,.log-connector::after {
+      content:""; flex:1; height:1.5px;
+      background:repeating-linear-gradient(90deg,var(--ink-300) 0 4px,transparent 4px 8px);
+    }
+    .conn-pill {
+      margin:0 14px; display:inline-flex; align-items:center; gap:10px;
+      padding:9px 16px; border-radius:999px;
+      background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);
+      color:#fff; box-shadow:0 8px 22px rgba(237,28,36,.32);
+      font-family:var(--font-display); font-weight:700;
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    }
+    .conn-pill .cp-glyph {
+      width:16px; height:16px;
+      background-image:url("project/assets/jet-symbol-solid.png");
+      background-size:contain; background-position:center; background-repeat:no-repeat;
+      filter:brightness(0) invert(1);
+    }
+    .conn-pill .cp-arrow { font-family:var(--font-mono); font-weight:600; letter-spacing:.02em; margin-left:2px; }
+
+    /* Fix card */
+    .log.log--fix {
+      transform:rotate(1.2deg) translateY(20px) scale(.96);
+      animation:fixCardIn .9s 1.35s cubic-bezier(.2,.8,.2,1) forwards;
+      border-top:3px solid #0E8A4A;
+    }
+    @keyframes fixCardIn { to { opacity:1; transform:rotate(1.2deg) translateY(0) scale(1); } }
+    .log--fix .log-badge { background:#dff5e7; color:#0E8A4A; }
+    .log--fix .log-badge .lb-ic {
+      width:20px; height:20px; border-radius:50%;
+      background:linear-gradient(135deg,#26d97a,#0E8A4A); color:#fff;
+    }
+    .log--fix .log-badge .lb-ic svg { width:12px; height:12px; }
+    .log--fix .log-head-title {
+      font-family:var(--font-display); font-weight:700; font-size:13px;
+      color:var(--ink-900); letter-spacing:-.005em;
+      display:flex; align-items:center; gap:8px;
+    }
+    .log--fix .lht-brand {
+      display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:5px;
+      background:var(--ink-100); font-family:var(--font-display); font-weight:700;
+      font-size:10.5px; color:var(--ink-900); letter-spacing:.06em; text-transform:uppercase;
+    }
+    .log--fix .lht-brand .brand-glyph { width:10px; height:10px; border-radius:2px; background:var(--grad-symbol); transform:rotate(7deg); }
+    .log--fix .log-head-meta .lhm-dt { background:#26d97a; animation:fixGreenBlink 1.6s infinite; }
+    @keyframes fixGreenBlink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* Fix rows */
+    .fx-row {
+      display:grid; grid-template-columns:32px 1fr auto 1fr auto; gap:14px; align-items:center;
+      padding:12px 18px; border-top:1px solid var(--ink-200); font-size:13px;
+      opacity:0; transform:translateY(4px);
+    }
+    .fx-row:nth-child(2) { border-top:0; }
+    .fx-row.fx-r1 { animation:fxRowIn .5s 1.7s cubic-bezier(.2,.8,.2,1) forwards; }
+    .fx-row.fx-r2 { animation:fxRowIn .5s 1.9s cubic-bezier(.2,.8,.2,1) forwards; }
+    .fx-row.fx-r3 { animation:fxRowIn .5s 2.1s cubic-bezier(.2,.8,.2,1) forwards; }
+    @keyframes fxRowIn { to { opacity:1; transform:translateY(0); } }
+    .fx-row .fx-av {
+      width:32px; height:32px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-display); font-weight:700; font-size:11px; color:#fff;
+    }
+    .fx-row .fx-av.av1 { background:linear-gradient(135deg,#ED1C24,#A71C20); }
+    .fx-row .fx-av.av2 { background:linear-gradient(135deg,#4A4D55,#2A2A2E); }
+    .fx-row .fx-av.av3 { background:linear-gradient(135deg,#69e29a,#0E8A4A); }
+    .fx-row .fx-body { min-width:0; }
+    .fx-row .fx-nm { font-weight:600; color:var(--ink-900); font-size:13.5px; letter-spacing:-.005em; }
+    .fx-row .fx-sub { font-size:11.5px; color:var(--ink-500); margin-top:2px; font-family:var(--font-mono); letter-spacing:.02em; }
+    .fx-row .fx-dur { font-family:var(--font-mono); font-size:11.5px; color:var(--ink-700); font-weight:500; }
+    .fx-row .fx-tags { display:flex; align-items:center; gap:6px; justify-content:flex-end; }
+    .fx-tag {
+      display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:999px;
+      font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      font-family:var(--font-display);
+    }
+    .fx-tag.fx-tag--rec { background:#fde7e8; color:#A71C20; }
+    .fx-tag.fx-tag--rec .fx-pip { width:5px; height:5px; border-radius:50%; background:var(--red); }
+    .fx-tag.fx-tag--crm { background:#dff5e7; color:#0E8A4A; }
+    .fx-tag.fx-tag--crm svg { width:9px; height:9px; }
+    .fx-tag.fx-tag--sms { background:#e4ebfc; color:#1D4FD8; }
+    .fx-tag.fx-tag--sms svg { width:9px; height:9px; }
+    .fx-row .fx-play {
+      width:24px; height:24px; border-radius:50%;
+      background:var(--ink-100); color:var(--ink-700);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .fx-row .fx-play svg { width:10px; height:10px; }
+    .log--fix .log-footer {
+      padding:12px 18px; background:#eaf8f0; border-top:1px solid #c9eed9;
+      display:flex; align-items:center; gap:10px;
+      font-size:12px; color:#0E5C2F; font-weight:500;
+    }
+    .log--fix .log-footer .lf-ic {
+      width:20px; height:20px; border-radius:5px;
+      background:linear-gradient(135deg,#26d97a,#0E8A4A); color:#fff;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .log--fix .log-footer .lf-ic svg { width:12px; height:12px; }
+    .log--fix .log-footer strong { color:#0E8A4A; font-weight:700; }
+
+    @media(prefers-reduced-motion:reduce){
+      .log,.fx-row,.log-connector { opacity:1!important; transform:none!important; }
+      .log.log--problem { transform:rotate(-1.2deg)!important; }
+      .log.log--fix { transform:rotate(1.2deg)!important; }
+      .pl-row.pl-row--gone::after { transform:scaleX(1)!important; }
+    }
 
     /* ── Features grid ──────────────────────────────────────── */
     .features-grid {
@@ -592,6 +814,7 @@
       .stats-bar__inner { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
 
       .problem { grid-template-columns: 1fr; gap: var(--sp-6); }
+      .problem__visual { margin:0 auto; max-width:540px; }
 
       .steps { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5); }
       .step:not(:last-child)::after { display: none; }
@@ -1202,41 +1425,152 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- ── Problem section ──────────────────────────────────── -->
-  <section class="section section--alt">
+  <section class="section section--alt problem-section">
     <div class="section__inner">
       <div class="problem">
+
+        <!-- LEFT — copy -->
         <div class="problem__copy">
+          <div class="prob-eyebrow">Why Jet Cloud Mobile</div>
           <h2>Still using your personal phone for business?</h2>
-          <p>If you or your staff are making business calls from personal mobile phones, you're losing visibility, control, and credibility. Jet Cloud Mobile fixes that — without asking anyone to carry a second device.</p>
+          <p class="prob-lede">If you or your staff are making business calls from personal mobile phones, you're losing <strong>visibility, control, and credibility</strong>. Jet Cloud Mobile fixes that — without asking anyone to carry a second device.</p>
+          <div class="key-points">
+            <div class="kp">
+              <span class="kp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Dedicated business numbers on any phone</span>
+            </div>
+            <div class="kp">
+              <span class="kp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Every call logged, recorded, and reported on</span>
+            </div>
+            <div class="kp">
+              <span class="kp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Numbers stay with you when staff move on</span>
+            </div>
+          </div>
         </div>
-        <div class="problem__visual">
-          <div class="prob-card">
-            <div class="prob-card__icon prob-card__icon--before">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
-              </svg>
+
+        <!-- RIGHT — before/after call-log composition -->
+        <div class="problem__visual" aria-label="Comparison of a personal phone call log with missing data and the Jet Cloud Mobile log fully enriched with names, recordings and CRM tags">
+
+          <!-- PROBLEM CARD -->
+          <div class="log log--problem">
+            <div class="log-head">
+              <span class="log-badge">
+                <span class="lb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                The problem
+              </span>
+              <span class="log-head-title">Personal phone<span class="lht-device">· iPhone</span></span>
+              <span class="log-head-meta"><span class="lhm-dt"></span>Today</span>
             </div>
-            <div class="prob-card__text">
-              <span class="prob-card__label prob-card__label--before">The problem</span>
-              <p>Staff use personal phones for business calls. No records, no control, numbers lost when they leave.</p>
+
+            <div class="pl-row pl-row--unknown">
+              <div class="pl-av">?</div>
+              <div class="pl-body">
+                <div class="pl-nm pl-nm--unk">Unknown caller <span class="pl-miss">No record</span></div>
+                <div class="pl-sub">+61 4·· ··· 219</div>
+              </div>
+              <div class="pl-meta">11:23 am</div>
+              <div class="pl-icx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            </div>
+
+            <div class="pl-row">
+              <div class="pl-av">?</div>
+              <div class="pl-body">
+                <div class="pl-nm pl-nm--unk">Missed · No callback</div>
+                <div class="pl-sub">+61 4·· ··· 884</div>
+              </div>
+              <div class="pl-meta">10:48 am</div>
+              <div class="pl-icx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            </div>
+
+            <div class="pl-row pl-row--gone">
+              <div class="pl-av">JR</div>
+              <div class="pl-body">
+                <div class="pl-nm">Jamie's iPhone · client Sarah Chen</div>
+                <div class="pl-sub">Jamie left the company · number gone</div>
+              </div>
+              <div class="pl-meta">9:14 am</div>
+              <div class="pl-icx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            </div>
+
+            <div class="log-footer">
+              <span class="lf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+              <span><strong>No call logs, no recordings, no reporting</strong> — and when staff leave, your numbers leave with them.</span>
             </div>
           </div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:8px;color:var(--fg-3);font-size:13px;padding:4px 0;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            Jet Cloud Mobile
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <!-- CONNECTOR -->
+          <div class="log-connector" aria-hidden="true">
+            <span class="conn-pill">
+              <span class="cp-glyph"></span>
+              With Jet Cloud Mobile
+              <span class="cp-arrow">↓</span>
+            </span>
           </div>
-          <div class="prob-card">
-            <div class="prob-card__icon prob-card__icon--after">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E8A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
+
+          <!-- FIX CARD -->
+          <div class="log log--fix">
+            <div class="log-head">
+              <span class="log-badge">
+                <span class="lb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                The fix
+              </span>
+              <span class="log-head-title">
+                Call log
+                <span class="lht-brand"><span class="brand-glyph"></span>Jet</span>
+              </span>
+              <span class="log-head-meta"><span class="lhm-dt"></span>Live · 02 9221 8800</span>
             </div>
-            <div class="prob-card__text">
-              <span class="prob-card__label prob-card__label--after">The fix</span>
-              <p>Dedicated business numbers on any phone. Full call logs, recordings, and reporting — from day one.</p>
+
+            <div class="fx-row fx-r1">
+              <div class="fx-av av1">SC</div>
+              <div class="fx-body">
+                <div class="fx-nm">Sarah Chen</div>
+                <div class="fx-sub">+61 401 555 0193 · matched in CRM</div>
+              </div>
+              <div class="fx-dur">2:14</div>
+              <div class="fx-tags">
+                <span class="fx-tag fx-tag--rec"><span class="fx-pip"></span>Rec</span>
+                <span class="fx-tag fx-tag--crm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CRM</span>
+              </div>
+              <div class="fx-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg></div>
+            </div>
+
+            <div class="fx-row fx-r2">
+              <div class="fx-av av2">DP</div>
+              <div class="fx-body">
+                <div class="fx-nm">David Park</div>
+                <div class="fx-sub">+61 432 558 901 · SMS · refinance</div>
+              </div>
+              <div class="fx-dur">SMS · 3 msgs</div>
+              <div class="fx-tags">
+                <span class="fx-tag fx-tag--sms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>SMS</span>
+                <span class="fx-tag fx-tag--crm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CRM</span>
+              </div>
+              <div class="fx-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg></div>
+            </div>
+
+            <div class="fx-row fx-r3">
+              <div class="fx-av av3">JR</div>
+              <div class="fx-body">
+                <div class="fx-nm">Jamie Rivera <span style="font-size:10.5px;color:var(--ink-500);font-weight:500;margin-left:6px">→ reassigned to team</span></div>
+                <div class="fx-sub">+61 2 9221 8800 · transcript saved</div>
+              </div>
+              <div class="fx-dur">1:28</div>
+              <div class="fx-tags">
+                <span class="fx-tag fx-tag--rec"><span class="fx-pip"></span>Rec</span>
+                <span class="fx-tag fx-tag--crm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CRM</span>
+              </div>
+              <div class="fx-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg></div>
+            </div>
+
+            <div class="log-footer">
+              <span class="lf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Every call logged, recorded, and attributed</strong> — and the number stays with the business, no matter who's on the phone.</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
