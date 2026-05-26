@@ -8,8 +8,8 @@
   <link rel="icon" href="../project/assets/jet-symbol-gradient.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --red:#ED1C24;--red-dark:#A71C20;--red-darker:#7A1418;--red-100:#FDE7E8;--red-50:#FEF3F4;
@@ -34,6 +34,8 @@
       --ease-out:cubic-bezier(.2,.8,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);
       --dur-base:140ms;--dur-med:220ms;
       --max-w:1200px;--nav-h:72px;
+      --font-mono:'JetBrains Mono',monospace;
+      --grad-symbol:linear-gradient(135deg,#ED1C24,#A71C20);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{font-size:var(--fs-body);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -76,40 +78,220 @@
     .nav__drawer .nav__cta{text-align:center;padding:var(--sp-4);margin-top:var(--sp-3);border-bottom:none}
 
     /* Page hero */
-    .page-hero{margin-top:var(--nav-h);background:var(--grad-hero);color:var(--white);padding:var(--sp-10) var(--sp-6)}
-    .page-hero__inner{max-width:var(--max-w);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-8);align-items:center}
-    .page-hero__eyebrow{font-family:var(--font-display);font-size:var(--fs-small);font-weight:600;text-transform:uppercase;letter-spacing:var(--tr-ultra);color:rgba(255,255,255,.75);margin-bottom:var(--sp-3)}
-    .page-hero h1{font-family:var(--font-display);font-size:var(--fs-h2);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--tr-tight);color:var(--white);margin-bottom:var(--sp-4)}
-    .page-hero p{font-size:var(--fs-lead);color:rgba(255,255,255,.85);margin-bottom:var(--sp-6)}
-    .cta-group{display:flex;gap:var(--sp-4);flex-wrap:wrap}
-    .btn-primary{background:var(--red);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
-    .btn-primary:hover{background:var(--red-dark);box-shadow:var(--shadow-red);transform:translateY(-1px)}
-    .btn-secondary{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
+    .page-hero{position:relative;margin-top:var(--nav-h);min-height:840px;color:var(--white);padding:120px var(--sp-6) 140px;overflow:hidden;isolation:isolate;
+      background:radial-gradient(120% 80% at 80% 10%,rgba(237,28,36,.55) 0%,transparent 60%),radial-gradient(80% 60% at 20% 90%,rgba(122,20,24,.85) 0%,transparent 65%),linear-gradient(135deg,#5e0f12 0%,#8e1418 35%,#c41a20 75%,#ed1c24 100%)}
+    .page-hero::before{content:"";position:absolute;inset:0;background-image:url("../project/assets/jet-symbol-solid.png");background-size:560px;background-position:right -160px top -120px;background-repeat:no-repeat;opacity:.06;mix-blend-mode:screen;z-index:0;pointer-events:none}
+    .page-hero::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 .08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");opacity:.4;mix-blend-mode:overlay;pointer-events:none;z-index:0}
+    .page-hero__inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:center}
+    .page-hero__eyebrow{font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.92);margin-bottom:var(--sp-6);opacity:0;animation:intlFadeUp .7s .1s cubic-bezier(.2,.8,.2,1) forwards}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(34px,4vw,60px);font-weight:700;line-height:1.02;letter-spacing:-.01em;color:var(--white);margin-bottom:26px;text-wrap:balance;opacity:0;animation:intlFadeUp .8s .2s cubic-bezier(.2,.8,.2,1) forwards}
+    .page-hero p{font-size:var(--fs-lead);line-height:1.55;color:rgba(255,255,255,.86);max-width:520px;margin-bottom:var(--sp-6);opacity:0;animation:intlFadeUp .7s .35s cubic-bezier(.2,.8,.2,1) forwards}
+    .cta-group{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:intlFadeUp .6s .5s cubic-bezier(.2,.8,.2,1) forwards}
+    .btn-primary{background:var(--white);color:var(--red);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);box-shadow:0 8px 24px rgba(0,0,0,.18);transition:box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);display:inline-flex;align-items:center;white-space:nowrap}
+    .btn-primary:hover{box-shadow:0 12px 32px rgba(0,0,0,.24);transform:translateY(-1px)}
+    .btn-secondary{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out);display:inline-flex;align-items:center;white-space:nowrap}
     .btn-secondary:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
     .btn-dark{background:var(--ink-900);color:var(--white);padding:var(--sp-4) var(--sp-6);border-radius:var(--radius-md);font-weight:600;text-decoration:none;font-size:var(--fs-lead);transition:background var(--dur-base) var(--ease-out);display:inline-block;white-space:nowrap}
     .btn-dark:hover{background:var(--ink-800)}
+    @keyframes intlFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-    /* Hero globe graphic */
-    .hero-globe{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-4)}
-    .globe-visual{width:100%;aspect-ratio:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .globe-visual svg{opacity:.3;width:60%;height:60%}
-    .globe-pin{position:absolute;width:12px;height:12px;background:var(--red);border-radius:50%;box-shadow:0 0 0 4px rgba(237,28,36,.25)}
-    .globe-pin--au{bottom:35%;right:38%}
-    .globe-pin--uk{top:28%;left:42%}
-    .globe-pin--us{top:32%;left:22%}
-    .globe-pin--sg{bottom:30%;right:30%}
-    .country-row{display:flex;align-items:center;gap:var(--sp-3);background:rgba(255,255,255,.06);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4)}
-    .country-flag{font-size:20px;line-height:1}
-    .country-info{flex:1}
-    .country-name{font-size:var(--fs-small);font-weight:600;color:var(--white)}
-    .country-status{font-size:var(--fs-caption);color:rgba(255,255,255,.55)}
-    .country-signal{display:flex;gap:2px;align-items:flex-end}
-    .country-signal span{display:block;width:4px;background:rgba(255,255,255,.25);border-radius:2px}
-    .country-signal span:nth-child(1){height:6px}
-    .country-signal span:nth-child(2){height:9px}
-    .country-signal span:nth-child(3){height:12px}
-    .country-signal span:nth-child(4){height:15px}
-    .country-signal.active span{background:rgba(255,255,255,.8)}
+    /* --- Composition --- */
+    .composition{position:relative;width:100%;aspect-ratio:12/10;perspective:1800px}
+    .composition::before{content:"";position:absolute;inset:0;background:radial-gradient(48% 55% at 55% 50%,rgba(255,200,200,.22) 0%,transparent 70%);filter:blur(8px);z-index:0}
+    /* World map */
+    .globe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:108%;height:88%;z-index:1;opacity:0;animation:intlGlobeIn 1.4s .15s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlGlobeIn{to{opacity:.55}}
+    .globe svg{width:100%;height:100%;display:block}
+    .globe .dot{fill:rgba(255,255,255,.22)}
+    .globe .land{fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.1);stroke-width:.4}
+    /* Pulse pins */
+    .pin{position:absolute;z-index:2;pointer-events:none}
+    .pin .core{position:relative;width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,#ED1C24,#A71C20);box-shadow:0 0 0 3px rgba(237,28,36,.18),0 4px 10px rgba(237,28,36,.4)}
+    .pin .core::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50%;background:#fff;transform:translate(-50%,-50%)}
+    .pin .ring{position:absolute;left:-13px;top:-13px;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(237,28,36,.6);animation:intlPinPulse 2.4s infinite}
+    @keyframes intlPinPulse{0%{transform:scale(.4);opacity:.7}100%{transform:scale(1.3);opacity:0}}
+    .pin .ring.r2{animation-delay:.8s}
+    .pin .ring.r3{animation-delay:1.6s}
+    .pin.au{left:81%;top:80%}
+    .pin.uk{left:46%;top:22%}
+    .pin.us{left:18%;top:34%}
+    .pin.sg{left:71%;top:54%}
+    /* Connector arcs */
+    .arcs{position:absolute;inset:0;z-index:1;pointer-events:none}
+    .arcs svg{width:100%;height:100%}
+    .arcs path{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1.2;stroke-dasharray:4 4;stroke-linecap:round;opacity:0;animation:intlArcIn 1s 1s ease-out forwards}
+    @keyframes intlArcIn{to{opacity:.55}}
+    /* Desktop softphone */
+    .desktop{position:absolute;left:6%;top:32%;width:480px;height:330px;background:#1a1a1e;border-radius:14px;box-shadow:0 50px 90px rgba(0,0,0,.6),0 18px 36px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.06);overflow:hidden;z-index:2;opacity:0;transform:rotateY(-12deg) rotateX(5deg) rotateZ(-2deg) scale(.95);transform-origin:50% 50%;animation:intlDeskIn 1s .25s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlDeskIn{to{opacity:1;transform:rotateY(-12deg) rotateX(5deg) rotateZ(-2deg) scale(1)}}
+    .chrome{display:flex;align-items:center;gap:12px;padding:9px 12px;background:linear-gradient(180deg,#26262a,#1a1a1e);border-bottom:1px solid rgba(255,255,255,.05)}
+    .lights{display:flex;gap:5px}
+    .lights span{width:11px;height:11px;border-radius:50%}
+    .lights .r{background:#ff5f57}
+    .lights .y{background:#febc2e}
+    .lights .g{background:#28c840}
+    .desk-title{flex:1;text-align:center;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;gap:7px}
+    .desk-title .glyph{width:12px;height:12px;border-radius:3px;background:var(--grad-symbol);transform:rotate(7deg)}
+    .softphone{display:flex;height:calc(100% - 36px);background:linear-gradient(180deg,#0b0b0c 0%,#161618 100%);color:#fff}
+    .sp-side{width:48px;background:#0a0a0b;border-right:1px solid rgba(255,255,255,.04);padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:4px}
+    .sp-side .nav{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5)}
+    .sp-side .nav.on{background:rgba(237,28,36,.18);color:#ffb3b6;box-shadow:inset 0 0 0 1px rgba(237,28,36,.35)}
+    .sp-side .nav svg{width:14px;height:14px}
+    .sp-main{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:0;min-width:0}
+    .sp-list{padding:12px;border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;gap:8px;min-width:0}
+    .sp-header{display:flex;justify-content:space-between;align-items:center}
+    .sp-header .ttl{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.04em}
+    .sp-header .me{display:flex;align-items:center;gap:6px;font-size:9.5px;color:rgba(255,255,255,.6)}
+    .sp-header .me .av{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#ED1C24,#A71C20);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:8.5px}
+    .search{display:flex;align-items:center;gap:6px;padding:5px 9px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.06);border-radius:6px;font-size:10px;color:rgba(255,255,255,.5)}
+    .search svg{width:10px;height:10px}
+    .search .cur{width:1px;height:11px;background:rgba(255,255,255,.7);animation:intlCursorBlink 1s steps(1) infinite}
+    @keyframes intlCursorBlink{50%{opacity:0}}
+    .sp-list .ttl-r{font-size:8.5px;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:var(--font-display);margin-top:2px}
+    .sp-row{display:flex;align-items:center;gap:8px;padding:6px 7px;border-radius:6px}
+    .sp-row.active{background:rgba(237,28,36,.12);border:1px solid rgba(237,28,36,.3)}
+    .sp-row .av{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:9px;color:#fff;position:relative}
+    .sp-row .av .ft{position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;border:1.5px solid #0b0b0c;overflow:hidden}
+    .sp-row .av.a1{background:linear-gradient(135deg,#ED1C24,#A71C20)}
+    .sp-row .av.a2{background:linear-gradient(135deg,#4A4D55,#2A2A2E)}
+    .sp-row .av.a3{background:linear-gradient(135deg,#69e29a,#0E8A4A)}
+    .sp-row .body{flex:1;min-width:0}
+    .sp-row .nm{font-size:10.5px;color:#fff;font-weight:600;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sp-row .sub{font-size:8.5px;color:rgba(255,255,255,.45);margin-top:1px;font-family:var(--font-mono);letter-spacing:.02em}
+    .sp-row .meta{font-family:var(--font-mono);font-size:9.5px;color:rgba(255,255,255,.5);text-align:right;font-weight:500}
+    .sp-row.active .meta{color:#69e29a}
+    /* Flag mini badges — on desktop avatars */
+    .ft.uk{background:linear-gradient(135deg,#1e3a8a,#0c2461)}
+    .ft.uk::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(-45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(0deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%)}
+    .ft.uk::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%)}
+    .ft.us{background:#fff}
+    .ft.us::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#c8102e 0 2px,#fff 2px 4px)}
+    .ft.us::after{content:"";position:absolute;left:0;top:0;width:50%;height:50%;background:#1e3a8a}
+    .ft.sg{background:#fff}
+    .ft.sg::before{content:"";position:absolute;left:0;top:0;right:0;height:50%;background:#c8102e}
+    .ft.sg::after{content:"";position:absolute;left:18%;top:14%;width:30%;height:30%;border-radius:50%;background:#fff;box-shadow:4px 0 0 -1px #c8102e}
+    /* In-call panel */
+    .sp-call{padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;min-width:0}
+    .sp-call .lbl{font-size:8.5px;color:rgba(255,255,255,.5);letter-spacing:.16em;text-transform:uppercase;font-weight:600;font-family:var(--font-display)}
+    .sp-call .av-big{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ED1C24,#A71C20);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:22px;box-shadow:0 8px 22px rgba(237,28,36,.4),inset 0 1px 0 rgba(255,255,255,.18);position:relative}
+    .sp-call .av-big .ft{position:absolute;right:-2px;bottom:-2px;width:20px;height:20px;border-radius:50%;border:2.5px solid #0b0b0c;overflow:hidden}
+    .sp-call .nm{font-family:var(--font-display);font-weight:600;font-size:13px;line-height:1.1}
+    .sp-call .num{font-family:var(--font-mono);font-size:10.5px;color:rgba(255,255,255,.55);letter-spacing:.02em}
+    .sp-call .wave{display:flex;align-items:center;justify-content:center;gap:2.5px;height:26px;margin-top:2px}
+    .sp-call .wave span{width:2px;border-radius:1px;background:linear-gradient(180deg,#fff,#ff8a8d);animation:intlBar .9s ease-in-out infinite}
+    @keyframes intlBar{0%,100%{height:30%}50%{height:90%}}
+    .sp-call .wave span:nth-child(1){height:40%;animation-delay:0s}.sp-call .wave span:nth-child(2){height:65%;animation-delay:.08s}.sp-call .wave span:nth-child(3){height:45%;animation-delay:.16s}.sp-call .wave span:nth-child(4){height:85%;animation-delay:.24s}.sp-call .wave span:nth-child(5){height:55%;animation-delay:.32s}.sp-call .wave span:nth-child(6){height:75%;animation-delay:.4s}.sp-call .wave span:nth-child(7){height:35%;animation-delay:.48s}.sp-call .wave span:nth-child(8){height:90%;animation-delay:.56s}.sp-call .wave span:nth-child(9){height:50%;animation-delay:.64s}.sp-call .wave span:nth-child(10){height:70%;animation-delay:.72s}.sp-call .wave span:nth-child(11){height:42%;animation-delay:.8s}.sp-call .wave span:nth-child(12){height:62%;animation-delay:.88s}.sp-call .wave span:nth-child(13){height:80%;animation-delay:.04s}.sp-call .wave span:nth-child(14){height:48%;animation-delay:.12s}
+    .sp-call .timer{font-family:var(--font-mono);font-size:11.5px;color:#fff;font-weight:600;letter-spacing:.04em}
+    .sp-call .timer .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:#26d97a;margin-right:6px;vertical-align:middle;box-shadow:0 0 6px #26d97a;animation:intlDotBlink 1.6s infinite}
+    @keyframes intlDotBlink{0%,100%{opacity:1}50%{opacity:.4}}
+    .sp-call .actions{display:flex;gap:6px;margin-top:4px}
+    .sp-call .actions .ab{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+    .sp-call .actions .ab.mute{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+    .sp-call .actions .ab.rec{background:rgba(237,28,36,.2);border:1px solid rgba(237,28,36,.45);color:#ffb3b6}
+    .sp-call .actions .ab.end{background:#ED1C24;box-shadow:0 6px 14px rgba(237,28,36,.55)}
+    .sp-call .actions svg{width:13px;height:13px}
+    /* Mobile phone */
+    .phone{position:absolute;right:2%;bottom:3%;width:240px;height:490px;transform-style:preserve-3d;border-radius:36px;background:linear-gradient(180deg,#1a1a1e 0%,#050506 100%);padding:8px;box-shadow:0 40px 80px rgba(0,0,0,.65),0 12px 30px rgba(0,0,0,.45),inset 0 0 0 1.5px rgba(255,255,255,.08),inset 0 0 0 3px rgba(0,0,0,.6);z-index:3;opacity:0;transform:rotateY(-12deg) rotateX(5deg) rotateZ(4deg) translateY(20px) scale(.94);animation:intlPhoneIn 1s .5s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlPhoneIn{to{opacity:1;transform:rotateY(-12deg) rotateX(5deg) rotateZ(4deg) translateY(0) scale(1)}}
+    .phone::before{content:"";position:absolute;left:-2px;top:60px;bottom:60px;width:2px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.4),transparent);border-radius:2px}
+    .screen{position:relative;width:100%;height:100%;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(110% 60% at 50% 0%,rgba(237,28,36,.16) 0%,transparent 65%),linear-gradient(180deg,#0b0b0c 0%,#1a0608 100%);color:#fff;font-family:var(--font-ui)}
+    .notch{position:absolute;left:50%;top:5px;transform:translateX(-50%);width:74px;height:20px;background:#050506;border-radius:12px;z-index:3}
+    .p-status{display:flex;justify-content:space-between;align-items:center;padding:11px 20px 4px;font-size:10.5px;font-weight:600;color:#fff}
+    .p-status .right{display:flex;gap:5px;align-items:center}
+    .wifi-on{color:#26d97a;font-size:8.5px;font-family:var(--font-mono);letter-spacing:.04em;margin-right:3px}
+    .app-head{padding:8px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
+    .app-head .brand{display:flex;align-items:center;gap:6px}
+    .app-head .glyph{width:14px;height:14px;border-radius:3px;background:var(--grad-symbol);transform:rotate(7deg)}
+    .app-head .name{font-family:var(--font-display);font-weight:700;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+    .net-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:999px;background:rgba(38,217,122,.14);border:1px solid rgba(38,217,122,.4);color:#a8f0c5;font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-family:var(--font-display)}
+    .net-pill .ndot{width:4px;height:4px;border-radius:50%;background:#26d97a;animation:intlDotBlink 1.6s infinite}
+    .loc{margin:11px 14px 0;padding:10px 11px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;gap:10px}
+    .loc .flag{width:30px;height:30px;border-radius:50%;flex-shrink:0;border:1px solid rgba(255,255,255,.15);overflow:hidden;position:relative;background:linear-gradient(135deg,#1e3a8a,#0c2461)}
+    .loc .flag.uk::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(-45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(0deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%)}
+    .loc .flag.uk::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%)}
+    .loc .body{flex:1;min-width:0}
+    .loc .lbl{font-size:8px;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:var(--font-display)}
+    .loc .city{font-family:var(--font-display);font-weight:700;font-size:12px;line-height:1.1;margin-top:1px}
+    .loc .time{font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,.55);margin-top:1px;letter-spacing:.04em}
+    .biz-num{margin:11px 14px 0;padding:11px;border-radius:10px;background:linear-gradient(180deg,rgba(237,28,36,.18),rgba(237,28,36,.06));border:1px solid rgba(237,28,36,.35)}
+    .biz-num .lbl{font-size:8px;color:#ffb3b6;letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-family:var(--font-display)}
+    .biz-num .v{font-family:var(--font-mono);font-size:14px;font-weight:600;letter-spacing:.02em;color:#fff;margin-top:1px}
+    .biz-num .sub{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,.6);margin-top:5px}
+    .biz-num .sub svg{width:10px;height:10px}
+    .in-call{margin:11px 14px 0;padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(6px);animation:intlIncIn .6s 1.9s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlIncIn{to{opacity:1;transform:translateY(0)}}
+    .in-call .av{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#ED1C24,#A71C20);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:10px}
+    .in-call .body{flex:1;min-width:0}
+    .in-call .row1{display:flex;align-items:center;gap:5px;font-size:10px;color:#fff;font-weight:600}
+    .in-call .row1 .live{width:5px;height:5px;border-radius:50%;background:#26d97a;animation:intlDotBlink 1.6s infinite;box-shadow:0 0 4px #26d97a}
+    .in-call .row2{font-size:8.5px;color:rgba(255,255,255,.55);margin-top:1px;font-family:var(--font-mono);letter-spacing:.02em}
+    .p-foot{margin-top:auto;padding:12px 18px 18px;display:flex;justify-content:center;align-items:center;gap:7px;font-size:8.5px;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;font-family:var(--font-display);font-weight:600}
+    .p-foot .fdot{width:4px;height:4px;border-radius:50%;background:#26d97a;animation:intlDotBlink 1.6s infinite;box-shadow:0 0 4px #26d97a}
+    /* Same-number pill */
+    .same{position:absolute;z-index:4;left:50%;top:60%;transform:translate(-50%,-50%) rotate(-6deg);padding:6px 11px;border-radius:999px;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.22);color:#fff;font-family:var(--font-display);font-weight:700;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:7px;box-shadow:0 8px 24px rgba(0,0,0,.45);opacity:0;animation:intlSameIn .6s 1.4s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlSameIn{to{opacity:1}}
+    .same .sdot{width:5px;height:5px;border-radius:50%;background:#26d97a;box-shadow:0 0 4px #26d97a;animation:intlDotBlink 1.6s infinite}
+    .same svg{width:11px;height:11px;color:#ffb3b6}
+    /* Satellite cards */
+    .card{position:absolute;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-radius:14px;color:#fff;box-shadow:0 24px 50px rgba(0,0,0,.32),0 4px 12px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.12);z-index:4;opacity:0}
+    .card .ck-label{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600;font-family:var(--font-display);display:flex;align-items:center;gap:6px}
+    /* Card: no roaming (top-left) */
+    .card-noroam{top:2%;left:-7%;width:240px;padding:14px 16px;transform:translate(-30px,-20px) rotate(-3deg) scale(.92);animation:intlCard1 .9s .65s cubic-bezier(.2,.8,.2,1) forwards;display:flex;align-items:center;gap:12px}
+    @keyframes intlCard1{to{opacity:1;transform:translate(0,0) rotate(-3deg) scale(1)}}
+    .nr-ic{width:44px;height:44px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,#ED1C24,#A71C20);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(237,28,36,.4);position:relative}
+    .nr-ic svg{width:22px;height:22px}
+    .nr-ic::after{content:"";position:absolute;left:6px;right:6px;top:50%;height:2.5px;background:#fff;transform:translateY(-50%) rotate(-25deg);border-radius:2px;box-shadow:0 0 0 1.5px #A71C20}
+    .card-noroam .body{flex:1;min-width:0}
+    .card-noroam .ck-label{margin-bottom:4px}
+    .card-noroam .title{font-family:var(--font-display);font-weight:700;font-size:13px;line-height:1.2}
+    .card-noroam .sub{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.35}
+    /* Card: AU number (top-right) */
+    .card-au{top:-1%;right:-12%;width:225px;padding:12px 14px;transform:translate(30px,-20px) rotate(2.5deg) scale(.92);animation:intlCard2 .9s .8s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlCard2{to{opacity:1;transform:translate(0,0) rotate(2.5deg) scale(1)}}
+    .country{display:flex;align-items:center;gap:10px}
+    .flag-tile{width:32px;height:32px;border-radius:50%;flex-shrink:0;border:1px solid rgba(255,255,255,.18);overflow:hidden;position:relative}
+    .flag-tile.au{background:linear-gradient(135deg,#1e3a8a,#0c2461)}
+    .flag-tile.au::before{content:"";position:absolute;inset:0;background:radial-gradient(circle 2px at 32% 72%,#fff 60%,transparent 62%),radial-gradient(circle 1.6px at 52% 42%,#fff 60%,transparent 62%),radial-gradient(circle 1.8px at 70% 68%,#fff 60%,transparent 62%),radial-gradient(circle 2px at 78% 30%,#fff 60%,transparent 62%)}
+    .flag-tile.au::after{content:"";position:absolute;top:3px;left:3px;width:12px;height:9px;background:linear-gradient(45deg,transparent 45%,#fff 45%,#fff 55%,transparent 55%),linear-gradient(-45deg,transparent 45%,#fff 45%,#fff 55%,transparent 55%),#c8102e;border-radius:1px}
+    .country .body{flex:1;min-width:0}
+    .country .lbl{font-size:8.5px;color:rgba(255,255,255,.5);letter-spacing:.14em;text-transform:uppercase;font-weight:600;font-family:var(--font-display)}
+    .country .city{font-family:var(--font-display);font-weight:700;font-size:13px;line-height:1.15;margin-top:1px}
+    .country .meta{font-size:9.5px;color:rgba(255,255,255,.55);font-family:var(--font-mono);margin-top:1px;letter-spacing:.02em}
+    .country .signal{display:flex;align-items:flex-end;gap:1.5px;height:14px;flex-shrink:0}
+    .country .signal span{width:2.5px;border-radius:1px;background:#26d97a;box-shadow:0 0 4px rgba(38,217,122,.6)}
+    .country .signal span:nth-child(1){height:30%}
+    .country .signal span:nth-child(2){height:55%}
+    .country .signal span:nth-child(3){height:80%}
+    .country .signal span:nth-child(4){height:100%}
+    /* Card: 180 countries (mid-right) */
+    .card-stat{top:42%;right:-14%;width:205px;padding:14px 16px;transform:translate(36px,8px) rotate(-2deg) scale(.92);animation:intlCard3 .9s 1s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlCard3{to{opacity:1;transform:translate(0,0) rotate(-2deg) scale(1)}}
+    .card-stat .ck-label{margin-bottom:8px}
+    .card-stat .big{font-family:var(--font-display);font-weight:700;font-size:38px;letter-spacing:-.02em;line-height:1;background:linear-gradient(180deg,#fff,#ffb3b6);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+    .card-stat .sub{font-size:10.5px;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.35}
+    /* Card: staff active now (bottom-left) */
+    .card-active{bottom:-2%;left:-2%;width:230px;padding:12px 14px;transform:translate(-30px,20px) rotate(-2deg) scale(.92);animation:intlCard4 .9s 1.15s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes intlCard4{to{opacity:1;transform:translate(0,0) rotate(-2deg) scale(1)}}
+    .card-active .ck-label{margin-bottom:8px}
+    .card-active .ck-label .lr{width:6px;height:6px;border-radius:50%;background:#26d97a;box-shadow:0 0 6px #26d97a;animation:intlGreenPulse 1.4s infinite}
+    @keyframes intlGreenPulse{0%{box-shadow:0 0 0 0 rgba(38,217,122,.6),0 0 6px #26d97a}70%{box-shadow:0 0 0 6px rgba(38,217,122,0),0 0 6px #26d97a}100%{box-shadow:0 0 0 0 rgba(38,217,122,0),0 0 6px #26d97a}}
+    .ar-row{display:grid;grid-template-columns:22px 1fr 18px;gap:7px;align-items:center;padding:4px 0;border-top:1px solid rgba(255,255,255,.06);font-size:10px}
+    .ar-row:first-of-type{border-top:0}
+    .ar-row .ft2{width:22px;height:22px;border-radius:50%;flex-shrink:0;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.15)}
+    .ar-row .body{min-width:0}
+    .ar-row .nm{font-size:10px;color:#fff;font-weight:600;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ar-row .sub{font-size:8.5px;color:rgba(255,255,255,.5);font-family:var(--font-mono);margin-top:1px;letter-spacing:.02em}
+    .ar-row .dot{width:5px;height:5px;border-radius:50%;background:#26d97a;animation:intlGreenPulse 1.4s infinite;box-shadow:0 0 4px #26d97a;margin:0 auto}
+    .ar-row .ft2.us{background:#fff}
+    .ar-row .ft2.us::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#c8102e 0 2px,#fff 2px 4px)}
+    .ar-row .ft2.us::after{content:"";position:absolute;left:0;top:0;width:50%;height:50%;background:#1e3a8a}
+    .ar-row .ft2.uk{background:linear-gradient(135deg,#1e3a8a,#0c2461)}
+    .ar-row .ft2.uk::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(-45deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(0deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%)}
+    .ar-row .ft2.uk::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%),linear-gradient(90deg,transparent 47%,#c8102e 47%,#c8102e 53%,transparent 53%)}
+    .ar-row .ft2.sg{background:#fff}
+    .ar-row .ft2.sg::before{content:"";position:absolute;left:0;top:0;right:0;height:50%;background:#c8102e}
+    .ar-row .ft2.sg::after{content:"";position:absolute;left:18%;top:14%;width:30%;height:30%;border-radius:50%;background:#fff;box-shadow:4px 0 0 -1px #c8102e}
+    @media(prefers-reduced-motion:reduce){.card,.in-call,.same,.globe,.arcs path{opacity:1!important}.globe{opacity:.55!important}.page-hero__eyebrow,.page-hero h1,.page-hero p,.cta-group,.desktop,.phone{animation:none!important;opacity:1!important;transform:none!important}}
 
     /* Sections */
     .section{padding:var(--sp-10) var(--sp-6)}
@@ -172,11 +354,12 @@
     .footer__legal a{color:rgba(255,255,255,.4);text-decoration:none;font-size:var(--fs-small)}
     .footer__legal a:hover{color:rgba(255,255,255,.7)}
 
-    @media(max-width:900px){
-      .nav__links{display:none}.nav__burger{display:flex}
+    @media(max-width:1200px){
       .page-hero__inner{grid-template-columns:1fr}
       .page-hero h1{font-size:var(--fs-h3)}
-      .hero-globe{display:none}
+    }
+    @media(max-width:900px){
+      .nav__links{display:none}.nav__burger{display:flex}
       .section__headline{font-size:var(--fs-h3)}
       .section{padding:var(--sp-8) var(--sp-5)}
     }
@@ -184,6 +367,7 @@
       .page-hero{padding:var(--sp-8) var(--sp-5)}
       .cta-group{flex-direction:column}
       .footer__top{flex-direction:column}
+      .composition{display:none}
     }
   </style>
 <!-- Google Tag Manager -->
@@ -323,52 +507,255 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="../pricing" class="btn-secondary">See pricing</a>
         </div>
       </div>
-      <div class="hero-globe">
-        <div style="display:flex;flex-direction:column;gap:var(--sp-3)">
-          <div class="country-row">
-            <span class="country-flag">🇦🇺</span>
-            <div class="country-info">
-              <div class="country-name">Australia (HQ)</div>
-              <div class="country-status">Business number active</div>
+      <div class="composition" aria-label="Jet Cloud Mobile — same Australian number active on desktop softphone and mobile phone, working across 180+ countries with no roaming charges">
+
+        <!-- Dotted world map -->
+        <div class="globe" aria-hidden="true">
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- North America -->
+            <path class="land" d="M60,88 L118,62 L172,72 L196,96 L200,132 L188,168 L172,188 L150,198 L122,204 L96,196 L72,178 L58,148 L54,116 Z"/>
+            <!-- Central America -->
+            <path class="land" d="M152,206 L184,218 L196,234 L178,240 L158,228 Z"/>
+            <!-- South America -->
+            <path class="land" d="M158,246 L188,228 L214,248 L228,284 L232,326 L218,366 L196,394 L170,408 L148,396 L130,368 L126,334 L134,298 L146,270 Z"/>
+            <!-- Greenland -->
+            <path class="land" d="M238,18 L272,12 L298,24 L302,46 L284,62 L256,68 L230,52 L226,34 Z"/>
+            <!-- Iceland -->
+            <path class="land" d="M298,44 L316,38 L326,50 L318,62 L300,60 Z"/>
+            <!-- British Isles -->
+            <path class="land" d="M330,64 L346,56 L356,68 L348,84 L334,82 Z"/>
+            <path class="land" d="M320,70 L328,65 L332,74 L322,78 Z"/>
+            <!-- Europe -->
+            <path class="land" d="M356,58 L388,48 L418,56 L440,72 L446,92 L440,114 L418,124 L388,128 L362,118 L346,100 L342,78 Z"/>
+            <!-- Scandinavia -->
+            <path class="land" d="M372,28 L396,22 L420,34 L424,56 L404,54 L376,50 Z"/>
+            <!-- Russia / N.Asia -->
+            <path class="land" d="M440,18 L540,8 L640,14 L714,32 L748,54 L746,76 L718,84 L676,78 L628,66 L576,62 L526,56 L482,52 L450,46 Z"/>
+            <!-- Africa -->
+            <path class="land" d="M358,148 L396,134 L432,150 L452,178 L462,224 L456,272 L440,308 L412,328 L382,330 L354,312 L338,278 L334,238 L340,196 L348,170 Z"/>
+            <!-- Madagascar -->
+            <path class="land" d="M468,278 L480,266 L492,280 L494,308 L482,322 L466,314 L458,296 Z"/>
+            <!-- Arabian Peninsula -->
+            <path class="land" d="M444,118 L476,114 L500,128 L508,154 L492,174 L464,178 L442,162 L436,140 Z"/>
+            <!-- South Asia / India -->
+            <path class="land" d="M508,148 L550,142 L574,158 L578,188 L566,218 L548,238 L524,242 L502,226 L492,198 L494,170 Z"/>
+            <!-- SE Asia mainland -->
+            <path class="land" d="M572,142 L614,134 L648,148 L662,174 L650,204 L622,216 L594,210 L572,188 Z"/>
+            <!-- SE Asia islands -->
+            <path class="land" d="M596,254 L630,248 L658,260 L664,278 L642,290 L608,284 L586,270 Z"/>
+            <path class="land" d="M660,262 L688,256 L702,272 L696,286 L668,288 L652,274 Z"/>
+            <!-- Central/East Asia -->
+            <path class="land" d="M560,64 L626,52 L682,68 L718,94 L726,132 L706,170 L664,184 L616,178 L576,160 L548,134 L544,96 Z"/>
+            <!-- Japan -->
+            <path class="land" d="M714,102 L730,94 L744,108 L740,128 L722,136 L710,122 Z"/>
+            <path class="land" d="M740,90 L752,84 L758,96 L750,106 L736,100 Z"/>
+            <!-- Australia -->
+            <path class="land" d="M588,322 L640,306 L678,318 L698,344 L704,378 L688,410 L656,426 L618,430 L586,416 L562,392 L554,360 L558,334 Z"/>
+            <!-- New Zealand -->
+            <path class="land" d="M722,388 L736,376 L744,394 L738,416 L720,420 L710,404 Z"/>
+            <path class="land" d="M734,372 L744,362 L750,374 L744,386 L730,380 Z"/>
+            <!-- Dot accents -->
+            <circle class="dot" cx="92" cy="148" r="3"/>
+            <circle class="dot" cx="178" cy="280" r="3"/>
+            <circle class="dot" cx="390" cy="82" r="3"/>
+            <circle class="dot" cx="460" cy="220" r="3"/>
+            <circle class="dot" cx="528" cy="190" r="3"/>
+            <circle class="dot" cx="620" cy="170" r="3"/>
+            <circle class="dot" cx="636" cy="370" r="3"/>
+          </svg>
+        </div>
+
+        <!-- Connector arcs: AU→UK, AU→US, AU→SG -->
+        <div class="arcs" aria-hidden="true">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M81,80 Q58,28 46,22"/>
+            <path d="M81,80 Q44,18 18,34"/>
+            <path d="M81,80 Q78,62 71,54"/>
+          </svg>
+        </div>
+
+        <!-- Pulse pins -->
+        <div class="pin au" aria-label="Australia"><div class="core"></div><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div></div>
+        <div class="pin uk" aria-label="United Kingdom"><div class="core"></div><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div></div>
+        <div class="pin us" aria-label="United States"><div class="core"></div><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div></div>
+        <div class="pin sg" aria-label="Singapore"><div class="core"></div><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div></div>
+
+        <!-- Desktop softphone -->
+        <div class="desktop" aria-hidden="true">
+          <div class="chrome">
+            <div class="lights"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <div class="desk-title"><span class="glyph"></span>JET CLOUD MOBILE</div>
+          </div>
+          <div class="softphone">
+            <div class="sp-side">
+              <div class="nav on">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.3 13.38a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 2.5h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+              </div>
+              <div class="nav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="nav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
             </div>
-            <div class="country-signal active">
-              <span></span><span></span><span></span><span></span>
+            <div class="sp-main">
+              <div class="sp-list">
+                <div class="sp-header">
+                  <span class="ttl">Calls</span>
+                  <div class="me"><div class="av">MC</div><span>Matthew C.</span></div>
+                </div>
+                <div class="search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  Search<span class="cur"></span>
+                </div>
+                <div class="ttl-r">Recent</div>
+                <div class="sp-row active">
+                  <div class="av a1">SC<div class="ft uk"></div></div>
+                  <div class="body"><div class="nm">Sarah C.</div><div class="sub">+61 411 234 567</div></div>
+                  <div class="meta">Live</div>
+                </div>
+                <div class="sp-row">
+                  <div class="av a2">JT<div class="ft us"></div></div>
+                  <div class="body"><div class="nm">James T.</div><div class="sub">+61 422 345 678</div></div>
+                  <div class="meta">2m ago</div>
+                </div>
+                <div class="sp-row">
+                  <div class="av a3">AK<div class="ft sg"></div></div>
+                  <div class="body"><div class="nm">Aisha K.</div><div class="sub">+61 433 456 789</div></div>
+                  <div class="meta">14m ago</div>
+                </div>
+              </div>
+              <div class="sp-call">
+                <div class="lbl">In Call</div>
+                <div class="av-big">SC<div class="ft uk"></div></div>
+                <div class="nm">Sarah C.</div>
+                <div class="num">+61 411 234 567</div>
+                <div class="wave">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="timer"><span class="live"></span>04:23</div>
+                <div class="actions">
+                  <button class="ab mute" aria-label="Mute">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </button>
+                  <button class="ab rec" aria-label="Record">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/></svg>
+                  </button>
+                  <button class="ab end" aria-label="End call">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="country-row">
-            <span class="country-flag">🇬🇧</span>
-            <div class="country-info">
-              <div class="country-name">United Kingdom</div>
-              <div class="country-status">Calling via Wi-Fi</div>
+        </div>
+
+        <!-- Same number pill -->
+        <div class="same" aria-hidden="true">
+          <span class="sdot"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Same number · all devices
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+
+        <!-- Mobile phone -->
+        <div class="phone" aria-hidden="true">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="p-status">
+              <span>9:41</span>
+              <div class="right">
+                <span class="wifi-on">Wi-Fi</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="3" height="14" rx="1"/><rect x="8" y="5" width="3" height="16" rx="1"/><rect x="14" y="3" width="3" height="18" rx="1"/><rect x="20" y="1" width="3" height="20" rx="1"/></svg>
+              </div>
             </div>
-            <div class="country-signal active">
-              <span></span><span></span><span></span><span></span>
+            <div class="app-head">
+              <div class="brand"><span class="glyph"></span><span class="name">Jet Cloud</span></div>
+              <div class="net-pill"><span class="ndot"></span>AU</div>
             </div>
+            <div class="loc">
+              <div class="flag uk"></div>
+              <div class="body">
+                <div class="lbl">Current Location</div>
+                <div class="city">London, UK</div>
+                <div class="time">Mon 14:32 · GMT+1</div>
+              </div>
+            </div>
+            <div class="biz-num">
+              <div class="lbl">Your AU Business Number</div>
+              <div class="v">+61 411 234 567</div>
+              <div class="sub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Active · No roaming charges
+              </div>
+            </div>
+            <div class="in-call">
+              <div class="av">HQ</div>
+              <div class="body">
+                <div class="row1"><span class="live"></span>Incoming call</div>
+                <div class="row2">Melbourne HQ · +61 3 9000 0000</div>
+              </div>
+            </div>
+            <div class="p-foot"><span class="fdot"></span>Connected · 0 roaming charges</div>
           </div>
-          <div class="country-row">
-            <span class="country-flag">🇺🇸</span>
-            <div class="country-info">
-              <div class="country-name">United States</div>
-              <div class="country-status">Calling via mobile data</div>
-            </div>
-            <div class="country-signal active">
-              <span></span><span></span><span></span><span></span>
-            </div>
+        </div>
+
+        <!-- Satellite card: No roaming (top-left) -->
+        <div class="card card-noroam" aria-hidden="true">
+          <div class="nr-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="country-row">
-            <span class="country-flag">🇸🇬</span>
-            <div class="country-info">
-              <div class="country-name">Singapore</div>
-              <div class="country-status">Ready to connect</div>
+          <div class="body">
+            <div class="ck-label">Network</div>
+            <div class="title">Zero roaming charges</div>
+            <div class="sub">Works over Wi-Fi &amp; mobile data</div>
+          </div>
+        </div>
+
+        <!-- Satellite card: AU number (top-right) -->
+        <div class="card card-au" aria-hidden="true">
+          <div class="ck-label">Your number</div>
+          <div class="country">
+            <div class="flag-tile au"></div>
+            <div class="body">
+              <div class="lbl">Australian mobile</div>
+              <div class="city">+61 411 234 567</div>
+              <div class="meta">Active from London</div>
             </div>
-            <div class="country-signal active">
+            <div class="signal">
               <span></span><span></span><span></span><span></span>
             </div>
           </div>
         </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);text-align:center">
-          <span style="font-size:var(--fs-small);color:rgba(255,255,255,.55)">One Australian number. Works everywhere.</span>
+
+        <!-- Satellite card: 180 countries (mid-right) -->
+        <div class="card card-stat" aria-hidden="true">
+          <div class="ck-label">Coverage</div>
+          <div class="big" data-target="180">0</div>
+          <div class="sub">Countries supported — no contract required</div>
         </div>
+
+        <!-- Satellite card: Staff active now (bottom-left) -->
+        <div class="card card-active" aria-hidden="true">
+          <div class="ck-label"><span class="lr"></span>Staff active now</div>
+          <div class="ar-row">
+            <div class="ft2 uk"></div>
+            <div class="body"><div class="nm">Sarah C.</div><div class="sub">London · +61 411</div></div>
+            <div class="dot"></div>
+          </div>
+          <div class="ar-row">
+            <div class="ft2 us"></div>
+            <div class="body"><div class="nm">James T.</div><div class="sub">New York · +61 422</div></div>
+            <div class="dot"></div>
+          </div>
+          <div class="ar-row">
+            <div class="ft2 sg"></div>
+            <div class="body"><div class="nm">Aisha K.</div><div class="sub">Singapore · +61 433</div></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -558,6 +945,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       burger.setAttribute('aria-expanded', open);
       drawer.setAttribute('aria-hidden', !open);
     });
+
+    // Count-up animation for stat cards
+    (function(){
+      var els = document.querySelectorAll('[data-target]');
+      if (!els.length) return;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var duration = 1200;
+          var start = performance.now();
+          (function step(now){
+            var p = Math.min((now - start) / duration, 1);
+            el.textContent = Math.floor(p * target);
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+          })(start);
+          io.unobserve(el);
+        });
+      }, {threshold: 0.4});
+      els.forEach(function(el){ io.observe(el); });
+    })();
 
   </script>
   <script src="../project/assets/global-search.js" defer></script>
